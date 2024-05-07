@@ -13,48 +13,113 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model seller {
-  id       String @id @default(uuid())
-  nama     String
-  nomer_hp Int    @unique
-  password String
-  email    String @unique
+// model seller {
+//   id       String @id @default(uuid())
+//   nama     String
+//   nomer_hp Int    @unique
+//   password String
+//   email    String @unique
+// }
+
+// model tiket {
+//   id              String   @id @default(uuid())
+//   nama_tiket      String
+//   tanggal_acara   DateTime
+//   nama_artis      String
+//   jumlah_tiket    Int
+//   id_kategori     String
+//   deskripsi_acara String
+//   lokasi          String
+//   thumbnail       String
+//   created_at      DateTime //perlu otomatis
+//   update_at       DateTime
+// }
+
+// model kategori {
+//   id                         String   @id @default(uuid())
+//   nama_kategori              String   @unique
+//   tanggal_terakhir_penjualan DateTime
+//   keterangan                 String
+//   harga                      Int
+//   status                     String
+//   total_tiket                Int
+// }
+
+// model transaksi {
+//   id                 String   @id @default(uuid())
+//   jumlah_tiket       Int
+//   total_harga        Int
+//   tanggal_pembayaran DateTime
+//   status             String
+// }
+
+// model antrian {
+//   id      String @id @default(uuid())
+//   antrian Int //auto increment
+//   status  String
+// }
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  username      String?   @unique
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String
+  Session       Session[]
+  Account       Account?
+  // Optional for WebAuthn support
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
 }
 
-model tiket {
-  id              String   @id @default(uuid())
-  nama_tiket      String
-  tanggal_acara   DateTime
-  nama_artis      String
-  jumlah_tiket    Int
-  id_kategori     String
-  deskripsi_acara String
-  lokasi          String
-  thumbnail       String
-  created_at      DateTime //perlu otomatis
-  update_at       DateTime
+model Account {
+  id                       String  @id @default(cuid())
+  userId                   String  @unique
+  type                     String
+  provider                 String
+  providerAccountId        String
+  refresh_token            String? @db.Text
+  access_token             String? @db.Text
+  expires_at               Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String? @db.Text
+  session_state            String?
+  refresh_token_expires_in Int?
+  user                     User?   @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+  @@map("account")
 }
 
-model kategori {
-  id                         String   @id @default(uuid())
-  nama_kategori              String   @unique
-  tanggal_terakhir_penjualan DateTime
-  keterangan                 String
-  harga                      Int
-  status                     String
-  total_tiket                Int
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@map("session")
 }
 
-model transaksi {
-  id                 String   @id @default(uuid())
-  jumlah_tiket       Int
-  total_harga        Int
-  tanggal_pembayaran DateTime
-  status             String
-}
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
 
-model antrian {
-  id      String @id @default(uuid())
-  antrian Int //auto increment
-  status  String
+  @@unique([identifier, token])
+  @@map("verification_tokens")
 }
