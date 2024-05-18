@@ -10,24 +10,26 @@ export default function Register({ }) {
     const [email, setemail] = useState('');
     const [password, setpassword] = useState('');
 
-    // async function onSubmit(event) {
-    //     event.preventDefault(); // Prevent the default form submission behavior
-    //     const response = await fetch('/auth/register/api', { // Ensure the correct path
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             username: username,
-    //             phonenumber: phonenumber,
-    //             email: email,
-    //             password: password,
-    //         })
-    //     });
+    async function onSubmit() {
+        // Prevent the default form submission behavior
+        const response = await fetch('/auth/register/api', { // Ensure the correct path
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username,
+                phonenumber: phonenumber,
+                email: email,
+                password: password,
+            })
+        });
 
-    //     const data = await response.json();
-    //     console.log(data); // Handle response data
-    // }
+
+
+        const data = await response.json();
+        console.log(data); // Handle response data
+    }
 
     return (
         <div className="max-w-lg h-screen flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
@@ -39,7 +41,7 @@ export default function Register({ }) {
                         </h1>
                         <p className="text-rose-600"><a>Masuk</a></p>
                     </div>
-                    <form action={CreateUser} className="max-w-md mx-auto">
+                    <form action={onSubmit} className="max-w-md mx-auto">
                         <div className="relative z-0 w-full mb-5 group">
                             <label htmlFor="username" className="block mb-2 text-sm font-normal text-gray-900 dark:text-white">Username</label>
                             <input type="text" id="username" value={username} onChange={(e) => { setusername(e.target.value) }} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
@@ -62,5 +64,5 @@ export default function Register({ }) {
                 </div>
             </div>
         </div>
-    );
+    )
 }

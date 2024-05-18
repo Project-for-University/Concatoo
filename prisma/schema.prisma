@@ -13,63 +13,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// model seller {
-//   id       String @id @default(uuid())
-//   nama     String
-//   nomer_hp Int    @unique
-//   password String
-//   email    String @unique
-// }
-
-// model tiket {
-//   id              String   @id @default(uuid())
-//   nama_tiket      String
-//   tanggal_acara   DateTime
-//   nama_artis      String
-//   jumlah_tiket    Int
-//   id_kategori     String
-//   deskripsi_acara String
-//   lokasi          String
-//   thumbnail       String
-//   created_at      DateTime //perlu otomatis
-//   update_at       DateTime
-// }
-
-// model kategori {
-//   id                         String   @id @default(uuid())
-//   nama_kategori              String   @unique
-//   tanggal_terakhir_penjualan DateTime
-//   keterangan                 String
-//   harga                      Int
-//   status                     String
-//   total_tiket                Int
-// }
-
-// model transaksi {
-//   id                 String   @id @default(uuid())
-//   jumlah_tiket       Int
-//   total_harga        Int
-//   tanggal_pembayaran DateTime
-//   status             String
-// }
-
-// model antrian {
-//   id      String @id @default(uuid())
-//   antrian Int //auto increment
-//   status  String
-// }
-
 model User {
-  id          String  @id @default(cuid())
-  username    String? @unique
-  email       String? @unique
+  id          String   @id @default(cuid())
+  username    String?  @unique
   phonenumber String
+  email       String?  @unique
   password    String
-
-  // Optional for WebAuthn support
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("users")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
