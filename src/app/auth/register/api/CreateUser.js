@@ -3,34 +3,34 @@
 import { PrismaClient } from '@prisma/client'
 import { data } from 'autoprefixer';
 import { redirect } from 'next/navigation';
-import { z } from "zod";
+import { object, z } from "zod";
 
 
 const prisma = new PrismaClient();
 
 
 const validasi = z.object({
-    username: z.string().min(1),
-    phonenumber: z.string().min(1),
-    email: z.string().email(),
-    password: z.string().min(1)
+    username: z.string().min(1, { message: 'tidak boleh kosong' }),
+    phonenumber: z.string().min(1, { message: 'tidak boleh kosong' }),
+    email: z.string().email({ message: 'harus email' }),
+    password: z.string().min(1, { message: 'tidak boleh kosong' })
 })
 
 
 
-export async function POST(request) {
+export async function CreateUser(prevState, request) {
 
+    const validated = validasi.safeParse(Object.fromEntries(request.entries()))
+    // const formdata = await request.json();
+    console.log(validated);
 
-    const formdata = await request.json();
-    console.log(formdata);
-
-    // cek validasi 
-    const validated = validasi.safeParse({
-        username: formdata.username,
-        phonenumber: formdata.phonenumber,
-        email: formdata.email,
-        password: formdata.password,
-    })
+    // // cek validasi 
+    // const validated = validasi.safeParse({
+    //     username: formdata.username,
+    //     phonenumber: formdata.phonenumber,
+    //     email: formdata.email,
+    //     password: formdata.password,
+    // })
     if (!validated.success) {
         return validated.error.formErrors.fieldErrors
     }
@@ -45,7 +45,8 @@ export async function POST(request) {
         },
     });
 
-    new Response(JSON.stringify(newUser), { status: 201 });
+
+
 }
 
 
