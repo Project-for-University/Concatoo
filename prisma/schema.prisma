@@ -30,14 +30,12 @@ enum Role {
 }
 
 model Acara {
-  id_acara         String   @id @default(cuid())
-  nama_event       String //varchar
-  poto_profie      String? //blobb
-  tanggal_acara    DateTime //date
-  waktu_acara      DateTime //time
-  lokasi           String //varchar
-  deskripsi_acara  String //text
-  syarat_ketentuan String //text
+  id_acara      String   @id @default(cuid())
+  nama_event    String //varchar
+  poto_profie   String? //blobb
+  tanggal_acara DateTime //date
+  waktu_acara   DateTime //time
+  lokasi        String //varchar
 }
 
 model Kontak {
@@ -45,6 +43,12 @@ model Kontak {
   nama_narahubung String //varchar
   email           String? //varchar
   no_ponsel       String? //char 13
+}
+
+model Deskrpsi {
+  id_deskripsi     String @id
+  deskripsi_acara  String //text (batasnya brp/))
+  syarat_ketentuan String //text (batasnya brp?)
 }
 
 model Tiket {
