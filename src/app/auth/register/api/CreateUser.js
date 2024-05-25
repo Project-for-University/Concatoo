@@ -4,6 +4,7 @@ import { PrismaClient } from '@prisma/client'
 import { data } from 'autoprefixer';
 import { redirect } from 'next/navigation';
 import { object, z } from "zod";
+import bcrypt from "bcrypt";
 
 
 const prisma = new PrismaClient();
@@ -19,7 +20,6 @@ const validasi = z.object({
 
 
 export async function CreateUser(prevState, request) {
-
     const validated = validasi.safeParse(Object.fromEntries(request.entries()))
     // const formdata = await request.json();
     console.log(validated);
@@ -36,14 +36,21 @@ export async function CreateUser(prevState, request) {
     }
     const data = validated.data
 
+
+    const saltRounds = 10
+    const salt = bcrypt.genSaltSync(saltRounds);
+    const hash = bcrypt.hashSync(data.password, salt);
     const newUser = await prisma.user.create({
         data: {
             username: data.username,
             phonenumber: data.phonenumber,
             email: data.email,
-            password: data.password,
+            password: hash
         },
     });
+    redirect('/auth/login')
+
+
 
 
 
