@@ -28,3 +28,33 @@ enum Role {
   CUSTOMER
   SELLER
 }
+
+model Acara {
+  id_acara         String   @id @default(cuid())
+  nama_event       String //varchar
+  poto_profie      String? //blobb
+  tanggal_acara    DateTime //date
+  waktu_acara      DateTime //time
+  lokasi           String //varchar
+  deskripsi_acara  String //text
+  syarat_ketentuan String //text
+}
+
+model Kontak {
+  id_kontak       String  @id
+  nama_narahubung String //varchar
+  email           String? //varchar
+  no_ponsel       String? //char 13
+}
+
+model Tiket {
+  id_tiket                String   @id @default(cuid())
+  nama_tiket              String //varchar
+  jumlah_tiket            String //char 5
+  harga                   Int //in 8
+  deskripsi_tiket         String //varchar 140
+  tanggal_mulai_penjualan DateTime //date
+  waktu_penjualan         DateTime //time
+  tanggal_akhir_penjualan DateTime //date
+  waktu_akhir_penjualan   DateTime //time
+}
