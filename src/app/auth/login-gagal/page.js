@@ -1,29 +1,22 @@
 'use client'
 
-
 import { useState } from "react";
 
 
-
-import { useFormStatus } from 'react-dom'
-import { useFormState } from 'react-dom'
-import ActionLogin from "./api/action";
+import LoginAction from "./api/Login"
+import { useFormState, useFormStatus } from 'react-dom'
 
 
 export default function Login() {
 
     const [email, setemail] = useState('');
     const [password, setpassword] = useState('');
-    console.log(email);
-    console.log(password);
 
 
     const initialState = {
         message: '',
     }
-    const [state, formAction] = useFormState(ActionLogin, initialState)
-
-
+    const [state, formAction] = useFormState(LoginAction, initialState)
 
     return (
         <div className="max-w-lg h-screen flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
