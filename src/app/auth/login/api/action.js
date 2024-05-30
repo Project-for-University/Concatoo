@@ -1,5 +1,6 @@
 
 import { signIn } from "next-auth/react"
+import { redirect } from "next/navigation";
 
 import { z } from "zod";
 
@@ -35,9 +36,12 @@ export default async function ActionLogin(prevState, formdata) {
 
 
     const res = await signIn('credentials', {
+        redirect: false,
         email: data.email,
         password: data.password,
-        callbackUrl: '/'
     })
-
+    if (res.error) {
+        return { error: { form: 'Email atau password salah' } }
+    }
+    return redirect('/')
 }

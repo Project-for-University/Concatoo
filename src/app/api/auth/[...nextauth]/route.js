@@ -2,6 +2,8 @@ import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
+import bcrypt from "bcrypt";
+
 
 const handler = NextAuth({
     session: {
@@ -28,7 +30,11 @@ const handler = NextAuth({
                     }
                 })
                 // email === 'tes1@gmail.com' && password === '12341234'
-                if (user) {
+
+                const PW = await bcrypt.compare(password, user.password);
+                console.log(PW)
+
+                if (user && PW) {
                     return {
                         id: user.id,
                         name: user.username,
