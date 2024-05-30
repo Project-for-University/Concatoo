@@ -1,6 +1,7 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
-
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 
 const handler = NextAuth({
     session: {
@@ -21,12 +22,18 @@ const handler = NextAuth({
                 const { email, password } = credentials
 
                 // ambil dari db
-                if (email === 'tes1@gmail.com' && password === '12341234') {
+                const user = await prisma.user.findUnique({
+                    where: {
+                        email: email
+                    }
+                })
+                // email === 'tes1@gmail.com' && password === '12341234'
+                if (user) {
                     return {
-                        id: 1,
-                        name: 'tes',
-                        email: 'tes1@gmail.com',
-                        role: 'SELLER'
+                        id: user.id,
+                        name: user.username,
+                        email: user.email,
+                        role: user.role
                     }
                 } else {
                     return null
