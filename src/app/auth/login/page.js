@@ -34,7 +34,9 @@ export default function Login() {
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                             Login
                         </h1>
-                        <p className="text-rose-600"><a>Daftar</a></p>
+                        <p className="text-rose-600">
+                            <a>Daftar</a>
+                        </p>
                     </div>
                     <form action={formAction} className="max-w-md mx-auto" >
                         {state?.error?.form && <div className="text-red-600 mb-4">{state.error.form}</div>}
@@ -56,7 +58,7 @@ export default function Login() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 function LoginButton() {
