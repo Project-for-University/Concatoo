@@ -14,12 +14,13 @@ datasource db {
 }
 
 model User {
-  id          String   @id @default(cuid())
-  username    String?  @unique
-  phonenumber String
-  email       String?  @unique
+  id_user     String   @id @default(cuid())
+  username    String   @unique @db.VarChar(50)
+  phonenumber String   @db.Char(15)
+  email       String   @unique @db.VarChar(50)
   password    String
   role        Role     @default(SELLER)
+  Acara       Acara[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
@@ -31,34 +32,55 @@ enum Role {
 
 model Acara {
   id_acara      String   @id @default(cuid())
-  nama_event    String //varchar
-  poto_profie   String? //blobb
-  tanggal_acara DateTime //date
-  waktu_acara   DateTime //time
-  lokasi        String //varchar
+  nama_event    String   @db.VarChar(50)
+  banner        String?  @db.VarChar(150)
+  tanggal_acara DateTime @db.Date
+  waktu_acara   DateTime @db.Time()
+  lokasi        String   @db.Text
+  id_kontak     String   @unique
+  id_deskripsi  String   @unique
+  // id_user       String
+  kontak        Kontak   @relation(fields: [id_kontak], references: [id_kontak])
+  deskripsi     Deskrpsi @relation(fields: [id_deskripsi], references: [id_deskripsi])
+  // user          User     @relation(fields: [id_user], references: [id_user])
+  Tiket         Tiket[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  User          User?    @relation(fields: [userId_user], references: [id_user])
+  userId_user   String?
 }
 
 model Kontak {
-  id_kontak       String  @id
-  nama_narahubung String //varchar
-  email           String? //varchar
-  no_ponsel       String? //char 13
+  id_kontak       String   @id @default(cuid())
+  nama_narahubung String   @db.VarChar(50)
+  email           String?  @unique @db.VarChar(50)
+  no_ponsel       String   @unique @db.Char(20)
+  Acara           Acara?
+  createdAt       DateTime @default(now())
+  updateAt        DateTime @updatedAt
 }
 
 model Deskrpsi {
-  id_deskripsi     String @id
-  deskripsi_acara  String //text (batasnya brp/))
-  syarat_ketentuan String //text (batasnya brp?)
+  id_deskripsi     String   @id @default(cuid())
+  deskripsi_acara  String   @db.Text
+  syarat_ketentuan String   @db.Text
+  Acara            Acara?
+  createdAt        DateTime @default(now())
+  updateAt         DateTime @updatedAt
 }
 
 model Tiket {
   id_tiket                String   @id @default(cuid())
-  nama_tiket              String //varchar
-  jumlah_tiket            String //char 5
-  harga                   Int //in 8
-  deskripsi_tiket         String //varchar 140
-  tanggal_mulai_penjualan DateTime //date
-  waktu_penjualan         DateTime //time
-  tanggal_akhir_penjualan DateTime //date
-  waktu_akhir_penjualan   DateTime //time
+  nama_tiket              String   @db.VarChar(255)
+  jumlah_tiket            String   @db.Char(5)
+  harga                   Int      @db.Int
+  deskripsi_tiket         String   @db.Text
+  tanggal_mulai_penjualan DateTime @db.Date
+  waktu_penjualan         DateTime @db.Time()
+  tanggal_akhir_penjualan DateTime @db.Date
+  waktu_akhir_penjualan   DateTime @db.Time()
+  acara                   Acara    @relation(fields: [id_acara], references: [id_acara])
+  id_acara                String
+  createdAt               DateTime @default(now())
+  updateAt                DateTime @updatedAt
 }

@@ -20,8 +20,10 @@ const handler = NextAuth({
 
             },
             async authorize(credentials) {
-                console.log(credentials);
+                console.log(credentials)
                 const { email, password } = credentials
+                console.log(email);
+                console.log(password);
 
                 // ambil dari db
                 const user = await prisma.user.findUnique({
@@ -29,48 +31,55 @@ const handler = NextAuth({
                         email: email
                     }
                 })
-                // email === 'tes1@gmail.com' && password === '12341234'
 
-                const PW = await bcrypt.compare(password, user.password);
-                console.log(PW)
+                // if (!user) {
+                //     return null;
+                // }
 
-                if (user && PW) {
+                // const PW = await bcrypt.compare(password, user.password);
+                // console.log(PW)
+
+                // if (!PW) {
+                //     return null;
+                // }
+                if (user) {
                     return {
-                        id: user.id,
+                        id_user: user.id_user,
                         name: user.username,
                         email: user.email,
                         role: user.role
                     }
-                } else {
-                    return null
                 }
+
             },
         })
     ],
-    // setelah authorize akan menjalankan ini
     callbacks: {
-        async jwt({ token, account, profile, user }) {
+        async jwt({ token, user }) {
             console.log(token);
-            if (account?.provider === 'credentials') {
+            if (user) {
+                token.id_user = user.id_user;
                 token.email = user.email;
-                token.fullname = user.fullname;
+                token.name = user.name; // Menyesuaikan dengan properti `name` yang digunakan di authorize
                 token.role = user.role;
             }
             return token;
         },
         async session({ session, token }) {
             console.log(session);
-            if ("email" in token) {
+            if (token.id_user) {
+                session.user.id_user = token.id_user;
+            }
+            if (token.email) {
                 session.user.email = token.email;
             }
-            if ("fullname" in token) {
-                session.user.fullname = token.fullname;
+            if (token.name) {
+                session.user.name = token.name;
             }
-            if ("role" in token) {
+            if (token.role) {
                 session.user.role = token.role;
             }
             return session;
-
         }
     },
     pages: {

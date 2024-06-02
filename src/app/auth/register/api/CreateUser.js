@@ -45,10 +45,12 @@ export async function CreateUser(prevState, request) {
             username: data.username,
             phonenumber: data.phonenumber,
             email: data.email,
-            password: hash
+            password: data.password
         },
     });
-    redirect('/auth/login')
+    if (newUser) {
+        redirect('/auth/login')
+    }
 
 
 

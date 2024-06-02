@@ -1,6 +1,8 @@
 'use client'
 
 import { signIn, signOut, useSession } from "next-auth/react"
+import Link from "next/link";
+
 
 export default function Component() {
     // return status = unautenticated,autenticated
@@ -14,7 +16,11 @@ export default function Component() {
             {status === 'authenticated' ? (
                 <button onClick={() => signOut()} className="text-white">Sign out</button>
             ) : (
-                <button onClick={() => signIn()}>Sign in</button>
+                <>
+                    <button onClick={() => signIn()}>Sign in</button>
+                    <Link href="/auth/register">register</Link>
+
+                </>
             )}
         </>
     )
