@@ -31,15 +31,23 @@ export default function Ticket({ params }) {
     console.log(state)
 
 
-  const handleJumlah = (event) => {
-    const newValue = event.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
-    setJumlah_tiket(newValue);
-  };
+    const handleJumlah = (event) => {
+        const newValue = event.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+        const parsedValue = parseFloat(newValue);
+        if (parsedValue >= 0 && parsedValue < 100000 || newValue === '') {
+            setJumlah_tiket(newValue);
+        }
+    };
 
-  const handleHarga = (event) => {
-    const newValue = event.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
-    setHarga(newValue);
-  };
+    const handleHarga = (event) => {
+        const newValue = event.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+        const parsedValue = parseFloat(newValue);
+
+        // Check if the parsed value is within the limit
+        if (parsedValue <= 9999999 || newValue === '') {
+            setHarga(newValue);
+        }
+    };
 
 
 
@@ -213,5 +221,5 @@ function SubmitButton() {
     const { pending } = { useFormStatus }
     return (
         <button type="submit" className="hover:shadow-form w-full rounded-md bg-[#2D6C70] py-3 px-8 text-center text-base font-semibold text-white outline-none">{pending ? "Submitting..." : "Submit"}</button>
-    )
+    )
 }
