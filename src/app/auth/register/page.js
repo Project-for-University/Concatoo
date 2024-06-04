@@ -7,6 +7,7 @@ import { CreateUser } from "./api/CreateUser";
 
 // pake useformstate jangan useaction state
 import { useFormState } from 'react-dom'
+import Link from "next/link";
 
 
 export default function Register({ }) {
@@ -53,7 +54,9 @@ export default function Register({ }) {
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-white md:text-2xl dark:text-white">
                             Register
                         </h1>
-                        <p className="text-rose-600"><a>Masuk</a></p>
+                        <p className="text-rose-600">
+                            <Link href={`/auth/login`}>Masuk</Link>
+                        </p>
                     </div>
                     <form action={formAction} className="max-w-md mx-auto">
                         <div className="relative z-0 w-full mb-5 group">

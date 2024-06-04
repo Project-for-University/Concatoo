@@ -46,12 +46,17 @@ async function Card({ param }) {
                             </div>
                         </div>
                     </div>
-                    <div className="p-6 bg-gray-50">
-                        <h2 className="text-xl font-bold">DESKRIPSI</h2>
-                        <p className="mt-4 text-gray-700">
+                    <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
+                        <li class="me-2">
+                            <a href="" aria-current="page" class="inline-block p-4 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500">Deskripsi</a>
+                            <p className="p-6 mt-4 text-gray-700">
                             {acara.deskripsi.deskripsi_acara}
-                        </p>
-                    </div>
+                            </p>
+                        </li>
+                        <li class="me-2">
+                            <a href="#" class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Tiket</a>
+                        </li>
+                    </ul>
                 </div>
             </div >
         </>

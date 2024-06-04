@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useFormStatus } from 'react-dom'
 import { useFormState } from 'react-dom'
 import ActionLogin from "./api/action";
+import Link from "next/link";
 
 
 export default function Login() {
@@ -35,7 +36,7 @@ export default function Login() {
                             Login
                         </h1>
                         <p className="text-rose-600">
-                            <a>Daftar</a>
+                            <Link href={`/auth/register`}>Daftar</Link>
                         </p>
                     </div>
                     <form action={formAction} className="max-w-md mx-auto" >
