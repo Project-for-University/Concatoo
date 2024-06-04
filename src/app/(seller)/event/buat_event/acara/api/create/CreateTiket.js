@@ -18,7 +18,7 @@ const validasi = z.object({
     syarat_ketentuan: z.string().min(1, { message: 'tidak boleh kosong' }),
 });
 
-export async function CreateTiket(prevState, request) {
+export async function CreateAcara(prevState, request) {
     const requestData = Object.fromEntries(request.entries());
     const validated = validasi.safeParse(requestData);
     console.log("Validasi hasil:", validated);
@@ -73,7 +73,7 @@ export async function CreateTiket(prevState, request) {
 
     if (result) {
         console.log('Berhasil membuat acara');
-        redirect('/seller/tiket');
+        redirect('/event');
     } else {
         console.error('Gagal membuat acara');
     }
