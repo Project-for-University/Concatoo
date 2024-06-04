@@ -1,33 +1,59 @@
-function detailAcara() {
-    return(
-        <div class="max-w-7xl mx-auto p-4">
-        <div class="bg-white shadow-md rounded-lg overflow-hidden">
-            <div class="flex flex-col lg:flex-row">
-                <img src="https://via.placeholder.com/300x150" alt="Musikal Keluarga Cemara" class="w-full lg:w-1/2 object-cover"/>
-                <div class="p-6 lg:w-1/2">
-                    <h1 class="text-2xl font-bold">Musikal Keluarga Cemara</h1>
-                    <p class="text-gray-600 mt-2">[Sabtu, 22 Juni 2024]</p>
-                    <p class="text-gray-600">22 Jun 2024</p>
-                    <p class="text-gray-600">Ciputra Artpreneur, DKI Jakarta</p>
-                    <div class="mt-4">
-                        <button class="bg-white text-gray-800 px-4 py-2 rounded border-2 border-gray-300">Tambah Tiket</button>
-                    </div>
-                </div>
-            </div>
-            <div class="p-6 bg-gray-50">
-                <h2 class="text-xl font-bold">DESKRIPSI</h2>
-                <p class="mt-4 text-gray-700">
-                    Harta yang paling berharga adalah keluarga...
-                </p>
-                <p class="mt-2 text-gray-700">
-                    Bersiaplah untuk terhanyut dalam pertunjukan panggung yang menakjubkan, Pertunjukan Panggung Musikal Keluarga Cemara. Sebuah pertunjukan yang diangkat dari film legendaris Keluarga Cemara, yang telah menghangatkan hati keluarga Indonesia.
-                </p>
-                <p class="mt-2 text-gray-700">
-                    Pertunjukan ini menghadirkan pengalaman imersif dan spektakuler, membawa penonton dari segala usia ke dalam dunia yang penuh dengan kisah-kisah mendalam dan emosional. Saksikan bagaimana cerita keluarga sederhana ini dihidupkan kembali di atas panggung dan memberikan pengalaman yang mendalam dan menyentuh hati.
-                </p>
-            </div>
-        </div>
-    </div>
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient();
+import 'flowbite';
+import Link from 'next/link';
+
+
+export default function detailAcara({ params }) {
+
+    return (
+        <Card param={params} />
     )
 }
-export default detailAcara
+
+async function Card({ param }) {
+
+    const acara = await prisma.acara.findFirst({
+        where: {
+            id_acara: param.id
+        },
+        include: {
+            deskripsi: true,
+            kontak: true
+        }
+    })
+
+
+    return (
+        <>
+
+
+            < div className="max-w-7xl mx-auto p-4" >
+                <div className="bg-white shadow-md rounded-lg overflow-hidden">
+                    <div className="flex flex-col lg:flex-row">
+                        <img src="https://via.placeholder.com/300x150" alt="Musikal Keluarga Cemara" className="w-full lg:w-1/2 object-cover" />
+                        <div className="p-6 lg:w-1/2">
+                            <h1 className="text-2xl font-bold">{acara.nama_event}</h1>
+                            <p className="text-gray-600 mt-2">{new Date(acara.tanggal_acara).toLocaleDateString()}</p>
+                            <p className="text-gray-600">{new Date(acara.waktu_acara).toLocaleTimeString()}</p>
+                            <p className="text-gray-600">{acara.lokasi}</p>
+                            <div className="mt-4">
+                                {/* ganti */}
+                                <Link key={acara.id_acara} href={`/event/buat_event/tiket/${acara.id_acara}`} className="block text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">   Tambah Tiket</Link>
+                                {/* <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" className="block text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                                    Tambah Tiket
+                                </button> */}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="p-6 bg-gray-50">
+                        <h2 className="text-xl font-bold">DESKRIPSI</h2>
+                        <p className="mt-4 text-gray-700">
+                            {acara.deskripsi.deskripsi_acara}
+                        </p>
+                    </div>
+                </div>
+            </div >
+        </>
+    )
+}

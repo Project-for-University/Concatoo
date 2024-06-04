@@ -3,7 +3,7 @@
 
 import "../../public/global.css"
 import { SessionProvider } from "next-auth/react"
-
+import 'flowbite';
 
 
 export default function RootLayout({ children }) {
