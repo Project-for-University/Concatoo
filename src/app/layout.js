@@ -3,6 +3,7 @@
 
 import "../../public/global.css"
 import { SessionProvider } from "next-auth/react"
+import 'flowbite';
 
 
 
