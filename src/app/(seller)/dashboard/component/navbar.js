@@ -1,6 +1,6 @@
 export default function Navbar(){
     return(
-        <nav class="p-4 border rounded-b-3xl m-4">
+        <nav class="p-4 border rounded-b-3xl ">
             <div class="container mx-auto flex justify-between items-center">
             <div class="pl-6 flex">
                 <a href="/dashboard">

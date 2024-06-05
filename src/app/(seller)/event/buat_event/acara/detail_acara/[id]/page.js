@@ -4,6 +4,7 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient();
 import 'flowbite';
 import Link from 'next/link';
+import { MdDeleteOutline, MdOutlineEdit } from 'react-icons/md';
 
 
 export default function detailAcara({ params }) {
@@ -48,19 +49,38 @@ async function Card({ param }) {
                             </div>
                         </div>
                     </div>
-                    <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
-                        <li class="me-2">
-                            <a href="" aria-current="page" class="inline-block p-4 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500">Deskripsi</a>
-                            <p className="p-6 mt-4 text-gray-700">
-                            {acara.deskripsi.deskripsi_acara}
-                            </p>
-                        </li>
-                        <li class="me-2">
-                            <a href="#" class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Tiket</a>
-                        </li>
-                    </ul>
+                    <div className="p-2">
+                        <b>Deskripsi</b><br/>
+                        <p className="">
+                        {acara.deskripsi.deskripsi_acara}
+                        </p>
+                    </div>
                 </div>
-            </div >
+                <div>
+                <div className="bg-white shadow-md rounded-lg overflow-hidden mt-10 w-1/2">
+                <h1 className="text-2xl font-bold pl-4 pt-4">Nama Tiket</h1>
+                    <div className="flex justify-between">
+                        <div className="p-6 lg:w-1/2">
+                            <p className="text-gray-600 mt-2">Jumlah Tiket</p>
+                            <p className="text-gray-600">Harga</p>
+                            <p className="text-gray-600">Deskripsi Tiket</p>
+                        </div>
+                        <div className="p-6 lg:w-1/2">
+                            <p className="text-gray-600">Tanggal mulai penjualan - Tanggal akhir penjualan</p>
+                            <p className="text-gray-600">Waktu awal penjualan -Waktu akhir penjualan</p>
+                        </div>
+                    </div>
+                    <div className="flex p-4 justify-end mr-6">
+                      <Link href={``}>
+                        <MdOutlineEdit className="text-gray-500 hover:text-gray-700" />
+                      </Link>
+                      <Link className="pl-2" href={``}>
+                        <MdDeleteOutline className="text-gray-500 hover:text-gray-700" />
+                      </Link>
+                    </div>
+                </div>
+                </div>
+        </div >
         </div>
         </>
     )
