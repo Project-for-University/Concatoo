@@ -1,7 +1,10 @@
+import Navbar from '@/app/(seller)/dashboard/component/navbar';
+import Sidebar from '@/app/(seller)/dashboard/component/sidebar';
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient();
 import 'flowbite';
 import Link from 'next/link';
+import { MdDeleteOutline, MdOutlineEdit } from 'react-icons/md';
 
 
 export default function detailAcara({ params }) {
@@ -31,39 +34,60 @@ async function Card({ param }) {
 
     return (
         <>
-
-
-            < div className="max-w-7xl mx-auto p-4" >
-                <div className="bg-white shadow-md rounded-lg overflow-hidden">
-                    <div className="flex flex-col lg:flex-row">
-                        <img src="https://via.placeholder.com/300x150" alt="Musikal Keluarga Cemara" className="w-full lg:w-1/2 object-cover" />
-                        <div className="p-6 lg:w-1/2">
-                            <h1 className="text-2xl font-bold">{acara.nama_event}</h1>
-                            <p className="text-gray-600 mt-2">{formattedDate}</p>
-                            <p className="text-gray-600">{new Date(acara.waktu_acara).toLocaleTimeString()}</p>
-                            <p className="text-gray-600">{acara.lokasi}</p>
-                            <div className="mt-4">
-                                {/* ganti */}
-                                <Link key={acara.id_acara} href={`/event/buat_event/tiket/${acara.id_acara}`} className="block text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">   Tambah Tiket</Link>
-                                {/* <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" className="block text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+            <Navbar />
+            <div className='flex'>
+                <Sidebar />
+                < div className="w-full p-4" >
+                    <div className="bg-white shadow-md rounded-lg overflow-hidden">
+                        <div className="flex flex-col lg:flex-row">
+                            <img src="https://via.placeholder.com/300x150" alt="Musikal Keluarga Cemara" className="w-full lg:w-1/2 object-cover" />
+                            <div className="p-6 lg:w-1/2">
+                                <h1 className="text-2xl font-bold">{acara.nama_event}</h1>
+                                <p className="text-gray-600 mt-2">{formattedDate}</p>
+                                <p className="text-gray-600">{new Date(acara.waktu_acara).toLocaleTimeString()}</p>
+                                <p className="text-gray-600">{acara.lokasi}</p>
+                                <div className="mt-4">
+                                    {/* ganti */}
+                                    <Link key={acara.id_acara} href={`/event/buat_event/tiket/${acara.id_acara}`} className="block w-48 text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">   Tambah Tiket</Link>
+                                    {/* <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" className="block text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
                                     Tambah Tiket
                                 </button> */}
+                                </div>
+                            </div>
+                        </div>
+                        <div className="p-2">
+                            <b>Deskripsi</b><br />
+                            <p className="">
+                                {acara.deskripsi.deskripsi_acara}
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <div className="bg-white shadow-md rounded-lg overflow-hidden mt-10 w-1/2">
+                            <h1 className="text-2xl font-bold pl-4 pt-4">Nama Tiket</h1>
+                            <div className="flex justify-between">
+                                <div className="p-6 lg:w-1/2">
+                                    <p className="text-gray-600 mt-2">Jumlah Tiket</p>
+                                    <p className="text-gray-600">Harga</p>
+                                    <p className="text-gray-600">Deskripsi Tiket</p>
+                                </div>
+                                <div className="p-6 lg:w-1/2">
+                                    <p className="text-gray-600">Tanggal mulai penjualan - Tanggal akhir penjualan</p>
+                                    <p className="text-gray-600">Waktu awal penjualan -Waktu akhir penjualan</p>
+                                </div>
+                            </div>
+                            <div className="flex p-4 justify-end mr-6">
+                                <Link href={``}>
+                                    <MdOutlineEdit className="text-gray-500 hover:text-gray-700" />
+                                </Link>
+                                <Link className="pl-2" href={``}>
+                                    <MdDeleteOutline className="text-gray-500 hover:text-gray-700" />
+                                </Link>
                             </div>
                         </div>
                     </div>
-                    <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
-                        <li class="me-2">
-                            <a href="" aria-current="page" class="inline-block p-4 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500">Deskripsi</a>
-                            <p className="p-6 mt-4 text-gray-700">
-                                {acara.deskripsi.deskripsi_acara}
-                            </p>
-                        </li>
-                        <li class="me-2">
-                            <a href="#" class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Tiket</a>
-                        </li>
-                    </ul>
-                </div>
-            </div >
+                </div >
+            </div>
         </>
     )
 }
