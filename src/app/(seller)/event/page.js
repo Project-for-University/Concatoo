@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Sidebar from '../dashboard/component/sidebar';
 import Navbar from '../dashboard/component/navbar';
 import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
+import { useEffect, useState } from 'react';
 
 const prisma = new PrismaClient()
 
