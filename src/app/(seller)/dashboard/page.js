@@ -22,6 +22,6 @@ export default function Pages() {
     return (
         <>
             <h1 className="">dashboard</h1>
-        </>
-    )
+        </>
+    )
 }

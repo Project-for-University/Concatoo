@@ -22,7 +22,12 @@ async function Card({ param }) {
             kontak: true
         }
     })
-
+    const tanggalAcara = new Date(acara.tanggal_acara);
+    const formattedDate = tanggalAcara.toLocaleDateString('id-ID', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    });
 
     return (
         <>
@@ -34,7 +39,7 @@ async function Card({ param }) {
                         <img src="https://via.placeholder.com/300x150" alt="Musikal Keluarga Cemara" className="w-full lg:w-1/2 object-cover" />
                         <div className="p-6 lg:w-1/2">
                             <h1 className="text-2xl font-bold">{acara.nama_event}</h1>
-                            <p className="text-gray-600 mt-2">{new Date(acara.tanggal_acara).toLocaleDateString()}</p>
+                            <p className="text-gray-600 mt-2">{formattedDate}</p>
                             <p className="text-gray-600">{new Date(acara.waktu_acara).toLocaleTimeString()}</p>
                             <p className="text-gray-600">{acara.lokasi}</p>
                             <div className="mt-4">
@@ -50,7 +55,7 @@ async function Card({ param }) {
                         <li class="me-2">
                             <a href="" aria-current="page" class="inline-block p-4 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500">Deskripsi</a>
                             <p className="p-6 mt-4 text-gray-700">
-                            {acara.deskripsi.deskripsi_acara}
+                                {acara.deskripsi.deskripsi_acara}
                             </p>
                         </li>
                         <li class="me-2">
