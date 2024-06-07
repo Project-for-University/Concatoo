@@ -2,29 +2,25 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-export async function GET() {
-    try {
-        const acaras = await prisma.acara.findMany({
-            select: {
-                id_acara: true,
-                nama_event: true,
-                banner: true,
-                tanggal_acara: true,
-                lokasi: true,
-                waktu_acara: true
-            }
+export async function GET(request, { params }) {
+    console.log('berhasil masuk');
+    console.log(request);
+    console.log(params);
 
+
+
+
+    try {
+        // ambil data
+        const acaras = await prisma.acara.findMany({
+            include: {
+                kontak: true,
+                deskripsi: true
+            }
         })
 
-
         console.log(acaras);
-
-        return new Response(JSON.stringify(acaras), {
-            status: 200,
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
+        return new Response(JSON.stringify(acaras));
     } catch (error) {
         return new Response(JSON.stringify({ error: 'gagal fetch data' }), {
             status: 500,

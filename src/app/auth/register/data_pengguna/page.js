@@ -1,42 +1,74 @@
-import { PrismaClient } from '@prisma/client'
+'use client'
+
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-const prisma = new PrismaClient()
+
+
+
 
 export default function Pages(params) {
     return (
         <>
-            <h1>ini table pengguna</h1>
-            <TabelPengguna />
+            <div >
+                <h1>ini table pengguna</h1>
+                <TabelPengguna />
+            </div>
         </>
     )
 }
 
-async function TabelPengguna() {
-    const data = await prisma.user.findMany({
-        select: {
-            id: true,
-            username: true,
-            phonenumber: true,
-            email: true,
-            password: true,
-            role: true
-        },
-        orderBy: { username: 'asc' }
-    })
-    console.log(data);
-    if (data.length === 0) {
-        return (
-            <>
-                <p>tidak ada data</p>
-            </>
-        )
+function TabelPengguna() {
+    const [message, setMessage] = useState('');
+    const [data, setData] = useState([]);
+
+
+    useEffect(() => {
+
+        async function fetchData() {
+            const response = await fetch('/auth/register/data_pengguna/readPenagguna', {
+                method: 'GET',
+
+            });
+            const users = await response.json();
+            setData(users);
+        }
+        fetchData();
+    }, []);
+
+    async function DeletePengguna(id) {
+
+        console.log(id);
+        const response = await fetch(`/auth/register/data_pengguna/delete/${id}  `, {
+            method: 'DELETE'
+        });
+
+        if (response.ok) {
+            console.log('berhasil hapus')
+            // Redirect ke halaman /auth/register
+            // window.location.reload()
+            const response = await fetch('/auth/register/data_pengguna/readPenagguna', {
+                method: 'GET',
+
+            });
+            const users = await response.json();
+            setData(users);
+            setMessage('berhasil hapus data')
+        } else {
+            // Tangani jika penghapusan gagal
+            console.error('Gagal menghapus pengguna:');
+
+        }
+
+
+
     }
 
     return (
         <>
-            <table className='text-white border-collapse border border-slate-500'>
+            {message && <p>{message}</p>}
+            <table className='border-collapse border border-slate-500'>
                 <thead>
-                    <tr key="">
+                    <tr>
                         <th className='border border-slate-600 p-2'>Id</th>
                         <th className='border border-slate-600 p-2'>username</th>
                         <th className='border border-slate-600 p-2'>phone number</th>
@@ -46,26 +78,21 @@ async function TabelPengguna() {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map(user => {
-                        return (
-
-                            <tr key={user.id}>
-                                <td className='border border-slate-600 p-2'>{user.id}</td>
-                                <td className='border border-slate-600 p-2'>{user.username}</td>
-                                <td className='border border-slate-600 p-2'>{user.phonenumber}</td>
-                                <td className='border border-slate-600 p-2'>{user.email}</td>
-
-                                <td className='border border-slate-600 p-2'>{user.role}</td>
-                                <td className='border border-slate-600 p-2'>
-                                    <div className='flex gap-4'>
-                                        <Link href={`/auth/register/data_pengguna/delete/${user.id}`}>Delete</Link>
-                                        <Link href={`/auth/register/data_pengguna/update/${user.id}`}>Update</Link>
-                                    </div>
-                                </td>
-                            </tr>
-
-                        )
-                    })}
+                    {data.map(user => (
+                        <tr key={user.id_user}>
+                            <td className='border border-slate-600 p-2'>{user.id_user}</td>
+                            <td className='border border-slate-600 p-2'>{user.username}</td>
+                            <td className='border border-slate-600 p-2'>{user.phonenumber}</td>
+                            <td className='border border-slate-600 p-2'>{user.email}</td>
+                            <td className='border border-slate-600 p-2'>{user.role}</td>
+                            <td className='border border-slate-600 p-2'>
+                                <div className='flex gap-4'>
+                                    <button onClick={() => DeletePengguna(user.id_user)}>hapus</button>
+                                    <Link href={`/auth/register/data_pengguna/update/${user.id_user}`}>Update</Link>
+                                </div>
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         </>

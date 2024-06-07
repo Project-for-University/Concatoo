@@ -1,9 +1,9 @@
-import NextAuth from "next-auth"
-import CredentialsProvider from "next-auth/providers/credentials"
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+import NextAuth from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { PrismaClient } from '@prisma/client';
 import bcrypt from "bcrypt";
 
+const prisma = new PrismaClient();
 
 const handler = NextAuth({
     session: {
@@ -17,74 +17,59 @@ const handler = NextAuth({
             credentials: {
                 email: { label: 'Email', type: 'email' },
                 password: { label: 'Password', type: 'password' },
-
             },
             async authorize(credentials) {
-                console.log(credentials)
-                const { email, password } = credentials
-                console.log(email);
-                console.log(password);
+                const { email, password } = credentials;
 
                 // ambil dari db
                 const user = await prisma.user.findUnique({
-                    where: {
-                        email: email
-                    }
-                })
+                    where: { email: email }
+                });
 
-                // if (!user) {
-                //     return null;
-                // }
-
-                // const PW = await bcrypt.compare(password, user.password);
-                // console.log(PW)
-
-                // if (!PW) {
-                //     return null;
-                // }
-                if (user) {
-                    return {
-                        id_user: user.id_user,
-                        name: user.username,
-                        email: user.email,
-                        role: user.role
-                    }
+                // Jika user tidak ditemukan, kembalikan null
+                if (!user) {
+                    return null;
                 }
 
+                // Bandingkan password yang dimasukkan dengan password yang ada di database
+                const isValidPassword = await bcrypt.compare(password, user.password);
+                if (!isValidPassword) {
+                    return null;
+                }
+
+                // Kembalikan objek user jika otentikasi berhasil
+                return {
+                    id_user: user.id_user,
+                    name: user.username,
+                    email: user.email,
+                    role: user.role
+                };
             },
         })
     ],
     callbacks: {
         async jwt({ token, user }) {
-            console.log(token);
             if (user) {
                 token.id_user = user.id_user;
                 token.email = user.email;
-                token.name = user.name; // Menyesuaikan dengan properti `name` yang digunakan di authorize
+                token.name = user.name;
                 token.role = user.role;
             }
             return token;
         },
         async session({ session, token }) {
-            console.log(session);
-            if (token.id_user) {
-                session.user.id_user = token.id_user;
-            }
-            if (token.email) {
-                session.user.email = token.email;
-            }
-            if (token.name) {
-                session.user.name = token.name;
-            }
-            if (token.role) {
-                session.user.role = token.role;
-            }
+            session.user = {
+                id_user: token.id_user,
+                email: token.email,
+                name: token.name,
+                role: token.role,
+            };
             return session;
         }
     },
     pages: {
         signIn: '/auth/login'
     }
-})
+});
 
-export { handler as GET, handler as POST }
+export { handler as GET, handler as POST };

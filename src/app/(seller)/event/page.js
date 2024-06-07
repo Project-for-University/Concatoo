@@ -21,6 +21,8 @@ function Acara() {
   // get data acara
   const [acaras, setAcara] = useState([]);
   console.log(acaras);
+
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -29,7 +31,7 @@ function Acara() {
         const acarasData = await acarasResponse.json();
         console.log(acarasData);
         // Set acaras state
-        if (Array.isArray(acarasData)) {
+        if (acarasData) {
           setAcara(acarasData);
         } else {
           console.error("Expected an array of acaras but received:", typeof acarasData);
@@ -41,11 +43,15 @@ function Acara() {
       }
     }
 
+
     fetchData();
   }, []);
 
+
+
   // delete acara
   const [mdelete, setmDel] = useState({ message: '' });
+
   async function DeleteAcara(id_acara) {
     console.log(id_acara);
     try {
@@ -54,9 +60,20 @@ function Acara() {
       });
 
       if (response.ok) {
+        console.log('berhasil hapus');
         setmDel({ message: 'berhasil delete data' });
-        // Update the acara list after deletion
-        setAcara(acaras.filter(acara => acara.id_acara !== id_acara));
+        // kalo berhasil update read data terbaru
+        const acarasResponse = await fetch('/event/api/ReadAcara');
+        const acarasData = await acarasResponse.json();
+        console.log(acarasData);
+        // Set acaras state
+        if (Array.isArray(acarasData)) {
+          setAcara(acarasData);
+        } else {
+          console.error("Expected an array of acaras but received:", typeof acarasData);
+          setAcara([]);
+        }
+
       } else {
         const message = await response.json();
         setmDel({ message: 'gagal hapus data', details: message });
@@ -81,7 +98,7 @@ function Acara() {
           <Link className="text-gray-700 border rounded-lg p-2 " href={`/event/buat_event/acara`}>+ Tambah Acara</Link>
           <div className="grid grid-cols-3 gap-4 p-8">
             {acaras.map((acara) => (
-              <div key={acara.id_acara} className="bg-white shadow-md rounded-md overflow-hidden">
+              <div key={acara.id_acara} className="relative bg-white shadow-md rounded-md overflow-hidden">
                 <Link href={`/event/buat_event/acara/detail_acara/${acara.id_acara}`}>
                   <img src="https://loket-production-sg.s3.ap-southeast-1.amazonaws.com/images/ss/blog/1643376580_R4lRPn.jpg" alt="" className="w-full" />
                   <div className="flex justify-between p-4">
@@ -89,18 +106,20 @@ function Acara() {
                     <p className="text-gray-600">
                       {new Date(acara.tanggal_acara).toLocaleDateString()} - {new Date(acara.waktu_acara).toLocaleTimeString()}
                     </p>
-                    <div className="flex p-4">
-                      <Link href={`/event/buat_event/acara/edit/${acara.id_acara}`}>
-                        <MdOutlineEdit className="text-gray-500 hover:text-gray-700" />
-                      </Link>
-                      <Link className="pl-2" href={`/event/buat_event/acara/delete/${acara.id_acara}`}>
-                        <MdDeleteOutline className="text-gray-500 hover:text-gray-700" />
-                      </Link>
-                    </div>
                   </div>
                 </Link>
+                <div className="absolute top-4 right-4 flex space-x-4">
+                  <button onClick={() => { EditAcara(acara.id_acara) }} className='bg-white p-2 rounded-full shadow-md'>
+                    <MdOutlineEdit className="text-gray-500 hover:text-gray-700" />
+                  </button>
+
+                  <button onClick={() => { DeleteAcara(acara.id_acara) }} className='bg-white p-2 rounded-full shadow-md'>
+                    <MdDeleteOutline className="text-gray-500 hover:text-gray-700" />
+                  </button>
+                </div>
               </div>
             ))}
+
           </div>
         </main>
       </div>

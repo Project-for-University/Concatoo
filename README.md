@@ -1,11 +1,34 @@
-proyek 
- - no ts 
- - with eslint
- - with tailwindcss
- - with src
- - with app router
+proyek
+
+- no ts
+- with eslint
+- with tailwindcss
+- with src
+- with app router
 
 node v20.11.1
 
-clone to local proyek 
+clone to local proyek
+
 - npm install, to install node_modules
+
+ingat
+
+## note
+
+untuk menangkap id dengan route.js function GET(param) = ini memang tanpa tanda kurung meski sudah pale dynamic route [id]
+tapi kalo nangkap id dengan page.js function DetailAcara({id}) = nah itu baru harus pake kururng meski sudah pale dynamic route [id]
+
+## fetch
+
+- pada body fetch jangan ngirim data kosong
+- harus number atau text type data js nanti bakal eror atau gagal fetch
+- fetch tidak bisa jalan di 'use server' harus di 'use client'
+- dalam body fetch harus tupe
+- PERTING perhatikan alur variable jangan asal copas nanti eror makin pusing
+- PENTING perhatikan data yang ingin di input kalo shecma table db nya unique harus ada varidasi dulu atau jangan masukan data berulang nanti eror makin pusing pula
+
+## 1 action 2 query / lebih
+
+- jika ingin delete maka delete dulu data di tabel induk baru tabel anaknya
+- misal delte acara dulu baru delete kontak dan deskripsi

@@ -12,7 +12,6 @@ export async function GET() {
                 tanggal_acara: true,
                 lokasi: true,
             }
-
         })
 
 

@@ -9,7 +9,7 @@ import 'flowbite';
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="">
+      <body className="bg-slate-300">
         <SessionProvider >
           {children}
         </SessionProvider>
