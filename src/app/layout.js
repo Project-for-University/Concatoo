@@ -4,6 +4,8 @@
 import "../../public/global.css"
 import { SessionProvider } from "next-auth/react"
 import 'flowbite';
+import { Suspense } from "react";
+import Loading from "./loading";
 
 
 export default function RootLayout({ children }) {
@@ -11,7 +13,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="bg-slate-300">
         <SessionProvider >
+          <Suspense fallback={<Loading/>}>
           {children}
+          </Suspense>
         </SessionProvider>
       </body>
     </html>

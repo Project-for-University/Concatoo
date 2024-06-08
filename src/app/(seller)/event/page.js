@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Sidebar from '../dashboard/component/sidebar';
 import Navbar from '../dashboard/component/navbar';
 import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
 const prisma = new PrismaClient()
 
@@ -109,9 +109,9 @@ function Acara() {
                   </div>
                 </Link>
                 <div className="absolute top-4 right-4 flex space-x-4">
-                  <button onClick={() => { EditAcara(acara.id_acara) }} className='bg-white p-2 rounded-full shadow-md'>
+                  <Link href={`/event/buat_event/acara/edit/api/${acara.id_acara}`} className='bg-white p-2 rounded-full shadow-md'>
                     <MdOutlineEdit className="text-gray-500 hover:text-gray-700" />
-                  </button>
+                  </Link>
 
                   <button onClick={() => { DeleteAcara(acara.id_acara) }} className='bg-white p-2 rounded-full shadow-md'>
                     <MdDeleteOutline className="text-gray-500 hover:text-gray-700" />
