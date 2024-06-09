@@ -55,7 +55,7 @@ model Kontak {
   no_ponsel       String   @unique @db.Char(20)
   Acara           Acara?
   createdAt       DateTime @default(now())
-  updateAt        DateTime @updatedAt
+  updatedAt       DateTime @updatedAt
 }
 
 model Deskrpsi {
@@ -64,7 +64,7 @@ model Deskrpsi {
   syarat_ketentuan String   @db.Text
   Acara            Acara?
   createdAt        DateTime @default(now())
-  updateAt         DateTime @updatedAt
+  updatedAt        DateTime @updatedAt
 }
 
 model Tiket {
@@ -80,5 +80,5 @@ model Tiket {
   acara                   Acara    @relation(fields: [id_acara], references: [id_acara])
   id_acara                String
   createdAt               DateTime @default(now())
-  updateAt                DateTime @updatedAt
+  updatedAt               DateTime @updatedAt
 }

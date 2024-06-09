@@ -33,7 +33,7 @@ export default function Edit({ params }) {
 
     useEffect(() => {
         async function fetchData() {
-            const getData = await fetch(`/event/buat_event/edit/${params.id}`,
+            const getData = await fetch(`/event/buat_event/tiket/api/edit/readTiket/${params.id}`,
                 { method: 'GET' }
             )
             const data = await getData.json()
@@ -101,13 +101,13 @@ export default function Edit({ params }) {
 
     return (
         <div>
-            <Navbar/>
+            <Navbar />
             <div className="flex justify-center">
-                <Sidebar/>
+                <Sidebar />
                 <div className="mx-auto w-full max-w-[550px] bg-white">
                     <form
                         className="py-6 px-9"
-                        // action={formAction}
+                    // action={formAction}
                     // method="POST"
                     >
                         <input type="hidden" name="id_acara" value={params.id} />
@@ -265,7 +265,7 @@ export default function Edit({ params }) {
                 </div >
             </div >
         </div>
-        
+
     )
 }
 
