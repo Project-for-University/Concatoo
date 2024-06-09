@@ -7,6 +7,7 @@ import { useFormStatus } from "react-dom";
 import { useFormState } from 'react-dom'
 import Sidebar from "@/app/(seller)/dashboard/component/sidebar";
 import Navbar from "@/app/(seller)/dashboard/component/navbar";
+import { updateTiket } from "../../updateTiket/actionUpdate";
 
 // import Sidebar from "../sidebar/page";
 
@@ -27,7 +28,7 @@ export default function Edit({ params }) {
         message: '',
     }
 
-    const [state, formAction] = useFormState(initialState)
+    const [state, formAction] = useFormState(updateTiket ,initialState)
     console.log(formAction)
     console.log(state)
 
@@ -107,10 +108,10 @@ export default function Edit({ params }) {
                 <div className="mx-auto w-full max-w-[550px] bg-white">
                     <form
                         className="py-6 px-9"
-                    // action={formAction}
+                    action={formAction}
                     // method="POST"
                     >
-                        <input type="hidden" name="id_acara" value={params.id} />
+                        <input type="hidden" name="id_tiket" value={params.id} />
                         <div className="mb-6 pt-4">
                             <div className="mb-5">
                                 <label
