@@ -1,15 +1,16 @@
 'use client'
 
 import { PrismaClient } from '@prisma/client'
-import { redirect } from 'next/navigation';
+// import { redirect } from 'next/navigation';
+
 // import { useRouter } from 'next/navigation';
 import { z } from "zod";
 
 const prisma = new PrismaClient();
 
 const validasi = z.object({
-    id_tiket: z.string().min(1,{message:'tidak boleh kosong'}),
-    jumlah_tiket: z.string().min(1,{message:'tidak boleh kosong'}),
+    id_tiket: z.string().min(1, { message: 'tidak boleh kosong' }),
+    jumlah_tiket: z.string().min(1, { message: 'tidak boleh kosong' }),
     nama_tiket: z.string().min(1, { message: 'tidak boleh kosong' }),
     harga: z.string().min(1, { message: 'tidak boleh kosong' }),
     deskripsi_tiket: z.string().min(1, { message: 'tidak boleh kosong' }),
@@ -19,7 +20,8 @@ const validasi = z.object({
     waktu_akhir_penjualan: z.string().min(1, { message: 'tidak boleh kosong' }),
 });
 
-export async function updateTiket(prevState, request) {
+export async function UpdateTiket(prevState, request) {
+
     // const router = useRouter();
     const requestData = Object.fromEntries(request.entries());
     const validated = validasi.safeParse(requestData);
@@ -66,10 +68,12 @@ export async function updateTiket(prevState, request) {
             })
         });
 
-        // if () {
-            console.log('tidak baik baik saja');
-            redirect('/event');
-        // }
+        if (res.ok) {
+            // redirect('/event')
+            console.log('Berhasil');
+
+
+        }
     } catch (error) {
         console.log('gagal fetch:');
     }

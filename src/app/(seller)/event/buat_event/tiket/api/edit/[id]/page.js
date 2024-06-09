@@ -7,7 +7,7 @@ import { useFormStatus } from "react-dom";
 import { useFormState } from 'react-dom'
 import Sidebar from "@/app/(seller)/dashboard/component/sidebar";
 import Navbar from "@/app/(seller)/dashboard/component/navbar";
-import { updateTiket } from "../../updateTiket/actionUpdate";
+import { UpdateTiket } from "../../updateTiket/actionUpdate";
 
 // import Sidebar from "../sidebar/page";
 
@@ -28,7 +28,7 @@ export default function Edit({ params }) {
         message: '',
     }
 
-    const [state, formAction] = useFormState(updateTiket ,initialState)
+    const [state, formAction] = useFormState(UpdateTiket, initialState)
     console.log(formAction)
     console.log(state)
 
@@ -67,7 +67,7 @@ export default function Edit({ params }) {
             if (getData.ok) {
                 setNama_tiket(data.nama_tiket)
                 setJumlah_tiket(data.jumlah_tiket)
-                setHarga(data.setHarga)
+                setHarga(data.harga)
                 setDeskripsi_tiket(data.deskripsi_tiket)
                 setTanggal_mulai_penjualan(formattedDate)
                 setWaktu_penjualan(formattedTime)
@@ -108,7 +108,7 @@ export default function Edit({ params }) {
                 <div className="mx-auto w-full max-w-[550px] bg-white">
                     <form
                         className="py-6 px-9"
-                    action={formAction}
+                        action={formAction}
                     // method="POST"
                     >
                         <input type="hidden" name="id_tiket" value={params.id} />
@@ -148,7 +148,6 @@ export default function Edit({ params }) {
                                     className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                 />
                                 {state?.jumlah_tiket && <div className="text-black">{state.jumlah_tiket}</div>}
-
                             </div>
 
                             <div className="mb-5">
