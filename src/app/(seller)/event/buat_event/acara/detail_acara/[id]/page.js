@@ -97,7 +97,7 @@ function Card({ param }) {
                 <Sidebar />
                 <div className="w-full p-4">
                     {/* detail acara */}
-                    <div className="bg-neutral-500 shadow-md rounded-lg overflow-hidden">
+                    <div className="shadow-md rounded-lg overflow-hidden">
                         <div className="flex flex-col lg:flex-row">
                             <img src="https://via.placeholder.com/300x150" alt="Musikal Keluarga Cemara" className="w-full lg:w-1/2 object-cover" />
                             <div className="p-6 lg:w-1/2">
@@ -140,7 +140,7 @@ function Card({ param }) {
 
 
                                 return (
-                                    <div key={tiket.id_tiket} className="bg-neutral-500 shadow-md rounded-lg overflow-hidden mt-10 w-1/2">
+                                    <div key={tiket.id_tiket} className="shadow-md rounded-lg overflow-hidden mt-10 w-1/2">
                                         <h1 className="text-2xl font-bold pl-4 pt-4">{tiket.nama_tiket}</h1>
                                         <div className="flex justify-between">
                                             <div className="p-6 lg:w-1/2">
@@ -154,7 +154,7 @@ function Card({ param }) {
                                             </div>
                                         </div>
                                         <div className="flex p-4 justify-end mr-6">
-                                            <Link href={``}>
+                                            <Link href={`/event/buat_event/tiket/api/edit/${tiket.id_tiket}`}>
                                                 <MdOutlineEdit className="text-gray-500 hover:text-gray-700" />
                                             </Link>
 
