@@ -19,7 +19,7 @@ INSERT INTO User (id_user, username, phonenumber, email, password, role, created
 ('cuid10', 'user10', '6667778888', 'user10@example.com', 'password123', 'CUSTOMER', NOW(), NOW());
 
 -- Insert into Kontak table
-INSERT INTO Kontak (id_kontak, nama_narahubung, email, no_ponsel, createdAt, updateAt) VALUES
+INSERT INTO Kontak (id_kontak, nama_narahubung, email, no_ponsel, createdAt, updatedAt) VALUES
 ('kontak1', 'John Doe', 'john.doe@example.com', '1234567890', NOW(), NOW()),
 ('kontak2', 'Jane Doe', 'jane.doe@example.com', '0987654321', NOW(), NOW()),
 ('kontak3', 'Alice Smith', 'alice.smith@example.com', '1112223333', NOW(), NOW()),
@@ -32,7 +32,7 @@ INSERT INTO Kontak (id_kontak, nama_narahubung, email, no_ponsel, createdAt, upd
 ('kontak10', 'Hank Miller', 'hank.miller@example.com', '6667778888', NOW(), NOW());
 
 -- Insert into Deskrpsi table
-INSERT INTO Deskrpsi (id_deskripsi, deskripsi_acara, syarat_ketentuan, createdAt, updateAt) VALUES
+INSERT INTO Deskrpsi (id_deskripsi, deskripsi_acara, syarat_ketentuan, createdAt, updatedAt) VALUES
 ('deskripsi1', 'Event 1 description.', 'Terms and conditions 1.', NOW(), NOW()),
 ('deskripsi2', 'Event 2 description.', 'Terms and conditions 2.', NOW(), NOW()),
 ('deskripsi3', 'Event 3 description.', 'Terms and conditions 3.', NOW(), NOW()),

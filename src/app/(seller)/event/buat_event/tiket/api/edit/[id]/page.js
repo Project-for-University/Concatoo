@@ -270,7 +270,7 @@ export default function Edit({ params }) {
 }
 
 function SubmitButton() {
-    const { pending } = { useFormStatus }
+    const { pending } = useFormStatus()
     return (
         <button type="submit" className="hover:shadow-form w-full rounded-md bg-[#2D6C70] py-3 px-8 text-center text-base font-semibold text-white outline-none">{pending ? "Submitting..." : "Submit"}</button>
     )
