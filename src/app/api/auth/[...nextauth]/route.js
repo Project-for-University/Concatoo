@@ -25,25 +25,31 @@ const handler = NextAuth({
                 const user = await prisma.user.findUnique({
                     where: { email: email }
                 });
+                console.log(user);
 
                 // Jika user tidak ditemukan, kembalikan null
                 if (!user) {
                     return null;
                 }
-
-                // Bandingkan password yang dimasukkan dengan password yang ada di database
-                const isValidPassword = await bcrypt.compare(password, user.password);
-                if (!isValidPassword) {
-                    return null;
+                if (user) {
+                    if (user.password === credentials.password) {
+                        return {
+                            id_user: user.id_user,
+                            name: user.username,
+                            email: user.email,
+                            role: user.role
+                        };
+                    }
                 }
 
+                // Bandingkan password yang dimasukkan dengan password yang ada di database
+                // const isValidPassword = await bcrypt.compare(password, user.password);
+                // if (!isValidPassword) {
+                //     return null;
+                // }
+
                 // Kembalikan objek user jika otentikasi berhasil
-                return {
-                    id_user: user.id_user,
-                    name: user.username,
-                    email: user.email,
-                    role: user.role
-                };
+
             },
         })
     ],

@@ -1,12 +1,13 @@
 'use client'
 
-import { useSession } from "next-auth/react"
+
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
-
+import { signIn, signOut, useSession } from "next-auth/react"
+import Link from "next/link"
 
 export default function Pages() {
-    const { session, status } = useSession()
+    const { data: session, status } = useSession()
     console.log(status);
     console.log(session);
 
@@ -22,6 +23,14 @@ export default function Pages() {
     return (
         <>
             <h1 className="">dashboard</h1>
+            {status === 'authenticated' ? (
+                <button onClick={() => signOut()} className="p-2 text-black ml-auto">Sign out</button>
+            ) : (
+                <div className="flex space-x-4 ml-auto">
+                    <button className="rounded-lg hover:" onClick={() => signIn()}>Sign in</button>
+                    <Link href="/auth/register">Register</Link>
+                </div>
+            )}
         </>
     )
 }

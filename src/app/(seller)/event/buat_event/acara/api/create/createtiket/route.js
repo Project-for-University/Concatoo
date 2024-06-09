@@ -14,6 +14,16 @@ export async function POST(request, { params }) {
 
     try {
         const result = await prisma.$transaction(async (prisma) => {
+            const newAcara = await prisma.acara.create({
+                data: {
+                    nama_event: data.nama_event,
+                    tanggal_acara: data.tanggal_acara, // Tanggal dengan format baru
+                    waktu_acara: data.waktu_acara,
+                    lokasi: data.lokasi,
+                    id_kontak: newKontak.id_kontak, // ID kontak dari create newKontak
+                    id_deskripsi: newDeskrpsi.id_deskripsi, // ID deskripsi dari create newDeskripsi
+                }
+            });
             const newKontak = await prisma.kontak.create({
                 data: {
                     nama_narahubung: data.nama_narahubung,
@@ -33,16 +43,7 @@ export async function POST(request, { params }) {
             });
             console.log("Deskripsi baru dibuat:", newDeskrpsi);
 
-            const newAcara = await prisma.acara.create({
-                data: {
-                    nama_event: data.nama_event,
-                    tanggal_acara: data.tanggal_acara, // Tanggal dengan format baru
-                    waktu_acara: data.waktu_acara,
-                    lokasi: data.lokasi,
-                    id_kontak: newKontak.id_kontak, // ID kontak dari create newKontak
-                    id_deskripsi: newDeskrpsi.id_deskripsi, // ID deskripsi dari create newDeskripsi
-                }
-            });
+
             console.log("Acara baru dibuat:", newAcara);
         });
 

@@ -43,5 +43,5 @@ export default async function ActionLogin(prevState, formdata) {
     if (res.error) {
         return { error: { form: 'Email atau password salah' } }
     }
-    return redirect('/')
+    return redirect('/dashboard')
 }

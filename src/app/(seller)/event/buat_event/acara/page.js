@@ -33,47 +33,6 @@ export default function Tiket() {
     console.log(formAction)
     console.log(state);
 
-    // async function tes(id) {
-    //     try {
-    //         console.log('masuk');
-    //         console.log(id);
-    //         const res = await fetch('/event/buat_event/acara/api/create/createtiket', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify({
-    //                 nama_narahubung: 123,
-    //                 email: 1234,
-    //                 no_ponsel: 1234,
-    //                 deskripsi_acara: 1234,
-    //                 syarat_ketentuan: 1234,
-    //                 nama_event: 1234,
-    //                 tanggal_acara: 1234,
-    //                 waktu_acara: 1234,
-    //                 lokasi: 1234,
-    //             })
-    //         });
-
-    //         if (!res.ok) {
-    //             console.log('tidak baik baik saja');
-    //         }
-
-    //         const datares = await res.json();
-    //         console.log(datares);
-
-    //         // Asumsikan Anda ingin mengecek apakah tiket berhasil dibuat
-    //         if (datares.success) {
-    //             console.log('Berhasil membuat acara');
-    //             redirect('/event');
-    //         } else {
-    //             console.error('Gagal membuat acara');
-    //         }
-    //     } catch (error) {
-    //         console.log('gagal fetch:');
-    //     }
-    // }
-
 
     return (
         <div>
