@@ -1,15 +1,11 @@
 'use client'
 
-
 import { useState } from "react";
-
-
 
 import { useFormStatus } from 'react-dom'
 import { useFormState } from 'react-dom'
 import ActionLogin from "./api/action";
 import Link from "next/link";
-
 
 export default function Login() {
 
@@ -35,7 +31,7 @@ export default function Login() {
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                             Login
                         </h1>
-                        <p className="text-rose-600">
+                        <p className="text-green-600">
                             <Link href={`/auth/register`}>Daftar</Link>
                         </p>
                     </div>
@@ -54,7 +50,7 @@ export default function Login() {
                             {state?.password && <div >{state.password}</div>}
                         </div>
                         <LoginButton />
-                        <p className="pt-2 text-rose-600 text-center text-sm"><a>Forgot Password</a></p>
+                        <p className="pt-2 text-green-600 text-center text-sm"><a>Forgot Password</a></p>
                     </form>
                 </div>
             </div>
@@ -65,6 +61,6 @@ export default function Login() {
 function LoginButton() {
     const { pending } = useFormStatus()
     return (
-        <button type="submit" className="w-full text-white bg-gradient-to-r from-rose-300 to-rose-600 hover:bg-rose-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-rose-600 dark:hover:bg-rose-700 dark:focus:ring-blue-800">{pending ? "loading..." : "Login"}</button>
+        <button type="submit" className="w-full text-white bg-gradient-to-r from-green-300 to-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-blue-800">{pending ? "loading..." : "Login"}</button>
     )
 }

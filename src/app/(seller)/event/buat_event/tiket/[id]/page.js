@@ -9,9 +9,6 @@ import { CreateTiket } from "../api/create/page";
 import Sidebar from "@/app/(seller)/dashboard/component/sidebar";
 import Navbar from "@/app/(seller)/dashboard/component/navbar";
 
-// import Sidebar from "../sidebar/page";
-
-
 export default function Ticket({ params }) {
     console.log("id tiket");
     console.log(params.id);
@@ -51,8 +48,6 @@ export default function Ticket({ params }) {
         }
     };
 
-
-
     return (
         <div>
             <Navbar/>
@@ -62,7 +57,6 @@ export default function Ticket({ params }) {
                     <form
                         className="py-6 px-9"
                         action={formAction}
-                    // method="POST"
                     >
                         <input type="hidden" name="id_acara" value={params.id} />
                         <div className="mb-6 pt-4">
@@ -115,7 +109,7 @@ export default function Ticket({ params }) {
                                     type="text"
                                     name="harga"
                                     id="harga"
-                                    placeholder="100000"
+                                    placeholder="Rp. 100000"
                                     value={harga}
                                     onChange={handleHarga}
                                     className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"

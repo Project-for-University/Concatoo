@@ -140,12 +140,12 @@ function Card({ param }) {
 
 
                                 return (
-                                    <div key={tiket.id_tiket} className="shadow-md rounded-lg overflow-hidden mt-10 w-1/2">
+                                    <div key={tiket.id_tiket} className="shadow-lg rounded-lg overflow-hidden mt-10 w-1/2">
                                         <h1 className="text-2xl font-bold pl-4 pt-4">{tiket.nama_tiket}</h1>
                                         <div className="flex justify-between">
                                             <div className="p-6 lg:w-1/2">
-                                                <p className="text-gray-600 mt-2">{tiket.jumlah_tiket}</p>
-                                                <p className="text-gray-600">{tiket.harga}</p>
+                                                <p className="text-gray-600 mt-2">Jumlah Tiket :{tiket.jumlah_tiket}</p>
+                                                <p className="text-gray-600">Rp.{tiket.harga}</p>
                                                 <p className="text-gray-600">{tiket.deskripsi_tiket}</p>
                                             </div>
                                             <div className="p-6 lg:w-1/2">
@@ -158,7 +158,7 @@ function Card({ param }) {
                                                 <MdOutlineEdit className="text-gray-500 hover:text-gray-700" />
                                             </Link>
 
-                                            <button className="pl-2" onClick={() => DeleteTiket(tiket.id_tiket)}>hapus
+                                            <button className="pl-2" onClick={() => DeleteTiket(tiket.id_tiket)}>
                                                 <MdDeleteOutline className="text-gray-500 hover:text-gray-700" />
                                             </button>
 

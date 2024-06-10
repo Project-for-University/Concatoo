@@ -48,13 +48,13 @@ export default function Register({ }) {
 
     return (
         <div className="max-w-lg h-screen flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
-            <div className="w-full bg-slate-400 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+            <div className="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                 <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <div className="flex justify-between">
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-white md:text-2xl dark:text-white">
                             Register
                         </h1>
-                        <p className="text-rose-600">
+                        <p className="text-green-600">
                             <Link href={`/auth/login`}>Masuk</Link>
                         </p>
                     </div>
@@ -82,7 +82,7 @@ export default function Register({ }) {
                             {state?.password && <div className="text-white">{state.password}</div>}
                         </div>
                         <SubmitButton />
-                        <p className="pt-2 text-rose-600 text-center text-sm"><a>Forgot Password</a></p>
+                        <p className="pt-2 text-green-600 text-center text-sm"><a>Forgot Password</a></p>
                     </form>
                 </div>
             </div>
@@ -94,6 +94,6 @@ export default function Register({ }) {
 function SubmitButton() {
     const { pending } = useFormStatus();
     return (
-        <button type="submit" className="w-full text-white bg-gradient-to-r from-rose-300 to-rose-600 hover:bg-rose-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-rose-600 dark:hover:bg-rose-700 dark:focus:ring-blue-800">{pending ? "Submitting..." : "Submit"}</button>
+        <button type="submit" className="w-full text-white bg-gradient-to-r from-green-300 to-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-blue-800">{pending ? "Submitting..." : "Submit"}</button>
     );
 }

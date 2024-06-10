@@ -15,23 +15,6 @@ export default function Pages() {
                     <div class="mt-4">
                         <button class="bg-white text-gray-800 px-4 py-2 rounded border-2 border-gray-300">Beli Tiket</button>
                     </div>
-                    {/* <div class="mt-4 flex space-x-3">
-                        <a href="#" class="text-gray-500 hover:text-blue-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6.29 6.29a1 1 0 011.42 0l1.38 1.38a8 8 0 111.43-1.42l-1.38-1.38a1 1 0 010-1.42z" />
-                            </svg>
-                        </a>
-                        <a href="#" class="text-gray-500 hover:text-blue-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                            </svg>
-                        </a>
-                        <a href="#" class="text-gray-500 hover:text-blue-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12l9-4.5M12 12l-9-4.5m0 9l9-4.5m0 0v9m0-9L3 7.5m9 4.5l9-4.5M3 12v7a2 2 0 002 2h14a2 2 0 002-2v-7" />
-                            </svg>
-                        </a>
-                    </div> */}
                 </div>
             </div>
             <div class="p-6 bg-gray-50">
