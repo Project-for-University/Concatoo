@@ -1,4 +1,4 @@
-'use server'
+'use client'
 
 import { PrismaClient } from '@prisma/client'
 import { redirect } from 'next/navigation';
@@ -17,11 +17,11 @@ const validasi = z.object({
     waktu_penjualan: z.string().min(1, { message: 'tidak boleh kosong' }),
     tanggal_akhir_penjualan: z.string().min(1, { message: 'tidak boleh kosong' }),
     waktu_akhir_penjualan: z.string().min(1, { message: 'tidak boleh kosong' }),
-}); 2
+});
 
 export async function CreateTiket(prevState, request) {
-    console.log(request);
     const requestData = Object.fromEntries(request.entries());
+    console.log(requestData);
     const validated = validasi.safeParse(requestData);
     console.log("Validasi hasil:", validated);
 
@@ -53,23 +53,26 @@ export async function CreateTiket(prevState, request) {
 
     try {
         console.log('masuk');
-        const res = await fetch('/api/seller/tiket/buat_tiket', {
+        const res = await fetch(`/api/seller/tiket/buat_tiket`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                id_acara: '123123'
+                id_acara: data.id_acara,
+                nama_tiket: data.nama_tiket,
+                jumlah_tiket: data.jumlah_tiket,
+                harga: data.harga,
+                deskripsi_tiket: data.deskripsi_tiket,
+                tanggal_mulai_penjualan: new Date(tanggal_mulai), // Tanggal dengan format baru
+                waktu_penjualan: new Date(tanggal_mulai), // Tanggal dengan format baru
+                tanggal_akhir_penjualan: new Date(tanggal_akhir), // Tanggal dengan format baru
+                waktu_akhir_penjualan: new Date(tanggal_akhir), // Tanggal dengan format baru
+
             })
         });
 
-        if (!res.ok) {
-            console.log('tidak baik baik saja');
-        }
-
         const datares = await res.json();
-        console.log(datares);
-        console.log('berhasil');
     } catch (error) {
         console.log('gagal fetch:', error);
     }

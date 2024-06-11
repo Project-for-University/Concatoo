@@ -63,7 +63,7 @@ export async function CreateAcara(prevState, request) {
         console.log(datares);
 
     } catch (error) {
-        console.log('gagal fetch:');
+        console.log('gagal fetch:', error);
     }
 
 

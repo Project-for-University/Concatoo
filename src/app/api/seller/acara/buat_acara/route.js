@@ -58,9 +58,6 @@ export async function POST(request, { params }) {
 
 }
 
-
-//         data: {
-//             nama_narahubung: data.nama_narahubung,
 //             email: data.email,
 //             no_ponsel: data.no_ponsel,
 //         }

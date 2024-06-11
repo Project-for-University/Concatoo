@@ -7,19 +7,19 @@ export async function POST(request, { params }) {
     const data = await request.json();
     console.log(data);
     try {
-        // const newKontak = await prisma.tiket.create({
-        //     data: {
-        //         nama_tiket: data.nama_tiket,
-        //         jumlah_tiket: data.jumlah_tiket,
-        //         harga: parseInt(data.harga),
-        //         deskripsi_tiket: data.deskripsi_tiket,
-        //         tanggal_mulai_penjualan: data.tanggal_mulai,
-        //         waktu_penjualan: data.tanggal_mulai,
-        //         tanggal_akhir_penjualan: data.tanggal_akhir,
-        //         waktu_akhir_penjualan: data.tanggal_akhir,
-        //         id_acara: data.id_acara
-        //     }
-        // })
+        const newKontak = await prisma.tiket.create({
+            data: {
+                nama_tiket: data.nama_tiket,
+                jumlah_tiket: data.jumlah_tiket,
+                harga: parseInt(data.harga),
+                deskripsi_tiket: data.deskripsi_tiket,
+                tanggal_mulai_penjualan: data.tanggal_mulai_penjualan,
+                waktu_penjualan: data.waktu_penjualan,
+                tanggal_akhir_penjualan: data.tanggal_akhir_penjualan,
+                waktu_akhir_penjualan: data.waktu_akhir_penjualan,
+                id_acara: data.id_acara
+            }
+        })
         console.log('berasil');
         return new Response(JSON.stringify({ message: 'alhamdulikkah' }))
     } catch (e) {
