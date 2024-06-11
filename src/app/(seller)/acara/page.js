@@ -84,18 +84,13 @@ function Acara() {
     }
   }
 
-
-
-
-
-
   return (
     <div>
       <Navbar />
       <div className="flex justify-between">
         <Sidebar />
         <main className="flex-1 p-4">
-          <Link className="text-gray-700 border rounded-lg p-2 " href={`acara/buat_acara`}>+ Tambah Acara</Link>
+          <Link className="bg-white shadow-lg hover:bg-orange-100 text-gray-700 border rounded-lg p-2  " href={`acara/buat_acara`}>+ Tambah Acara</Link>
           <div className="grid grid-cols-3 gap-4 p-8">
             {acaras.map((acara) => (
               <div key={acara.id_acara} className="relative bg-white shadow-md rounded-md overflow-hidden">
@@ -110,11 +105,11 @@ function Acara() {
                 </Link>
                 <div className="absolute top-4 right-4 flex space-x-4">
                   <Link href={`acara/edit_acara/${acara.id_acara}`} className='bg-white p-2 rounded-full shadow-md'>
-                    <MdOutlineEdit className="text-gray-500 hover:text-gray-700" />
+                    <MdOutlineEdit className="text-orange-500 hover:text-orange-700" />
                   </Link>
 
                   <button onClick={() => { DeleteAcara(acara.id_acara) }} className='bg-white p-2 rounded-full shadow-md'>
-                    <MdDeleteOutline className="text-gray-500 hover:text-gray-700" />
+                    <MdDeleteOutline className="text-orange-500 hover:text-orange-700" />
                   </button>
                 </div>
               </div>

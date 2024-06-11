@@ -11,7 +11,7 @@ import Loading from "./loading";
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="">
+      <body className="bg-orange-50">
         <SessionProvider >
           <Suspense fallback={<Loading/>}>
           {children}
