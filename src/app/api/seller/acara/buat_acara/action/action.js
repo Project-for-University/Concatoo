@@ -3,7 +3,7 @@
 import { PrismaClient } from '@prisma/client'
 import { redirect } from 'next/navigation';
 import { z } from "zod";
-
+import { useRouter } from 'next/router';
 const prisma = new PrismaClient();
 
 const validasi = z.object({
@@ -61,6 +61,9 @@ export async function CreateAcara(prevState, request) {
 
         const datares = await res.json();
         console.log(datares);
+
+        router.push('/acara')
+
 
     } catch (error) {
         console.log('gagal fetch:', error);

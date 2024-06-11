@@ -49,7 +49,7 @@ export async function POST(request, { params }) {
         });
 
 
-        return new Response(JSON.stringify({ message: 'tidak baik baik saja' }))
+        return new Response(JSON.stringify({ message: 'berhasil bos' }))
 
     } catch (e) {
         console.log('tidak baik baik saja', e);
