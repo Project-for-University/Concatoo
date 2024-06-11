@@ -51,7 +51,7 @@ export async function UpdateTiket(prevState, request) {
 
     try {
         console.log('masuk');
-        const res = await fetch(`/event/buat_event/tiket/api/updateTiket/${data.id_tiket}`, {
+        const res = await fetch(`/api/seller/tiket/edit_tiket/update_tiket/${data.id_tiket}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

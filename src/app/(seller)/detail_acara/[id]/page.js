@@ -154,14 +154,12 @@ function Card({ param }) {
                                             </div>
                                         </div>
                                         <div className="flex p-4 justify-end mr-6">
-                                            <Link href={`/event/buat_event/tiket/api/edit/${tiket.id_tiket}`}>
+                                            <Link href={`/tiket/edit_tiket/${tiket.id_tiket}`}>
                                                 <MdOutlineEdit className="text-gray-500 hover:text-gray-700" />
                                             </Link>
-
                                             <button className="pl-2" onClick={() => DeleteTiket(tiket.id_tiket)}>
                                                 <MdDeleteOutline className="text-gray-500 hover:text-gray-700" />
                                             </button>
-
                                         </div>
                                     </div>
                                 )

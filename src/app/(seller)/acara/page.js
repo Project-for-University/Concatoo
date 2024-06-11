@@ -109,7 +109,7 @@ function Acara() {
                   </div>
                 </Link>
                 <div className="absolute top-4 right-4 flex space-x-4">
-                  <Link href={`detail_acara/${acara.id_acara}`} className='bg-white p-2 rounded-full shadow-md'>
+                  <Link href={`acara/edit_acara/${acara.id_acara}`} className='bg-white p-2 rounded-full shadow-md'>
                     <MdOutlineEdit className="text-gray-500 hover:text-gray-700" />
                   </Link>
 

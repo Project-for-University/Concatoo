@@ -1,7 +1,7 @@
 'use client'
 import Navbar from "@/app/(seller)/dashboard/component/navbar"
 import Sidebar from "@/app/(seller)/dashboard/component/sidebar"
-import { UpdateAcara } from "../../../../api/seller/acara/edit_acara/updateAcara/actionUpdate";
+import { UpdateAcara } from "../../../../api/seller/acara/edit_acara/update_acara/action";
 
 import { useEffect, useState } from "react"
 import { useFormStatus } from "react-dom";
@@ -40,7 +40,7 @@ export default function Edit({ params }) {
 
     useEffect(() => {
         async function fetchData() {
-            const getData = await fetch(`/event/buat_event/acara/edit/api/readAcara/${params.id}`,
+            const getData = await fetch(`/api/seller/acara/edit_acara/read_acara/${params.id}`,
                 { method: 'GET' }
             )
             const data = await getData.json()

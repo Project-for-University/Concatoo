@@ -8,7 +8,7 @@ import { z } from "zod";
 const prisma = new PrismaClient();
 
 const validasi = z.object({
-    id_acara: z.string().min(1,{message:'tidak boleh kosong'}),
+    id_acara: z.string().min(1, { message: 'tidak boleh kosong' }),
     nama_event: z.string().min(1, { message: 'tidak boleh kosong' }),
     tanggal_acara: z.string().min(1, { message: 'tidak boleh kosong' }),
     waktu_acara: z.string().min(1, { message: 'tidak boleh kosong' }),
@@ -46,7 +46,7 @@ export async function UpdateAcara(prevState, request) {
 
     try {
         console.log('masuk');
-        const res = await fetch(`/event/buat_event/acara/edit/api/updateAcara/${data.id_acara}`, {
+        const res = await fetch(`/api/seller/acara/edit_acara/update_acara/${data.id_acara}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -65,8 +65,8 @@ export async function UpdateAcara(prevState, request) {
         });
 
         // if () {
-            console.log('tidak baik baik saja');
-            redirect('/event');
+        console.log('tidak baik baik saja');
+        redirect('/event');
         // }
     } catch (error) {
         console.log('gagal fetch:');

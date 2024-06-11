@@ -7,7 +7,7 @@ import { useFormStatus } from "react-dom";
 import { useFormState } from 'react-dom'
 import Sidebar from "@/app/(seller)/dashboard/component/sidebar";
 import Navbar from "@/app/(seller)/dashboard/component/navbar";
-import { UpdateTiket } from "../../../../api/seller/tiket/updateTiket/actionUpdate";
+import { UpdateTiket } from "../../../../api/seller/tiket/edit_tiket/update_tiket/action";
 
 // import Sidebar from "../sidebar/page";
 
@@ -34,7 +34,7 @@ export default function Edit({ params }) {
 
     useEffect(() => {
         async function fetchData() {
-            const getData = await fetch(`/event/buat_event/tiket/api/edit/readTiket/${params.id}`,
+            const getData = await fetch(`/api/seller/tiket/edit_tiket/read_tiket/${params.id}`,
                 { method: 'GET' }
             )
             const data = await getData.json()
