@@ -21,7 +21,7 @@ function CardAcara() {
         async function fetchData() {
             try {
                 // Fetch acaras
-                const acarasResponse = await fetch('/api/home/readAcara');
+                const acarasResponse = await fetch('/api/customer/read_acara');
                 const acarasData = await acarasResponse.json();
 
                 // Set acaras state
@@ -33,9 +33,8 @@ function CardAcara() {
                 }
 
                 // Fetch tiketTermurah
-                const tiketResponse = await fetch('/api/home/ReadTiketTermurah');
+                const tiketResponse = await fetch('/api/customer/read_tiket_termurah');
                 const tiketData = await tiketResponse.json();
-
                 // Set tiketTermurah state
                 setTiketTermurah(tiketData);
             } catch (error) {

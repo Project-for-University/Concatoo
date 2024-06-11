@@ -11,6 +11,10 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
+        'gradient-to-45':
+          'linear-gradient(45deg, #ffed4a, #ff3860)',
+        'gradient-to-135':
+          'linear-gradient(135deg, #ffed4a, #ff3860)',
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",

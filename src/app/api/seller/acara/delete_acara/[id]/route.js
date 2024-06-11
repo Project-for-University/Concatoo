@@ -1,0 +1,74 @@
+'use server'
+import { PrismaClient } from '@prisma/client';
+import { NextResponse } from 'next/server';
+
+const prisma = new PrismaClient();
+
+export async function DELETE(request, { params }) {
+    console.log("Params ID:", params.id);
+
+    try {
+
+
+        const result = await prisma.$transaction(async (prisma) => {
+            // Cari acara terlebih dahulu untuk mendapatkan id_kontak dan id_deskripsi
+            const acaraToDelete = await prisma.acara.findUnique({
+                where: {
+                    id_acara: params.id
+                },
+                include: {
+                    kontak: true,
+                    deskripsi: true,
+                    tiket: true
+                }
+            });
+            console.log(acaraToDelete);
+
+            try {
+                await prisma.acara.delete({
+                    where: { id_acara: acaraToDelete.id_acara }
+                });
+                console.log("Acara dihapus");
+            } catch (e) {
+
+                console.log("Acara gagal dihapus");
+
+            }
+            if (!acaraToDelete) {
+                throw new Error("Acara tidak ditemukan");
+            }
+            // Hapus Tiket terkait
+            // Hapus kontak terkait
+            try {
+                await prisma.kontak.delete({
+                    where: { id_kontak: acaraToDelete.id_kontak }
+                });
+                console.log("Kontak dihapus");
+            } catch (e) {
+                console.log("Kontak gagal dihapus");
+
+            }
+
+            // Hapus deskripsi terkait
+            try {
+                await prisma.deskrpsi.delete({
+                    where: { id_deskripsi: acaraToDelete.id_deskripsi }
+                });
+                console.log("Deskripsi dihapus");
+            } catch (e) {
+                console.log("Deskripsi gagal dihapus");
+
+            }
+
+            // Hapus acara terlebih dahulu
+
+            return { message: "Acara, Kontak,Tiket, dan Deskripsi berhasil dihapus" };
+        });
+
+        return NextResponse.json({ message: 'berhasil' });
+
+    } catch (error) {
+        console.error("Error deleting acara:");
+        return NextResponse.json({ message: 'gagal' });
+    }
+}
