@@ -42,7 +42,7 @@ function Card({ param }) {
         // get tiket sesuai id acara
         const fetchTiket = async () => {
             console.log(param.id);
-            const response = await fetch(`/event/buat_event/acara/detail_acara/api/read_tiket/${param.id}`, {
+            const response = await fetch(`/api/seller/detail_acara/read_tiket/${param.id}`, {
                 method: 'GET'
             });
             const data = await response.json()
@@ -62,7 +62,7 @@ function Card({ param }) {
     // hapus tiket dan read tiket data terbaru
     async function DeleteTiket(id) {
         console.log(id);
-        const res = await fetch(`/api/seller/acara/delete_acara/${id}`, {
+        const res = await fetch(`/api/seller/tiket/delete_tiket/${id}`, {
             method: 'DELETE',
         })
         const data = await res.json()
@@ -70,7 +70,7 @@ function Card({ param }) {
         console.log(data);
         if (res) {
             console.log('berhasil');
-            const response = await fetch(`/event/buat_event/acara/detail_acara/api/read_tiket/${param.id}`, {
+            const response = await fetch(`/api/seller/detail_acara/read_tiket/${param.id}`, {
                 method: 'GET'
             });
             const data = await response.json()
