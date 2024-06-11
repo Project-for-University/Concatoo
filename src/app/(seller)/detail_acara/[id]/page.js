@@ -97,7 +97,7 @@ function Card({ param }) {
                 <Sidebar />
                 <div className="w-full p-4">
                     {/* detail acara */}
-                    <div className="shadow-md rounded-lg overflow-hidden">
+                    <div className="shadow-md rounded-lg overflow-hidden bg-white mt-2">
                         <div className="flex flex-col lg:flex-row">
                             <img src="https://via.placeholder.com/300x150" alt="Musikal Keluarga Cemara" className="w-full lg:w-1/2 object-cover" />
                             <div className="p-6 lg:w-1/2">
@@ -106,7 +106,7 @@ function Card({ param }) {
                                 <p className="text-gray-600">{new Date(acara.waktu_acara).toLocaleTimeString()}</p>
                                 <p className="text-gray-600">{acara.lokasi}</p>
                                 <div className="mt-4">
-                                    <Link key={acara.id_acara} href={`/tiket/buat_tiket/${acara.id_acara}`} className="block w-48 text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Buat Tiket</Link>
+                                    <Link key={acara.id_acara} href={`/tiket/buat_tiket/${acara.id_acara}`} className="block w-48 text-white bg-gradient-to-t from-amber-500 to-orange-300 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-white font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-gray-500">Buat Tiket</Link>
                                 </div>
                             </div>
                         </div>
@@ -140,7 +140,7 @@ function Card({ param }) {
 
 
                                 return (
-                                    <div key={tiket.id_tiket} className="shadow-lg rounded-lg overflow-hidden mt-10 w-1/2">
+                                    <div key={tiket.id_tiket} className="shadow-lg rounded-lg overflow-hidden mt-10 w-1/2 bg-white">
                                         <h1 className="text-2xl font-bold pl-4 pt-4">{tiket.nama_tiket}</h1>
                                         <div className="flex justify-between">
                                             <div className="p-6 lg:w-1/2">
@@ -155,10 +155,10 @@ function Card({ param }) {
                                         </div>
                                         <div className="flex p-4 justify-end mr-6">
                                             <Link href={`/tiket/edit_tiket/${tiket.id_tiket}`}>
-                                                <MdOutlineEdit className="text-gray-500 hover:text-gray-700" />
+                                                <MdOutlineEdit className="text-gray-500 hover:text-orange-700" />
                                             </Link>
                                             <button className="pl-2" onClick={() => DeleteTiket(tiket.id_tiket)}>
-                                                <MdDeleteOutline className="text-gray-500 hover:text-gray-700" />
+                                                <MdDeleteOutline className="text-gray-500 hover:text-orange-700" />
                                             </button>
                                         </div>
                                     </div>

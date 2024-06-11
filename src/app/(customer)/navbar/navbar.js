@@ -18,8 +18,8 @@ function Navbar() {
                 <button onClick={() => signOut()} className="p-2 text-black ml-auto">Sign out</button>
             ) : (
                 <div className="flex space-x-4 ml-auto">
-                    <button className="rounded-lg " onClick={() => signIn()}>Sign in</button>
-                    <Link href="/auth/register">Register</Link>
+                    <button className="bg-white rounded-lg hover:bg-orange-100 p-2" onClick={() => signIn()}>Sign in</button>
+                    <Link className="bg-white hover:bg-orange-100 p-2" href="/auth/register">Register</Link>
                 </div>
             )}
         </div>

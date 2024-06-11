@@ -46,18 +46,13 @@ function CardAcara() {
         fetchData();
     }, []);
 
-
-
-
-
-
-
     return (
         <>
-            {acaras.length === 0 ? (
-                <h1>tidak ada data</h1>
-            ) : (
-                acaras.map(acara => {
+        {acaras.length === 0 ? (
+            <h1>tidak ada data</h1>
+        ) : (
+            <div className="grid grid-cols-3 gap-4 p-8">
+                {acaras.map(acara => {
                     const tanggalAcara = new Date(acara.tanggal_acara);
                     const formattedDate = tanggalAcara.toLocaleDateString('id-ID', {
                         day: 'numeric',
@@ -65,21 +60,19 @@ function CardAcara() {
                         year: 'numeric'
                     });
                     return (
-                        <div className="grid grid-cols-3 gap-4 p-8" key={acara.id_acara}>
-                            <div className="bg-white shadow-md rounded-md overflow-hidden">
-                                <Image src="" alt="Image 1" className="w-full" width={10} height={10} />
-                                <div className="p-4">
-                                    <h3 className="">{acara.nama_event}</h3>
-                                    <p className="text-gray-600">{formattedDate}</p>
-                                    <p className="text-sm text-emerald-600 font-bold">{tiketTermurah?.harga}</p>
-
-                                </div>
+                        <div className="bg-white shadow-md rounded-md overflow-hidden" key={acara.id_acara}>
+                            <Image src={acara.image_url} alt={acara.nama_event} className="w-full" width={10} height={10} />
+                            <div className="p-4">
+                                <h3 className="">{acara.nama_event}</h3>
+                                <p className="text-gray-600">{formattedDate}</p>
+                                <p className="text-sm text-emerald-600 font-bold">{tiketTermurah?.harga}</p>
                             </div>
                         </div>
                     )
-                })
-            )}
-        </>
+                })}
+            </div>
+        )}
+    </>
     )
 }
 

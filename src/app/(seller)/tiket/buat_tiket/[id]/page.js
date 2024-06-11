@@ -53,13 +53,14 @@ export default function Ticket({ params }) {
             <Navbar />
             <div className="flex justify-center">
                 <Sidebar />
-                <div className="mx-auto w-full max-w-[550px] bg-white">
+                <div className="mx-auto w-full max-w-[50%] h-fit bg-white mt-6 rounded-lg shadow-md">
                     <form
                         className="py-6 px-9"
                         action={formAction}
                     >
                         <input type="hidden" name="id_acara" value={params.id} />
-                        <div className="mb-6 pt-4">
+                        <div className="flex flex-wrap -mx-3 mb-6 pt-4">
+                            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                             <div className="mb-5">
                                 <label
                                     htmlFor="nama_tiket"
@@ -76,7 +77,7 @@ export default function Ticket({ params }) {
                                     onChange={(e) => { setNama_tiket(e.target.value) }}
                                     className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                 />
-                                {state?.nama_tiket && <div className="text-black">{state.nama_tiket}</div>}
+                                {state?.nama_tiket && <div className="text-red-500">{state.nama_tiket}</div>}
                             </div>
 
                             <div className="mb-5">
@@ -94,7 +95,7 @@ export default function Ticket({ params }) {
                                     onChange={handleJumlah}
                                     className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                 />
-                                {state?.jumlah_tiket && <div className="text-black">{state.jumlah_tiket}</div>}
+                                {state?.jumlah_tiket && <div className="text-red-500">{state.jumlah_tiket}</div>}
 
                             </div>
 
@@ -114,27 +115,28 @@ export default function Ticket({ params }) {
                                     onChange={handleHarga}
                                     className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                 />
-                                {state?.harga && <div className="text-black">{state.harga}</div>}
+                                {state?.harga && <div className="text-red-500">{state.harga}</div>}
                             </div>
-
                             <div className="mb-5">
                                 <label
-                                    htmlFor="deskripsi_tiket"
+                                    htmlFor="waktu_akhir_penjualan"
                                     className="mb-3 block text-base font-medium text-[#07074D]"
                                 >
-                                    Deskripsi Acara
+                                    Waktu Akhir Penjualan
                                 </label>
-                                <textarea
-                                    type="text"
-                                    name="deskripsi_tiket"
-                                    id="deskripsi_tiket"
-                                    value={deskripsi_tiket}
-                                    onChange={(e) => { setDeskripsi_tiket(e.target.value) }}
+                                <input
+                                    type="time"
+                                    name="waktu_akhir_penjualan"
+                                    id="waktu_akhir_penjualan"
+                                    placeholder="Deskripsi acara"
+                                    value={waktu_akhir_penjualan}
+                                    onChange={(e) => { setWaktu_akhir_penjualan(e.target.value) }}
                                     className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                 />
-                                {state?.deskripsi_tiket && <div className="text-black">{state.deskripsi_tiket}</div>}
+                                {state?.waktu_akhir_penjualan && <div className="text-red-500">{state.waktu_akhir_penjualan}</div>}
                             </div>
-
+                            </div>
+                            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                             <div className="mb-5">
                                 <label
                                     htmlFor="tanggal_mulai_penjualan"
@@ -150,7 +152,7 @@ export default function Ticket({ params }) {
                                     onChange={(e) => { setTanggal_mulai_penjualan(e.target.value) }}
                                     className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                 />
-                                {state?.tanggal_mulai_penjualan && <div className="text-black">{state.tanggal_mulai_penjualan}</div>}
+                                {state?.tanggal_mulai_penjualan && <div className="text-red-500">{state.tanggal_mulai_penjualan}</div>}
                             </div>
 
                             <div className="mb-5">
@@ -168,7 +170,7 @@ export default function Ticket({ params }) {
                                     onChange={(e) => { setWaktu_penjualan(e.target.value) }}
                                     className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                 />
-                                {state?.waktu_penjualan && <div className="text-black">{state.waktu_penjualan}</div>}
+                                {state?.waktu_penjualan && <div className="text-red-500">{state.waktu_penjualan}</div>}
                             </div>
 
                             <div className="mb-5">
@@ -186,28 +188,30 @@ export default function Ticket({ params }) {
                                     onChange={(e) => { setTanggal_akhir_penjualan(e.target.value) }}
                                     className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                 />
-                                {state?.tanggal_akhir_penjualan && <div className="text-black">{state.tanggal_akhir_penjualan}</div>}
+                                {state?.tanggal_akhir_penjualan && <div className="text-red-500">{state.tanggal_akhir_penjualan}</div>}
                             </div>
 
-                            <div className="mb-5">
+                            
+                            </div>
+                            
+                        </div>
+                        <div className="mb-5">
                                 <label
-                                    htmlFor="waktu_akhir_penjualan"
+                                    htmlFor="deskripsi_tiket"
                                     className="mb-3 block text-base font-medium text-[#07074D]"
                                 >
-                                    Waktu Akhir Penjualan
+                                    Deskripsi Acara
                                 </label>
-                                <input
-                                    type="time"
-                                    name="waktu_akhir_penjualan"
-                                    id="waktu_akhir_penjualan"
-                                    placeholder="Deskripsi acara"
-                                    value={waktu_akhir_penjualan}
-                                    onChange={(e) => { setWaktu_akhir_penjualan(e.target.value) }}
+                                <textarea
+                                    type="text"
+                                    name="deskripsi_tiket"
+                                    id="deskripsi_tiket"
+                                    value={deskripsi_tiket}
+                                    onChange={(e) => { setDeskripsi_tiket(e.target.value) }}
                                     className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                 />
-                                {state?.waktu_akhir_penjualan && <div className="text-black">{state.waktu_akhir_penjualan}</div>}
+                                {state?.deskripsi_tiket && <div className="text-red-500">{state.deskripsi_tiket}</div>}
                             </div>
-                        </div>
                         <SubmitButton />
                     </form>
                 </div >
@@ -220,6 +224,6 @@ export default function Ticket({ params }) {
 function SubmitButton() {
     const { pending } = useFormStatus()
     return (
-        <button type="submit" className="hover:shadow-form w-full rounded-md bg-[#2D6C70] py-3 px-8 text-center text-base font-semibold text-white outline-none">{pending ? "Submitting..." : "Submit"}</button>
+        <button type="submit" className="hover:shadow-form w-full rounded-md bg-gradient-to-t from-amber-500 to-orange-300 py-3 px-8 text-center text-base font-semibold text-white outline-none">{pending ? "Submitting..." : "Submit"}</button>
     )
 }
