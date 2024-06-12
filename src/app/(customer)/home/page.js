@@ -7,7 +7,7 @@ export default function Pages() {
             <Navbar />
             <div class="grid grid-cols-3 gap-4 p-8">
                 <div class="bg-white shadow-md rounded-md overflow-hidden">
-                    <Image src="https://via.placeholder.com/300x150" width={10} height={10} alt="Image 1" class="w-full" />
+                    <Image src="" width={10} height={10} alt="Image 1" class="w-full" />
                     <div class="p-4">
                         <h3 class="font-bold">Heroes, unite for the fantasy realm</h3>
                         <p class="text-gray-600">Recruit Elven maidens, mighty Orcs, powerful frost mages, and countless magical heroes.</p>
@@ -16,7 +16,7 @@ export default function Pages() {
                 </div>
 
                 <div class="bg-white shadow-md rounded-md overflow-hidden">
-                    <Image src="https://via.placeholder.com/300x150" width={10} height={10} alt="Image 2" class="w-full" />
+                    <Image src="" width={10} height={10} alt="Image 2" class="w-full" />
                     <div class="p-4">
                         <h3 class="font-bold">Mix - Sabrina Carpenter - Espresso (Lyrics)</h3>
                         <p class="text-gray-600">Ed Sheeran, Sabrina Carpenter, Lay Bankz, dan lainnya</p>
@@ -24,7 +24,7 @@ export default function Pages() {
                 </div>
 
                 <div class="bg-white shadow-md rounded-md overflow-hidden">
-                    <Image src="https://via.placeholder.com/300x150" width={10} height={10} alt="Image 3" class="w-full" />
+                    <Image src="" width={10} height={10} alt="Image 3" class="w-full" />
                     <div class="p-4">
                         <h3 class="font-bold">Mix - Royel Otis - Linger (The Cranberries Cover)</h3>
                         <p class="text-gray-600">Live @ SiriusXM</p>

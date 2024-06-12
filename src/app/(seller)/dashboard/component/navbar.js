@@ -6,7 +6,7 @@ export default function Navbar() {
             <div className="container mx-auto flex justify-between items-center">
                 <div className="pl-6 flex">
                     <a href="/dashboard">
-                        <Image src="/asset/logo.png" alt="logo.png" className="w-10" width={10} height={10}></Image>
+                        <Image src={'/asset/logo.png'} alt="logo.png" className="w-10" width={10} height={10}></Image>
                     </a>
                     <p className="pl-2 content-center text-green-500 font-medium">Concert</p>
                 </div>

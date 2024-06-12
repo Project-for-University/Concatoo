@@ -100,7 +100,7 @@ function Card({ param }) {
                     {/* detail acara */}
                     <div className="shadow-md rounded-lg overflow-hidden bg-white mt-2">
                         <div className="flex flex-col lg:flex-row">
-                            <Image src="https://via.placeholder.com/300x150" width={10} height={10} alt="Musikal Keluarga Cemara" className="w-full lg:w-1/2 object-cover" />
+                            <Image src="" width={10} height={10} alt="Musikal Keluarga Cemara" className="w-full lg:w-1/2 object-cover" />
                             <div className="p-6 lg:w-1/2">
                                 <h1 className="text-2xl font-bold">{acara.nama_event}</h1>
                                 <p className="text-gray-600 mt-2">{formattedDate}</p>

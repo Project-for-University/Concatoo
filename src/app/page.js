@@ -48,31 +48,31 @@ function CardAcara() {
 
     return (
         <>
-        {acaras.length === 0 ? (
-            <h1>tidak ada data</h1>
-        ) : (
-            <div className="grid grid-cols-3 gap-4 p-8">
-                {acaras.map(acara => {
-                    const tanggalAcara = new Date(acara.tanggal_acara);
-                    const formattedDate = tanggalAcara.toLocaleDateString('id-ID', {
-                        day: 'numeric',
-                        month: 'long',
-                        year: 'numeric'
-                    });
-                    return (
-                        <div className="bg-white shadow-md rounded-md overflow-hidden" key={acara.id_acara}>
-                            <Image src={acara.image_url} alt={acara.nama_event} className="w-full" width={10} height={10} />
-                            <div className="p-4">
-                                <h3 className="">{acara.nama_event}</h3>
-                                <p className="text-gray-600">{formattedDate}</p>
-                                <p className="text-sm text-emerald-600 font-bold">{tiketTermurah?.harga}</p>
+            {acaras.length === 0 ? (
+                <h1>tidak ada data</h1>
+            ) : (
+                <div className="grid grid-cols-3 gap-4 p-8">
+                    {acaras.map(acara => {
+                        const tanggalAcara = new Date(acara.tanggal_acara);
+                        const formattedDate = tanggalAcara.toLocaleDateString('id-ID', {
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                        });
+                        return (
+                            <div className="bg-white shadow-md rounded-md overflow-hidden" key={acara.id_acara}>
+                                <Image src="" alt={acara.nama_event} className="w-full" width={10} height={10} />
+                                <div className="p-4">
+                                    <h3 className="">{acara.nama_event}</h3>
+                                    <p className="text-gray-600">{formattedDate}</p>
+                                    <p className="text-sm text-emerald-600 font-bold">{tiketTermurah?.harga}</p>
+                                </div>
                             </div>
-                        </div>
-                    )
-                })}
-            </div>
-        )}
-    </>
+                        )
+                    })}
+                </div>
+            )}
+        </>
     )
 }
 
