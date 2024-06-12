@@ -1,18 +1,22 @@
 'use server'
 import { PrismaClient } from '@prisma/client'
-
+import fs from "fs/promises"
 const prisma = new PrismaClient();
-
+import crypto from "crypto"
 
 
 export async function POST(request, { params }) {
     const data = await request.json();
     console.log(data);
+    // conver file dan simpan di public
+    await fs.mkdir('public/bannerAcara', { recursive: true })
+    const bannerPath = `/bannerAcara/${crypto.randomUUID()}-${data.banner.name}`;
+    console.log(bannerPath);
+    await fs.writeFile(`public${bannerPath}`, Buffer.from(''), { flag: 'wx' });
+
+    // queri
     try {
         const result = await prisma.$transaction(async (prisma) => {
-
-
-
             const newKontak = await prisma.kontak.create({
                 data: {
                     nama_narahubung: data.nama_narahubung,
@@ -35,6 +39,7 @@ export async function POST(request, { params }) {
 
             const newAcara = await prisma.acara.create({
                 data: {
+                    banner: bannerPath,
                     nama_event: data.nama_event,
                     tanggal_acara: data.tanggal_acara,
                     waktu_acara: data.waktu_acara,

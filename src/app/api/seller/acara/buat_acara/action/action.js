@@ -6,7 +6,20 @@ import { z } from "zod";
 import { useRouter } from 'next/router';
 const prisma = new PrismaClient();
 
+const fileSchema = z.object({
+    name: z.string(),
+    lastModified: z.number(),
+    lastModifiedDate: z.date(),
+    webkitRelativePath: z.string(),
+    size: z.number(),
+    type: z.string(),
+});
+const imageSchema = fileSchema
+    .refine(file => file.size > 0, { message: 'Gambar tidak boleh kosong' })
+    .refine(file => file.type.startsWith('image/'), { message: 'File harus berupa gambar' });
+
 const validasi = z.object({
+    banner: imageSchema,
     nama_event: z.string().min(1, { message: 'tidak boleh kosong' }),
     tanggal_acara: z.string().min(1, { message: 'tidak boleh kosong' }),
     waktu_acara: z.string().min(1, { message: 'tidak boleh kosong' }),
@@ -19,10 +32,10 @@ const validasi = z.object({
 });
 
 export async function CreateAcara(prevState, request) {
-    console.log(request);
     const requestData = Object.fromEntries(request.entries());
+    console.log(requestData);
     const validated = validasi.safeParse(requestData);
-
+    console.log(validated);
 
     if (!validated.success) {
         console.error("Validasi gagal:", validated.error.formErrors.fieldErrors);
@@ -47,6 +60,7 @@ export async function CreateAcara(prevState, request) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
+                banner: data.banner,
                 nama_narahubung: data.nama_narahubung,
                 email: data.email,
                 no_ponsel: data.no_ponsel,
