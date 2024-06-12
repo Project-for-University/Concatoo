@@ -1,10 +1,12 @@
+import Image from "next/image";
+
 export default function Navbar() {
     return (
         <nav className="bg-white shadow-lg p-4 border rounded-b-3xl ">
             <div className="container mx-auto flex justify-between items-center">
                 <div className="pl-6 flex">
                     <a href="/dashboard">
-                        <img src="/asset/logo.png" alt="logo.png" className="w-10"></img>
+                        <Image src="/asset/logo.png" alt="logo.png" className="w-10" width={10} height={10}></Image>
                     </a>
                     <p className="pl-2 content-center text-green-500 font-medium">Concert</p>
                 </div>
