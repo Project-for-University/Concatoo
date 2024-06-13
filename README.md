@@ -32,3 +32,27 @@ tapi kalo nangkap id dengan page.js function DetailAcara({id}) = nah itu baru ha
 
 - jika ingin delete maka delete dulu data di tabel induk baru tabel anaknya
 - misal delte acara dulu baru delete kontak dan deskripsi
+
+# tentang FormData
+
+- kalo mau ambil form data memang harus pake get
+- kalo pake log + form data memang bakal kosong
+
+  const formData = new FormData();
+  formData.append('banner', data.banner);
+
+  console.log(formData.get('banner')); // logs the value of data.banner
+  console.log(formData.get('nama_narahubung')); // logs the value of data.nama_narahubung
+
+// body: JSON.stringify({
+// banner: data.banner,
+// nama_narahubung: data.nama_narahubung,
+// email: data.email,
+// no_ponsel: data.no_ponsel,
+// deskripsi_acara: data.deskripsi_acara,
+// syarat_ketentuan: data.syarat_ketentuan,
+// nama_event: data.nama_event,
+// tanggal_acara: new Date(tanggalA), // Tanggal dengan format baru
+// waktu_acara: new Date(tanggalA),
+// lokasi: data.lokasi,
+// })

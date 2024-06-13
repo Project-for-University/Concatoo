@@ -9,7 +9,7 @@ import { useFormState } from 'react-dom'
 
 export default function Edit({ params }) {
     console.log(params.id)
-
+    const [banner, setBanner] = useState(null);
     const [nama_event, setNama_event] = useState('')
     const [tanggal_acara, setTanggal_acara] = useState('')
     const [waktu_acara, setWaktu_acara] = useState('')
@@ -142,7 +142,7 @@ export default function Edit({ params }) {
                                         onChange={(e) => { setEmail(e.target.value) }}
                                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                     />
-                                    {state?.email && <div className="text-red-500">{state.email}</div>}
+                                    {s3tate?.email && <div className="text-red-500">{state.email}</div>}
                                 </div>
                                 <div className="mb-5">
                                     <label
@@ -219,24 +219,24 @@ export default function Edit({ params }) {
                                     {state?.no_ponsel && <div className="text-red-500">{state.no_ponsel}</div>}
                                 </div>
 
-                                <div className="mb-5">
-                                    <label
-                                        htmlFor="waktu_acara"
-                                        className="mb-3 block text-base font-medium text-[#07074D]"
-                                    >
-                                        Waktu Acara
-                                    </label>
-                                    <input
-                                        type="time"
-                                        name="waktu_acara"
-                                        id="waktu_acara"
-                                        value={waktu_acara}
-                                        onChange={(e) => { setWaktu_acara(e.target.value) }}
-                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                    />
-                                    {state?.waktu_acara && <div classNameName="text-red-500">{state.waktu_acara}</div>}
+                                    <div className="mb-5">
+                                        <label
+                                            htmlFor="waktu_acara"
+                                            className="mb-3 block text-base font-medium text-[#07074D]"
+                                        >
+                                            Waktu Acara
+                                        </label>
+                                        <input
+                                            type="time"
+                                            name="waktu_acara"
+                                            id="waktu_acara"
+                                            value={waktu_acara}
+                                            onChange={(e) => { setWaktu_acara(e.target.value) }}
+                                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                        />
+                                        {state?.waktu_acara && <div classNameName="text-red-500">{state.waktu_acara}</div>}
+                                    </div>
                                 </div>
-                            </div>
                             </div>
                             <div className="mb-5">
                                 <label

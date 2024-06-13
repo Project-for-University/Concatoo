@@ -5,23 +5,55 @@ const prisma = new PrismaClient();
 import crypto from "crypto"
 
 
-export async function POST(request, { params }) {
-    const data = await request.json();
-    console.log(data);
-    // conver file dan simpan di public
-    await fs.mkdir('public/bannerAcara', { recursive: true })
-    const bannerPath = `/bannerAcara/${crypto.randomUUID()}-${data.banner.name}`;
-    console.log(bannerPath);
-    await fs.writeFile(`public${bannerPath}`, Buffer.from(''), { flag: 'wx' });
+export async function POST(req, { params }) {
+    const formData = await req.formData();
+    const banner = formData.get('banner');
+    const namaNarahubung = formData.get('nama_narahubung');
+    const email = formData.get('email');
+    const noPonsel = formData.get('no_ponsel');
+    const deskripsiAcara = formData.get('deskripsi_acara');
+    const syaratKetentuan = formData.get('syarat_ketentuan');
+    const namaEvent = formData.get('nama_event');
+    const tanggalAcara = formData.get('tanggal_acara');
+    const waktuAcara = formData.get('waktu_acara');
+    const lokasi = formData.get('lokasi');
+
+    console.log(banner);
+    console.log(namaNarahubung);
+    console.log(email);
+    console.log(noPonsel);
+    console.log(deskripsiAcara);
+    console.log(syaratKetentuan);
+    console.log(namaEvent);
+    console.log(tanggalAcara);
+    console.log(waktuAcara);
+    console.log(lokasi);
+
+    const bytes = await banner.arrayBuffer()
+    const buffer = Buffer.from(bytes)
+
+    // With the file data in the buffer, you can do whatever you want with it.
+    // For this, we'll just write it to the filesystem in a new location
+    // const path = `/tmp/${file.name}`
+    // await writeFile(path, buffer)
+    // const data = await request.json();
+    // console.log(formDataValues);
+
+
 
     // queri
     try {
+        // generate image
+        await fs.mkdir("public/bannerAcara", { recursive: true })
+        const imagePath = `/bannerAcara/${crypto.randomUUID()}-${banner.name}`
+
+
         const result = await prisma.$transaction(async (prisma) => {
             const newKontak = await prisma.kontak.create({
                 data: {
-                    nama_narahubung: data.nama_narahubung,
-                    email: data.email,
-                    no_ponsel: data.no_ponsel,
+                    nama_narahubung: namaNarahubung,
+                    email: email,
+                    no_ponsel: noPonsel,
                 }
             })
 
@@ -29,8 +61,8 @@ export async function POST(request, { params }) {
 
             const newDeskrpsi = await prisma.deskrpsi.create({
                 data: {
-                    deskripsi_acara: data.deskripsi_acara,
-                    syarat_ketentuan: data.syarat_ketentuan,
+                    deskripsi_acara: deskripsiAcara,
+                    syarat_ketentuan: syaratKetentuan,
                 }
             });
 
@@ -39,19 +71,20 @@ export async function POST(request, { params }) {
 
             const newAcara = await prisma.acara.create({
                 data: {
-                    banner: bannerPath,
-                    nama_event: data.nama_event,
-                    tanggal_acara: data.tanggal_acara,
-                    waktu_acara: data.waktu_acara,
-                    lokasi: data.lokasi,
+                    banner: imagePath,
+                    nama_event: namaEvent,
+                    tanggal_acara: tanggalAcara,
+                    waktu_acara: waktuAcara,
+                    lokasi: lokasi,
                     id_deskripsi: newDeskrpsi.id_deskripsi,
                     id_kontak: newKontak.id_kontak
                 }
             });
 
-
+            await fs.writeFile(`public${imagePath}`, buffer)
 
         });
+
 
 
         return new Response(JSON.stringify({ message: 'berhasil bos' }))
@@ -62,31 +95,3 @@ export async function POST(request, { params }) {
     }
 
 }
-
-//             email: data.email,
-//             no_ponsel: data.no_ponsel,
-//         }
-//     });
-//     console.log("Kontak baru dibuat:", newKontak);
-
-//     const newDeskrpsi = await prisma.deskrpsi.create({
-//         data: {
-//             deskripsi_acara: data.deskripsi_acara,
-//             syarat_ketentuan: data.syarat_ketentuan,
-//         }
-//     });
-//     console.log("Deskripsi baru dibuat:", newDeskrpsi);
-
-//     const newAcara = await prisma.acara.create({
-//         data: {
-//             nama_event: data.nama_event,
-//             tanggal_acara: new Date(tanggalWaktuAcara), // Tanggal dengan format baru
-//             waktu_acara: new Date(tanggalWaktuAcara),
-//             lokasi: data.lokasi,
-//             id_kontak: newKontak.id_kontak, // ID kontak dari create newKontak
-//             id_deskripsi: newDeskrpsi.id_deskripsi, // ID deskripsi dari create newDeskripsi
-//         }
-//     });
-//     console.log("Acara baru dibuat:", newAcara);
-//     return newAcara;
-// });
