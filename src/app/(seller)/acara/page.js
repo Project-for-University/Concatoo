@@ -95,7 +95,7 @@ function Acara() {
             {acaras.map((acara) => (
               <div key={acara.id_acara} className="relative bg-white shadow-md rounded-md overflow-hidden">
                 <Link href={`detail_acara/${acara.id_acara}`}>
-                  <Image src="" width={10} height={10} alt="" className="w-full" />
+                  <Image src={acara.banner} width={10} height={10} alt="" className="w-full" />
                   <div className="flex justify-between p-4">
                     <h3 className="font-bold">{acara.nama_event}</h3>
                     <p className="text-gray-600">

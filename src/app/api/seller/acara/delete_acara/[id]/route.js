@@ -1,7 +1,7 @@
 'use server'
 import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
-
+import fs from "fs/promises"
 const prisma = new PrismaClient();
 
 export async function DELETE(request, { params }) {
@@ -25,10 +25,12 @@ export async function DELETE(request, { params }) {
             console.log(acaraToDelete);
 
             try {
-                await prisma.acara.delete({
+                const acara = await prisma.acara.delete({
                     where: { id_acara: acaraToDelete.id_acara }
                 });
                 console.log("Acara dihapus");
+                await fs.unlink(acara.banner)
+                await fs.unlink(`public${acara.banner}`)
             } catch (e) {
 
                 console.log("Acara gagal dihapus");
@@ -60,7 +62,8 @@ export async function DELETE(request, { params }) {
 
             }
 
-            // Hapus acara terlebih dahulu
+            // hapus file banner
+            await fs.unlink(`public${acaraToDelete.banner}`)
 
             return { message: "Acara, Kontak,Tiket, dan Deskripsi berhasil dihapus" };
         });
