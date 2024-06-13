@@ -19,6 +19,7 @@ export default function Edit({ params }) {
     const [no_ponsel, setNo_ponsel] = useState('')
     const [deskripsi_acara, setDeskripsi_acara] = useState('')
     const [syarat_ketentuan, setSyarat_ketentuan] = useState('')
+    const [banner, setBanner] = useState(null);
 
     console.log('nama_event:', nama_event);
     console.log('tanggal_acara:', tanggal_acara);
@@ -85,8 +86,29 @@ export default function Edit({ params }) {
                         action={formAction}
                     >
                         <div className="mb-6 pt-4">
-                            <label className="mb-5 block text-xl font-semibold text-[#07074D]">Upload Thumbnail</label>
-                            <div className="flex flex-wrap -mx-3">
+                        <label className="mb-5 block text-xl font-semibold text-[#07074D]">Upload Thumbnail</label>
+                            <div class="flex items-center justify-center w-full">
+                                        <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                                <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                                                </svg>
+                                                {banner ? <span className="font-semibold">{banner.name}</span> : <>
+                                                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span></p>
+                                                    <p class="text-xs text-gray-500 dark:text-gray-400"> PNG,JPEG or JPG  (MAX. 2700 x 1100 / 16 MB)</p>
+                                                </>}
+
+                                            </div>
+                                            <input
+                                                id="dropzone-file"
+                                                name="banner"
+                                                type="file"
+                                                className="hidden"
+                                                onChange={(e) => { setBanner(e.target.files[0]) }}
+                                            />
+                                        </label>
+                                    </div>                            
+                                <div className="flex flex-wrap -mx-3 pt-4">
                                 <div className="w-full md:w-1/2 px-3 mb-6">
                                 <div className="mb-5">
                                     <input type="hidden" value={params.id} name="id_acara"></input>
@@ -104,7 +126,24 @@ export default function Edit({ params }) {
                                     />
                                     {state?.nama_event && <div className="text-red-500">{state.nama_event}</div>}
                                 </div>
-
+                                <div className="mb-5">
+                                    <label
+                                        htmlFor="email"
+                                        className="mb-3 block text-base font-medium text-[#07074D]"
+                                    >
+                                        Email
+                                    </label>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        id="email"
+                                        placeholder="Email"
+                                        value={email}
+                                        onChange={(e) => { setEmail(e.target.value) }}
+                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                    />
+                                    {state?.email && <div className="text-red-500">{state.email}</div>}
+                                </div>
                                 <div className="mb-5">
                                     <label
                                         htmlFor="tanggal_acara"
@@ -141,7 +180,8 @@ export default function Edit({ params }) {
                                     />
                                     {state?.lokasi && <div className="text-red-500">{state.lokasi}</div>}
                                 </div>
-
+                                </div>
+                                <div className="w-full md:w-1/2 px-3 mb-6">
                                 <div className="mb-5">
                                     <label
                                         htmlFor="nama_narahubung"
@@ -160,27 +200,6 @@ export default function Edit({ params }) {
                                     />
                                     {state?.nama_narahubung && <div className="text-red-500">{state.nama_narahubung}</div>}
                                 </div>
-                                </div>
-                                <div className="w-full md:w-1/2 px-3 mb-6">
-                                <div className="mb-5">
-                                    <label
-                                        htmlFor="email"
-                                        className="mb-3 block text-base font-medium text-[#07074D]"
-                                    >
-                                        Email
-                                    </label>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        id="email"
-                                        placeholder="Email"
-                                        value={email}
-                                        onChange={(e) => { setEmail(e.target.value) }}
-                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                    />
-                                    {state?.email && <div className="text-red-500">{state.email}</div>}
-                                </div>
-
                                 <div className="mb-5">
                                     <label
                                         htmlFor="no_ponsel"

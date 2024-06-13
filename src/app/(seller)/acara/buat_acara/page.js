@@ -52,16 +52,14 @@ export default function Tiket() {
             <div className="flex  justify-center">
                 <Sidebar />
                 <div className="mx-auto w-full max-w-[900px] shadow-md mt-8 rounded-xl bg-white">
-                    <form
+                <div className="mt-8 ml-8 text-[#07074D] font-semibold text-xl">Buat Acara</div>
+                <form
                         className="py-6 px-9"
                         action={formAction}
                     >
                         <div className="mb-6 pt-4">
                             <label className="mb-5 block text-xl font-semibold text-[#07074D]">Upload Thumbnail</label>
-                            <div className="flex flex-wrap -mx-3">
-                                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-
-                                    <div class="flex items-center justify-center w-full">
+                            <div class="flex items-center justify-center w-full">
                                         <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                                             <div class="flex flex-col items-center justify-center pt-5 pb-6">
                                                 <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
@@ -80,10 +78,11 @@ export default function Tiket() {
                                                 className="hidden"
                                                 onChange={(e) => { setBanner(e.target.files[0]) }}
                                             />
-
-
                                         </label>
                                     </div>
+                            <div className="flex flex-wrap -mx-3 my-4">
+                                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                    
 
                                     <div className="mb-5">
                                         <label htmlFor="nama_event" className="mb-3 block text-base font-medium text-[#07074D]">
@@ -99,6 +98,24 @@ export default function Tiket() {
                                             className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                         />
                                         {state?.nama_event && <div className="text-orange-600">{state.nama_event}</div>}
+                                    </div>
+                                    <div className="mb-5">
+                                        <label
+                                            htmlFor="email"
+                                            className="mb-3 block text-base font-medium text-[#07074D]"
+                                        >
+                                            Email
+                                        </label>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            id="email"
+                                            placeholder="Email"
+                                            value={email}
+                                            onChange={(e) => { setEmail(e.target.value) }}
+                                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                        />
+                                        {state?.email && <div className="text-orange-600">{state.email}</div>}
                                     </div>
                                     <div className="mb-5">
                                         <label
@@ -135,23 +152,6 @@ export default function Tiket() {
                                         />
                                         {state?.lokasi && <div className="text-orange-600">{state.lokasi}</div>}
                                     </div>
-                                    <div className="mb-5">
-                                        <label
-                                            htmlFor="waktu_acara"
-                                            className="mb-3 block text-base font-medium text-[#07074D]"
-                                        >
-                                            Waktu Acara
-                                        </label>
-                                        <input
-                                            type="time"
-                                            name="waktu_acara"
-                                            id="waktu_acara"
-                                            value={waktu_acara}
-                                            onChange={(e) => { setWaktu_acara(e.target.value) }}
-                                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                        />
-                                        {state?.waktu_acara && <div classNameName="text-orange-600">{state.waktu_acara}</div>}
-                                    </div>
                                 </div>
                                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                     <div className="mb-5">
@@ -174,24 +174,6 @@ export default function Tiket() {
                                     </div>
                                     <div className="mb-5">
                                         <label
-                                            htmlFor="email"
-                                            className="mb-3 block text-base font-medium text-[#07074D]"
-                                        >
-                                            Email
-                                        </label>
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            id="email"
-                                            placeholder="Email"
-                                            value={email}
-                                            onChange={(e) => { setEmail(e.target.value) }}
-                                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                        />
-                                        {state?.email && <div className="text-orange-600">{state.email}</div>}
-                                    </div>
-                                    <div className="mb-5">
-                                        <label
                                             htmlFor="no_ponsel"
                                             className="mb-3 block text-base font-medium text-[#07074D]"
                                         >
@@ -207,6 +189,24 @@ export default function Tiket() {
                                             className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                         />
                                         {state?.no_ponsel && <div className="text-orange-600">{state.no_ponsel}</div>}
+                                    </div>
+                                    
+                                    <div className="mb-5">
+                                        <label
+                                            htmlFor="waktu_acara"
+                                            className="mb-3 block text-base font-medium text-[#07074D]"
+                                        >
+                                            Waktu Acara
+                                        </label>
+                                        <input
+                                            type="time"
+                                            name="waktu_acara"
+                                            id="waktu_acara"
+                                            value={waktu_acara}
+                                            onChange={(e) => { setWaktu_acara(e.target.value) }}
+                                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                        />
+                                        {state?.waktu_acara && <div classNameName="text-orange-600">{state.waktu_acara}</div>}
                                     </div>
                                 </div>
                             </div>

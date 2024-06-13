@@ -22,7 +22,6 @@ function Acara() {
   const [acaras, setAcara] = useState([]);
   console.log(acaras);
 
-
   useEffect(() => {
     async function fetchData() {
       try {
@@ -46,8 +45,6 @@ function Acara() {
 
     fetchData();
   }, []);
-
-
 
   // delete acara
   const [mdelete, setmDel] = useState({ message: '' });

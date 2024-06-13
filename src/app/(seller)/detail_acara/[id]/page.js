@@ -7,7 +7,7 @@ import 'flowbite';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { MdDeleteOutline, MdOutlineEdit } from 'react-icons/md';
+import { MdDeleteOutline, MdOutlineEdit, MdCalendarMonth, MdOutlineAccessTime, MdOutlineLocationOn} from 'react-icons/md';
 
 export default function DetailAcara({ params }) {
     return (
@@ -21,8 +21,6 @@ function Card({ param }) {
     const [tikets, settikets] = useState([]);
     console.log(acara);
     console.log(tikets);
-
-
 
     // setiap reload halaman read acara dan read tiket
     useEffect(() => {
@@ -59,7 +57,6 @@ function Card({ param }) {
 
     }, [param.id]);
 
-
     // hapus tiket dan read tiket data terbaru
     async function DeleteTiket(id) {
         console.log(id);
@@ -93,30 +90,26 @@ function Card({ param }) {
     });
     return (
         <>
-            <Navbar />
-            <div className='flex'>
-                <Sidebar />
-                <div className="w-full p-4">
-                    {/* detail acara */}
-                    <div className="shadow-md rounded-lg overflow-hidden bg-white mt-2">
-                        <div className="flex flex-col lg:flex-row">
-                            <Image src="" width={10} height={10} alt="Musikal Keluarga Cemara" className="w-full lg:w-1/2 object-cover" />
-                            <div className="p-6 lg:w-1/2">
-                                <h1 className="text-2xl font-bold">{acara.nama_event}</h1>
-                                <p className="text-gray-600 mt-2">{formattedDate}</p>
-                                <p className="text-gray-600">{new Date(acara.waktu_acara).toLocaleTimeString()}</p>
-                                <p className="text-gray-600">{acara.lokasi}</p>
-                                <div className="mt-4">
-                                    <Link key={acara.id_acara} href={`/tiket/buat_tiket/${acara.id_acara}`} className="block w-48 text-white bg-gradient-to-t from-amber-500 to-orange-300 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-white font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-gray-500">Buat Tiket</Link>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="p-2">
-                            <b>Deskripsi</b><br />
-                            <p>{acara.deskripsi?.deskripsi_acara}</p>
-                        </div>
+        <Navbar />
+        <div className="flex">
+            <Sidebar />
+            <div className="w-full">
+                {/* detail acara */}
+                <div className="flex grid-cols-2 gap-2">
+                <div className="rounded-xl w-full h-fit bg-white shadow-md mx-6 mt-4">
+                    <Image src="" width={8} height={8} alt="Musikal Keluarga Cemara" className="w-full lg:w-1/2 object-cover" />
+                </div>
+                <div className="w-auto h-fit p-6 mx-auto my-4 bg-white rounded-lg shadow-md">
+                <h1 className="text-2xl font-bold">{acara.nama_event}</h1>
+                    <p className="text-gray-600 mt-2 flex"> <MdCalendarMonth className="mr-2"/>{formattedDate}</p>
+                    <p className="text-gray-600 flex"><MdOutlineAccessTime className="mr-2"/>{new Date(acara.waktu_acara).toLocaleTimeString()}</p>
+                    <p className="text-gray-600 flex"><MdOutlineLocationOn className="mr-2" />{acara.lokasi}</p>
+                    <div className="mt-4">
+                        <Link key={acara.id_acara} href={`/tiket/buat_tiket/${acara.id_acara}`} className="block w-48 text-white bg-gradient-to-t from-amber-500 to-orange-300 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-white font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-gray-500">Buat Tiket</Link>
                     </div>
-
+                </div>
+                </div>
+                <div className="">
                     {/* Tiket */}
                     <div>
                         {tikets.length === 0 ? (
@@ -138,20 +131,18 @@ function Card({ param }) {
                                 const waktuMulai = new Date(tiket.waktu_penjualan).toLocaleTimeString();
                                 const waktuAkhir = new Date(tiket.waktu_akhir_penjualan).toLocaleTimeString();
 
-
-
                                 return (
-                                    <div key={tiket.id_tiket} className="shadow-lg rounded-lg overflow-hidden mt-10 w-1/2 bg-white">
-                                        <h1 className="text-2xl font-bold pl-4 pt-4">{tiket.nama_tiket}</h1>
+                                    <div key={tiket.id_tiket} className="shadow-lg rounded-lg overflow-hidden my-4 mx-6 w-1/2 bg-white">
+                                        <h1 className="text-2xl font-bold pl-6 pt-4">{tiket.nama_tiket}</h1>
                                         <div className="flex justify-between">
                                             <div className="p-6 lg:w-1/2">
                                                 <p className="text-gray-600 mt-2">Jumlah Tiket :{tiket.jumlah_tiket}</p>
-                                                <p className="text-gray-600">Rp.{tiket.harga}</p>
+                                                <p className="text-gray-600 font-bold">Rp.{tiket.harga}</p>
                                                 <p className="text-gray-600">{tiket.deskripsi_tiket}</p>
                                             </div>
                                             <div className="p-6 lg:w-1/2">
-                                                <p className="text-gray-600">{tanggal_mulai} - {tanggal_akhir}</p>
-                                                <p className="text-gray-600">{waktuMulai} - {waktuAkhir}</p>
+                                                <p className="text-gray-600 flex"><MdCalendarMonth className="mr-2"/>{tanggal_mulai} - {tanggal_akhir}</p>
+                                                <p className="text-gray-600 flex"><MdOutlineAccessTime className="mr-2"/>{waktuMulai} - {waktuAkhir}</p>
                                             </div>
                                         </div>
                                         <div className="flex p-4 justify-end mr-6">
@@ -170,6 +161,7 @@ function Card({ param }) {
                     {/* Akhir Tiket */}
                 </div>
             </div>
+        </div>
         </>
     )
 }
