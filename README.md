@@ -56,3 +56,7 @@ tapi kalo nangkap id dengan page.js function DetailAcara({id}) = nah itu baru ha
 // waktu_acara: new Date(tanggalA),
 // lokasi: data.lokasi,
 // })
+
+# Image
+
+- pada image next js yang width dan height nya itu jangan terlalu kecil nanti render image nya apa kecil juga aliran buram

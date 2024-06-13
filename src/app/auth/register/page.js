@@ -10,32 +10,12 @@ import { useFormState } from 'react-dom'
 import Link from "next/link";
 
 
-export default function Register({ }) {
+export default function Register() {
     const [username, setusername] = useState('');
     const [phonenumber, setphonenumber] = useState('');
     const [email, setemail] = useState('');
     const [password, setpassword] = useState('');
 
-    // async function onSubmit() {
-    //     // Prevent the default form submission behavior
-    //     const response = await fetch('/auth/register/api', { // Ensure the correct path
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             username: username,
-    //             phonenumber: phonenumber,
-    //             email: email,
-    //             password: password,
-    //         })
-    //     });
-
-
-
-    //     const data = await response.json();
-    //     console.log(data); // Handle response data
-    // }
 
     const initialState = {
         message: '',

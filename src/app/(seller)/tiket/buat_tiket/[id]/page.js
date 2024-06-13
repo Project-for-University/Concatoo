@@ -5,7 +5,7 @@
 import { useState } from "react"
 import { useFormStatus } from "react-dom";
 import { useFormState } from 'react-dom'
-import { CreateTiket } from "../../../../api/seller/tiket/buat_tiket/action/action";
+import { CreateTiket } from "../../../../api/seller/tiket/buat_tiket/action/page";
 import Sidebar from "@/app/(seller)/dashboard/component/sidebar";
 import Navbar from "@/app/(seller)/dashboard/component/navbar";
 
@@ -191,7 +191,7 @@ export default function Ticket({ params }) {
                                     />
                                     {state?.tanggal_akhir_penjualan && <div className="text-red-500">{state.tanggal_akhir_penjualan}</div>}
                                 </div>
-                            </div> 
+                            </div>
                         </div>
                         <div className="mb-5">
                             <label

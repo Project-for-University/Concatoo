@@ -4,10 +4,10 @@ import Navbar from "../navbar/navbar";
 export default function Pages() {
     return (
         <div className="max-w-7xl mx-auto p-4">
-            <div classNameName="pb-4"><Navbar /></div>
+            <div className="pb-4"><Navbar /></div>
             <div className="bg-white shadow-md rounded-lg overflow-hidden">
                 <div className="flex flex-col lg:flex-row">
-                    <Image src="" width={10} height={10} alt="Musikal Keluarga Cemara" className="w-full lg:w-1/2 object-cover" />
+                    <Image src="" width={500} height={500} alt="Musikal Keluarga Cemara" className="w-full lg:w-1/2 object-cover" />
                     <div className="p-6 lg:w-1/2">
                         <h1 className="text-2xl font-bold">Musikal Keluarga Cemara</h1>
                         <p className="text-gray-600 mt-2">[Sabtu, 22 Juni 2024]</p>

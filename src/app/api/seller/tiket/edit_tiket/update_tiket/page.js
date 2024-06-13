@@ -1,12 +1,11 @@
 'use client'
 
-import { PrismaClient } from '@prisma/client'
+
 // import { redirect } from 'next/navigation';
 
 // import { useRouter } from 'next/navigation';
 import { z } from "zod";
 
-const prisma = new PrismaClient();
 
 const validasi = z.object({
     id_tiket: z.string().min(1, { message: 'tidak boleh kosong' }),

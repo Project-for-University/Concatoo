@@ -29,8 +29,7 @@ export async function DELETE(request, { params }) {
                     where: { id_acara: acaraToDelete.id_acara }
                 });
                 console.log("Acara dihapus");
-                await fs.unlink(acara.banner)
-                await fs.unlink(`public${acara.banner}`)
+
             } catch (e) {
 
                 console.log("Acara gagal dihapus");
@@ -63,9 +62,14 @@ export async function DELETE(request, { params }) {
             }
 
             // hapus file banner
-            await fs.unlink(`public${acaraToDelete.banner}`)
+            try {
+                await fs.unlink(`public${acaraToDelete.banner}`)
+                console.log('foto di hapus');
+            } catch (e) {
+                console.log('foto gagal di hapus');
+            }
 
-            return { message: "Acara, Kontak,Tiket, dan Deskripsi berhasil dihapus" };
+
         });
 
         return NextResponse.json({ message: 'berhasil' });

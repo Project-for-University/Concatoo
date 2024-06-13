@@ -1,9 +1,9 @@
 'use server'
 
 import { PrismaClient } from '@prisma/client'
-import { data } from 'autoprefixer';
+
 import { redirect } from 'next/navigation';
-import { object, z } from "zod";
+import { z } from "zod";
 import bcrypt from "bcrypt";
 
 
@@ -21,16 +21,7 @@ const validasi = z.object({
 
 export async function CreateUser(prevState, request) {
     const validated = validasi.safeParse(Object.fromEntries(request.entries()))
-    // const formdata = await request.json();
     console.log(validated);
-
-    // // cek validasi 
-    // const validated = validasi.safeParse({
-    //     username: formdata.username,
-    //     phonenumber: formdata.phonenumber,
-    //     email: formdata.email,
-    //     password: formdata.password,
-    // })
     if (!validated.success) {
         return validated.error.formErrors.fieldErrors
     }
