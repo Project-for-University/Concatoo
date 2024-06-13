@@ -19,7 +19,6 @@ export default function Edit({ params }) {
     const [no_ponsel, setNo_ponsel] = useState('')
     const [deskripsi_acara, setDeskripsi_acara] = useState('')
     const [syarat_ketentuan, setSyarat_ketentuan] = useState('')
-    const [banner, setBanner] = useState(null);
 
     console.log('nama_event:', nama_event);
     console.log('tanggal_acara:', tanggal_acara);
@@ -85,10 +84,11 @@ export default function Edit({ params }) {
                         className="py-6 px-9"
                         action={formAction}
                     >
+                        <div className="mt-8 text-[#07074D] font-semibold text-xl">Edit Acara</div>
                         <div className="mb-6 pt-4">
                         <label className="mb-5 block text-xl font-semibold text-[#07074D]">Upload Thumbnail</label>
                             <div class="flex items-center justify-center w-full">
-                                        <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                                    <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                                             <div class="flex flex-col items-center justify-center pt-5 pb-6">
                                                 <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
@@ -106,11 +106,9 @@ export default function Edit({ params }) {
                                                 className="hidden"
                                                 onChange={(e) => { setBanner(e.target.files[0]) }}
                                             />
-                                        </label>
-                                    </div>                            
-                                <div className="flex flex-wrap -mx-3 pt-4">
-                                <div className="w-full md:w-1/2 px-3 mb-6">
-                                <div className="mb-5">
+                                    </label>
+                                    </div>   
+                                    <div className="mb-5 mt-4">
                                     <input type="hidden" value={params.id} name="id_acara"></input>
                                     <label htmlFor="nama_event" className="mb-3 block text-base font-medium text-[#07074D]">
                                         Nama Acara
@@ -125,26 +123,73 @@ export default function Edit({ params }) {
                                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                     />
                                     {state?.nama_event && <div className="text-red-500">{state.nama_event}</div>}
-                                </div>
-                                <div className="mb-5">
+                                </div> 
+                                <label className="mb-5 block text-xl font-semibold text-[#07074D]">Info Kontak</label>
+                                <div className="">
                                     <label
-                                        htmlFor="email"
+                                        htmlFor="nama_narahubung"
                                         className="mb-3 block text-base font-medium text-[#07074D]"
                                     >
-                                        Email
+                                        Nama Nara Hubung
                                     </label>
                                     <input
-                                        type="email"
-                                        name="email"
-                                        id="email"
-                                        placeholder="Email"
-                                        value={email}
-                                        onChange={(e) => { setEmail(e.target.value) }}
+                                        type="text"
+                                        name="nama_narahubung"
+                                        id="nama_narahubung"
+                                        placeholder="Nama Narahubung"
+                                        value={nama_narahubung}
+                                        onChange={(e) => { setNama_narahubung(e.target.value) }}
                                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                     />
-                                    {s3tate?.email && <div className="text-red-500">{state.email}</div>}
+                                    {state?.nama_narahubung && <div className="text-red-500">{state.nama_narahubung}</div>}
                                 </div>
-                                <div className="mb-5">
+                                <div className="flex flex-wrap -mx-3 pt-4">
+                                    <div className="w-full md:w-1/2 px-3 mb-6">
+                                        <div className="">
+                                            <label
+                                                htmlFor="email"
+                                                className="mb-3 block text-base font-medium text-[#07074D]"
+                                            >
+                                                Email
+                                            </label>
+                                            <input
+                                                type="email"
+                                                name="email"
+                                                id="email"
+                                                placeholder="Email"
+                                                value={email}
+                                                onChange={(e) => { setEmail(e.target.value) }}
+                                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            />
+                                            {state?.email && <div className="text-red-500">{state.email}</div>}
+                                        </div>
+                                    </div>
+                                    <div className="w-full md:w-1/2 px-3 mb-6">
+                                    <div className="">
+                                    <label
+                                        htmlFor="no_ponsel"
+                                        className="mb-3 block text-base font-medium text-[#07074D]"
+                                    >
+                                        No ponsel
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="no_ponsel"
+                                        id="no_ponsel"
+                                        placeholder="No Ponsel"
+                                        value={no_ponsel}
+                                        onChange={(e) => { setNo_ponsel(e.target.value) }}
+                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                    />
+                                    {state?.no_ponsel && <div className="text-red-500">{state.no_ponsel}</div>}
+                                </div>
+                                </div>
+                                </div>
+
+                                <label className="block text-xl font-semibold text-[#07074D]">Diselenggarakan Pada</label>
+                                <div className="flex flex-wrap -mx-3 pt-4">
+                                    <div className="w-full md:w-1/2 px-3 mb-6">
+                                    <div className="">
                                     <label
                                         htmlFor="tanggal_acara"
                                         className="mb-3 block text-base font-medium text-[#07074D]"
@@ -161,7 +206,27 @@ export default function Edit({ params }) {
                                     />
                                     {state?.tanggal_acara && <div className="text-red-500">{state.tanggal_acara}</div>}
                                 </div>
-
+                                    </div>
+                                    <div className="w-full md:w-1/2 px-3 mb-6">
+                                    <div className="">
+                                        <label
+                                            htmlFor="waktu_acara"
+                                            className="mb-3 block text-base font-medium text-[#07074D]"
+                                        >
+                                            Waktu Acara
+                                        </label>
+                                        <input
+                                            type="time"
+                                            name="waktu_acara"
+                                            id="waktu_acara"
+                                            value={waktu_acara}
+                                            onChange={(e) => { setWaktu_acara(e.target.value) }}
+                                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                        />
+                                        {state?.waktu_acara && <div classNameName="text-red-500">{state.waktu_acara}</div>}
+                                    </div>
+                                    </div>
+                                </div>
                                 <div className="mb-5">
                                     <label
                                         htmlFor="lokasi"
@@ -180,64 +245,8 @@ export default function Edit({ params }) {
                                     />
                                     {state?.lokasi && <div className="text-red-500">{state.lokasi}</div>}
                                 </div>
-                                </div>
-                                <div className="w-full md:w-1/2 px-3 mb-6">
-                                <div className="mb-5">
-                                    <label
-                                        htmlFor="nama_narahubung"
-                                        className="mb-3 block text-base font-medium text-[#07074D]"
-                                    >
-                                        Nama Nara Hubung
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="nama_narahubung"
-                                        id="nama_narahubung"
-                                        placeholder="Nama Narahubung"
-                                        value={nama_narahubung}
-                                        onChange={(e) => { setNama_narahubung(e.target.value) }}
-                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                    />
-                                    {state?.nama_narahubung && <div className="text-red-500">{state.nama_narahubung}</div>}
-                                </div>
-                                <div className="mb-5">
-                                    <label
-                                        htmlFor="no_ponsel"
-                                        className="mb-3 block text-base font-medium text-[#07074D]"
-                                    >
-                                        No ponsel
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="no_ponsel"
-                                        id="no_ponsel"
-                                        placeholder="No Ponsel"
-                                        value={no_ponsel}
-                                        onChange={(e) => { setNo_ponsel(e.target.value) }}
-                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                    />
-                                    {state?.no_ponsel && <div className="text-red-500">{state.no_ponsel}</div>}
-                                </div>
-
-                                    <div className="mb-5">
-                                        <label
-                                            htmlFor="waktu_acara"
-                                            className="mb-3 block text-base font-medium text-[#07074D]"
-                                        >
-                                            Waktu Acara
-                                        </label>
-                                        <input
-                                            type="time"
-                                            name="waktu_acara"
-                                            id="waktu_acara"
-                                            value={waktu_acara}
-                                            onChange={(e) => { setWaktu_acara(e.target.value) }}
-                                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                        />
-                                        {state?.waktu_acara && <div classNameName="text-red-500">{state.waktu_acara}</div>}
-                                    </div>
-                                </div>
-                            </div>
+                            
+                            <div className="mt-8 mb-4 text-[#07074D] font-semibold text-xl">Deskripsi dan Syarat Acara</div>
                             <div className="mb-5">
                                 <label
                                     htmlFor="deskripsi_acara"
