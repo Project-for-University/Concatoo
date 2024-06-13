@@ -223,37 +223,30 @@ export default function Edit({ params }) {
                                             onChange={(e) => { setWaktu_acara(e.target.value) }}
                                             className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                         />
-<<<<<<< HEAD
-    { state?.waktu_acara && <div className="text-red-500">{state.waktu_acara}</div> }
-                                    </div >
-                                </div >
-                            </div >
-=======
                                         {state?.waktu_acara && <div classNameName="text-red-500">{state.waktu_acara}</div>}
                                     </div>
-                                    </div>
                                 </div>
-                                <div className="mb-5">
-                                    <label
-                                        htmlFor="lokasi"
-                                        className="mb-3 block text-base font-medium text-[#07074D]"
-                                    >
-                                        Lokasi
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="lokasi"
-                                        id="lokasi"
-                                        placeholder="Lokasi"
-                                        value={lokasi}
-                                        onChange={(e) => { setLokasi(e.target.value) }}
-                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                    />
-                                    {state?.lokasi && <div className="text-red-500">{state.lokasi}</div>}
-                                </div>
-                            
+                            </div>
+                            <div className="mb-5">
+                                <label
+                                    htmlFor="lokasi"
+                                    className="mb-3 block text-base font-medium text-[#07074D]"
+                                >
+                                    Lokasi
+                                </label>
+                                <input
+                                    type="text"
+                                    name="lokasi"
+                                    id="lokasi"
+                                    placeholder="Lokasi"
+                                    value={lokasi}
+                                    onChange={(e) => { setLokasi(e.target.value) }}
+                                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                />
+                                {state?.lokasi && <div className="text-red-500">{state.lokasi}</div>}
+                            </div>
+
                             <div className="mt-8 mb-4 text-[#07074D] font-semibold text-xl">Deskripsi dan Syarat Acara</div>
->>>>>>> e32fe4b87955d1dc6f4938538cf14ea183e83777
                             <div className="mb-5">
                                 <label
                                     htmlFor="deskripsi_acara"
@@ -290,9 +283,9 @@ export default function Edit({ params }) {
                                 />
                                 {state?.syarat_ketentuan && <div className="text-red-500">{state.syarat_ketentuan}</div>}
                             </div>
-                        </div >
-        <SubmitButton />
-                    </form >
+                        </div>
+                        <SubmitButton />
+                    </form>
                 </div >
             </div >
         </div >
