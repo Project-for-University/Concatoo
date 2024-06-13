@@ -104,8 +104,9 @@ export default function Edit({ params }) {
             <div className="flex justify-center">
                 <Sidebar />
                 <div className="mx-auto w-full max-w-[50%] h-fit bg-white mt-6 rounded-lg shadow-md">
+                <div className="ml-10 mt-4 text-[#07074D] font-semibold text-xl">Edit Tiket</div>
                     <form
-                        className="py-6 px-9"
+                        className="py-3 px-9"
                         action={formAction}
                     // method="POST"
                     >

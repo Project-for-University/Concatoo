@@ -84,17 +84,18 @@ export default function Edit({ params }) {
                         className="py-6 px-9"
                         action={formAction}
                     >
+                        <div className="mt-8 text-[#07074D] font-semibold text-xl">Edit Acara</div>
                         <div className="mb-6 pt-4">
                             <label className="mb-5 block text-xl font-semibold text-[#07074D]">Upload Thumbnail</label>
-                            <div className="flex items-center justify-center w-full">
-                                <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                                        <svg className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                            <div class="flex items-center justify-center w-full">
+                                <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                        <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                                         </svg>
                                         {banner ? <span className="font-semibold">{banner.name}</span> : <>
-                                            <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span></p>
-                                            <p className="text-xs text-gray-500 dark:text-gray-400"> PNG,JPEG or JPG  (MAX. 2700 x 1100 / 16 MB)</p>
+                                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span></p>
+                                            <p class="text-xs text-gray-500 dark:text-gray-400"> PNG,JPEG or JPG  (MAX. 2700 x 1100 / 16 MB)</p>
                                         </>}
 
                                     </div>
@@ -107,25 +108,44 @@ export default function Edit({ params }) {
                                     />
                                 </label>
                             </div>
+                            <div className="mb-5 mt-4">
+                                <input type="hidden" value={params.id} name="id_acara"></input>
+                                <label htmlFor="nama_event" className="mb-3 block text-base font-medium text-[#07074D]">
+                                    Nama Acara
+                                </label>
+                                <input
+                                    type="text"
+                                    name="nama_event"
+                                    id="nama_event"
+                                    placeholder="Nama event"
+                                    value={nama_event}
+                                    onChange={(e) => { setNama_event(e.target.value) }}
+                                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                />
+                                {state?.nama_event && <div className="text-red-500">{state.nama_event}</div>}
+                            </div>
+                            <label className="mb-5 block text-xl font-semibold text-[#07074D]">Info Kontak</label>
+                            <div className="">
+                                <label
+                                    htmlFor="nama_narahubung"
+                                    className="mb-3 block text-base font-medium text-[#07074D]"
+                                >
+                                    Nama Nara Hubung
+                                </label>
+                                <input
+                                    type="text"
+                                    name="nama_narahubung"
+                                    id="nama_narahubung"
+                                    placeholder="Nama Narahubung"
+                                    value={nama_narahubung}
+                                    onChange={(e) => { setNama_narahubung(e.target.value) }}
+                                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                />
+                                {state?.nama_narahubung && <div className="text-red-500">{state.nama_narahubung}</div>}
+                            </div>
                             <div className="flex flex-wrap -mx-3 pt-4">
                                 <div className="w-full md:w-1/2 px-3 mb-6">
-                                    <div className="mb-5">
-                                        <input type="hidden" value={params.id} name="id_acara"></input>
-                                        <label htmlFor="nama_event" className="mb-3 block text-base font-medium text-[#07074D]">
-                                            Nama Acara
-                                        </label>
-                                        <input
-                                            type="text"
-                                            name="nama_event"
-                                            id="nama_event"
-                                            placeholder="Nama event"
-                                            value={nama_event}
-                                            onChange={(e) => { setNama_event(e.target.value) }}
-                                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                        />
-                                        {state?.nama_event && <div className="text-red-500">{state.nama_event}</div>}
-                                    </div>
-                                    <div className="mb-5">
+                                    <div className="">
                                         <label
                                             htmlFor="email"
                                             className="mb-3 block text-base font-medium text-[#07074D]"
@@ -143,63 +163,9 @@ export default function Edit({ params }) {
                                         />
                                         {state?.email && <div className="text-red-500">{state.email}</div>}
                                     </div>
-                                    <div className="mb-5">
-                                        <label
-                                            htmlFor="tanggal_acara"
-                                            className="mb-3 block text-base font-medium text-[#07074D]"
-                                        >
-                                            Tanggal Acara
-                                        </label>
-                                        <input
-                                            type="date"
-                                            name="tanggal_acara"
-                                            id="tanggal_acara"
-                                            value={tanggal_acara}
-                                            onChange={(e) => { setTanggal_acara(e.target.value) }}
-                                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                        />
-                                        {state?.tanggal_acara && <div className="text-red-500">{state.tanggal_acara}</div>}
-                                    </div>
-
-                                    <div className="mb-5">
-                                        <label
-                                            htmlFor="lokasi"
-                                            className="mb-3 block text-base font-medium text-[#07074D]"
-                                        >
-                                            Lokasi
-                                        </label>
-                                        <input
-                                            type="text"
-                                            name="lokasi"
-                                            id="lokasi"
-                                            placeholder="Lokasi"
-                                            value={lokasi}
-                                            onChange={(e) => { setLokasi(e.target.value) }}
-                                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                        />
-                                        {state?.lokasi && <div className="text-red-500">{state.lokasi}</div>}
-                                    </div>
                                 </div>
                                 <div className="w-full md:w-1/2 px-3 mb-6">
-                                    <div className="mb-5">
-                                        <label
-                                            htmlFor="nama_narahubung"
-                                            className="mb-3 block text-base font-medium text-[#07074D]"
-                                        >
-                                            Nama Nara Hubung
-                                        </label>
-                                        <input
-                                            type="text"
-                                            name="nama_narahubung"
-                                            id="nama_narahubung"
-                                            placeholder="Nama Narahubung"
-                                            value={nama_narahubung}
-                                            onChange={(e) => { setNama_narahubung(e.target.value) }}
-                                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                        />
-                                        {state?.nama_narahubung && <div className="text-red-500">{state.nama_narahubung}</div>}
-                                    </div>
-                                    <div className="mb-5">
+                                    <div className="">
                                         <label
                                             htmlFor="no_ponsel"
                                             className="mb-3 block text-base font-medium text-[#07074D]"
@@ -217,8 +183,32 @@ export default function Edit({ params }) {
                                         />
                                         {state?.no_ponsel && <div className="text-red-500">{state.no_ponsel}</div>}
                                     </div>
+                                </div>
+                            </div>
 
-                                    <div className="mb-5">
+                            <label className="block text-xl font-semibold text-[#07074D]">Diselenggarakan Pada</label>
+                            <div className="flex flex-wrap -mx-3 pt-4">
+                                <div className="w-full md:w-1/2 px-3 mb-6">
+                                    <div className="">
+                                        <label
+                                            htmlFor="tanggal_acara"
+                                            className="mb-3 block text-base font-medium text-[#07074D]"
+                                        >
+                                            Tanggal Acara
+                                        </label>
+                                        <input
+                                            type="date"
+                                            name="tanggal_acara"
+                                            id="tanggal_acara"
+                                            value={tanggal_acara}
+                                            onChange={(e) => { setTanggal_acara(e.target.value) }}
+                                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                        />
+                                        {state?.tanggal_acara && <div className="text-red-500">{state.tanggal_acara}</div>}
+                                    </div>
+                                </div>
+                                <div className="w-full md:w-1/2 px-3 mb-6">
+                                    <div className="">
                                         <label
                                             htmlFor="waktu_acara"
                                             className="mb-3 block text-base font-medium text-[#07074D]"
@@ -233,10 +223,37 @@ export default function Edit({ params }) {
                                             onChange={(e) => { setWaktu_acara(e.target.value) }}
                                             className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                         />
-                                        {state?.waktu_acara && <div className="text-red-500">{state.waktu_acara}</div>}
+<<<<<<< HEAD
+    { state?.waktu_acara && <div className="text-red-500">{state.waktu_acara}</div> }
+                                    </div >
+                                </div >
+                            </div >
+=======
+                                        {state?.waktu_acara && <div classNameName="text-red-500">{state.waktu_acara}</div>}
+                                    </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div className="mb-5">
+                                    <label
+                                        htmlFor="lokasi"
+                                        className="mb-3 block text-base font-medium text-[#07074D]"
+                                    >
+                                        Lokasi
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="lokasi"
+                                        id="lokasi"
+                                        placeholder="Lokasi"
+                                        value={lokasi}
+                                        onChange={(e) => { setLokasi(e.target.value) }}
+                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                    />
+                                    {state?.lokasi && <div className="text-red-500">{state.lokasi}</div>}
+                                </div>
+                            
+                            <div className="mt-8 mb-4 text-[#07074D] font-semibold text-xl">Deskripsi dan Syarat Acara</div>
+>>>>>>> e32fe4b87955d1dc6f4938538cf14ea183e83777
                             <div className="mb-5">
                                 <label
                                     htmlFor="deskripsi_acara"
@@ -273,9 +290,9 @@ export default function Edit({ params }) {
                                 />
                                 {state?.syarat_ketentuan && <div className="text-red-500">{state.syarat_ketentuan}</div>}
                             </div>
-                        </div>
-                        <SubmitButton />
-                    </form>
+                        </div >
+        <SubmitButton />
+                    </form >
                 </div >
             </div >
         </div >
