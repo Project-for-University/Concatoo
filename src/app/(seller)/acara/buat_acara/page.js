@@ -40,6 +40,14 @@ export default function Acara() {
     console.log(formAction)
     console.log(state);
 
+    const handlePonsel = (event) => {
+        const newValue = event.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+        const parsedValue = parseFloat(newValue);
+        if (parsedValue >= 0 && parsedValue < 100000 || newValue === '') {
+            setNo_ponsel(newValue);
+        }
+    };
+
     return (
         <>
             <div>
@@ -151,7 +159,7 @@ export default function Acara() {
                                                 id="no_ponsel"
                                                 placeholder="No Ponsel"
                                                 value={no_ponsel}
-                                                onChange={(e) => { setNo_ponsel(e.target.value) }}
+                                                onChange={handlePonsel}
                                                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                             />
                                             {state?.no_ponsel && <div className="text-orange-600">{state.no_ponsel}</div>}
