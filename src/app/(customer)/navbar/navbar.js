@@ -1,6 +1,6 @@
 'use client'
 import { IoIosSearch } from "react-icons/io";
-// import { signIn, signOut, useSession } from "next-auth/react"
+import { signIn, signOut, useSession } from "next-auth/react"
 import Link from "next/link";
 
 function Navbar() {
@@ -16,7 +16,7 @@ function Navbar() {
             </div>
             {status === 'authenticated' ? (
                 <button
-                    // onClick={() => signOut()}
+                    onClick={() => signOut()}
                     className="p-2 text-black ml-auto">Sign out</button>
             ) : (
                 <div className="flex space-x-4 ml-auto">
