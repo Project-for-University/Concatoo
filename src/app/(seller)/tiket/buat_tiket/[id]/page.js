@@ -3,8 +3,7 @@
 'use client'
 
 import { useState } from "react"
-import { useFormStatus } from "react-dom";
-import { useFormState } from 'react-dom'
+import { useFormState, useFormStatus } from 'react-dom'
 import { CreateTiket } from "../../../../api/seller/tiket/buat_tiket/action/page";
 import Sidebar from "@/app/(seller)/dashboard/component/sidebar";
 import Navbar from "@/app/(seller)/dashboard/component/navbar";

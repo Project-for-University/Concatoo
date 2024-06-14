@@ -1,11 +1,6 @@
 'use client'
 
-
-
-import Acara from "@/app/(seller)/acara/page";
-import { redirect } from "next/navigation";
 import { z } from "zod";
-
 
 
 const fileSchema = z.instanceof(File, { message: "banner harus ada" })
@@ -90,7 +85,7 @@ export async function CreateAcara(prevState, request) {
         }
 
         if (res.ok) {
-            return await response.json();
+            return await res.json();
         } else {
             throw new Error('Failed to fetch comment');
         }

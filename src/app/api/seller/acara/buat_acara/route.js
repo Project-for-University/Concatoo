@@ -3,7 +3,6 @@ import { PrismaClient } from '@prisma/client'
 import fs from "fs/promises"
 const prisma = new PrismaClient();
 import crypto from "crypto"
-import { redirect } from 'next/navigation';
 import { NextResponse } from 'next/server';
 import { URL } from 'url';
 

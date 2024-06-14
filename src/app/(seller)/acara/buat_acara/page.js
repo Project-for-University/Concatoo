@@ -43,7 +43,7 @@ export default function Acara() {
     const handlePonsel = (event) => {
         const newValue = event.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
         const parsedValue = parseFloat(newValue);
-        if (parsedValue >= 0 && parsedValue < 100000 || newValue === '') {
+        if (parsedValue >= 0 && parsedValue < 999999999999999 || newValue === '') {
             setNo_ponsel(newValue);
         }
     };

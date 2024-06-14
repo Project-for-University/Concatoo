@@ -1,13 +1,11 @@
 'use client'
 
 import { useState } from "react"
-
-import { useFormStatus } from "react-dom";
-import { CreateUser } from "./api/CreateUser";
-
 // pake useformstate jangan useaction state
-import { useFormState } from 'react-dom'
+import { useFormStatus, useFormState} from "react-dom";
 import Link from "next/link";
+
+import { CreateUser } from "./api/CreateUser";
 
 
 export default function Register() {
@@ -62,7 +60,7 @@ export default function Register() {
                             {state?.password && <div className="text-red-600">{state.password}</div>}
                         </div>
                         <SubmitButton />
-                        <p className="pt-2 text-orange-600 text-center text-sm"><a>Forgot Password</a></p>
+                        <p className="pt-2 text-orange-600 text-center text-sm"><Link>Forgot Password</Link></p>
                     </form>
                 </div>
             </div>
