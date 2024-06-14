@@ -5,7 +5,7 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-const handler = NextAuth({
+const authOptions = NextAuth({
     session: {
         strategy: 'jwt'
     },
@@ -78,4 +78,4 @@ const handler = NextAuth({
     }
 });
 
-export { handler as GET, handler as POST };
+export { authOptions as GET, authOptions as POST };

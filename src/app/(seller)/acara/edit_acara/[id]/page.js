@@ -4,8 +4,8 @@ import Sidebar from "@/app/(seller)/dashboard/component/sidebar"
 import { UpdateAcara } from "../../../../api/seller/acara/edit_acara/update_acara/page";
 
 import { useEffect, useState } from "react"
-import { useFormStatus } from "react-dom";
-import { useFormState } from 'react-dom'
+import { useFormStatus, useFormState } from "react-dom";
+
 
 export default function Edit({ params }) {
     console.log(params.id)
@@ -87,15 +87,15 @@ export default function Edit({ params }) {
                         <div className="mt-8 text-[#07074D] font-semibold text-xl">Edit Acara</div>
                         <div className="mb-6 pt-4">
                             <label className="mb-5 block text-xl font-semibold text-[#07074D]">Upload Thumbnail</label>
-                            <div class="flex items-center justify-center w-full">
-                                <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                            <div className="flex items-center justify-center w-full">
+                                <label htmlFor="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
                                         <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                                         </svg>
                                         {banner ? <span className="font-semibold">{banner.name}</span> : <>
-                                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span></p>
-                                            <p class="text-xs text-gray-500 dark:text-gray-400"> PNG,JPEG or JPG  (MAX. 2700 x 1100 / 16 MB)</p>
+                                            <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span></p>
+                                            <p className="text-xs text-gray-500 dark:text-gray-400"> PNG,JPEG or JPG  (MAX. 2700 x 1100 / 16 MB)</p>
                                         </>}
 
                                     </div>
@@ -223,7 +223,7 @@ export default function Edit({ params }) {
                                             onChange={(e) => { setWaktu_acara(e.target.value) }}
                                             className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                         />
-                                        {state?.waktu_acara && <div classNameName="text-red-500">{state.waktu_acara}</div>}
+                                        {state?.waktu_acara && <div className="text-red-500">{state.waktu_acara}</div>}
                                     </div>
                                 </div>
                             </div>

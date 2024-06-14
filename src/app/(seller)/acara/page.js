@@ -18,7 +18,7 @@ export default function Acara() {
   // get data acara
   const [acaras, setAcara] = useState([]);
   const [Del, setmDel] = useState([]);
-  console.log(acaras);
+  console.log(Del);
 
   useEffect(() => {
     async function fetchData() {
@@ -61,6 +61,7 @@ export default function Acara() {
         // Set acaras state
         if (Array.isArray(acarasData)) {
           setAcara(acarasData);
+          setmDel({ message: 'behasil hapus data' })
         } else {
           console.error("Expected an array of acaras but received:", typeof acarasData);
           setAcara([]);
@@ -68,7 +69,7 @@ export default function Acara() {
 
       } else {
         const message = await response.json();
-        setmDel({ message: 'berhasil hapus data', details: message });
+        setmDel({ message: 'dadal hapus data', details: message });
       }
     } catch (error) {
       console.error('Error deleting data:', error);
@@ -85,9 +86,10 @@ export default function Acara() {
         <main className="flex-1 p-4">
 
           <Link className="bg-white shadow-lg hover:bg-orange-100 text-gray-700 border rounded-lg p-2  " href={`acara/buat_acara`}>+ Tambah Acara</Link>
+          {Del?.message && <div className="text-orange-600">{Del.message}</div>}
           <div className="grid grid-cols-3 gap-4 p-8">
             {acaras.map((acara) => (
-              <div key={acara.id_acara} className="relative bg-white shadow-md rounded-md overflow-hidden">
+              <div key={acara.id_acara} className="relative bg-white shadow-md rounded-md overflow-hidden" >
                 <Link href={`detail_acara/${acara.id_acara}`}>
                   <Image src={acara.banner} width={500} height={500} alt="Picture of the author" className="w-full" />
                   <div className="flex justify-between p-4">
@@ -111,7 +113,7 @@ export default function Acara() {
 
           </div>
         </main>
-      </div>
-    </div>
+      </div >
+    </div >
   )
 }

@@ -1,0 +1,15 @@
+
+import { withAuth } from "next-auth/middleware";
+import { authConfig } from "./middleware/withAuth";
+
+
+export default withAuth({
+    ...authConfig,
+    callbacks: {
+        authorized: ({ token }) => !!token, // Check if the user is authenticated
+    },
+});
+
+export const config = {
+    matcher: ['/dashboard', '/acara'], // Protect these routes
+};

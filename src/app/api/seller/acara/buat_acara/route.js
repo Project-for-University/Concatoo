@@ -1,9 +1,11 @@
-'use server'
+'user serve'
 import { PrismaClient } from '@prisma/client'
 import fs from "fs/promises"
 const prisma = new PrismaClient();
 import crypto from "crypto"
-
+import { redirect } from 'next/navigation';
+import { NextResponse } from 'next/server';
+import { URL } from 'url';
 
 
 export async function POST(req, { params }) {
@@ -35,55 +37,52 @@ export async function POST(req, { params }) {
 
 
     // queri
-    try {
-        // generate image
-        await fs.mkdir("public/bannerAcara", { recursive: true })
-        const imagePath = `/bannerAcara/${crypto.randomUUID()}-${banner.name}`
+    // try {
+    // generate image
+    await fs.mkdir("public/bannerAcara", { recursive: true })
+    const imagePath = `/bannerAcara/${crypto.randomUUID()}-${banner.name}`
 
 
-        const result = await prisma.$transaction(async (prisma) => {
-            const newKontak = await prisma.kontak.create({
-                data: {
-                    nama_narahubung: namaNarahubung,
-                    email: email,
-                    no_ponsel: noPonsel,
-                }
-            })
-
-
-
-            const newDeskrpsi = await prisma.deskrpsi.create({
-                data: {
-                    deskripsi_acara: deskripsiAcara,
-                    syarat_ketentuan: syaratKetentuan,
-                }
-            });
+    const result = await prisma.$transaction(async (prisma) => {
+        const newKontak = await prisma.kontak.create({
+            data: {
+                nama_narahubung: namaNarahubung,
+                email: email,
+                no_ponsel: noPonsel,
+            }
+        })
 
 
 
-
-            const newAcara = await prisma.acara.create({
-                data: {
-                    banner: imagePath,
-                    nama_event: namaEvent,
-                    tanggal_acara: tanggalAcara,
-                    waktu_acara: waktuAcara,
-                    lokasi: lokasi,
-                    id_deskripsi: newDeskrpsi.id_deskripsi,
-                    id_kontak: newKontak.id_kontak
-                }
-            });
-
-            await fs.writeFile(`public${imagePath}`, buffer)
-
+        const newDeskrpsi = await prisma.deskrpsi.create({
+            data: {
+                deskripsi_acara: deskripsiAcara,
+                syarat_ketentuan: syaratKetentuan,
+            }
         });
 
 
 
-        return new Response(JSON.stringify({ message: 'berhasil bos' }))
 
-    } catch (e) {
-        console.log('tidak baik baik saja', e);
-        return new Response(JSON.stringify({ message: 'tidak baik baik saja' }))
-    }
+        const newAcara = await prisma.acara.create({
+            data: {
+                banner: imagePath,
+                nama_event: namaEvent,
+                tanggal_acara: tanggalAcara,
+                waktu_acara: waktuAcara,
+                lokasi: lokasi,
+                id_deskripsi: newDeskrpsi.id_deskripsi,
+                id_kontak: newKontak.id_kontak
+            }
+        });
+
+        await fs.writeFile(`public${imagePath}`, buffer)
+
+    });
+
+    console.log('berhasil create acara');
+    sok
+
+
+
 }
