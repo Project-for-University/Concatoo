@@ -46,7 +46,6 @@ export default function Login() {
                             {state?.password && <div className="text-red-600">{state.password}</div>}
                         </div>
                         <LoginButton />
-                        <p className="pt-2 text-orange-600 text-center text-sm"><Link>Forgot Password</Link></p>
                     </form>
                 </div>
             </div>

@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 // pake useformstate jangan useaction state
-import { useFormStatus, useFormState} from "react-dom";
+import { useFormStatus, useFormState } from "react-dom";
 import Link from "next/link";
 
 import { CreateUser } from "./api/CreateUser";
@@ -60,7 +60,6 @@ export default function Register() {
                             {state?.password && <div className="text-red-600">{state.password}</div>}
                         </div>
                         <SubmitButton />
-                        <p className="pt-2 text-orange-600 text-center text-sm"><Link>Forgot Password</Link></p>
                     </form>
                 </div>
             </div>
