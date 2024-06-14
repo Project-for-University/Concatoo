@@ -81,7 +81,7 @@ export async function POST(req, { params }) {
     });
 
     console.log('berhasil create acara');
-    sok
+    return NextResponse.redirect(new URL('/acara', req.url), 303);
 
 
 
