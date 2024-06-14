@@ -1,25 +1,23 @@
 'use client'
 
-import { PrismaClient } from '@prisma/client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import Sidebar from '../dashboard/component/sidebar';
 import Navbar from '../dashboard/component/navbar';
 import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
-import { Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const prisma = new PrismaClient()
 
-export default function Event() {
-  return (
-    <Acara />
-  )
-}
 
-function Acara() {
+
+
+
+export default function Acara() {
 
   // get data acara
   const [acaras, setAcara] = useState([]);
+  const [Del, setmDel] = useState([]);
   console.log(acaras);
 
   useEffect(() => {
@@ -46,8 +44,6 @@ function Acara() {
     fetchData();
   }, []);
 
-  // delete acara
-  const [mdelete, setmDel] = useState({ message: '' });
 
   async function DeleteAcara(id_acara) {
     console.log(id_acara);
@@ -58,7 +54,6 @@ function Acara() {
 
       if (response.ok) {
         console.log('berhasil hapus');
-        setmDel({ message: 'berhasil delete data' });
         // kalo berhasil update read data terbaru
         const acarasResponse = await fetch('/api/seller/acara/read_acara');
         const acarasData = await acarasResponse.json();
@@ -73,7 +68,7 @@ function Acara() {
 
       } else {
         const message = await response.json();
-        setmDel({ message: 'gagal hapus data', details: message });
+        setmDel({ message: 'berhasil hapus data', details: message });
       }
     } catch (error) {
       console.error('Error deleting data:', error);
@@ -81,18 +76,20 @@ function Acara() {
     }
   }
 
+
   return (
     <div>
       <Navbar />
       <div className="flex justify-between">
         <Sidebar />
         <main className="flex-1 p-4">
+
           <Link className="bg-white shadow-lg hover:bg-orange-100 text-gray-700 border rounded-lg p-2  " href={`acara/buat_acara`}>+ Tambah Acara</Link>
           <div className="grid grid-cols-3 gap-4 p-8">
             {acaras.map((acara) => (
               <div key={acara.id_acara} className="relative bg-white shadow-md rounded-md overflow-hidden">
                 <Link href={`detail_acara/${acara.id_acara}`}>
-                  <Image src={acara.banner} width={10} height={10} alt="" className="w-full" />
+                  <Image src={acara.banner} width={500} height={500} alt="Picture of the author" className="w-full" />
                   <div className="flex justify-between p-4">
                     <h3 className="font-bold">{acara.nama_event}</h3>
                     <p className="text-gray-600">

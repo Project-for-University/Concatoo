@@ -1,10 +1,9 @@
 'use client'
 
-import { PrismaClient } from '@prisma/client'
-import { redirect } from 'next/navigation';
-import { number, z } from "zod";
 
-const prisma = new PrismaClient();
+import { z } from "zod";
+
+
 
 const validasi = z.object({
     id_acara: z.string().min(1, { message: 'tidak boleh kosong' }),
@@ -72,7 +71,7 @@ export async function CreateTiket(prevState, request) {
             })
         });
 
-        const datares = await res.json();
+
     } catch (error) {
         console.log('gagal fetch:', error);
     }

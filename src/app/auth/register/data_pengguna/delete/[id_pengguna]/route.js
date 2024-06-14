@@ -1,8 +1,4 @@
-import { PrismaClient } from '@prisma/client'
-import { revalidatePath } from 'next/cache'
-import { redirect } from 'next/navigation'
 
-const prisma = new PrismaClient()
 
 export async function DELETE({ params }) {
 
@@ -13,11 +9,11 @@ export async function DELETE({ params }) {
         //         id_user: params.id_pengguna
         //     }
         // })
-        if (del) {
-            // Update cached posts
-            console.log('berhasil ');
+        // if (del) {
+        //     // Update cached posts
+        //     console.log('berhasil ');
 
-        }
+        // }
     } catch (error) {
         console.error('Error deleting user:', error);
     }

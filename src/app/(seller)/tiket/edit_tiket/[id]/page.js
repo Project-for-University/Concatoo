@@ -7,7 +7,7 @@ import { useFormStatus } from "react-dom";
 import { useFormState } from 'react-dom'
 import Sidebar from "@/app/(seller)/dashboard/component/sidebar";
 import Navbar from "@/app/(seller)/dashboard/component/navbar";
-import { UpdateTiket } from "../../../../api/seller/tiket/edit_tiket/update_tiket/action";
+import { UpdateTiket } from "../../../../api/seller/tiket/edit_tiket/update_tiket/page";
 
 // import Sidebar from "../sidebar/page";
 
@@ -266,7 +266,7 @@ export default function Edit({ params }) {
                                 value={deskripsi_tiket}
                                 onChange={(e) => { setDeskripsi_tiket(e.target.value) }}
                                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                />
+                            />
                             {state?.deskripsi_tiket && <div className="text-black">{state.deskripsi_tiket}</div>}
                         </div>
                         <SubmitButton />

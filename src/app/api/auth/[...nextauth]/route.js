@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaClient } from '@prisma/client';
-import bcrypt from "bcrypt";
+
 
 const prisma = new PrismaClient();
 
@@ -32,7 +32,7 @@ const handler = NextAuth({
                     return null;
                 }
                 if (user) {
-                    if (user.password === credentials.password) {
+                    if (user.password === password) {
                         return {
                             id_user: user.id_user,
                             name: user.username,
