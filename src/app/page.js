@@ -61,7 +61,7 @@ function CardAcara() {
                         });
                         return (
                             <div className="bg-white shadow-md rounded-md overflow-hidden" key={acara.id_acara}>
-                                <Image src="" alt={acara.nama_event} className="w-full" width={500} height={500} />
+                                <Image src={acara.banner} alt={acara.banner} className="w-full" width={500} height={500} />
                                 <div className="p-4">
                                     <h3 className="">{acara.nama_event}</h3>
                                     <p className="text-gray-600">{formattedDate}</p>
