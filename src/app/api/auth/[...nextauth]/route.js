@@ -25,7 +25,7 @@ const authOptions = NextAuth({
                 const user = await prisma.user.findUnique({
                     where: { email: email }
                 });
-                console.log(user);
+                // console.log(user);
 
                 // Jika user tidak ditemukan, kembalikan null
                 if (!user) {
@@ -71,7 +71,16 @@ const authOptions = NextAuth({
                 role: token.role,
             };
             return session;
-        }
+        },
+        // async redirect({ url, baseUrl, token }) {
+        //     // Arahkan pengguna berdasarkan peran mereka
+        //     if (token?.role === 'SELLER') {
+        //         return `${baseUrl}/dashboard`;
+        //     } else if (token?.role === 'CUSTOMER') {
+        //         return `${baseUrl}/home`;
+        //     }
+        //     return baseUrl;
+        // },
     },
     pages: {
         signIn: '/auth/login'

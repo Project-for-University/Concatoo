@@ -18,7 +18,7 @@ export default function Acara() {
   // get data acara
   const [acaras, setAcara] = useState([]);
   const [Del, setmDel] = useState([]);
-  console.log(Del);
+  // console.log(Del);
 
   useEffect(() => {
     async function fetchData() {
@@ -26,7 +26,7 @@ export default function Acara() {
         // Fetch acaras
         const acarasResponse = await fetch('/api/seller/acara/read_acara');
         const acarasData = await acarasResponse.json();
-        console.log(acarasData);
+        // console.log(acarasData);
         // Set acaras state
         if (acarasData) {
           setAcara(acarasData);
@@ -46,18 +46,18 @@ export default function Acara() {
 
 
   async function DeleteAcara(id_acara) {
-    console.log(id_acara);
+    // console.log(id_acara);
     try {
       const response = await fetch(`/api/seller/acara/delete_acara/${id_acara}`, {
         method: 'DELETE'
       });
 
       if (response.ok) {
-        console.log('berhasil hapus');
+        // console.log('berhasil hapus');
         // kalo berhasil update read data terbaru
         const acarasResponse = await fetch('/api/seller/acara/read_acara');
         const acarasData = await acarasResponse.json();
-        console.log(acarasData);
+        // console.log(acarasData);
         // Set acaras state
         if (Array.isArray(acarasData)) {
           setAcara(acarasData);

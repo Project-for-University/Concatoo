@@ -1,14 +1,18 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 // pake useformstate jangan useaction state
 import { useFormStatus, useFormState } from "react-dom";
 import Link from "next/link";
-
+import { useSession } from "next-auth/react"
 import { CreateUser } from "./api/CreateUser";
+import { useRouter } from "next/navigation";
+
+
 
 
 export default function Register() {
+    const router = useRouter();
     const [username, setusername] = useState('');
     const [phonenumber, setphonenumber] = useState('');
     const [email, setemail] = useState('');
@@ -18,11 +22,29 @@ export default function Register() {
     const initialState = {
         message: '',
     }
-
+    const { data: session, status } = useSession()
+    // console.log(session);
+    // console.log(status);
     // memang ngga ada sniped nya s useformstate ini jadi ketik aja
     // harus pake boject form entries 
     const [state, formAction] = useFormState(CreateUser, initialState)
-    console.log(formAction);
+    // console.log(formAction);
+
+    useEffect(() => {
+        if (status === 'authenticated') {
+            if (session?.user?.role === "CUSTOMER") {
+                router.push('/home');
+            } else if (session?.user?.role === 'SELLER') {
+                router.push('/dashboard');
+            }
+        }
+    }, [status, session, router]);
+
+    if (status === 'loading') {
+        return <div>Loading...</div>;
+    }
+
+
 
     return (
         <div className="max-w-lg h-screen flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">

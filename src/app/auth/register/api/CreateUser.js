@@ -16,18 +16,13 @@ const validasi = z.object({
     email: z.string().email({ message: 'harus email' }),
     password: z.string().min(1, { message: 'tidak boleh kosong' })
 })
-
-
-
 export async function CreateUser(prevState, request) {
     const validated = validasi.safeParse(Object.fromEntries(request.entries()))
-    console.log(validated);
+    // console.log(validated);
     if (!validated.success) {
         return validated.error.formErrors.fieldErrors
     }
     const data = validated.data
-
-
     const saltRounds = 10
     const salt = bcrypt.genSaltSync(saltRounds);
     const hash = bcrypt.hashSync(data.password, salt);
@@ -42,11 +37,6 @@ export async function CreateUser(prevState, request) {
     if (newUser) {
         redirect('/auth/login')
     }
-
-
-
-
-
 }
 
 

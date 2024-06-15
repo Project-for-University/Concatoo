@@ -16,7 +16,7 @@ export default function Component() {
 function CardAcara() {
     const [acaras, setAcara] = useState([]);
     const [tiketTermurah, setTiketTermurah] = useState(null);
-    console.log(acaras);
+    // console.log(acaras);
     useEffect(() => {
         async function fetchData() {
             try {

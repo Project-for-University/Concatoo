@@ -11,7 +11,7 @@ export async function GET() {
         });
 
 
-        console.log(tiketTermurah);
+        // console.log(tiketTermurah);
 
         return new Response(JSON.stringify(tiketTermurah), {
             status: 200,

@@ -7,8 +7,8 @@ const fileSchema = z.instanceof(File, { message: "banner harus ada" })
 const imageSchema = fileSchema.refine(
     file => file.size === 0 || file.type.startsWith("image/")
 )
-console.log(typeof imageSchema);
-console.log(imageSchema);
+// console.log(typeof imageSchema);
+// console.log(imageSchema);
 
 const validasi = z.object({
     banner: imageSchema.refine(file => file.size > 0, "Banner harus ada"),
@@ -26,9 +26,9 @@ const validasi = z.object({
 export async function CreateAcara(prevState, request) {
 
     const requestData = Object.fromEntries(request.entries());
-    console.log(requestData);
+    // console.log(requestData);
     const validated = validasi.safeParse(requestData);
-    console.log(validated);
+    // console.log(validated);
 
     if (!validated.success) {
         console.error("Validasi gagal:", validated.error.formErrors.fieldErrors);
@@ -36,14 +36,14 @@ export async function CreateAcara(prevState, request) {
     }
 
     const data = validated.data;
-    console.log(data);
+    // console.log(data);
 
     // Gabungkan tanggal dan waktu menjadi satu string ISO-8601
 
     const tglMp = data.tanggal_acara; // Format harus "YYYY-MM-DD"
     const WP = data.waktu_acara; // Format harus "HH:MM"
     const tanggalA = `${tglMp}T${WP}:00Z`;
-    console.log(data.banner);
+    // console.log(data.banner);
 
     // kalo mau ambil form data memang harus pake get
     // kalo pake log + form data memang bakal kosong
@@ -59,22 +59,22 @@ export async function CreateAcara(prevState, request) {
     formData.set('waktu_acara', new Date(tanggalA).toISOString());
     formData.set('lokasi', data.lokasi);
 
-    console.log({
-        banner: formData.get('banner'),
-        nama_narahubung: formData.get('nama_narahubung'),
-        email: formData.get('email'),
-        no_ponsel: formData.get('no_ponsel'),
-        deskripsi_acara: formData.get('deskripsi_acara'),
-        syarat_ketentuan: formData.get('syarat_ketentuan'),
-        nama_event: formData.get('nama_event'),
-        tanggal_acara: formData.get('tanggal_acara'),
-        waktu_acara: formData.get('waktu_acara'),
-        lokasi: formData.get('lokasi')
-    });
+    // console.log({
+    //     banner: formData.get('banner'),
+    //     nama_narahubung: formData.get('nama_narahubung'),
+    //     email: formData.get('email'),
+    //     no_ponsel: formData.get('no_ponsel'),
+    //     deskripsi_acara: formData.get('deskripsi_acara'),
+    //     syarat_ketentuan: formData.get('syarat_ketentuan'),
+    //     nama_event: formData.get('nama_event'),
+    //     tanggal_acara: formData.get('tanggal_acara'),
+    //     waktu_acara: formData.get('waktu_acara'),
+    //     lokasi: formData.get('lokasi')
+    // });
     // logs the value of data.lokasi
     try {
-        console.log('masuk');
-        console.log('/api/seller/acara/buat_acara', formData);
+        // console.log('masuk');
+        // console.log('/api/seller/acara/buat_acara', formData);
         const res = await fetch('/api/seller/acara/buat_acara', {
             method: 'POST',
             body: formData,

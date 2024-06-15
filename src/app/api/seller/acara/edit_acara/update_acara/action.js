@@ -22,7 +22,7 @@ export async function UpdateAcara(prevState, request) {
     // const router = useRouter();
     const requestData = Object.fromEntries(request.entries());
     const validated = validasi.safeParse(requestData);
-    console.log("Validasi hasil:", validated);
+    // console.log("Validasi hasil:", validated);
 
     if (!validated.success) {
         console.error("Validasi gagal:", validated.error.formErrors.fieldErrors);
@@ -30,20 +30,20 @@ export async function UpdateAcara(prevState, request) {
     }
 
     const data = validated.data;
-    console.log("Data tervalidasi:", data);
+    // console.log("Data tervalidasi:", data);
 
     const tanggal = data.tanggal_acara; // Format harus "YYYY-MM-DD"
     const waktu = data.waktu_acara; // Format harus "HH:MM"
 
     // Gabungkan tanggal dan waktu menjadi satu string ISO-8601
     const tanggalWaktuAcara = `${tanggal}T${waktu}:00Z`;
-    console.log("Tanggal dan waktu acara:", tanggalWaktuAcara);
+    // console.log("Tanggal dan waktu acara:", tanggalWaktuAcara);
 
 
 
 
     try {
-        console.log('masuk');
+        // console.log('masuk');
         const res = await fetch(`/api/seller/acara/edit_acara/update_acara/${data.id_acara}`, {
             method: 'POST',
             headers: {
@@ -63,11 +63,11 @@ export async function UpdateAcara(prevState, request) {
         });
 
         // if () {
-        console.log('tidak baik baik saja');
+        // console.log('tidak baik baik saja');
         redirect('/event');
         // }
     } catch (error) {
-        console.log('gagal fetch:');
+        // console.log('gagal fetch:');
     }
 
 

@@ -3,10 +3,10 @@ const prisma = new PrismaClient();
 
 
 export async function GET(request, { params }) {
-    console.log("berhasil get");
-    console.log(request.id);
-    console.log(params);
-    console.log(params.id);
+    // console.log("berhasil get");
+    // console.log(request.id);
+    // console.log(params);
+    // console.log(params.id);
     const acara = await prisma.acara.findFirst({
         where: {
             id_acara: params.id
@@ -16,7 +16,7 @@ export async function GET(request, { params }) {
             kontak: true
         }
     })
-    console.log(acara);
+    // console.log(acara);
     return new Response(JSON.stringify(acara))
     // return new Response(JSON.stringify({ message: 'berhasil' }))
 }

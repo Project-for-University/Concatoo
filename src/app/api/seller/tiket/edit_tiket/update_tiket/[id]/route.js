@@ -6,16 +6,16 @@ const prisma = new PrismaClient();
 
 export async function POST(request, { params }) {
     const data = await request.json()
-    console.log(request);
-    console.log(params);
-    console.log(params.id)
-    console.log(data)
+    // console.log(request);
+    // console.log(params);
+    // console.log(params.id)
+    // console.log(data)
 
     try {
         const tikets = await prisma.tiket.findFirst({
             where: { id_tiket: params.id }
         })
-        console.log(tikets)
+        // console.log(tikets)
         const updateTiket = await prisma.tiket.update({
             where: { id_tiket: params.id },
             data: {
@@ -29,14 +29,14 @@ export async function POST(request, { params }) {
                 waktu_akhir_penjualan: data.waktu_akhir_penjualan
             },
         })
-        console.log(updateTiket)
+        // console.log(updateTiket)
 
         if (tikets) {
             // return redirect('/event')
             return new Response(JSON.stringify({ message: 'berhasil' }))
         }
     } catch (e) {
-        console.log('tidak baik baik saja', e);
+        // console.log('tidak baik baik saja', e);
         return new Response(JSON.stringify({ message: 'tidak baik baik saja' }))
     }
 

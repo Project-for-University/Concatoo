@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint . --ext .js",
-    "lint:fix": "eslint . --ext .js --fix"
+     "lint": "next lint"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.1.0",

@@ -13,35 +13,20 @@ const validasi = z.object({
 
 
 export default async function ActionLogin(prevState, formdata) {
-
-    console.log(formdata);
-
-
-
-
+    // console.log(formdata);
     const validated = validasi.safeParse(Object.fromEntries(formdata.entries()))
-    console.log(validated);
-
+    // console.log(validated);
     // kirim pesan eror jika validasi = false
     // di kirim ke useFormState
     if (!validated.success) {
         return validated.error.formErrors.fieldErrors
     }
-
     const data = validated.data
-    console.log(data);
-
-
-
-
-
+    // console.log(data);
     const res = await signIn('credentials', {
         redirect: false,
         email: data.email,
         password: data.password,
     })
-    if (res.error) {
-        return { error: { form: 'Email atau password salah' } }
-    }
-    return redirect('/dashboard')
+    return redirect('/')
 }

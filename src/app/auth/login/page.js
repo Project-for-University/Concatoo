@@ -1,23 +1,43 @@
 'use client'
-
-import { useState } from "react";
+import { useState, useEffect } from "react"
 
 import { useFormStatus, useFormState } from 'react-dom'
-import ActionLogin from "./api/page";
+import ActionLogin from "./api/action";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react"
+
 
 export default function Login() {
-
+    const router = useRouter();
     const [email, setemail] = useState('');
     const [password, setpassword] = useState('');
-    console.log(email);
-    console.log(password);
+    // console.log(email);
+    // console.log(password);
+
+    const { data: session, status } = useSession()
+    // console.log(session);
+    // console.log(status);
 
     const initialState = {
         message: '',
         error: null
     }
     const [state, formAction] = useFormState(ActionLogin, initialState)
+
+    useEffect(() => {
+        if (status === 'authenticated') {
+            if (session?.user?.role === "CUSTOMER") {
+                router.push('/home');
+            } else if (session?.user?.role === 'SELLER') {
+                router.push('/dashboard');
+            }
+        }
+    }, [status, session, router]);
+
+    if (status === 'loading') {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div className="max-w-lg h-screen flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">

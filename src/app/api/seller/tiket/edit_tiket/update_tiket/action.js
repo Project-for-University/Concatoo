@@ -24,7 +24,7 @@ export async function UpdateTiket(prevState, request) {
     // const router = useRouter();
     const requestData = Object.fromEntries(request.entries());
     const validated = validasi.safeParse(requestData);
-    console.log("Validasi hasil:", validated);
+    // console.log("Validasi hasil:", validated);
 
     if (!validated.success) {
         console.error("Validasi gagal:", validated.error.formErrors.fieldErrors);
@@ -32,7 +32,7 @@ export async function UpdateTiket(prevState, request) {
     }
 
     const data = validated.data;
-    console.log("Data tervalidasi:", data);
+    // console.log("Data tervalidasi:", data);
 
     const tanggal = data.tanggal_mulai_penjualan; // Format harus "YYYY-MM-DD"
     const waktu = data.waktu_penjualan; // Format harus "HH:MM"
@@ -41,15 +41,15 @@ export async function UpdateTiket(prevState, request) {
 
     // Gabungkan tanggal dan waktu menjadi satu string ISO-8601
     const tanggalWaktuTiket = `${tanggal}T${waktu}:00Z`;
-    console.log("Tanggal dan waktu acara:", tanggalWaktuTiket);
+    // console.log("Tanggal dan waktu acara:", tanggalWaktuTiket);
     const tanggalAkhirWaktuTiket = `${tanggal_akhir}T${waktu_akhir}:00Z`;
-    console.log("Tanggal dan waktu acara:", tanggalAkhirWaktuTiket);
+    // console.log("Tanggal dan waktu acara:", tanggalAkhirWaktuTiket);
 
 
 
 
     try {
-        console.log('masuk');
+        // console.log('masuk');
         const res = await fetch(`/api/seller/tiket/edit_tiket/update_tiket/${data.id_tiket}`, {
             method: 'POST',
             headers: {
@@ -69,12 +69,12 @@ export async function UpdateTiket(prevState, request) {
 
         if (res.ok) {
             // redirect('/event')
-            console.log('Berhasil');
+            // console.log('Berhasil');
 
 
         }
     } catch (error) {
-        console.log('gagal fetch:');
+        // console.log('gagal fetch:');
     }
 
 

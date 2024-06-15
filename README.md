@@ -60,3 +60,13 @@ tapi kalo nangkap id dengan page.js function DetailAcara({id}) = nah itu baru ha
 # Image
 
 - pada image next js yang width dan height nya itu jangan terlalu kecil nanti render image nya apa kecil juga aliran buram
+
+# link
+
+- pada <link>daftar</link> jangan sampai tidak mengetik href atau atribut lainnya nanti akan eror
+
+# jika anda membuat file page.js
+
+- janga export default async function....
+- karena itu bukan react component itu seperti hanya sebuah function tapi async bukan untuk render halaman
+- kurang lebih seperti itu

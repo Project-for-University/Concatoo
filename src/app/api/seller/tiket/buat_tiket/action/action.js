@@ -20,9 +20,9 @@ const validasi = z.object({
 
 export async function CreateTiket(prevState, request) {
     const requestData = Object.fromEntries(request.entries());
-    console.log(requestData);
+    // console.log(requestData);
     const validated = validasi.safeParse(requestData);
-    console.log("Validasi hasil:", validated);
+    // console.log("Validasi hasil:", validated);
 
     if (!validated.success) {
         console.error("Validasi gagal:", validated.error.formErrors.fieldErrors);
@@ -30,7 +30,7 @@ export async function CreateTiket(prevState, request) {
     }
 
     const data = validated.data;
-    console.log("Data tervalidasi:", data);
+    // console.log("Data tervalidasi:", data);
 
 
     // Gabungkan tanggal dan waktu menjadi satu string ISO-8601
@@ -40,18 +40,18 @@ export async function CreateTiket(prevState, request) {
     const WP = data.waktu_penjualan; // Format harus "HH:MM"
     const tanggal_mulai = `${tglMp}T${WP}:00Z`;
 
-    console.log("Tanggal dan waktu acara:", tanggal_mulai);
+    // console.log("Tanggal dan waktu acara:", tanggal_mulai);
 
     // tanggal akhir penjualan 
     const tglAp = data.tanggal_akhir_penjualan; // Format harus "YYYY-MM-DD"
     const WA = data.waktu_akhir_penjualan; // Format harus "HH:MM"
     const tanggal_akhir = `${tglAp}T${WA}:00Z`;
 
-    console.log("Tanggal dan waktu acara:", tanggal_akhir);
+    // console.log("Tanggal dan waktu acara:", tanggal_akhir);
 
 
     try {
-        console.log('masuk');
+        // console.log('masuk');
         const res = await fetch(`/api/seller/tiket/buat_tiket`, {
             method: 'POST',
             headers: {
@@ -73,7 +73,7 @@ export async function CreateTiket(prevState, request) {
 
 
     } catch (error) {
-        console.log('gagal fetch:', error);
+        // console.log('gagal fetch:', error);
     }
 
 

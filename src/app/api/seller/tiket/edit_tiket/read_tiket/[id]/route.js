@@ -5,9 +5,9 @@ const prisma = new PrismaClient();
 
 export async function GET(request, { params }) {
 
-    console.log(request);
-    console.log(params);
-    console.log(params.id);
+    // console.log(request);
+    // console.log(params);
+    // console.log(params.id);
 
 
     try {
@@ -17,13 +17,13 @@ export async function GET(request, { params }) {
             }
         })
 
-        console.log(tiket);
+        // console.log(tiket);
 
         if (tiket) {
             return new Response(JSON.stringify(tiket))
         }
     } catch (e) {
-        console.log('tidak baik baik saja', e);
+        // console.log('tidak baik baik saja', e);
         return new Response(JSON.stringify({ message: 'tidak baik baik saja' }))
     }
 

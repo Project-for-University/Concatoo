@@ -20,16 +20,16 @@ export async function POST(req, { params }) {
     const waktuAcara = formData.get('waktu_acara');
     const lokasi = formData.get('lokasi');
 
-    console.log(banner);
-    console.log(namaNarahubung);
-    console.log(email);
-    console.log(noPonsel);
-    console.log(deskripsiAcara);
-    console.log(syaratKetentuan);
-    console.log(namaEvent);
-    console.log(tanggalAcara);
-    console.log(waktuAcara);
-    console.log(lokasi);
+    // console.log(banner);
+    // console.log(namaNarahubung);
+    // console.log(email);
+    // console.log(noPonsel);
+    // console.log(deskripsiAcara);
+    // console.log(syaratKetentuan);
+    // console.log(namaEvent);
+    // console.log(tanggalAcara);
+    // console.log(waktuAcara);
+    // console.log(lokasi);
 
     const bytes = await banner.arrayBuffer()
     const buffer = Buffer.from(bytes)
@@ -79,7 +79,7 @@ export async function POST(req, { params }) {
 
     });
 
-    console.log('berhasil create acara');
+    // console.log('berhasil create acara');
     return NextResponse.redirect(new URL('/acara', req.url), 303);
 
 

@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 export async function POST(request, { params }) {
     const data = await request.json();
-    console.log(data);
+    // console.log(data);
     try {
         const newKontak = await prisma.tiket.create({
             data: {
@@ -20,10 +20,10 @@ export async function POST(request, { params }) {
                 id_acara: data.id_acara
             }
         })
-        console.log('berasil');
+        // console.log('berasil');
         return new Response(JSON.stringify({ message: 'alhamdulikkah' }))
     } catch (e) {
-        console.log('tidak baik baik saja', e);
+        // console.log('tidak baik baik saja', e);
         return new Response(JSON.stringify({ message: 'tidak baik baik saja' }))
     }
 

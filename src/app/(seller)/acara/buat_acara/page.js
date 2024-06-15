@@ -9,7 +9,7 @@ import { useFormStatus, useFormState } from "react-dom";
 
 import Sidebar from "@/app/(seller)/dashboard/component/sidebar";
 import Navbar from "@/app/(seller)/dashboard/component/navbar";
-import { CreateAcara } from "@/app/api/seller/acara/buat_acara/action/page";
+import { CreateAcara } from "@/app/api/seller/acara/buat_acara/action/action";
 
 
 
@@ -19,8 +19,8 @@ import { CreateAcara } from "@/app/api/seller/acara/buat_acara/action/page";
 
 export default function Acara() {
     const [banner, setBanner] = useState(null);
-    console.log(typeof banner);
-    console.log(banner);
+    // console.log(typeof banner);
+    // console.log(banner);
 
     const [nama_event, setNama_event] = useState('')
     const [tanggal_acara, setTanggal_acara] = useState('')
@@ -37,8 +37,8 @@ export default function Acara() {
     }
 
     const [state, formAction] = useFormState(CreateAcara, initialState)
-    console.log(formAction)
-    console.log(state);
+    // console.log(formAction)
+    // console.log(state);
 
     const handlePonsel = (event) => {
         const newValue = event.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');

@@ -3,9 +3,9 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export async function GET(request, { params }) {
-    console.log('berhasil masuk');
-    console.log(request);
-    console.log(params);
+    // console.log('berhasil masuk');
+    // console.log(request);
+    // console.log(params);
 
 
 
@@ -19,7 +19,7 @@ export async function GET(request, { params }) {
             }
         })
 
-        console.log(acaras);
+        // console.log(acaras);
         return new Response(JSON.stringify(acaras));
     } catch (error) {
         return new Response(JSON.stringify({ error: 'gagal fetch data' }), {

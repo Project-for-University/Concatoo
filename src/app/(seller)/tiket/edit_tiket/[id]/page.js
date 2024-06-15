@@ -6,14 +6,14 @@ import { useEffect, useState } from "react"
 import { useFormState, useFormStatus } from 'react-dom'
 import Sidebar from "@/app/(seller)/dashboard/component/sidebar";
 import Navbar from "@/app/(seller)/dashboard/component/navbar";
-import { UpdateTiket } from "../../../../api/seller/tiket/edit_tiket/update_tiket/page";
+import { UpdateTiket } from "../../../../api/seller/tiket/edit_tiket/update_tiket/action";
 
 // import Sidebar from "../sidebar/page";
 
 
 export default function Edit({ params }) {
-    console.log("id tiket");
-    console.log(params.id);
+    // console.log("id tiket");
+    // console.log(params.id);
     const [nama_tiket, setNama_tiket] = useState('')
     const [jumlah_tiket, setJumlah_tiket] = useState('')
     const [harga, setHarga] = useState('')
@@ -28,8 +28,8 @@ export default function Edit({ params }) {
     }
 
     const [state, formAction] = useFormState(UpdateTiket, initialState)
-    console.log(formAction)
-    console.log(state)
+    // console.log(formAction)
+    // console.log(state)
 
     useEffect(() => {
         async function fetchData() {
@@ -37,7 +37,7 @@ export default function Edit({ params }) {
                 { method: 'GET' }
             )
             const data = await getData.json()
-            console.log(data)
+            // console.log(data)
 
             const start_date = new Date(data.tanggal_mulai_penjualan)
             const year = start_date.getUTCFullYear();
@@ -103,7 +103,7 @@ export default function Edit({ params }) {
             <div className="flex justify-center">
                 <Sidebar />
                 <div className="mx-auto w-full max-w-[50%] h-fit bg-white mt-6 rounded-lg shadow-md">
-                <div className="ml-8 mt-6 text-black font-semibold text-xl">Edit Tiket</div>
+                    <div className="ml-8 mt-6 text-black font-semibold text-xl">Edit Tiket</div>
                     <form
                         className="py-3 px-9"
                         action={formAction}
@@ -176,22 +176,22 @@ export default function Edit({ params }) {
                         <div className="flex flex-wrap -mx-3 mb-4 pt-4">
                             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                 <div className="mb-5">
-                                        <label
-                                            htmlFor="tanggal_mulai_penjualan"
-                                            className="mb-3 block text-base font-medium text-gray-600"
-                                        >
-                                            Tanggal Mulai Penjualan
-                                        </label>
-                                        <input
-                                            type="date"
-                                            name="tanggal_mulai_penjualan"
-                                            id="tanggal_mulai_penjualan"
-                                            value={tanggal_mulai_penjualan}
-                                            onChange={(e) => { setTanggal_mulai_penjualan(e.target.value) }}
-                                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                        />
-                                        {state?.tanggal_mulai_penjualan && <div className="text-red-500">{state.tanggal_mulai_penjualan}</div>}
-                                    </div>
+                                    <label
+                                        htmlFor="tanggal_mulai_penjualan"
+                                        className="mb-3 block text-base font-medium text-gray-600"
+                                    >
+                                        Tanggal Mulai Penjualan
+                                    </label>
+                                    <input
+                                        type="date"
+                                        name="tanggal_mulai_penjualan"
+                                        id="tanggal_mulai_penjualan"
+                                        value={tanggal_mulai_penjualan}
+                                        onChange={(e) => { setTanggal_mulai_penjualan(e.target.value) }}
+                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                    />
+                                    {state?.tanggal_mulai_penjualan && <div className="text-red-500">{state.tanggal_mulai_penjualan}</div>}
+                                </div>
 
                                 <div className="mb-5">
                                     <label
@@ -212,7 +212,7 @@ export default function Edit({ params }) {
                                 </div>
                             </div>
                             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <div className="mb-5">
+                                <div className="mb-5">
                                     <label
                                         htmlFor="waktu_penjualan"
                                         className="mb-3 block text-base font-medium text-gray-600"
@@ -247,7 +247,7 @@ export default function Edit({ params }) {
                                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                     />
                                     {state?.waktu_akhir_penjualan && <div className="text-red-500">{state.waktu_akhir_penjualan}</div>}
-                             </div>
+                                </div>
                             </div>
                         </div>
 

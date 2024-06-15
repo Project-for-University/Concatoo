@@ -6,10 +6,10 @@ const prisma = new PrismaClient();
 
 export async function POST(request, { params }) {
     const data = await request.json()
-    console.log(request);
-    console.log(params);
-    console.log(params.id)
-    console.log(data)
+    // console.log(request);
+    // console.log(params);
+    // console.log(params.id)
+    // console.log(data)
 
     try {
         const acara = await prisma.acara.findFirst({
@@ -46,14 +46,14 @@ export async function POST(request, { params }) {
                 deskripsi: true
             }
         })
-        console.log(updateAcara)
+        // console.log(updateAcara)
 
 
 
         return new Response(JSON.stringify(acara))
 
     } catch (e) {
-        console.log('tidak baik baik saja', e);
+        // console.log('tidak baik baik saja', e);
         return new Response(JSON.stringify({ message: 'tidak baik baik saja' }))
     }
 

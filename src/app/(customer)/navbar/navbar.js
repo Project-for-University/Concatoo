@@ -5,8 +5,8 @@ import Link from "next/link";
 
 function Navbar() {
     const { data: session, status } = useSession()
-    console.log(session);
-    console.log(status);
+    // console.log(session);
+    // console.log(status);
 
     return (
         <div className="flex justify-between items-center mb-4 w-full px-4">

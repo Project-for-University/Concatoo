@@ -15,7 +15,7 @@ export async function GET() {
         })
 
 
-        console.log(acaras);
+        // console.log(acaras);
 
         return new Response(JSON.stringify(acaras), {
             status: 200,

@@ -5,7 +5,7 @@ import fs from "fs/promises"
 const prisma = new PrismaClient();
 
 export async function DELETE(request, { params }) {
-    console.log("Params ID:", params.id);
+    // console.log("Params ID:", params.id);
 
     try {
 
@@ -22,17 +22,17 @@ export async function DELETE(request, { params }) {
                     tiket: true
                 }
             });
-            console.log(acaraToDelete);
+            // console.log(acaraToDelete);
 
             try {
                 const acara = await prisma.acara.delete({
                     where: { id_acara: acaraToDelete.id_acara }
                 });
-                console.log("Acara dihapus");
+                // console.log("Acara dihapus");
 
             } catch (e) {
 
-                console.log("Acara gagal dihapus");
+                // console.log("Acara gagal dihapus");
 
             }
             if (!acaraToDelete) {
@@ -44,9 +44,9 @@ export async function DELETE(request, { params }) {
                 await prisma.kontak.delete({
                     where: { id_kontak: acaraToDelete.id_kontak }
                 });
-                console.log("Kontak dihapus");
+                // console.log("Kontak dihapus");
             } catch (e) {
-                console.log("Kontak gagal dihapus");
+                // console.log("Kontak gagal dihapus");
 
             }
 
@@ -55,18 +55,18 @@ export async function DELETE(request, { params }) {
                 await prisma.deskrpsi.delete({
                     where: { id_deskripsi: acaraToDelete.id_deskripsi }
                 });
-                console.log("Deskripsi dihapus");
+                // console.log("Deskripsi dihapus");
             } catch (e) {
-                console.log("Deskripsi gagal dihapus");
+                // console.log("Deskripsi gagal dihapus");
 
             }
 
             // hapus file banner
             try {
                 await fs.unlink(`public${acaraToDelete.banner}`)
-                console.log('foto di hapus');
+                // console.log('foto di hapus');
             } catch (e) {
-                console.log('foto gagal di hapus');
+                // console.log('foto gagal di hapus');
             }
 
 
