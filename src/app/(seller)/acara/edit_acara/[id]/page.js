@@ -105,7 +105,6 @@ export default function Edit({ params }) {
                                             <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span></p>
                                             <p className="text-xs text-gray-500 dark:text-gray-400"> PNG,JPEG or JPG  (MAX. 2700 x 1100 / 16 MB)</p>
                                         </>}
-
                                     </div>
                                     <input
                                         id="dropzone-file"

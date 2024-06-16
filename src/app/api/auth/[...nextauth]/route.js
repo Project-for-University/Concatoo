@@ -9,6 +9,7 @@ const authOptions = NextAuth({
     session: {
         strategy: 'jwt'
     },
+    // Kunci rahasia yang digunakan untuk mengenkripsi token.
     secret: 'pintukonser',
     providers: [
         CredentialsProvider({
@@ -45,6 +46,7 @@ const authOptions = NextAuth({
         })
     ],
     callbacks: {
+        // jwt: Callback yang memodifikasi token JWT ketika pengguna berhasil login.
         async jwt({ token, user }) {
             if (user) {
                 token.id_user = user.id_user;
@@ -54,6 +56,7 @@ const authOptions = NextAuth({
             }
             return token;
         },
+        // session: Callback yang memodifikasi objek sesi berdasarkan informasi dalam token.
         async session({ session, token }) {
             session.user = {
                 id_user: token.id_user,
@@ -61,6 +64,13 @@ const authOptions = NextAuth({
                 name: token.name,
                 role: token.role,
             };
+            if (token.role === 'SELER') {
+                session.redirect = '/dashboard';
+            } else if (token.role === 'CUSTOMER') {
+                session.redirect = '/home';
+            } else {
+                session.redirect = '/'; // Redirect to unauthorized page
+            }
             return session;
         },
     },
