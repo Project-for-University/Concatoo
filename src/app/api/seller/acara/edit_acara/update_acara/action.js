@@ -5,8 +5,18 @@ import { redirect } from 'next/navigation';
 import { z } from "zod";
 
 
+const fileSchema = z.instanceof(File, { message: "banner harus ada" })
+const imageSchema = fileSchema.refine(
+    file => file.size === 0 || file.type.startsWith("image/")
+)
+
+// console.log(typeof imageSchema);
+// console.log(imageSchema);
+
 const validasi = z.object({
     id_acara: z.string().min(1, { message: 'tidak boleh kosong' }),
+    banner: imageSchema.refine(file => file.size > 0, "Banner harus ada"),
+    banner: z.string().min(1, { message: 'tidak boleh kosong' }),
     nama_event: z.string().min(1, { message: 'tidak boleh kosong' }),
     tanggal_acara: z.string().min(1, { message: 'tidak boleh kosong' }),
     waktu_acara: z.string().min(1, { message: 'tidak boleh kosong' }),
@@ -62,10 +72,16 @@ export async function UpdateAcara(prevState, request) {
             })
         });
 
-        // if () {
-        // console.log('tidak baik baik saja');
-        redirect('/event');
-        // }
+        if (res.redirected) {
+            window.location.href = res.url;// Tangani redirect secara manual
+            return;
+        }
+
+        if (res.ok) {
+            return await res.json();
+        } else {
+            throw new Error('Failed to fetch comment');
+        }
     } catch (error) {
         // console.log('gagal fetch:');
     }

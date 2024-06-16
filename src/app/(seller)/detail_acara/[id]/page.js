@@ -17,6 +17,7 @@ export default function DetailAcara({ params }) {
 
 function Card({ param }) {
     // Get acara
+    console.log(param.id);
     const [acara, setAcara] = useState([]);
     const [tikets, settikets] = useState([]);
     // console.log(acara);
@@ -97,7 +98,7 @@ function Card({ param }) {
                     {/* detail acara */}
                     <div className="flex grid-cols-2 gap-2">
                         <div className="rounded-xl w-full h-fit bg-white shadow-md mx-6 mt-4">
-                            <Image src="" width={8} height={8} alt="Musikal Keluarga Cemara" className="w-full lg:w-1/2 object-cover" />
+                            <Image src={acara.banner} width={1000} height={1000} alt="Musikal Keluarga Cemara" className="w-full lg:w-1/2 object-cover" />
                         </div>
                         <div className="w-auto h-fit p-6 mx-auto my-4 bg-white rounded-lg shadow-md">
                             <h1 className="text-2xl font-bold">{acara.nama_event}</h1>
@@ -146,7 +147,7 @@ function Card({ param }) {
                                                 </div>
                                             </div>
                                             <div className="flex p-4 justify-end mr-6">
-                                                <Link href={`/tiket/edit_tiket/${tiket.id_tiket}`}>
+                                                <Link href={`/tiket/edit_tiket/${tiket.id_tiket}/${param.id}`}>
                                                     <MdOutlineEdit className="text-gray-500 hover:text-orange-700" />
                                                 </Link>
                                                 <button className="pl-2" onClick={() => DeleteTiket(tiket.id_tiket)}>

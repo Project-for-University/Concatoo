@@ -41,15 +41,6 @@ const authOptions = NextAuth({
                         };
                     }
                 }
-
-                // Bandingkan password yang dimasukkan dengan password yang ada di database
-                // const isValidPassword = await bcrypt.compare(password, user.password);
-                // if (!isValidPassword) {
-                //     return null;
-                // }
-
-                // Kembalikan objek user jika otentikasi berhasil
-
             },
         })
     ],
@@ -72,15 +63,6 @@ const authOptions = NextAuth({
             };
             return session;
         },
-        // async redirect({ url, baseUrl, token }) {
-        //     // Arahkan pengguna berdasarkan peran mereka
-        //     if (token?.role === 'SELLER') {
-        //         return `${baseUrl}/dashboard`;
-        //     } else if (token?.role === 'CUSTOMER') {
-        //         return `${baseUrl}/home`;
-        //     }
-        //     return baseUrl;
-        // },
     },
     pages: {
         signIn: '/auth/login'

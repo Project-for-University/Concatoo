@@ -8,7 +8,8 @@ import { z } from "zod";
 
 
 const validasi = z.object({
-    id_tiket: z.string().min(1, { message: 'tidak boleh kosong' }),
+    id_acara: z.string().min(1, { message: 'id acara tidak di temukan' }),
+    id_tiket: z.string().min(1, { message: 'id tiket tidak di temukan' }),
     jumlah_tiket: z.string().min(1, { message: 'tidak boleh kosong' }),
     nama_tiket: z.string().min(1, { message: 'tidak boleh kosong' }),
     harga: z.string().min(1, { message: 'tidak boleh kosong' }),
@@ -50,7 +51,7 @@ export async function UpdateTiket(prevState, request) {
 
     try {
         // console.log('masuk');
-        const res = await fetch(`/api/seller/tiket/edit_tiket/update_tiket/${data.id_tiket}`, {
+        const res = await fetch(`/api/seller/tiket/edit_tiket/update_tiket/${data.id_tiket}/${data.id_acara}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -67,11 +68,15 @@ export async function UpdateTiket(prevState, request) {
             })
         });
 
+        if (res.redirected) {
+            window.location.href = res.url;// Tangani redirect secara manual
+            return;
+        }
+
         if (res.ok) {
-            // redirect('/event')
-            // console.log('Berhasil');
-
-
+            return await res.json();
+        } else {
+            throw new Error('Failed to fetch comment');
         }
     } catch (error) {
         // console.log('gagal fetch:');

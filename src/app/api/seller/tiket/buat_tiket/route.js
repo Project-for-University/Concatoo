@@ -1,11 +1,12 @@
 'use server'
 import { PrismaClient } from '@prisma/client'
+import { NextResponse } from 'next/server';
 const prisma = new PrismaClient();
 
 
 export async function POST(request, { params }) {
     const data = await request.json();
-    // console.log(data);
+    console.log(data);
     try {
         const newKontak = await prisma.tiket.create({
             data: {
@@ -21,7 +22,7 @@ export async function POST(request, { params }) {
             }
         })
         // console.log('berasil');
-        return new Response(JSON.stringify({ message: 'alhamdulikkah' }))
+        return NextResponse.redirect(new URL(`/detail_acara/${data.id_acara}`, request.url), 303);
     } catch (e) {
         // console.log('tidak baik baik saja', e);
         return new Response(JSON.stringify({ message: 'tidak baik baik saja' }))
