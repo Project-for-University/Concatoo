@@ -51,7 +51,7 @@ function CardAcara() {
             {acaras.length === 0 ? (
                 <h1>tidak ada data</h1>
             ) : (
-                <div className="grid grid-cols-3 gap-4 p-8">
+                <div className="grid grid-cols-4 gap-6 mx-6 my-8">
                     {acaras.map(acara => {
                         const tanggalAcara = new Date(acara.tanggal_acara);
                         const formattedDate = tanggalAcara.toLocaleDateString('id-ID', {
@@ -60,8 +60,8 @@ function CardAcara() {
                             year: 'numeric'
                         });
                         return (
-                            <div className="bg-white shadow-md rounded-md overflow-hidden" key={acara.id_acara}>
-                                <Image src={acara.banner} alt={acara.banner} className="w-full" width={500} height={500} />
+                            <div className="bg-white rounded-md overflow-hidden shadow-md" key={acara.id_acara}>
+                                <Image src={acara.banner} alt={acara.banner} className="object-cover w-[350px] h-[200px] rounded" width={500} height={500} />
                                 <div className="p-4">
                                     <h3 className="">{acara.nama_event}</h3>
                                     <p className="text-gray-600">{formattedDate}</p>

@@ -7,10 +7,14 @@ import { useFormState, useFormStatus } from 'react-dom'
 import { CreateTiket } from "../../../../api/seller/tiket/buat_tiket/action/action";
 import Sidebar from "@/app/(seller)/dashboard/component/sidebar";
 import Navbar from "@/app/(seller)/dashboard/component/navbar";
+import { Datepicker } from "flowbite-react";
+import { format } from 'date-fns';
+
 
 export default function Ticket({ params }) {
     // console.log("id tiket");
     // console.log(params.id);
+    // const [date, setDate] = useState(newDate(setTanggal_mulai_penjualan))
     const [nama_tiket, setNama_tiket] = useState('')
     const [jumlah_tiket, setJumlah_tiket] = useState('')
     const [harga, setHarga] = useState('')
@@ -19,6 +23,8 @@ export default function Ticket({ params }) {
     const [waktu_penjualan, setWaktu_penjualan] = useState('')
     const [tanggal_akhir_penjualan, setTanggal_akhir_penjualan] = useState('')
     const [waktu_akhir_penjualan, setWaktu_akhir_penjualan] = useState('')
+    const today = new Date();
+    today.setHours(0,0,0,0)
 
     const initialState = {
         message: '',
@@ -45,6 +51,16 @@ export default function Ticket({ params }) {
         if (parsedValue <= 9999999 || newValue === '') {
             setHarga(newValue);
         }
+    };
+
+    const handleDateChange = (date) => {
+        const formattedDate = format(new Date(date), 'yyyy-MM-dd'); // Gunakan date-fns untuk format tanggal
+        setTanggal_mulai_penjualan(formattedDate);
+    };
+
+    const handleDateChange2 = (date) => {
+        const formattedDate = format(new Date(date), 'yyyy-MM-dd'); // Gunakan date-fns untuk format tanggal
+        setTanggal_akhir_penjualan(formattedDate);
     };
 
     return (
@@ -125,22 +141,21 @@ export default function Ticket({ params }) {
                         <div className="mt-8 mb-3 text-black font-semibold text-xl">Tanggal dan Waktu Penjualan Tiket</div>
                         <div className="flex flex-wrap -mx-3 mb-4 pt-4">
                             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                <div className="mb-5">
-                                    <label
-                                        htmlFor="tanggal_mulai_penjualan"
-                                        className="mb-3 block text-base font-medium  text-gray-600"
-                                    >
-                                        Tanggal Mulai Penjualan
-                                    </label>
-                                    <input
-                                        type="date"
-                                        name="tanggal_mulai_penjualan"
-                                        id="tanggal_mulai_penjualan"
-                                        value={tanggal_mulai_penjualan}
-                                        onChange={(e) => { setTanggal_mulai_penjualan(e.target.value) }}
-                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                    />
-                                    {state?.tanggal_mulai_penjualan && <div className="text-red-500">{state.tanggal_mulai_penjualan}</div>}
+                            <div className="mb-5">
+                                <label
+                                    htmlFor="tanggal_mulai_penjualan"
+                                    className="mb-3 block text-base font-medium  text-gray-600"
+                                >
+                                    Tanggal Mulai Penjualan
+                                </label>
+                                <Datepicker
+                                type="date" 
+                                name="tanggal_mulai_penjualan"
+                                id="tanggal_mulai_penjualan"
+                                value={tanggal_mulai_penjualan} 
+                                onSelectedDateChanged={handleDateChange}
+                                minDate={today}
+                                />
                                 </div>
 
                                 <div className="mb-5">
@@ -163,23 +178,24 @@ export default function Ticket({ params }) {
                                 </div>
                             </div>
                             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                <div className="mb-5">
-                                    <label
-                                        htmlFor="tanggal_akhir_penjualan"
-                                        className="mb-3 block text-base font-medium  text-gray-600"
-                                    >
-                                        Tanggal Akhir Penjualan
-                                    </label>
-                                    <input
-                                        type="date"
-                                        name="tanggal_akhir_penjualan"
-                                        id="tanggal_akhir_penjualan"
-                                        value={tanggal_akhir_penjualan}
-                                        onChange={(e) => { setTanggal_akhir_penjualan(e.target.value) }}
-                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                    />
-                                    {state?.tanggal_akhir_penjualan && <div className="text-red-500">{state.tanggal_akhir_penjualan}</div>}
-                                </div>
+                            <div className="mb-5">
+                                <label
+                                    htmlFor="tanggal_akhir_penjualan"
+                                    className="mb-3 block text-base font-medium  text-gray-600"
+                                >
+                                    Tanggal Akhir Penjualan
+                                </label>
+                                <Datepicker
+                                type="date" 
+                                name="tanggal_akhir_penjualan"
+                                id="tanggal_akhir_penjualan"
+                                value={tanggal_akhir_penjualan} 
+                                onSelectedDateChanged={handleDateChange2}
+                                minDate={new Date (tanggal_mulai_penjualan) }                                
+                                />
+                                {state?.tanggal_akhir_penjualan && <div className="text-red-500">{state.tanggal_akhir_penjualan}</div>}
+                            </div>
+                            `${tanggal_mulai_penjualan.split('-')[0]}${tanggal_mulai_penjualan.split('-')[1]}${tanggal_mulai_penjualan.split('-')[2]}`
 
                                 <div className="mb-5">
                                     <label
@@ -230,6 +246,6 @@ export default function Ticket({ params }) {
 function SubmitButton() {
     const { pending } = useFormStatus()
     return (
-        <button type="submit" className="hover:shadow-form w-full rounded-md bg-gradient-to-t from-amber-500 to-orange-300 py-3 px-8 text-center text-base font-semibold text-white outline-none">{pending ? "Submitting..." : "Submit"}</button>
+        <button type="submit" className="hover:shadow-form w-full rounded-md bg-gradient-to-b from-emerald-300 to-emerald-400 py-3 px-8 text-center text-base font-semibold text-white outline-none">{pending ? "Submitting..." : "Simpan"}</button>
     )
 }

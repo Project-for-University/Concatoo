@@ -279,6 +279,6 @@ export default function Acara() {
 function SubmitButton() {
     const { pending } = useFormStatus()
     return (
-        <button type="submit" className="hover:shadow-form w-full rounded-md bg-gradient-to-t from-amber-500 to-orange-300 py-3 px-8 text-center text-base font-semibold text-white outline-none">{pending ? "Submitting..." : "Submit"}</button>
+        <button type="submit" className="hover:shadow-form w-full rounded-md bg-gradient-to-b from-emerald-300 to-emerald-400 py-3 px-8 text-center text-base font-semibold text-white outline-none">{pending ? "Submitting..." : "Simpan"}</button>
     )
 }
