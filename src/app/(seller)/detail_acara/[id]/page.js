@@ -17,6 +17,7 @@ export default function DetailAcara({ params }) {
 
 function Card({ param }) {
     // Get acara
+    console.log(param.id);
     const [acara, setAcara] = useState([]);
     const [tikets, settikets] = useState([]);
     // console.log(acara);

@@ -70,6 +70,16 @@ export async function CreateTiket(prevState, request) {
 
             })
         });
+        if (res.redirected) {
+            window.location.href = res.url;// Tangani redirect secara manual
+            return;
+        }
+
+        if (res.ok) {
+            return await res.json();
+        } else {
+            throw new Error('Failed to fetch comment');
+        }
 
 
     } catch (error) {

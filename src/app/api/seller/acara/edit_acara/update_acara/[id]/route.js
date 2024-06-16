@@ -1,5 +1,6 @@
 'use server'
 import { PrismaClient } from '@prisma/client'
+import { NextResponse } from 'next/server';
 
 const prisma = new PrismaClient();
 
@@ -50,7 +51,7 @@ export async function POST(request, { params }) {
 
 
 
-        return new Response(JSON.stringify(acara))
+        return NextResponse.redirect(new URL('/acara', req.url), 303);
 
     } catch (e) {
         // console.log('tidak baik baik saja', e);

@@ -10,6 +10,7 @@ import { useFormStatus, useFormState } from "react-dom";
 export default function Edit({ params }) {
     // console.log(params.id)
     const [banner, setBanner] = useState(null);
+    console.log(banner)
     const [nama_event, setNama_event] = useState('')
     const [tanggal_acara, setTanggal_acara] = useState('')
     const [waktu_acara, setWaktu_acara] = useState('')
@@ -20,23 +21,23 @@ export default function Edit({ params }) {
     const [deskripsi_acara, setDeskripsi_acara] = useState('')
     const [syarat_ketentuan, setSyarat_ketentuan] = useState('')
 
-    // console.log('nama_event:', nama_event);
-    // console.log('tanggal_acara:', tanggal_acara);
-    // console.log('waktu_acara:', waktu_acara);
-    // console.log('lokasi:', lokasi);
-    // console.log('nama_narahubung:', nama_narahubung);
-    // console.log('email:', email);
-    // console.log('no_ponsel:', no_ponsel);
-    // console.log('deskripsi_acara:', deskripsi_acara);
-    // console.log('syarat_ketentuan:', syarat_ketentuan);
+    console.log('nama_event:', nama_event);
+    console.log('tanggal_acara:', tanggal_acara);
+    console.log('waktu_acara:', waktu_acara);
+    console.log('lokasi:', lokasi);
+    console.log('nama_narahubung:', nama_narahubung);
+    console.log('email:', email);
+    console.log('no_ponsel:', no_ponsel);
+    console.log('deskripsi_acara:', deskripsi_acara);
+    console.log('syarat_ketentuan:', syarat_ketentuan);
 
     const initialState = {
         message: '',
     }
 
     const [state, formAction] = useFormState(UpdateAcara, initialState)
-    // console.log(formAction)
-    // console.log(state);
+    console.log(formAction)
+    console.log(state);
 
     const handlePonsel = (event) => {
         const newValue = event.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
@@ -52,7 +53,7 @@ export default function Edit({ params }) {
                 { method: 'GET' }
             )
             const data = await getData.json()
-            // console.log(data)
+            console.log(data)
 
             const tanggal = new Date(data.tanggal_acara)
             const year = tanggal.getUTCFullYear();
@@ -83,7 +84,6 @@ export default function Edit({ params }) {
     }, [params.id])
     return (
         <div>
-            {/* <button onClick={() => { tes(12) }}>cek</button> */}
             <Navbar />
             <div className="flex  justify-center">
                 <Sidebar />

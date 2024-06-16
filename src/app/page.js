@@ -31,7 +31,6 @@ function CardAcara() {
                     console.error("Expected an array of acaras but received:", typeof acarasData);
                     setAcara([]);
                 }
-
                 // Fetch tiketTermurah
                 const tiketResponse = await fetch('/api/customer/read_tiket_termurah');
                 const tiketData = await tiketResponse.json();
@@ -42,10 +41,8 @@ function CardAcara() {
                 setAcara([]);
             }
         }
-
         fetchData();
     }, []);
-
     return (
         <>
             {acaras.length === 0 ? (
@@ -71,7 +68,8 @@ function CardAcara() {
                         )
                     })}
                 </div>
-            )}
+            )
+            }
         </>
     )
 }
