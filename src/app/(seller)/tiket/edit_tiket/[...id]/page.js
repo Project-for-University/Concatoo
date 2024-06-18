@@ -12,9 +12,9 @@ import { UpdateTiket } from "../../../../api/seller/tiket/edit_tiket/update_tike
 
 
 export default function Edit({ params }) {
-    console.log("id tiket");
-    console.log(params.id[0]);//tangkap url indeks 1 = id tiket
-    console.log(params.id[1]);//tangkap url indeks 1 = id acara
+    // console.log("id tiket");
+    // console.log(params.id[0]);//tangkap url indeks 1 = id tiket
+    // console.log(params.id[1]);//tangkap url indeks 1 = id acara
     const [nama_tiket, setNama_tiket] = useState('')
     const [jumlah_tiket, setJumlah_tiket] = useState('')
     const [harga, setHarga] = useState('')
@@ -34,9 +34,11 @@ export default function Edit({ params }) {
 
     useEffect(() => {
         async function fetchData() {
-            const getData = await fetch(`/api/seller/tiket/edit_tiket/read_tiket/${params.id[0]}`,
-                { method: 'GET' }
-            )
+            const getData = await fetch(`/api/seller/tiket/edit_tiket/read_tiket/${params.id[0]}`, {
+                method: 'GET',
+
+
+            })
             const data = await getData.json()
             // console.log(data)
 

@@ -56,9 +56,7 @@ export async function UpdateAcara(prevState, request) {
         // console.log('masuk');
         const res = await fetch(`/api/seller/acara/edit_acara/update_acara/${data.id_acara}`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+
             body: JSON.stringify({
                 nama_event: data.nama_event,
                 tanggal_acara: new Date(tanggalWaktuAcara), // Tanggal dengan format baru
@@ -69,7 +67,8 @@ export async function UpdateAcara(prevState, request) {
                 no_ponsel: data.no_ponsel,
                 deskripsi_acara: data.deskripsi_acara,
                 syarat_ketentuan: data.syarat_ketentuan
-            })
+            }),
+
         });
 
         if (res.redirected) {

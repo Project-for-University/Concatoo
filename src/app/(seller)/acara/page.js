@@ -3,13 +3,10 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import Sidebar from '../dashboard/component/sidebar';
-import Navbar from '../dashboard/component/navbar';
+// import Sidebar from '../dashboard/component/sidebar';
+// import Navbar from '../dashboard/component/navbar';
 import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
 import { useEffect, useState } from 'react';
-
-
-
 
 
 
@@ -22,9 +19,12 @@ export default function Acara() {
 
   useEffect(() => {
     async function fetchData() {
+
       try {
         // Fetch acaras
-        const acarasResponse = await fetch('/api/seller/acara/read_acara');
+        const acarasResponse = await fetch('/api/seller/acara/read_acara', {
+          method: 'GET'
+        });
         const acarasData = await acarasResponse.json();
         // console.log(acarasData);
         // Set acaras state
@@ -49,7 +49,8 @@ export default function Acara() {
     // console.log(id_acara);
     try {
       const response = await fetch(`/api/seller/acara/delete_acara/${id_acara}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+
       });
 
       if (response.ok) {
@@ -79,8 +80,8 @@ export default function Acara() {
 
 
   return (
-    <div className="">
-      <Navbar />
+    <>
+      {/* <Navbar /> */}
       {/* <div className="flex justify-center">
         <nav class="flex" aria-label="Breadcrumb">
           <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
@@ -113,7 +114,7 @@ export default function Acara() {
       </div> */}
 
       <div className="flex justify-between">
-        <Sidebar />
+        {/* <Sidebar /> */}
         <main className="flex-1 p-4">
           <Link className="bg-gradient-to-b from-emerald-300 to-emerald-400 hover:bg-emerald-100 text-white border rounded-lg p-2  " href={`acara/buat_acara`}>+ Tambah Acara</Link>
           {Del?.message && <div className="text-emerald-600">{Del.message}</div>}
@@ -144,6 +145,6 @@ export default function Acara() {
           </div>
         </main>
       </div >
-    </div >
+    </ >
   )
 }

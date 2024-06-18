@@ -53,9 +53,7 @@ export async function UpdateTiket(prevState, request) {
         // console.log('masuk');
         const res = await fetch(`/api/seller/tiket/edit_tiket/update_tiket/${data.id_tiket}/${data.id_acara}`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+
             body: JSON.stringify({
                 nama_tiket: data.nama_tiket,
                 jumlah_tiket: data.jumlah_tiket,
@@ -65,7 +63,9 @@ export async function UpdateTiket(prevState, request) {
                 waktu_penjualan: new Date(tanggalWaktuTiket),
                 tanggal_akhir_penjualan: new Date(tanggalAkhirWaktuTiket), // Tanggal dengan format baru
                 waktu_akhir_penjualan: new Date(tanggalAkhirWaktuTiket)
-            })
+            }),
+
+
         });
 
         if (res.redirected) {

@@ -70,3 +70,14 @@ tapi kalo nangkap id dengan page.js function DetailAcara({id}) = nah itu baru ha
 - janga export default async function....
 - karena itu bukan react component itu seperti hanya sebuah function tapi async bukan untuk render halaman
 - kurang lebih seperti itu
+
+# tentang cache
+
+ketika di mode develop ya iya masih jalan card acara masih bisa ambil data baru
+
+tapi ketika sudah di mode build
+
+card acara tidak akan di perbaharui karena method GET secara default itu akan di cache
+
+https://www.youtube.com/watch?v=5_cJFYZSiDM&list=PLC3y8-rFHvwjOKd6gdf4QtV1uYNiQnruI&index=44
+https://www.youtube.com/watch?v=-7Rrjy-lfcE&list=PLC3y8-rFHvwjOKd6gdf4QtV1uYNiQnruI&index=53&pp=iAQB

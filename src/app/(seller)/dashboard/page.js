@@ -20,9 +20,9 @@ export default function Pages() {
     return (
         <>
             <div>
-                <Navbar />
+                {/* <Navbar /> */}
                 <div className="flex">
-                    <Sidebar />
+                    {/* <Sidebar /> */}
                     <div className="flex flex-cols-3 w-full mx-4 my-6">
                         <div className="mx-2">
                             <Link href="#" className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">

@@ -69,9 +69,15 @@ const authOptions = NextAuth({
             } else if (token.role === 'CUSTOMER') {
                 session.redirect = '/home';
             } else {
-                session.redirect = '/'; // Redirect to unauthorized page
+                session.redirect = '/'; // Redirect to unauthorteized page
             }
             return session;
+        },
+        async signOut({ req, res }) {
+            // console.log('Sign out callback called');
+            // Redirect to the `/` page after sign out
+            res.redirect('/');
+            return;
         },
     },
     pages: {

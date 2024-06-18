@@ -5,7 +5,7 @@ import { useState, useEffect } from "react"
 import { useFormStatus, useFormState } from "react-dom";
 import Link from "next/link";
 import { useSession } from "next-auth/react"
-import { CreateUser } from "./api/CreateUser";
+import { CreateUser } from "./action/CreateUser";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { MdOutlineDangerous } from "react-icons/md";
@@ -18,7 +18,10 @@ export default function Register() {
     const [phonenumber, setphonenumber] = useState('');
     const [email, setemail] = useState('');
     const [password, setpassword] = useState('');
-
+    // console.log(username);
+    // console.log(phonenumber);
+    // console.log(email);
+    // console.log(password);
 
     const initialState = {
         message: '',
@@ -52,14 +55,14 @@ export default function Register() {
             <div className="w-full bg-white rounded-lg dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                 <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <div>
-                    <div className="flex justify-center item-center">
-                    <Image src={'/asset/logo.png'} alt="logo.png" width={60} height={60}></Image>
-                    </div>
+                        <div className="flex justify-center item-center">
+                            <Image src={'/asset/logo.png'} alt="logo.png" width={60} height={60}></Image>
+                        </div>
                     </div>
                     <div className="my-6">
-                            <p className="font-semibold text-center font text-2xl">Selamat Datang</p>
-                            <p className="text-center text-sm mt-2">Sudah Punya Akun? Yuk Tinggal <Link href={`/auth/login`} className="text-emerald-600">Masuk</Link></p>
-                        </div>
+                        <p className="font-semibold text-center font text-2xl">Selamat Datang</p>
+                        <p className="text-center text-sm mt-2">Sudah Punya Akun? Yuk Tinggal <Link href={`/auth/login`} className="text-emerald-600">Masuk</Link></p>
+                    </div>
                     <div className="flex border-2 bg-emerald-100 border-emerald-600 rounded-md h-8 justify-center items-center">
                         <MdOutlineDangerous />
                         <p className="text-center">Email atau No Hp Sudah Terpakai</p>
@@ -89,7 +92,7 @@ export default function Register() {
                         </div>
                         <SubmitButton />
                         <div className="mt-2">
-                            <p className="font-semibold text-xs text-center">Dengan mendaftar, saya menyetujui <br/><a className="text-emerald-600">Syarat dan Ketentuan</a> serta <a className="text-emerald-600">Kebijakan Privasi</a></p>
+                            <p className="font-semibold text-xs text-center">Dengan mendaftar, saya menyetujui <br /><a className="text-emerald-600">Syarat dan Ketentuan</a> serta <a className="text-emerald-600">Kebijakan Privasi</a></p>
                         </div>
                     </form>
                 </div>

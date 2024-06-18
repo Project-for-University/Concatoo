@@ -24,7 +24,7 @@ export default function Ticket({ params }) {
     const [tanggal_akhir_penjualan, setTanggal_akhir_penjualan] = useState('')
     const [waktu_akhir_penjualan, setWaktu_akhir_penjualan] = useState('')
     const today = new Date();
-    today.setHours(0,0,0,0)
+    today.setHours(0, 0, 0, 0)
 
     const initialState = {
         message: '',
@@ -65,9 +65,9 @@ export default function Ticket({ params }) {
 
     return (
         <div>
-            <Navbar />
+            {/* <Navbar /> */}
             <div className="flex justify-center">
-                <Sidebar />
+                {/* <Sidebar /> */}
                 <div className="mx-auto w-full max-w-[50%] h-fit bg-white mt-6 rounded-lg shadow-md">
                     <div className="ml-8 mt-6 text-black font-semibold text-xl">Buat Tiket</div>
                     <form
@@ -141,21 +141,21 @@ export default function Ticket({ params }) {
                         <div className="mt-8 mb-3 text-black font-semibold text-xl">Tanggal dan Waktu Penjualan Tiket</div>
                         <div className="flex flex-wrap -mx-3 mb-4 pt-4">
                             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <div className="mb-5">
-                                <label
-                                    htmlFor="tanggal_mulai_penjualan"
-                                    className="mb-3 block text-base font-medium  text-gray-600"
-                                >
-                                    Tanggal Mulai Penjualan
-                                </label>
-                                <Datepicker
-                                type="date" 
-                                name="tanggal_mulai_penjualan"
-                                id="tanggal_mulai_penjualan"
-                                value={tanggal_mulai_penjualan} 
-                                onSelectedDateChanged={handleDateChange}
-                                minDate={today}
-                                />
+                                <div className="mb-5">
+                                    <label
+                                        htmlFor="tanggal_mulai_penjualan"
+                                        className="mb-3 block text-base font-medium  text-gray-600"
+                                    >
+                                        Tanggal Mulai Penjualan
+                                    </label>
+                                    <Datepicker
+                                        type="date"
+                                        name="tanggal_mulai_penjualan"
+                                        id="tanggal_mulai_penjualan"
+                                        value={tanggal_mulai_penjualan}
+                                        onSelectedDateChanged={handleDateChange}
+                                        minDate={today}
+                                    />
                                 </div>
 
                                 <div className="mb-5">
@@ -178,24 +178,24 @@ export default function Ticket({ params }) {
                                 </div>
                             </div>
                             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <div className="mb-5">
-                                <label
-                                    htmlFor="tanggal_akhir_penjualan"
-                                    className="mb-3 block text-base font-medium  text-gray-600"
-                                >
-                                    Tanggal Akhir Penjualan
-                                </label>
-                                <Datepicker
-                                type="date" 
-                                name="tanggal_akhir_penjualan"
-                                id="tanggal_akhir_penjualan"
-                                value={tanggal_akhir_penjualan} 
-                                onSelectedDateChanged={handleDateChange2}
-                                minDate={new Date (tanggal_mulai_penjualan) }                                
-                                />
-                                {state?.tanggal_akhir_penjualan && <div className="text-red-500">{state.tanggal_akhir_penjualan}</div>}
-                            </div>
-                            `${tanggal_mulai_penjualan.split('-')[0]}${tanggal_mulai_penjualan.split('-')[1]}${tanggal_mulai_penjualan.split('-')[2]}`
+                                <div className="mb-5">
+                                    <label
+                                        htmlFor="tanggal_akhir_penjualan"
+                                        className="mb-3 block text-base font-medium  text-gray-600"
+                                    >
+                                        Tanggal Akhir Penjualan
+                                    </label>
+                                    <Datepicker
+                                        type="date"
+                                        name="tanggal_akhir_penjualan"
+                                        id="tanggal_akhir_penjualan"
+                                        value={tanggal_akhir_penjualan}
+                                        onSelectedDateChanged={handleDateChange2}
+                                        minDate={new Date(tanggal_mulai_penjualan)}
+                                    />
+                                    {state?.tanggal_akhir_penjualan && <div className="text-red-500">{state.tanggal_akhir_penjualan}</div>}
+                                </div>
+                                `${tanggal_mulai_penjualan.split('-')[0]}${tanggal_mulai_penjualan.split('-')[1]}${tanggal_mulai_penjualan.split('-')[2]}`
 
                                 <div className="mb-5">
                                     <label

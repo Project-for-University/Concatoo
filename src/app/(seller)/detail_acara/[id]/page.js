@@ -29,7 +29,9 @@ function Card({ param }) {
         const fetchAcara = async () => {
             // console.log(param.id);
             const response = await fetch(`/api/seller/detail_acara/read_acara/${param.id}`, {
-                method: 'GET'
+                method: 'GET',
+
+
             });
             const data = await response.json()
             // console.log(response);
@@ -43,7 +45,9 @@ function Card({ param }) {
         const fetchTiket = async () => {
             // console.log(param.id);
             const response = await fetch(`/api/seller/detail_acara/read_tiket/${param.id}`, {
-                method: 'GET'
+                method: 'GET',
+
+
             });
             const data = await response.json()
             // console.log(data);
@@ -63,6 +67,8 @@ function Card({ param }) {
         // console.log(id);
         const res = await fetch(`/api/seller/tiket/delete_tiket/${id}`, {
             method: 'DELETE',
+
+
         })
         const data = await res.json()
         // console.log(res);
@@ -70,7 +76,9 @@ function Card({ param }) {
         if (res) {
             // console.log('berhasil');
             const response = await fetch(`/api/seller/detail_acara/read_tiket/${param.id}`, {
-                method: 'GET'
+                method: 'GET',
+
+
             });
             const data = await response.json()
             // console.log(data);
@@ -91,29 +99,29 @@ function Card({ param }) {
     });
     return (
         <>
-        <Navbar />
-        <div className="flex">
-            <Sidebar />
-            <div className="w-full">
-                {/* detail acara */}
-                <div className="flex grid-cols-2 gap-2">
-                <div className="rounded-xl w-fit h-fit bg-white shadow-md mx-6 mt-4 flex justify-center">
-                    <Image src={acara.banner} width={500} height={500} alt="Picture of the author" className="p-4" />
-                </div>
-                <div className="w-auto h-fit p-6 mx-auto my-4 bg-white rounded-lg shadow-md">
-                <h1 className="text-2xl font-bold">{acara.nama_event}</h1>
-                    <p className="text-gray-600 mt-2 flex"> <MdCalendarMonth className="mr-2"/>{formattedDate}</p>
-                    <p className="text-gray-600 flex"><MdOutlineAccessTime className="mr-2"/>{new Date(acara.waktu_acara).toLocaleTimeString()}</p>
-                    <p className="text-gray-600 flex"><MdOutlineLocationOn className="mr-2" />{acara.lokasi}</p>
-                    <div className="mt-4">
-                        <Link key={acara.id_acara} href={`/tiket/buat_tiket/${acara.id_acara}`} className="block w-48 text-white bg-gradient-to-b from-emerald-300 to-emerald-400 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-white font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-gray-500">Buat Tiket</Link>
+            {/* <Navbar /> */}
+            <div className="flex">
+                {/* <Sidebar /> */}
+                <div className="w-full">
+                    {/* detail acara */}
+                    <div className="flex grid-cols-2 gap-2">
+                        <div className="rounded-xl w-fit h-fit bg-white shadow-md mx-6 mt-4 flex justify-center">
+                            <Image src={acara.banner} width={500} height={500} alt="Picture of the author" className="p-4" />
+                        </div>
+                        <div className="w-auto h-fit p-6 mx-auto my-4 bg-white rounded-lg shadow-md">
+                            <h1 className="text-2xl font-bold">{acara.nama_event}</h1>
+                            <p className="text-gray-600 mt-2 flex"> <MdCalendarMonth className="mr-2" />{formattedDate}</p>
+                            <p className="text-gray-600 flex"><MdOutlineAccessTime className="mr-2" />{new Date(acara.waktu_acara).toLocaleTimeString()}</p>
+                            <p className="text-gray-600 flex"><MdOutlineLocationOn className="mr-2" />{acara.lokasi}</p>
+                            <div className="mt-4">
+                                <Link key={acara.id_acara} href={`/tiket/buat_tiket/${acara.id_acara}`} className="block w-48 text-white bg-gradient-to-b from-emerald-300 to-emerald-400 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-white font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-gray-500">Buat Tiket</Link>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             </div>
-            </div>
-            
-        </div>
-        <div className="">
+            <div className="">
                 {/* Tiket */}
                 <div>
                     {tikets.length === 0 ? (
@@ -164,6 +172,6 @@ function Card({ param }) {
                 </div>
                 {/* Akhir Tiket */}
             </div>
-            </>
+        </>
     )
 }

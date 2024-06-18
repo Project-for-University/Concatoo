@@ -54,9 +54,7 @@ export async function CreateTiket(prevState, request) {
         // console.log('masuk');
         const res = await fetch(`/api/seller/tiket/buat_tiket`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+
             body: JSON.stringify({
                 id_acara: data.id_acara,
                 nama_tiket: data.nama_tiket,
@@ -68,7 +66,9 @@ export async function CreateTiket(prevState, request) {
                 tanggal_akhir_penjualan: new Date(tanggal_akhir), // Tanggal dengan format baru
                 waktu_akhir_penjualan: new Date(tanggal_akhir), // Tanggal dengan format baru
 
-            })
+            }),
+
+
         });
         if (res.redirected) {
             window.location.href = res.url;// Tangani redirect secara manual
