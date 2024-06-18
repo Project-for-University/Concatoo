@@ -1,10 +1,11 @@
 
 import Navbar from "./(customer)/navbar/navbar";
-
+import { cookies } from 'next/headers'
 import CardAcaraCustomer from "./(customer)/component/cardAcara";
 
 export default async function Component() {
-
+    const cookieStore = cookies()
+    const theme = cookieStore.get('theme')
 
     // Fetch acaras
     const acarasResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/customer/read_acara`, {
