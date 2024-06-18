@@ -102,9 +102,9 @@ export default function Edit({ params }) {
 
     return (
         <div>
-            <Navbar />
+            {/* <Navbar /> */}
             <div className="flex justify-center">
-                <Sidebar />
+                {/* <Sidebar /> */}
                 <div className="mx-auto w-full max-w-[50%] h-fit bg-white mt-6 rounded-lg shadow-md">
                     <div className="ml-8 mt-6 text-black font-semibold text-xl">Edit Tiket</div>
                     <form
