@@ -5,16 +5,14 @@
 import { useState } from "react"
 import { useFormState, useFormStatus } from 'react-dom'
 import { CreateTiket } from "../../../../api/seller/tiket/buat_tiket/action/action";
-import Sidebar from "@/app/(seller)/dashboard/component/sidebar";
-import Navbar from "@/app/(seller)/dashboard/component/navbar";
 import { Datepicker } from "flowbite-react";
 import { format } from 'date-fns';
+import { addDays } from 'date-fns';
 
 
 export default function Ticket({ params }) {
     // console.log("id tiket");
     // console.log(params.id);
-    // const [date, setDate] = useState(newDate(setTanggal_mulai_penjualan))
     const [nama_tiket, setNama_tiket] = useState('')
     const [jumlah_tiket, setJumlah_tiket] = useState('')
     const [harga, setHarga] = useState('')
@@ -24,6 +22,8 @@ export default function Ticket({ params }) {
     const [tanggal_akhir_penjualan, setTanggal_akhir_penjualan] = useState('')
     const [waktu_akhir_penjualan, setWaktu_akhir_penjualan] = useState('')
     const today = new Date();
+    const minDateForEndDate = addDays(new Date(tanggal_mulai_penjualan), 1);
+
     today.setHours(0, 0, 0, 0)
 
     const initialState = {
@@ -65,9 +65,7 @@ export default function Ticket({ params }) {
 
     return (
         <div>
-            {/* <Navbar /> */}
             <div className="flex justify-center">
-                {/* <Sidebar /> */}
                 <div className="mx-auto w-full max-w-[50%] h-fit bg-white mt-6 rounded-lg shadow-md">
                     <div className="ml-8 mt-6 text-black font-semibold text-xl">Buat Tiket</div>
                     <form
@@ -191,11 +189,12 @@ export default function Ticket({ params }) {
                                         id="tanggal_akhir_penjualan"
                                         value={tanggal_akhir_penjualan}
                                         onSelectedDateChanged={handleDateChange2}
-                                        minDate={new Date(tanggal_mulai_penjualan)}
+                                        minDate={minDateForEndDate}
                                     />
-                                    {state?.tanggal_akhir_penjualan && <div className="text-red-500">{state.tanggal_akhir_penjualan}</div>}
+                                    {state?.tanggal_akhir_penjualan && (
+                                        <div className="text-red-500">{state.tanggal_akhir_penjualan}</div>
+                                        )}
                                 </div>
-                                `${tanggal_mulai_penjualan.split('-')[0]}${tanggal_mulai_penjualan.split('-')[1]}${tanggal_mulai_penjualan.split('-')[2]}`
 
                                 <div className="mb-5">
                                     <label
