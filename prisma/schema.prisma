@@ -31,7 +31,7 @@ enum Role {
 
 model Acara {
   id_acara      String   @id @default(cuid())
-  nama_event    String   @db.VarChar(50)
+  nama_acara    String   @db.VarChar(50)
   banner        String
   tanggal_acara DateTime @db.Date
   waktu_acara   DateTime @db.Time()

@@ -11,6 +11,7 @@ import { HiDotsHorizontal } from 'react-icons/hi';
 
 export default function CardAcara({ data }) {
     const [acaras, setAcara] = useState(data);
+    console.log(acaras);
     const [Del, setmDel] = useState([]);
 
     async function DeleteAcara(id_acara) {
@@ -68,50 +69,58 @@ export default function CardAcara({ data }) {
                 {Del?.message && <div className="text-emerald-600">{Del.message}</div>}
             </div>
 
+
             {/* buat card */}
-            <div class="container mx-auto mt-10 p-4">
-                <div class="grid grid-cols-* grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-                    {acaras.map(acara => (
-                        <div key={acara.id_acara}>
-                            <Link href={`/detail_acara/${acara.id_acara}`}>
-                                <div className="border-2 border-dashed border-gray-300 rounded-lg dark:border-gray-600 h-96 sm:h-96 md:h-full lg:h-44">
-                                    <Image src={acara.banner} className="w-full md:h-24 object-cover rounded-t-md" width={100} height={100} alt="" />
-                                    <div class="p-5 text-xs">
-                                        <p className="font-bold">{acara.nama_event}</p>
-                                        <p class="mb-3 text-gray-700 dark:text-gray-400">
+            <div class="container mx-auto  ">
+                <div class="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                    {acaras.length === 0 ? (
+                        <div
+                            class="border-2 border-dashed rounded-lg border-gray-300 text-gray-300 dark:border-gray-600 h-44 mb-4 flex items-center justify-center"
+                        >
+                            tidak ada acara
+                        </div>
 
-                                            {new Date(acara.tanggal_acara).toLocaleDateString('id-ID', {
-                                                year: 'numeric',
-                                                month: 'short',
-                                                day: '2-digit',
-                                            })}-
-                                            {new Date(acara.waktu_acara).toLocaleTimeString('id-ID', {
-                                                hour: '2-digit',
-                                                minute: '2-digit',
-                                                hour12: false,
-                                            })}</p>
-                                    </div>
+                    ) : (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                            {data.map(acara => (
+                                <div key={acara.id_acara} class="relative h-full w-full max-w-sm rounded-lg  border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800 md:h-64 ">
+                                    <Link href={`detail_acara2/${acara.id_acara}`}>
+                                        <div class="absolute right-0 flex px-4 pt-4">
+                                            <button id="dropdownButton" data-dropdown-toggle="dropdown" class=" border-2 inline-block rounded-lg p-1.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700" type="button">
+                                                <span class="sr-only">Open dropdown</span>
+                                                <HiDotsHorizontal />
+                                            </button>
+                                            {/* <!-- Dropdown menu --> */}
+                                            <div id="dropdown" class="z-10 hidden w-44 list-none divide-y divide-gray-100 rounded-lg bg-white text-base shadow dark:bg-gray-700">
+                                                <ul class="py-2" aria-labelledby="dropdownButton">
+                                                    <li>
+                                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">Export Data</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">Delete</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col w-full">
+                                            <Image src={acara.banner} width={200} height={200} class="mb-3 h-40 w-full object-cover rounded-t-lg" alt="Author" />
+                                            <div class="px-4">
+                                                <h5 class="mb-1 text-lg font-medium text-gray-900 dark:text-white">{acara.nama_event}</h5>
+                                                <span class="text-sm text-gray-500 dark:text-gray-400">{new Date(acara.tanggal_acara).toLocaleDateString()} - {new Date(acara.waktu_acara).toLocaleTimeString()}                            </span>
+                                            </div>
+                                        </div>
+                                    </Link>
                                 </div>
-                            </Link>
+                            ))}
                         </div>
-                    ))}
-
-                    {/* <div class="border-2 border-dashed border-gray-300 rounded-lg dark:border-gray-600 h-96 sm:h-96 md:h-full lg:h-44">
-                        <Image width={100} height={100} class="w-full rounded-t-lg object-cover md:h-24" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="" />
-                        <div class="p-5 text-xs">
-                            <p className="font-bold">Nama Acara</p>
-                            <p class="mb-3 text-gray-700 dark:text-gray-400">Tanggal Acara</p>
-                        </div>
-                    </div> */}
-
-
+                    )}
                 </div >
             </div >
             {/* akhir acara */}
-            <div div
-                class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-96 mb-4" >
-                tidak ada acara
-            </div >
+
 
 
 
