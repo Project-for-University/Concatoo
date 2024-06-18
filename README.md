@@ -81,3 +81,14 @@ card acara tidak akan di perbaharui karena method GET secara default itu akan di
 
 https://www.youtube.com/watch?v=5_cJFYZSiDM&list=PLC3y8-rFHvwjOKd6gdf4QtV1uYNiQnruI&index=44
 https://www.youtube.com/watch?v=-7Rrjy-lfcE&list=PLC3y8-rFHvwjOKd6gdf4QtV1uYNiQnruI&index=53&pp=iAQB
+
+# server component
+
+yaitu export default async function...
+
+jadi yangada async nya nanti
+returnnya tampilan card acara
+
+export default function cardAcara
+
+nah dengan cara itu kita bisa mennggunakan cache atau dynamic rendering di server
