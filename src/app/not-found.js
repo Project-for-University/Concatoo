@@ -3,10 +3,11 @@ import Link from "next/link";
 export default function Pages() {
     return (
         <div className="text-center pt-52">
-            <h1 className="text-8xl font-extrabold gradient-text mb-8">Oops!</h1>
-            <p className="text-2xl font-semibold mb-4">404 - PAGE NOT FOUND</p>
-            <p className="text-gray-600 mb-8">The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
-            <Link href={'/'} className="inline-block bg-gradient-to-t from-amber-500 to-orange-300 text-white px-6 py-3 rounded-full text-lg hover:bg-green-500 transition-colors">Go to Homepage</Link>
+
+            <p className="text-4xl font-extrabold bg-gradient-to-r from-emerald-600 via-sky-400 to-emerald-400 inline-block text-transparent bg-clip-text">404 - Halaman Tidak Ada</p>
+            <p className="text-gray-600 mb-40"> Halaman kamu ingin mungkin ngga ada, sudah di rubah, atau memang ngga ada nihh...</p>
+            <Link href={'/'} className="  text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium px-6 py-3 rounded-full text-center me-2 mb-2 ">Go to Homepage</Link>
+
         </div>
     );
 }
