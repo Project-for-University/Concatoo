@@ -3,12 +3,14 @@ import { Suspense } from "react";
 import Loading from "../loading";
 import Image from "next/image";
 import { RiMenu2Line } from "react-icons/ri";
-import { TiHome } from "react-icons/ti";
-import Link from "next/link";
 import { useSession } from "next-auth/react"
+import { MdAddCircleOutline, MdCorporateFare } from "react-icons/md";
+import Link from "next/link";
+import { usePathname } from 'next/navigation'
 
 export default function RootLayout({ children }) {
     const { data: session, status } = useSession()
+    const pathname = usePathname()
 
     return (
         <Suspense fallback={<Loading />}>
@@ -108,15 +110,23 @@ export default function RootLayout({ children }) {
                         {/* <ul class="space-y-2 pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700"> */}
                         <ul class="space-y-2">
                             <li>
-                                <a
-                                    href="#"
-                                    class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                                <Link
+                                    href={`/dashboard`}
+                                    class={`flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${pathname === '/dashboard' ? 'text-emerald-600 bg-emerald-100' : ''}`}
                                 >
-                                    <TiHome />
-                                    <span class="ml-3">Overview</span>
-                                </a>
+                                    <MdCorporateFare className="mr-4" size={24} />
+                                    <span class="ml-3">Dashboard</span>
+                                </Link>
                             </li>
-
+                            <li>
+                                <Link
+                                    href={`/acara2`}
+                                    class={`flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${pathname === '/acara2' ? 'text-emerald-600 bg-emerald-100' : ''}`}
+                                >
+                                    <MdAddCircleOutline className="mr-4" size={24} />
+                                    <span class="ml-3">Acara</span>
+                                </Link>
+                            </li>
                         </ul>
                     </div>
 
@@ -131,10 +141,10 @@ export default function RootLayout({ children }) {
                     <footer class="bg-white rounded-lg shadow dark:bg-gray-900 sticky">
                         <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
                             <div class="sm:flex sm:items-center sm:justify-between">
-                                <a href="https://flowbite.com/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-                                    <Image width={100} height={100} src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
-                                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
-                                </a>
+                                <Link href="/dashboard" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                                    <Image width={80} height={80} src={'/asset/logo.png'} alt="Logo" />
+                                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Concert</span>
+                                </Link>
                                 <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
                                     <li>
                                         <a href="#" class="hover:underline me-4 md:me-6">About</a>
@@ -151,7 +161,7 @@ export default function RootLayout({ children }) {
                                 </ul>
                             </div>
                             <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-                            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">Flowbite™</a>. All Rights Reserved.</span>
+                            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024. All Rights Reserved.</span>
                         </div>
                     </footer>
                 </main>
