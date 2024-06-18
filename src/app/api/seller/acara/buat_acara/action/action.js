@@ -54,7 +54,7 @@ export async function CreateAcara(prevState, request) {
     formData.set('no_ponsel', data.no_ponsel);
     formData.set('deskripsi_acara', data.deskripsi_acara);
     formData.set('syarat_ketentuan', data.syarat_ketentuan);
-    formData.set('nama_event', data.nama_event);
+    formData.set('nama_acara', data.nama_acara);
     formData.set('tanggal_acara', new Date(tanggalA).toISOString());
     formData.set('waktu_acara', new Date(tanggalA).toISOString());
     formData.set('lokasi', data.lokasi);

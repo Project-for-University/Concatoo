@@ -9,13 +9,14 @@ import { URL } from 'url';
 
 export async function POST(req, { params }) {
     const formData = await req.formData();
+    console.log(formData);
     const banner = formData.get('banner');
     const namaNarahubung = formData.get('nama_narahubung');
     const email = formData.get('email');
     const noPonsel = formData.get('no_ponsel');
     const deskripsiAcara = formData.get('deskripsi_acara');
     const syaratKetentuan = formData.get('syarat_ketentuan');
-    const namaEvent = formData.get('nama_acara');
+    const namaAcara = formData.get('nama_acara');
     const tanggalAcara = formData.get('tanggal_acara');
     const waktuAcara = formData.get('waktu_acara');
     const lokasi = formData.get('lokasi');
@@ -66,7 +67,7 @@ export async function POST(req, { params }) {
         const newAcara = await prisma.acara.create({
             data: {
                 banner: imagePath,
-                nama_acara: namaEvent,
+                nama_acara: namaAcara,
                 tanggal_acara: tanggalAcara,
                 waktu_acara: waktuAcara,
                 lokasi: lokasi,
