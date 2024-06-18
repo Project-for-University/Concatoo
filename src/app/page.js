@@ -55,9 +55,11 @@ function CardAcara() {
     return (
         <>
             {acaras.length === 0 ? (
-                <h1>tidak ada data</h1>
+                <div className="w-[500px] h-[500px] bg-white rounded-2xl flex justify-center align-middle items-center mt-2">
+                <h1 className="font- semibold text-2xl">tidak ada data</h1>
+                </div>
             ) : (
-                <div className="grid grid-cols-4 gap-6 mx-6 my-8">
+                <div class="grid grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-4 p-8">
                     {acaras.map(acara => {
                         const tanggalAcara = new Date(acara.tanggal_acara);
                         const formattedDate = tanggalAcara.toLocaleDateString('id-ID', {
@@ -66,10 +68,10 @@ function CardAcara() {
                             year: 'numeric'
                         });
                         return (
-                            <div className="bg-white rounded-md overflow-hidden shadow-md" key={acara.id_acara}>
-                                <Image src={acara.banner} alt={acara.banner} className="object-cover w-[350px] h-[200px] rounded" width={500} height={500} />
+                            <div className="bg-white shadow-md rounded-md overflow-hidden" key={acara.id_acara}>
+                                <Image src={acara.banner} alt={acara.banner} className="w-[full] h-[200px] rounded object-cover" width={500} height={500} />
                                 <div className="p-4">
-                                    <h3 className="">{acara.nama_event}</h3>
+                                    <h3 className="font-bold text-xl">{acara.nama_event}</h3>
                                     <p className="text-gray-600">{formattedDate}</p>
                                     <p className="text-sm text-emerald-600 font-bold">{tiketTermurah?.harga}</p>
                                 </div>
