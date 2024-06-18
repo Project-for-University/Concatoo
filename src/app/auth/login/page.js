@@ -46,12 +46,14 @@ export default function Login() {
             <div className="w-full bg-white rounded-xl dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                 <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <div>
-                        <div className="flex justify-center item-center">
-                        <Image src={'/asset/logo.png'} alt="logo.png" width={60} height={60}></Image>
-                        </div>
+
+                        <Link href={'/'} className="flex justify-center item-center">
+                            <Image src={'/asset/logo.png'} alt="logo.png" width={60} height={60}></Image>
+                        </Link>
+
                         <div className="my-6">
                             <p className="font-semibold text-center font text-2xl">Selamat Datang</p>
-                            <p className="text-center text-sm mt-2">Belum Punya Akun? Yuk <Link href={`/auth/register`} className="text-emerald-600">Daftar</Link></p>
+                            <p className="text-center text-sm mt-2">Belum Punya Akun? Yuk <Link href={`/auth/register`} className="text-emerald-600 font-semibold">Daftar</Link></p>
                         </div>
                     </div>
                     <div className="flex border-2 bg-emerald-100 border-emerald-600 rounded-md h-8 justify-center items-center">
@@ -83,6 +85,6 @@ export default function Login() {
 function LoginButton() {
     const { pending } = useFormStatus()
     return (
-        <button type="submit" className="w-full text-white drop-lg bg-gradient-to-b hover:from-emerald-400 from-emerald-500 to-emerald-600 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800">{pending ? "loading..." : "Masuk"}</button>
+        <button type="submit" className="w-full text-white drop-lg  bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 ">{pending ? "loading..." : "Masuk"}</button>
     )
 }

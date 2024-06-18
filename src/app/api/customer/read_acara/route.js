@@ -9,7 +9,7 @@ export async function GET(request, { params }) {
         const acaras = await prisma.acara.findMany({
             select: {
                 id_acara: true,
-                nama_event: true,
+                nama_acara: true,
                 banner: true,
                 tanggal_acara: true,
                 lokasi: true,

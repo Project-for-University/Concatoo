@@ -3,12 +3,14 @@ import { Suspense } from "react";
 import Loading from "../loading";
 import Image from "next/image";
 import { RiMenu2Line } from "react-icons/ri";
-import { useSession } from "next-auth/react"
+import { signOut, useSession } from "next-auth/react"
 import { MdAddCircleOutline, MdCorporateFare } from "react-icons/md";
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
 
+
 export default function RootLayout({ children }) {
+
     const { data: session, status } = useSession()
     const pathname = usePathname()
 
@@ -28,56 +30,34 @@ export default function RootLayout({ children }) {
                                 <RiMenu2Line />
                                 <span className="sr-only">Toggle sidebar</span>
                             </button>
-                            <a href="https://flowbite.com" className="flex items-center justify-between mr-4">
-                                <Image src={'/asset/logo.png'} alt="logo.png" width={30} height={30}></Image>
+                            <Link href={'/'} className="flex items-center justify-between mr-4">
+                                <Image src={'/asset/logo.png'} alt="logo.png" width={40} height={40}></Image>
                                 <span className="self-center text-2xl font-semibold whitespace-nowrap text-emerald-600">concert</span>
-                            </a>
+                            </Link>
 
                         </div>
                         <div className="flex items-center lg:order-2">
                             {status === 'authenticated' ? (
                                 <>
-                                    <button
-                                        type="button"
-                                        className="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                                        id="user-menu-button"
-                                        aria-expanded="false"
-                                        data-dropdown-toggle="dropdownuser_profile">
-                                        <span className="sr-only">Open user menu</span>
-                                        <Image width={500} height={500}
-                                            className="w-8 h-8 rounded-full"
-                                            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png"
-                                            alt="user photo"
-                                        />
+                                    <button id="userDropdownButton1" data-dropdown-toggle="userDropdown1" type="button" class="inline-flex items-center justify-center rounded-lg p-2 text-sm font-medium leading-none text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                        <svg class="me-1 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-width="2" d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                        </svg>
+                                        Account
+                                        <svg class="ms-1 h-4 w-4 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
+                                        </svg>
                                     </button>
-                                    {/* <!-- Dropdown menu --> */}
-                                    <div className="hidden z-50 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 "
-                                        id="dropdownuser_profile">
-                                        <div className="py-3 px-4">
-                                            <span className="block text-sm font-semibold text-gray-900 dark:text-white">Neil Sims</span>
-                                            <span className="block text-sm text-gray-900 truncate dark:text-white">name@flowbite.com</span>
-                                        </div>
-                                        <ul className="py-1 text-gray-700 dark:text-gray-300"
-                                            aria-labelledby="dropdown">
-                                            <li>
-                                                <Link
-                                                    href="#"
-                                                    className="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
-                                                >
-                                                    My profile
-                                                </Link>
-                                            </li>
-                                        </ul>
-                                        <ul className="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
-                                            <li>
-                                                <button
-                                                    onClick={() => signOut()}
-                                                    className="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                                    Keluar
-                                                </button>
-                                            </li>
+
+                                    <div id="userDropdown1" class="z-10 hidden w-56 divide-y divide-gray-100 overflow-hidden overflow-y-auto rounded-lg bg-white antialiased shadow dark:divide-gray-600 dark:bg-gray-700">
+                                        <ul class="p-2 text-start text-sm font-medium text-gray-900 dark:text-white">
+                                            <li><a href="#" title="" class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"> My Account </a></li>
+
                                         </ul>
 
+                                        <div class="p-2 text-sm font-medium text-gray-900 dark:text-white">
+                                            <button className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600" onClick={() => signOut()}>Keluar</button>
+                                        </div>
                                     </div>
                                 </>
                             ) : (

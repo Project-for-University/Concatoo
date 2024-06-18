@@ -73,12 +73,6 @@ const authOptions = NextAuth({
             }
             return session;
         },
-        async signOut({ req, res }) {
-            // console.log('Sign out callback called');
-            // Redirect to the `/` page after sign out
-            res.redirect('/');
-            return;
-        },
     },
     pages: {
         signIn: '/auth/login'
