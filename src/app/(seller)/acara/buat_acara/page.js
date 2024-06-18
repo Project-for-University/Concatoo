@@ -93,7 +93,7 @@ export default function Acara() {
                                     </label>
                                     <input
                                         type="text"
-                                        name="nama_event"
+                                        name="nama_acara"
                                         id="nama_event"
                                         placeholder="Nama acara"
                                         value={nama_event}

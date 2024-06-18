@@ -12,7 +12,7 @@ const imageSchema = fileSchema.refine(
 
 const validasi = z.object({
     banner: imageSchema.refine(file => file.size > 0, "Banner harus ada"),
-    nama_event: z.string().min(1, { message: 'tidak boleh kosong' }),
+    nama_acara: z.string().min(1, { message: 'tidak boleh kosong' }),
     tanggal_acara: z.string().min(1, { message: 'tidak boleh kosong' }),
     waktu_acara: z.string().min(1, { message: 'tidak boleh kosong' }),
     lokasi: z.string().min(1, { message: 'tidak boleh kosong' }),

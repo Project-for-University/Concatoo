@@ -15,7 +15,7 @@ export async function POST(req, { params }) {
     const noPonsel = formData.get('no_ponsel');
     const deskripsiAcara = formData.get('deskripsi_acara');
     const syaratKetentuan = formData.get('syarat_ketentuan');
-    const namaEvent = formData.get('nama_event');
+    const namaEvent = formData.get('nama_acara');
     const tanggalAcara = formData.get('tanggal_acara');
     const waktuAcara = formData.get('waktu_acara');
     const lokasi = formData.get('lokasi');
@@ -66,7 +66,7 @@ export async function POST(req, { params }) {
         const newAcara = await prisma.acara.create({
             data: {
                 banner: imagePath,
-                nama_event: namaEvent,
+                nama_acara: namaEvent,
                 tanggal_acara: tanggalAcara,
                 waktu_acara: waktuAcara,
                 lokasi: lokasi,
