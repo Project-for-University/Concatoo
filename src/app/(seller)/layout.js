@@ -42,8 +42,7 @@ export default function RootLayout({ children }) {
                                         className="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                                         id="user-menu-button"
                                         aria-expanded="false"
-                                        data-dropdown-toggle="dropdownuser_profile"
-                                    >
+                                        data-dropdown-toggle="dropdownuser_profile">
                                         <span className="sr-only">Open user menu</span>
                                         <Image width={500} height={500}
                                             className="w-8 h-8 rounded-full"
@@ -52,23 +51,14 @@ export default function RootLayout({ children }) {
                                         />
                                     </button>
                                     {/* <!-- Dropdown menu --> */}
-                                    <div
-                                        className="hidden z-50 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 "
+                                    <div className="hidden z-50 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 "
                                         id="dropdownuser_profile">
                                         <div className="py-3 px-4">
-                                            <span
-                                                className="block text-sm font-semibold text-gray-900 dark:text-white"
-                                            >Neil Sims</span
-                                            >
-                                            <span
-                                                className="block text-sm text-gray-900 truncate dark:text-white"
-                                            >name@flowbite.com</span
-                                            >
+                                            <span className="block text-sm font-semibold text-gray-900 dark:text-white">Neil Sims</span>
+                                            <span className="block text-sm text-gray-900 truncate dark:text-white">name@flowbite.com</span>
                                         </div>
-                                        <ul
-                                            className="py-1 text-gray-700 dark:text-gray-300"
-                                            aria-labelledby="dropdown"
-                                        >
+                                        <ul className="py-1 text-gray-700 dark:text-gray-300"
+                                            aria-labelledby="dropdown">
                                             <li>
                                                 <Link
                                                     href="#"
@@ -87,6 +77,7 @@ export default function RootLayout({ children }) {
                                                 </button>
                                             </li>
                                         </ul>
+
                                     </div>
                                 </>
                             ) : (
