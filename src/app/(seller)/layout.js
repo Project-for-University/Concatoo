@@ -91,8 +91,8 @@ export default function RootLayout({ children }) {
                             </li>
                             <li>
                                 <Link
-                                    href={`/acara2`}
-                                    class={`flex items-center p-2 text-base font-medium text-gray-900 rounded-lg hover:bg-gray-100 group ${pathname === '/acara2' ? 'text-emerald-600 bg-emerald-100' : ''}`}
+                                    href={`/acara`}
+                                    class={`flex items-center p-2 text-base font-medium text-gray-900 rounded-lg hover:bg-gray-100 group ${pathname === '/acara' ? 'text-emerald-600 bg-emerald-100' : ''}`}
                                 >
                                     <MdAddCircleOutline className="mr-4" size={24} />
                                     <span class="ml-3">Acara</span>
