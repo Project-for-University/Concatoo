@@ -97,7 +97,7 @@ function Card({ param }) {
                 <div class="grid lg:grid-cols-3 md:grid-cols-1 gap-4  border-2 border-dashed border-white w-full">
 
                     <div class="flex flex-col bg-gray-200 rounded-lg p-4  lg:col-span-2 md:col-span-1">
-                        <Image src={acaras.banner} className="w-full h-80 object-cover rounded-lg" alt="banner" width={500} height={500} />
+                        <Image src={acaras.banner} className="w-full h-80 object-cover rounded-lg" alt="banner" width={800} height={800} />
                         <div class="flex flex-col items-start mt-4">
                             <h4 class="text-xl font-semibold">Deskripsi Acara</h4>
                             <p class="text-sm">{acaras.deskripsi?.deskripsi_acara}</p>
@@ -140,35 +140,30 @@ function Card({ param }) {
                             </div>
                         </>) : (<>
                             {tikets.map((tiket) => (
-                                <div key={tiket.id_tiket} class="flex flex-col bg-gray-200 rounded-lg p-4  ">
-                                    <div class="flex flex-col items-start">
-                                        <h4 class="text-xl font-semibold">{tiket.nama_tiket}</h4>
-                                        <p class="text-sm">{tiket.jumlah_tiket}</p>
-                                        <p class="text-sm">{tiket.harga}</p>
-                                        <p class="text-sm">{tiket.deskripsi_tiket}</p>
-                                        <p class="text-sm">{tiket.tanggal_mulai_penjualan}</p>
-                                        <p class="text-sm">{tiket.waktu_akhir_penjualan}</p>
-                                        <p class="text-sm">{tiket.waktu_penjualan}</p>
-                                        <p class="text-sm">{tiket.tanggal_akhir_penjualan}</p>
-                                    </div>
-
-                                    <div className="flex flex-col bg-gray-200 rounded-lg p-4 relative">
-                                        <button onClick={toggleDropdown} className="absolute top-0 right-0 mt-2 mr-2">
-                                            <HiOutlineDotsVertical />
-                                        </button>
-                                        {isOpen && (
-                                            <div className="absolute top-0 right-0 mt-8 mr-2 bg-white text-black rounded shadow-lg">
-                                                <button className="block px-4 py-2 text-sm" onClick={() => console.log('Edit clicked')}>Edit</button>
-                                                <button className="block px-4 py-2 text-sm" onClick={() => console.log('Delete clicked')}>Delete</button>
-                                            </div>
-                                        )}
-                                        <div className="flex flex-col items-start">
-                                            <h4 className="text-xl font-semibold">Nama Tiket</h4>
-                                            <p className="text-sm">Tidak ada tiket</p>
+                                <div key={tiket.id_tiket} className="flex flex-col bg-gray-200 rounded-lg p-4 relative">
+                                    <button onClick={toggleDropdown} className="absolute top-0 right-0 mt-3 mr-3">
+                                        <i className="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    {isOpen && (
+                                        <div className="absolute top-0 right-0 mt-8 mr-2 bg-white text-black rounded shadow-lg">
+                                            <button className="block px-4 py-2 text-sm" onClick={() => console.log('Edit clicked')}>Edit</button>
+                                            <button className="block px-4 py-2 text-sm" onClick={() => console.log('Delete clicked')}>Delete</button>
+                                        </div>
+                                    )}
+                                    <div className="flex flex-col items-start">
+                                        <h4 className="text-xl font-semibold">{tiket.nama_tiket}</h4>
+                                        <p className="text-sm">{tiket.jumlah_tiket}</p>
+                                        <p className="text-sm">{tiket.harga}</p>
+                                        <p className="text-sm">{tiket.deskripsi_tiket}</p>
+                                        <div className="flex justify-between w-full">
+                                            <p className="text-sm">{tiket.tanggal_mulai_penjualan}</p>
+                                            <p className="text-sm">{tiket.tanggal_akhir_penjualan}</p>
+                                        </div>
+                                        <div className="flex justify-between w-full">
+                                            <p className="text-sm">{tiket.waktu_penjualan}</p>
+                                            <p className="text-sm">{tiket.waktu_akhir_penjualan}</p>
                                         </div>
                                     </div>
-
-
                                 </div>
 
                             ))}
