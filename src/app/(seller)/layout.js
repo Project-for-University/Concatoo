@@ -105,7 +105,7 @@ export default function RootLayout({ children }) {
 
 
 
-                <main class="h-screen p-4 pt-20 md:ml-64 border-2 border-dashed border-gray-300">
+                <main class="h-full p-4 pt-20 md:ml-64 border-2 border-dashed border-gray-300">
                     {children}
 
 
