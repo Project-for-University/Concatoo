@@ -2,11 +2,14 @@
 import { signIn, signOut, useSession } from "next-auth/react"
 import Image from "next/image";
 import Link from "next/link";
-
+import { IoPersonOutline } from "react-icons/io5";
+import { useState } from 'react';
 function Navbar() {
+    const [isOpenProfile, setIsOpen] = useState(false);
     const { data: session, status } = useSession()
-    // console.log(session);
-    // console.log(status);
+
+    console.log(session);
+    console.log(status);
 
     return (
         <nav class=" px-4 bg-white antialiased dark:bg-gray-800 border-b-2">
@@ -42,29 +45,22 @@ function Navbar() {
                     <div class="flex items-center lg:space-x-2">
                         {status === 'authenticated' ? (
                             <>
-                                <button id="userDropdownButton1" data-dropdown-toggle="userDropdown1" type="button" class="inline-flex items-center justify-center rounded-lg p-2 text-sm font-medium leading-none text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                                    <svg class="me-1 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-width="2" d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                                    </svg>
-                                    Account
-                                    <svg class="ms-1 h-4 w-4 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
-                                    </svg>
-                                </button>
-
-                                <div id="userDropdown1" class="z-10 hidden w-56 divide-y divide-gray-100 overflow-hidden overflow-y-auto rounded-lg bg-white antialiased shadow dark:divide-gray-600 dark:bg-gray-700">
-                                    <ul class="p-2 text-start text-sm font-medium text-gray-900 dark:text-white">
-                                        <li><a href="#" title="" class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"> My Account </a></li>
-                                        <li><a href="#" title="" class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"> My Orders </a></li>
-                                        <li><a href="#" title="" class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"> Settings </a></li>
-                                        <li><a href="#" title="" class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"> Favourites </a></li>
-                                        <li><a href="#" title="" class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"> Delivery Addresses </a></li>
-                                        <li><a href="#" title="" class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"> Billing Data </a></li>
-                                    </ul>
-
-                                    <div class="p-2 text-sm font-medium text-gray-900 dark:text-white">
-                                        <button className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600" onClick={() => signOut()}>Keluar</button>
+                                <div className="relative inline-block text-left">
+                                    <div>
+                                        <button type="button" className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" id="options-menu" aria-haspopup="true" aria-expanded="true" onClick={() => setIsOpen(!isOpenProfile)}>
+                                            <p className="">{session.user.name}</p>
+                                            <IoPersonOutline />
+                                        </button>
                                     </div>
+
+                                    {isOpenProfile && (
+                                        <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                                            <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Profile</a>
+                                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Sign Out</a>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                             </>
                         ) : (
@@ -88,7 +84,7 @@ function Navbar() {
                 </div>
 
                 <div id="ecommerce-navbar-menu-1" class="mt-4 hidden rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 dark:border-gray-600 dark:bg-gray-700">
-                    <ul class="space-y-3 text-sm font-medium text-gray-900 dark:text-white dark:text-white">
+                    <ul class="space-y-3 text-sm font-medium text-gray-900 dark:text-white ">
                         <li>
                             <a href="#" class="hover:text-primary-700 dark:hover:text-primary-500">Home</a>
                         </li>

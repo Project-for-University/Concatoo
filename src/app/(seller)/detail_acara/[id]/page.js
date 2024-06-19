@@ -3,7 +3,6 @@
 import Navbar from '@/app/(seller)/dashboard/component/navbar';
 import Sidebar from '@/app/(seller)/dashboard/component/sidebar';
 import { HiOutlineDotsVertical } from "react-icons/hi";
-import 'flowbite';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -33,8 +32,6 @@ function Card({ param }) {
             // console.log(param.id);
             const response = await fetch(`/api/seller/detail_acara/read_acara/${param.id}`, {
                 method: 'GET',
-
-
             });
             const data = await response.json()
             // console.log(response);
@@ -49,8 +46,6 @@ function Card({ param }) {
             // console.log(param.id);
             const response = await fetch(`/api/seller/detail_acara/read_tiket/${param.id}`, {
                 method: 'GET',
-
-
             });
             const data = await response.json()
             // console.log(data);
@@ -70,8 +65,6 @@ function Card({ param }) {
         // console.log(id);
         const res = await fetch(`/api/seller/tiket/delete_tiket/${id}`, {
             method: 'DELETE',
-
-
         })
         const data = await res.json()
 
@@ -79,25 +72,22 @@ function Card({ param }) {
 
             const response = await fetch(`/api/seller/detail_acara/read_tiket/${param.id}`, {
                 method: 'GET',
-
-
             });
             const data = await response.json()
 
             if (response) {
                 settikets(data)
-
             }
         }
-
-
     }
+
     const tanggalAcara = new Date(acara.tanggal_acara);
     const formattedDate = tanggalAcara.toLocaleDateString('id-ID', {
         day: 'numeric',
         month: 'long',
         year: 'numeric'
     });
+
     return (
         <>
             <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -106,8 +96,8 @@ function Card({ param }) {
 
                     <div className="rounded-lg md:relative lg:relative border border-gray-200 bg-white p-4 shadow-sm md:p-6 dark:border-gray-700 dark:bg-gray-800">
                         <Image height={100} width={100} className="hidden h-full w-full dark:block" src="" alt="imac image" />
-                        <h1>Deskripsi</h1>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quo nulla voluptatibus qui doloremque distinctio modi saepe placeat, dolorum odit.</p>
+                        <h1 className="text-2xl font-bold">Deskripsi</h1>
+                        <p className="text-gray-700 dark:text-gray-300">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quo nulla voluptatibus qui doloremque distinctio modi saepe placeat, dolorum odit.</p>
                     </div>
 
                 </div>

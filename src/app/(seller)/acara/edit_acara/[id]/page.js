@@ -88,7 +88,7 @@ export default function Edit({ params }) {
     return (
         <div>
             {/* <Navbar /> */}
-            <div className="flex  justify-center">
+            <div className="flex justify-center">
                 {/* <Sidebar /> */}
                 <div className="mx-auto w-full max-w-[50%] h-fit bg-white mt-8 rounded-xl shadow-md">
                     <form
@@ -296,9 +296,9 @@ export default function Edit({ params }) {
                         </div>
                         <SubmitButton />
                     </form>
-                </div >
-            </div >
-        </div >
+                </div>
+            </div>
+        </div>
     )
 }
 

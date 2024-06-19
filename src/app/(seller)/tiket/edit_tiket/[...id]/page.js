@@ -107,20 +107,13 @@ export default function Edit({ params }) {
                 {/* <Sidebar /> */}
                 <div className="mx-auto w-full max-w-[50%] h-fit bg-white mt-6 rounded-lg shadow-md">
                     <div className="ml-8 mt-6 text-black font-semibold text-xl">Edit Tiket</div>
-                    <form
-                        className="py-3 px-9"
-                        action={formAction}
-                    // method="POST"
-                    >
+                    <form className="py-3 px-9" action={formAction}>
                         {/* id acara */}
                         <input type="hidden" name="id_acara" value={params.id[1]} />
                         {/* ide tiket */}
                         <input type="hidden" name="id_tiket" value={params.id[0]} />
                         <div className="">
-                            <label
-                                htmlFor="nama_tiket"
-                                className="mb-3 block text-base font-medium text-gray-600"
-                            >
+                            <label htmlFor="nama_tiket" className="mb-3 block text-base font-medium text-gray-600">
                                 Nama Tiket
                             </label>
                             <input
@@ -129,7 +122,9 @@ export default function Edit({ params }) {
                                 id="nama_tiket"
                                 placeholder="Nama Tiket"
                                 value={nama_tiket}
-                                onChange={(e) => { setNama_tiket(e.target.value) }}
+                                onChange={(e) => {
+                                    setNama_tiket(e.target.value);
+                                }}
                                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                             />
                             {state?.nama_tiket && <div className="text-red-500">{state.nama_tiket}</div>}
@@ -138,10 +133,7 @@ export default function Edit({ params }) {
                         <div className="flex flex-wrap -mx-3 mb-4 pt-4">
                             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                 <div className="">
-                                    <label
-                                        htmlFor="harga"
-                                        className="mb-3 block text-base font-medium text-gray-600"
-                                    >
+                                    <label htmlFor="harga" className="mb-3 block text-base font-medium text-gray-600">
                                         Harga
                                     </label>
                                     <input
@@ -158,10 +150,7 @@ export default function Edit({ params }) {
                             </div>
                             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                 <div className="">
-                                    <label
-                                        htmlFor="jumlah_tiket"
-                                        className="mb-3 block text-base font-medium text-gray-600"
-                                    >
+                                    <label htmlFor="jumlah_tiket" className="mb-3 block text-base font-medium text-gray-600">
                                         Jumlah tiket
                                     </label>
                                     <input
@@ -193,17 +182,18 @@ export default function Edit({ params }) {
                                         name="tanggal_mulai_penjualan"
                                         id="tanggal_mulai_penjualan"
                                         value={tanggal_mulai_penjualan}
-                                        onChange={(e) => { setTanggal_mulai_penjualan(e.target.value) }}
+                                        onChange={(e) => {
+                                            setTanggal_mulai_penjualan(e.target.value);
+                                        }}
                                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                     />
-                                    {state?.tanggal_mulai_penjualan && <div className="text-red-500">{state.tanggal_mulai_penjualan}</div>}
+                                    {state?.tanggal_mulai_penjualan && (
+                                        <div className="text-red-500">{state.tanggal_mulai_penjualan}</div>
+                                    )}
                                 </div>
 
                                 <div className="mb-5">
-                                    <label
-                                        htmlFor="tanggal_akhir_penjualan"
-                                        className="mb-3 block text-base font-medium text-gray-600"
-                                    >
+                                    <label htmlFor="tanggal_akhir_penjualan" className="mb-3 block text-base font-medium text-gray-600">
                                         Tanggal Akhir Penjualan
                                     </label>
                                     <input
@@ -211,18 +201,19 @@ export default function Edit({ params }) {
                                         name="tanggal_akhir_penjualan"
                                         id="tanggal_akhir_penjualan"
                                         value={tanggal_akhir_penjualan}
-                                        onChange={(e) => { setTanggal_akhir_penjualan(e.target.value) }}
+                                        onChange={(e) => {
+                                            setTanggal_akhir_penjualan(e.target.value);
+                                        }}
                                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                     />
-                                    {state?.tanggal_akhir_penjualan && <div className="text-red-500">{state.tanggal_akhir_penjualan}</div>}
+                                    {state?.tanggal_akhir_penjualan && (
+                                        <div className="text-red-500">{state.tanggal_akhir_penjualan}</div>
+                                    )}
                                 </div>
                             </div>
                             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                 <div className="mb-5">
-                                    <label
-                                        htmlFor="waktu_penjualan"
-                                        className="mb-3 block text-base font-medium text-gray-600"
-                                    >
+                                    <label htmlFor="waktu_penjualan" className="mb-3 block text-base font-medium text-gray-600">
                                         Waktu Penjualan
                                     </label>
                                     <input
@@ -230,17 +221,16 @@ export default function Edit({ params }) {
                                         name="waktu_penjualan"
                                         id="waktu_penjualan"
                                         value={waktu_penjualan}
-                                        onChange={(e) => { setWaktu_penjualan(e.target.value) }}
+                                        onChange={(e) => {
+                                            setWaktu_penjualan(e.target.value);
+                                        }}
                                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                     />
                                     {state?.waktu_penjualan && <div className="text-red-500">{state.waktu_penjualan}</div>}
                                 </div>
 
                                 <div className="mb-5">
-                                    <label
-                                        htmlFor="waktu_akhir_penjualan"
-                                        className="mb-3 block text-base font-medium text-gray-600"
-                                    >
+                                    <label htmlFor="waktu_akhir_penjualan" className="mb-3 block text-base font-medium text-gray-600">
                                         Waktu Akhir Penjualan
                                     </label>
                                     <input
@@ -249,19 +239,20 @@ export default function Edit({ params }) {
                                         id="waktu_akhir_penjualan"
                                         placeholder="Deskripsi acara"
                                         value={waktu_akhir_penjualan}
-                                        onChange={(e) => { setWaktu_akhir_penjualan(e.target.value) }}
+                                        onChange={(e) => {
+                                            setWaktu_akhir_penjualan(e.target.value);
+                                        }}
                                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                     />
-                                    {state?.waktu_akhir_penjualan && <div className="text-red-500">{state.waktu_akhir_penjualan}</div>}
+                                    {state?.waktu_akhir_penjualan && (
+                                        <div className="text-red-500">{state.waktu_akhir_penjualan}</div>
+                                    )}
                                 </div>
                             </div>
                         </div>
 
                         <div className="mb-5">
-                            <label
-                                htmlFor="deskripsi_tiket"
-                                className="mb-3 block text-base font-medium text-gray-600"
-                            >
+                            <label htmlFor="deskripsi_tiket" className="mb-3 block text-base font-medium text-gray-600">
                                 Deskripsi Acara
                             </label>
                             <textarea
@@ -269,18 +260,19 @@ export default function Edit({ params }) {
                                 name="deskripsi_tiket"
                                 id="deskripsi_tiket"
                                 value={deskripsi_tiket}
-                                onChange={(e) => { setDeskripsi_tiket(e.target.value) }}
+                                onChange={(e) => {
+                                    setDeskripsi_tiket(e.target.value);
+                                }}
                                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                             />
                             {state?.deskripsi_tiket && <div className="text-red-500">{state.deskripsi_tiket}</div>}
                         </div>
                         <SubmitButton />
                     </form>
-                </div >
-            </div >
+                </div>
+            </div>
         </div>
-
-    )
+    );
 }
 
 function SubmitButton() {
