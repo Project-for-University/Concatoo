@@ -12,7 +12,7 @@ function Navbar() {
     console.log(status);
 
     return (
-        <nav class=" px-4 bg-white antialiased dark:bg-gray-800 border-b-2">
+        <nav class=" px-4 bg-white antialiased border-b-2">
             <div class=" px-4 py-4 2xl:px-0">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center space-x-8">
@@ -25,19 +25,19 @@ function Navbar() {
 
                         <ul class="hidden items-center justify-start gap-6 py-3 sm:justify-center md:gap-8 lg:flex">
                             <li>
-                                <a href="#" title="" class="hover:text-primary-700 dark:hover:text-primary-500 flex text-sm font-medium text-gray-900 dark:text-white"> Home </a>
+                                <a href="#" title="" class="hover:text-primary-700 flex text-sm font-medium text-gray-900"> Home </a>
                             </li>
                             <li class="shrink-0">
-                                <a href="#" title="" class="hover:text-primary-700 dark:hover:text-primary-500 flex text-sm font-medium text-gray-900 dark:text-white"> Best Sellers </a>
+                                <a href="#" title="" class="hover:text-primary-700 flex text-sm font-medium text-gray-900"> Best Sellers </a>
                             </li>
                             <li class="shrink-0">
-                                <a href="#" title="" class="hover:text-primary-700 dark:hover:text-primary-500 flex text-sm font-medium text-gray-900 dark:text-white"> Gift Ideas </a>
+                                <a href="#" title="" class="hover:text-primary-700 flex text-sm font-medium text-gray-900"> Gift Ideas </a>
                             </li>
                             <li class="shrink-0">
-                                <a href="#" title="" class="hover:text-primary-700 dark:hover:text-primary-500 text-sm font-medium text-gray-900 dark:text-white"> Todays Deals </a>
+                                <a href="#" title="" class="hover:text-primary-700 text-sm font-medium text-gray-900"> Todays Deals </a>
                             </li>
                             <li class="shrink-0">
-                                <a href="#" title="" class="hover:text-primary-700 dark:hover:text-primary-500 text-sm font-medium text-gray-900 dark:text-white"> Sell </a>
+                                <a href="#" title="" class="hover:text-primary-700 text-sm font-medium text-gray-900"> Sell </a>
                             </li>
                         </ul>
                     </div>
@@ -66,7 +66,7 @@ function Navbar() {
                         ) : (
                             <>
                                 <div className="flex space-x-4 ml-auto">
-                                    <button onClick={() => signIn()} type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 ">Masuk</button>
+                                    <button onClick={() => signIn()} type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 ">Masuk</button>
                                     {/* <button className="bg-white rounded-lg hover:bg-orange-100 p-2" onClick={() => signIn()}>Masuk</button> */}
                                 </div>
                             </>
@@ -74,7 +74,7 @@ function Navbar() {
 
 
 
-                        <button type="button" data-collapse-toggle="ecommerce-navbar-menu-1" aria-controls="ecommerce-navbar-menu-1" aria-expanded="false" class="inline-flex items-center justify-center rounded-md p-2 text-gray-900 hover:bg-gray-100 lg:hidden dark:text-white dark:hover:bg-gray-700">
+                        <button type="button" data-collapse-toggle="ecommerce-navbar-menu-1" aria-controls="ecommerce-navbar-menu-1" aria-expanded="false" class="inline-flex items-center justify-center rounded-md p-2 text-gray-900 hover:bg-gray-100 lg:hidden">
                             <span class="sr-only"> Open Menu </span>
                             <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14" />
@@ -83,25 +83,25 @@ function Navbar() {
                     </div>
                 </div>
 
-                <div id="ecommerce-navbar-menu-1" class="mt-4 hidden rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 dark:border-gray-600 dark:bg-gray-700">
-                    <ul class="space-y-3 text-sm font-medium text-gray-900 dark:text-white ">
+                <div id="ecommerce-navbar-menu-1" class="mt-4 hidden rounded-lg border border-gray-200 bg-gray-50 px-4 py-3">
+                    <ul class="space-y-3 text-sm font-medium text-gray-900">
                         <li>
-                            <a href="#" class="hover:text-primary-700 dark:hover:text-primary-500">Home</a>
+                            <a href="#" class="hover:text-primary-700">Home</a>
                         </li>
                         <li>
-                            <a href="#" class="hover:text-primary-700 dark:hover:text-primary-500">Best Sellers</a>
+                            <a href="#" class="hover:text-primary-700">Best Sellers</a>
                         </li>
                         <li>
-                            <a href="#" class="hover:text-primary-700 dark:hover:text-primary-500">Gift Ideas</a>
+                            <a href="#" class="hover:text-primary-700">Gift Ideas</a>
                         </li>
                         <li>
-                            <a href="#" class="hover:text-primary-700 dark:hover:text-primary-500">Games</a>
+                            <a href="#" class="hover:text-primary-700">Games</a>
                         </li>
                         <li>
-                            <a href="#" class="hover:text-primary-700 dark:hover:text-primary-500">Electronics</a>
+                            <a href="#" class="hover:text-primary-700">Electronics</a>
                         </li>
                         <li>
-                            <a href="#" class="hover:text-primary-700 dark:hover:text-primary-500">Home & Garden</a>
+                            <a href="#" class="hover:text-primary-700">Home & Garden</a>
                         </li>
                     </ul>
                 </div>
