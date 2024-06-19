@@ -2,7 +2,7 @@
 
 import Navbar from '@/app/(seller)/dashboard/component/navbar';
 import Sidebar from '@/app/(seller)/dashboard/component/sidebar';
-
+import { HiOutlineDotsVertical } from "react-icons/hi";
 import 'flowbite';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -17,9 +17,12 @@ export default function DetailAcara({ params }) {
 
 function Card({ param }) {
     // Get acara
+    const [isOpen, setIsOpen] = useState(false);
     console.log(param.id);
     const [acara, setAcara] = useState([]);
+    console.log("🚀 ~ Card ~ acara:", acara)
     const [tikets, settikets] = useState([]);
+    console.log("🚀 ~ Card ~ tikets:", tikets)
     // console.log(acara);
     // console.log(tikets);
 
@@ -71,21 +74,19 @@ function Card({ param }) {
 
         })
         const data = await res.json()
-        // console.log(res);
-        // console.log(data);
+
         if (res) {
-            // console.log('berhasil');
+
             const response = await fetch(`/api/seller/detail_acara/read_tiket/${param.id}`, {
                 method: 'GET',
 
 
             });
             const data = await response.json()
-            // console.log(data);
-            // console.log(response);
+
             if (response) {
                 settikets(data)
-                // console.log('berhasil');
+
             }
         }
 
@@ -99,82 +100,61 @@ function Card({ param }) {
     });
     return (
         <>
-        <Navbar/>
-        <div className="flex">
-            <div>
-            <Sidebar/>
-            </div>
-                <div className="grid grid-cols-2">
-                    <div className="rounded-xl w-[full] h-[64] bg-white shadow-md mx-6 mt-4 flex justify-center">
-                        <Image src={acara.banner} width={100} height={100}  alt="Picture of the author" className="p-4 w-[auto] h-[auto] rounded object-cover" />
-                    </div>
-                    <div>
-                        <div className="w-auto h-fit p-6 mx-auto my-4 bg-white rounded-lg shadow-md">
-                            <h1 className="text-2xl font-bold">{acara.nama_event}</h1>
-                                <p className="text-gray-600 mt-2 flex"> <MdCalendarMonth className="mr-2"/>{formattedDate}</p>
-                                <p className="text-gray-600 flex"><MdOutlineAccessTime className="mr-2"/>{new Date(acara.waktu_acara).toLocaleTimeString()}</p>
-                                <p className="text-gray-600 flex"><MdOutlineLocationOn className="mr-2" />{acara.lokasi}</p>
-                                <div className="mt-4">
-                                    <Link key={acara.id_acara} href={`/tiket/buat_tiket/${acara.id_acara}`} className="block w-48 text-white bg-gradient-to-b from-emerald-300 to-emerald-400 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-white font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-gray-500">Buat Tiket</Link>
-                                </div>
-                        </div>
-                    
-                    
-                    {/* Tiket */}
-                    <div>
-                        {tikets.length === 0 ? (
-                            <p>tidak ada tiket</p>
-                        ) : (
-                            tikets.map((tiket) => {
-                                const tglM = new Date(tiket.tanggal_mulai_penjualan);
-                                const tanggal_mulai = tglM.toLocaleDateString('id-ID', {
-                                    day: 'numeric',
-                                    month: 'long',
-                                    year: 'numeric'
-                                });
-                                const tglA = new Date(tiket.tanggal_akhir_penjualan);
-                                const tanggal_akhir = tglA.toLocaleDateString('id-ID', {
-                                    day: 'numeric',
-                                    month: 'long',
-                                    year: 'numeric'
-                                });
-                                const waktuMulai = new Date(tiket.waktu_penjualan).toLocaleTimeString();
-                                const waktuAkhir = new Date(tiket.waktu_akhir_penjualan).toLocaleTimeString();
+            <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                {/* <!-- detail acara --> */}
+                <div className="sm: rounded-lg border-2 border-dashed border-gray-300 md:full lg:col-span-2 dark:border-gray-600">
 
-                                return (
-                                    <div key={tiket.id_tiket} className="shadow-lg rounded-lg overflow-hidden w-full mr-6 bg-white">
-                                        <h1 className="text-2xl font-bold pl-6 pt-4">{tiket.nama_tiket}</h1>
-                                        <div className="flex justify-between">
-                                            <div className="p-6 lg:w-1/2">
-                                                <p className="text-gray-600 mt-2">Jumlah Tiket :{tiket.jumlah_tiket}</p>
-                                                <p className="text-gray-600 font-bold">Rp.{tiket.harga}</p>
-                                                <p className="text-gray-600">{tiket.deskripsi_tiket}</p>
-                                            </div>
-                                            <div className="p-6 lg:w-1/2">
-                                                <p className="text-gray-600 flex"><MdCalendarMonth className="mr-2" />{tanggal_mulai} - {tanggal_akhir}</p>
-                                                <p className="text-gray-600 flex"><MdOutlineAccessTime className="mr-2" />{waktuMulai} - {waktuAkhir}</p>
-                                            </div>
-                                        </div>
-                                        <div className="flex p-4 justify-end mr-6">
-                                            <Link href={`/tiket/edit_tiket/${tiket.id_tiket}`}>
-                                                <MdOutlineEdit className="text-gray-500 hover:text-orange-700" />
-                                            </Link>
-                                            <button className="pl-2" onClick={() => DeleteTiket(tiket.id_tiket)}>
-                                                <MdDeleteOutline className="text-gray-500 hover:text-orange-700" />
-                                            </button>
-                                        </div>
-                                    </div>
-                                )
-                            })
-                        )}
+                    <div className="rounded-lg md:relative lg:relative border border-gray-200 bg-white p-4 shadow-sm md:p-6 dark:border-gray-700 dark:bg-gray-800">
+                        <Image height={100} width={100} className="hidden h-full w-full dark:block" src="" alt="imac image" />
+                        <h1>Deskripsi</h1>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quo nulla voluptatibus qui doloremque distinctio modi saepe placeat, dolorum odit.</p>
                     </div>
-                    {/* Akhir Tiket */}
-                    </div>
+
                 </div>
+                {/* <!-- akhir detail acara --> */}
+                <div className="rounded-lg border-2 border-dashed border-gray-300 md:full dark:border-gray-600">
+                    {/* <!-- tiket --> */}
+                    <div className="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
+                        {/*  */}
+                        <div className="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6 dark:border-gray-700 dark:bg-gray-800">
+                            <p className="text-xl font-semibold text-gray-900 dark:text-white">Order summary</p>
 
+                            <div className="space-y-4">
+                                <div className="space-y-2">
+                                    <dl className="flex items-center justify-between gap-4">
+                                        <dt className="text-base font-normal text-gray-500 dark:text-gray-400">Original price</dt>
+                                        <dd className="text-base font-medium text-gray-900 dark:text-white">$7,592.00</dd>
+                                    </dl>
+                                </div>
+
+                                <dl className="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
+                                    <dt className="text-base font-bold text-gray-900 dark:text-white">Total</dt>
+                                    <dd className="text-base font-bold text-gray-900 dark:text-white">$8,191.00</dd>
+                                </dl>
+                            </div>
+                        </div>
+                        {/* <!-- tiket --> */}
+                        <div className="relative inline-block text-left">
+                            <div>
+                                <button type="button" className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" id="options-menu" aria-haspopup="true" aria-expanded="true" onClick={() => setIsOpen(!isOpen)}>
+                                    <HiOutlineDotsVertical className="text-gray-900 dark:text-white" />
+                                </button>
+                            </div>
+
+                            {isOpen && (
+                                <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                                    <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Edit</a>
+                                        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Delete</a>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                        {/* <!-- akhir tiket --> */}
+                    </div>
+                    {/* <!-- tiket --> */}
+                </div>
             </div>
-            <div>
-        </div>
-    </>
+        </>
     )
 }

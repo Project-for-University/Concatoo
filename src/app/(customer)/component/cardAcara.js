@@ -12,22 +12,14 @@ export default function CardAcaraCustomer({ acaraData, tiketData }) {
     return (
         <>
             {acaras.length === 0 || tiketTermurah === null ? (
-
                 <section id="Projects" class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
                     {/* <!--   ✅ Product card 1 - Starts Here 👇 --> */}
                     <div class="border-2 border-dashed border-gray-300 text-gray-300 font-semibold  bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl h-80 w-72 flex items-center justify-center">
                         <p>Tidak Ada Acara</p>
                     </div>
-
                     {/* <!--   🛑 Product card 1 - Ends Here  --> */}
                 </section>
                 // <!-- 🛑 Grid Section - Ends Here -->
-
-
-
-
-
-
             ) : (
                 <section id="Projects" class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
                     {acaras.map(acara => {
@@ -57,8 +49,6 @@ export default function CardAcaraCustomer({ acaraData, tiketData }) {
                     })}
                     {/* <!--   🛑 Product card 1 - Ends Here  --> */}
                 </section>
-
-
             )
             }
         </>
