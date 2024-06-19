@@ -16,10 +16,12 @@ export default function DetailAcara({ params }) {
 
 function Card({ param }) {
     // Get acara
+
     const [isOpen, setIsOpen] = useState(false);
+    const toggleDropdown = () => setIsOpen(!isOpen);
     console.log(param.id);
-    const [acara, setAcara] = useState([]);
-    console.log("🚀 ~ Card ~ acara:", acara)
+    const [acaras, setAcara] = useState([]);
+    console.log("🚀 ~ Card ~ acara:", acaras)
     const [tikets, settikets] = useState([]);
     console.log("🚀 ~ Card ~ tikets:", tikets)
     // console.log(acara);
@@ -34,7 +36,7 @@ function Card({ param }) {
                 method: 'GET',
             });
             const data = await response.json()
-            // console.log(response);
+            console.log(data);
             if (response) {
                 setAcara(data)
                 // console.log('berhasil');
@@ -48,7 +50,7 @@ function Card({ param }) {
                 method: 'GET',
             });
             const data = await response.json()
-            // console.log(data);
+            console.log(data);
             // console.log(response);
             if (response) {
                 settikets(data)
@@ -81,7 +83,7 @@ function Card({ param }) {
         }
     }
 
-    const tanggalAcara = new Date(acara.tanggal_acara);
+    const tanggalAcara = new Date(acaras.tanggal_acara);
     const formattedDate = tanggalAcara.toLocaleDateString('id-ID', {
         day: 'numeric',
         month: 'long',
@@ -90,59 +92,90 @@ function Card({ param }) {
 
     return (
         <>
-            <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                {/* <!-- detail acara --> */}
-                <div className="sm: rounded-lg border-2 border-dashed border-gray-300 md:full lg:col-span-2">
+            <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-1  border-2 border-dashed border-white w-full">
 
-                    <div className="rounded-lg md:relative lg:relative border border-gray-200 bg-white p-4 shadow-sm md:p-6">
-                        <Image height={100} width={100} className="hidden h-full w-full" src="" alt="imac image" />
-                        <h1 className="text-2xl font-bold">Deskripsi</h1>
-                        <p className="text-gray-700">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quo nulla voluptatibus qui doloremque distinctio modi saepe placeat, dolorum odit.</p>
+                <div class="grid lg:grid-cols-3 md:grid-cols-1 gap-4  border-2 border-dashed border-white w-full">
+
+                    <div class="flex flex-col bg-gray-200 rounded-lg p-4  lg:col-span-2 md:col-span-1">
+                        <Image src={acaras.banner} className="w-full h-80 object-cover rounded-lg" alt="banner" width={500} height={500} />
+                        <div class="flex flex-col items-start mt-4">
+                            <h4 class="text-xl font-semibold">Deskripsi Acara</h4>
+                            <p class="text-sm">{acaras.deskripsi?.deskripsi_acara}</p>
+                        </div>
                     </div>
 
-                </div>
-                {/* <!-- akhir detail acara --> */}
-                <div className="rounded-lg border-2 border-dashed border-gray-300 md:full">
-                    {/* <!-- tiket --> */}
-                    <div className="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
-                        {/*  */}
-                        <div className="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
-                            <p className="text-xl font-semibold text-gray-900">Order summary</p>
+                    <div class="grid grid-cols-1 gap-2 w-full">
 
-                            <div className="space-y-4">
-                                <div className="space-y-2">
-                                    <dl className="flex items-center justify-between gap-4">
-                                        <dt className="text-base font-normal text-gray-500">Original price</dt>
-                                        <dd className="text-base font-medium text-gray-900">$7,592.00</dd>
-                                    </dl>
-                                </div>
-
-                                <dl className="flex items-center justify-between gap-4 border-t border-gray-200 pt-2">
-                                    <dt className="text-base font-bold text-gray-900">Total</dt>
-                                    <dd className="text-base font-bold text-gray-900">$8,191.00</dd>
-                                </dl>
+                        <div class="flex flex-col bg-gray-200 rounded-lg p-4  ">
+                            <div class="flex flex-col items-start">
+                                <h4 class="text-xl font-semibold">Nama Acara</h4>
+                                <p class="text-sm">Some text about the thing that goes over a few lines.</p>
+                                <Link href="" class="p-2 w-full text-whie  leading-none  mt-3   uppercase text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" >
+                                    Buat Tiket</Link>
                             </div>
                         </div>
-                        {/* <!-- tiket --> */}
-                        <div className="relative inline-block text-left">
-                            <div>
-                                <button type="button" className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" id="options-menu" aria-haspopup="true" aria-expanded="true" onClick={() => setIsOpen(!isOpen)}>
-                                    <HiOutlineDotsVertical className="text-gray-900" />
-                                </button>
-                            </div>
 
+
+                        <div className="flex flex-col bg-gray-200 rounded-lg p-4 relative">
+                            <button onClick={toggleDropdown} className="absolute top-0 right-0 mt-2 mr-2">
+                                <HiOutlineDotsVertical />
+                            </button>
                             {isOpen && (
-                                <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                                    <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                                        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Edit</a>
-                                        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Delete</a>
-                                    </div>
+                                <div className="absolute top-0 right-0 mt-8 mr-2 bg-white text-black rounded shadow-lg">
+                                    <button className="block px-4 py-2 text-sm" onClick={() => console.log('Edit clicked')}>Edit</button>
+                                    <button className="block px-4 py-2 text-sm" onClick={() => console.log('Delete clicked')}>Delete</button>
                                 </div>
                             )}
+                            <div className="flex flex-col items-start">
+                                <h4 className="text-xl font-semibold">Nama Tiket</h4>
+                                <p className="text-sm">Tidak ada tiket</p>
+                            </div>
                         </div>
-                        {/* <!-- akhir tiket --> */}
+
+                        {acaras.length == 0 ? (<>
+                            <div class="flex flex-col bg-gray-200 rounded-lg p-4  ">
+                                <div class="flex flex-col items-start">
+                                    <p class="text-sm">Tidak ada tiket</p>
+                                </div>
+                            </div>
+                        </>) : (<>
+                            {tikets.map((tiket) => (
+                                <div key={tiket.id_tiket} class="flex flex-col bg-gray-200 rounded-lg p-4  ">
+                                    <div class="flex flex-col items-start">
+                                        <h4 class="text-xl font-semibold">{tiket.nama_tiket}</h4>
+                                        <p class="text-sm">{tiket.jumlah_tiket}</p>
+                                        <p class="text-sm">{tiket.harga}</p>
+                                        <p class="text-sm">{tiket.deskripsi_tiket}</p>
+                                        <p class="text-sm">{tiket.tanggal_mulai_penjualan}</p>
+                                        <p class="text-sm">{tiket.waktu_akhir_penjualan}</p>
+                                        <p class="text-sm">{tiket.waktu_penjualan}</p>
+                                        <p class="text-sm">{tiket.tanggal_akhir_penjualan}</p>
+                                    </div>
+
+                                    <div className="flex flex-col bg-gray-200 rounded-lg p-4 relative">
+                                        <button onClick={toggleDropdown} className="absolute top-0 right-0 mt-2 mr-2">
+                                            <HiOutlineDotsVertical />
+                                        </button>
+                                        {isOpen && (
+                                            <div className="absolute top-0 right-0 mt-8 mr-2 bg-white text-black rounded shadow-lg">
+                                                <button className="block px-4 py-2 text-sm" onClick={() => console.log('Edit clicked')}>Edit</button>
+                                                <button className="block px-4 py-2 text-sm" onClick={() => console.log('Delete clicked')}>Delete</button>
+                                            </div>
+                                        )}
+                                        <div className="flex flex-col items-start">
+                                            <h4 className="text-xl font-semibold">Nama Tiket</h4>
+                                            <p className="text-sm">Tidak ada tiket</p>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            ))}
+
+                        </>)}
+
                     </div>
-                    {/* <!-- tiket --> */}
                 </div>
             </div>
         </>
