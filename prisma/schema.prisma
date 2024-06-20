@@ -72,7 +72,7 @@ model Tiket {
   harga                   Int      @db.Int
   deskripsi_tiket         String   @db.Text
   tanggal_mulai_penjualan DateTime @db.Date
-  waktu_penjualan         DateTime @db.Time()
+  waktu_mulai_penjualan   DateTime @db.Time()
   tanggal_akhir_penjualan DateTime @db.Date
   waktu_akhir_penjualan   DateTime @db.Time()
   acara                   Acara    @relation(fields: [id_acara], references: [id_acara])

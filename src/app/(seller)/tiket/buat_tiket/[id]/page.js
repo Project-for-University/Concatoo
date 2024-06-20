@@ -5,9 +5,7 @@
 import { useState } from "react"
 import { useFormState, useFormStatus } from 'react-dom'
 import { CreateTiket } from "../../../../api/seller/tiket/buat_tiket/action/action";
-import { Datepicker } from "flowbite-react";
-import { format } from 'date-fns';
-import { addDays } from 'date-fns';
+// import { Datepicker } from "flowbite-react";
 
 
 export default function Ticket({ params }) {
@@ -17,24 +15,32 @@ export default function Ticket({ params }) {
     const [jumlah_tiket, setJumlah_tiket] = useState('')
     const [harga, setHarga] = useState('')
     const [deskripsi_tiket, setDeskripsi_tiket] = useState('')
-    const [tanggal_mulai_penjualan, setTanggal_mulai_penjualan] = useState('')
-    const [waktu_penjualan, setWaktu_penjualan] = useState('')
-    const [tanggal_akhir_penjualan, setTanggal_akhir_penjualan] = useState('')
-    const [waktu_akhir_penjualan, setWaktu_akhir_penjualan] = useState('')
-    const today = new Date();
-    const minDateForEndDate = addDays(new Date(tanggal_mulai_penjualan), 1);
 
-    today.setHours(0, 0, 0, 0)
 
+    const [tanggal_mulai_penjualan, setTanggal_mulai_penjualan] = useState(new Date());
+    const [waktu_mulai_penjualan, setWaktu_penjualan] = useState(null);
+
+    const [tanggal_akhir_penjualan, setTanggal_akhir_penjualan] = useState(new Date());
+    const [waktu_akhir_penjualan, setWaktu_akhir_penjualan] = useState(null);
+
+
+
+
+    console.log("🚀 ~ Ticket ~ nama_tiket:", nama_tiket)
+    console.log("🚀 ~ Ticket ~ jumlah_tiket:", jumlah_tiket)
+    console.log("🚀 ~ Ticket ~ harga:", harga)
+    console.log("🚀 ~ Ticket ~ deskripsi_tiket:", deskripsi_tiket)
+    console.log("🚀 ~ Ticket ~ waktu_penjualan:", waktu_mulai_penjualan)
+    console.log("🚀 ~ Ticket ~ tanggal_mulai_penjualan:", tanggal_mulai_penjualan)
+    console.log("🚀 ~ Ticket ~ tanggal_akhir_penjualan:", tanggal_akhir_penjualan)
+    console.log("🚀 ~ Ticket ~ waktu_akhir_penjualan:", waktu_akhir_penjualan)
+
+
+    // awal useform state
     const initialState = {
         message: '',
     }
-
     const [state, formAction] = useFormState(CreateTiket, initialState)
-    // console.log(formAction)
-    // console.log(state)
-
-
     const handleJumlah = (event) => {
         const newValue = event.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
         const parsedValue = parseFloat(newValue);
@@ -42,7 +48,6 @@ export default function Ticket({ params }) {
             setJumlah_tiket(newValue);
         }
     };
-
     const handleHarga = (event) => {
         const newValue = event.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
         const parsedValue = parseFloat(newValue);
@@ -52,16 +57,25 @@ export default function Ticket({ params }) {
             setHarga(newValue);
         }
     };
+    // akhir use form state
 
-    const handleDateChange = (date) => {
-        const formattedDate = format(new Date(date), 'yyyy-MM-dd'); // Gunakan date-fns untuk format tanggal
-        setTanggal_mulai_penjualan(formattedDate);
-    };
 
-    const handleDateChange2 = (date) => {
-        const formattedDate = format(new Date(date), 'yyyy-MM-dd'); // Gunakan date-fns untuk format tanggal
-        setTanggal_akhir_penjualan(formattedDate);
+    // input date time
+    const today = new Date().toISOString().split('T')[0];
+    const handleEndTimeChange = (e) => {
+        const endTime = e.target.value;
+
+        // Jika tanggal akhir sama dengan tanggal mulai dan waktu akhir kurang dari waktu mulai
+        if (tanggal_akhir_penjualan === tanggal_mulai_penjualan && endTime < waktu_mulai_penjualan) {
+            alert('Waktu akhir harus lebih dari waktu mulai Penjualan');
+            setWaktu_akhir_penjualan('');
+            return;
+        }
+
+        setWaktu_akhir_penjualan(endTime);
     };
+    // akhir input date time
+
 
     return (
         <div className="flex justify-center">
@@ -127,6 +141,7 @@ export default function Ticket({ params }) {
                                     id="jumlah_tiket"
                                     value={jumlah_tiket}
                                     onChange={handleJumlah}
+
                                     className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                 />
                                 {state?.jumlah_tiket && <div className="text-red-500">{state.jumlah_tiket}</div>}
@@ -145,14 +160,63 @@ export default function Ticket({ params }) {
                                 >
                                     Tanggal Mulai Penjualan
                                 </label>
-                                <Datepicker
+
+                                <input
                                     type="date"
-                                    name="tanggal_mulai_penjualan"
-                                    id="tanggal_mulai_penjualan"
+                                    min={today}
                                     value={tanggal_mulai_penjualan}
-                                    onSelectedDateChanged={handleDateChange}
-                                    minDate={today}
+                                    name="tanggal_mulai_penjualan"
+                                    onChange={(e) => setTanggal_mulai_penjualan(e.target.value)}
+                                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+
                                 />
+
+                                {state?.tanggal_mulai_penjualan && (
+                                    <div className="text-red-500">{state.tanggal_mulai_penjualan}</div>
+                                )}
+                            </div>
+                            <div className="mb-5">
+                                <label
+                                    htmlFor="waktu_penjualan"
+                                    className="mb-3 block text-base font-medium  text-gray-600"
+                                >
+                                    Waktu Penjualan
+                                </label>
+                                <input
+                                    type="time"
+                                    value={waktu_mulai_penjualan}
+                                    onChange={(e) => setWaktu_penjualan(e.target.value)}
+                                    name="waktu_mulai_penjualan"
+                                    id="waktu_mulai_penjualan"
+                                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                />
+
+                                {state?.waktu_mulai_penjualan && <div className="text-red-500">{state.waktu_mulai_penjualan}</div>}
+
+                            </div>
+                        </div>
+                        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                            <div className="mb-5">
+                                <label
+                                    htmlFor="tanggal_akhir_penjualan"
+                                    className="mb-3 block text-base font-medium  text-gray-600"
+                                >
+                                    Tanggal Akhir Penjualan
+                                </label>
+
+                                <input
+                                    type="date"
+                                    name="tanggal_akhir_penjualan"
+                                    min={tanggal_mulai_penjualan}
+                                    value={tanggal_akhir_penjualan}
+                                    onChange={(e) => setTanggal_akhir_penjualan(e.target.value)}
+                                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                />
+
+                                {state?.tanggal_akhir_penjualan && (
+                                    <div className="text-red-500">{state.tanggal_akhir_penjualan}</div>
+                                )}
+
                             </div>
 
                             <div className="mb-5">
@@ -164,53 +228,14 @@ export default function Ticket({ params }) {
                                 </label>
                                 <input
                                     type="time"
+                                    value={waktu_akhir_penjualan}
+                                    onChange={handleEndTimeChange}
                                     name="waktu_akhir_penjualan"
                                     id="waktu_akhir_penjualan"
-                                    placeholder="Deskripsi acara"
-                                    value={waktu_akhir_penjualan}
-                                    onChange={(e) => { setWaktu_akhir_penjualan(e.target.value) }}
                                     className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                 />
                                 {state?.waktu_akhir_penjualan && <div className="text-red-500">{state.waktu_akhir_penjualan}</div>}
-                            </div>
-                        </div>
-                        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <div className="mb-5">
-                                <label
-                                    htmlFor="tanggal_akhir_penjualan"
-                                    className="mb-3 block text-base font-medium  text-gray-600"
-                                >
-                                    Tanggal Akhir Penjualan
-                                </label>
-                                <Datepicker
-                                    type="date"
-                                    name="tanggal_akhir_penjualan"
-                                    id="tanggal_akhir_penjualan"
-                                    value={tanggal_akhir_penjualan}
-                                    onSelectedDateChanged={handleDateChange2}
-                                    minDate={minDateForEndDate}
-                                />
-                                {state?.tanggal_akhir_penjualan && (
-                                    <div className="text-red-500">{state.tanggal_akhir_penjualan}</div>
-                                )}
-                            </div>
 
-                            <div className="mb-5">
-                                <label
-                                    htmlFor="waktu_penjualan"
-                                    className="mb-3 block text-base font-medium  text-gray-600"
-                                >
-                                    Waktu Penjualan
-                                </label>
-                                <input
-                                    type="time"
-                                    name="waktu_penjualan"
-                                    id="waktu_penjualan"
-                                    value={waktu_penjualan}
-                                    onChange={(e) => { setWaktu_penjualan(e.target.value) }}
-                                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                />
-                                {state?.waktu_penjualan && <div className="text-red-500">{state.waktu_penjualan}</div>}
                             </div>
                         </div>
                     </div>
@@ -222,6 +247,7 @@ export default function Ticket({ params }) {
                         >
                             Deskripsi Tiket
                         </label>
+
                         <textarea
                             type="text"
                             name="deskripsi_tiket"

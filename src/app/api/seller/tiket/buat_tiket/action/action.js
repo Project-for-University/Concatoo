@@ -12,17 +12,21 @@ const validasi = z.object({
     harga: z.string().min(1, { message: 'tidak boleh kosong' }),
     deskripsi_tiket: z.string().min(1, { message: 'tidak boleh kosong' }),
     // tangal & waktu
-    tanggal_mulai_penjualan: z.string().min(1, { message: 'tidak boleh kosong' }),
-    waktu_penjualan: z.string().min(1, { message: 'tidak boleh kosong' }),
-    tanggal_akhir_penjualan: z.string().min(1, { message: 'tidak boleh kosong' }),
+    tanggal_mulai_penjualan: z.string().refine(date => !isNaN(Date.parse(date)), {
+        message: 'Invalid date format',
+    }),
+    waktu_mulai_penjualan: z.string().min(1, { message: 'tidak boleh kosong' }),
+    tanggal_akhir_penjualan: z.string().refine(date => !isNaN(Date.parse(date)), {
+        message: 'Invalid date format',
+    }),
     waktu_akhir_penjualan: z.string().min(1, { message: 'tidak boleh kosong' }),
 });
 
 export async function CreateTiket(prevState, request) {
     const requestData = Object.fromEntries(request.entries());
-    // console.log(requestData);
+    console.log(requestData);
     const validated = validasi.safeParse(requestData);
-    // console.log("Validasi hasil:", validated);
+    console.log("Validasi hasil:", validated);
 
     if (!validated.success) {
         console.error("Validasi gagal:", validated.error.formErrors.fieldErrors);
@@ -37,7 +41,7 @@ export async function CreateTiket(prevState, request) {
 
     // tanggal mulai penjualan 
     const tglMp = data.tanggal_mulai_penjualan; // Format harus "YYYY-MM-DD"
-    const WP = data.waktu_penjualan; // Format harus "HH:MM"
+    const WP = data.waktu_mulai_penjualan; // Format harus "HH:MM"
     const tanggal_mulai = `${tglMp}T${WP}:00Z`;
 
     // console.log("Tanggal dan waktu acara:", tanggal_mulai);
@@ -62,7 +66,7 @@ export async function CreateTiket(prevState, request) {
                 harga: data.harga,
                 deskripsi_tiket: data.deskripsi_tiket,
                 tanggal_mulai_penjualan: new Date(tanggal_mulai), // Tanggal dengan format baru
-                waktu_penjualan: new Date(tanggal_mulai), // Tanggal dengan format baru
+                waktu_mulai_penjualan: new Date(tanggal_mulai), // Tanggal dengan format baru
                 tanggal_akhir_penjualan: new Date(tanggal_akhir), // Tanggal dengan format baru
                 waktu_akhir_penjualan: new Date(tanggal_akhir), // Tanggal dengan format baru
 
@@ -76,6 +80,7 @@ export async function CreateTiket(prevState, request) {
         }
 
         if (res.ok) {
+            console.log('berhasil');
             return await res.json();
         } else {
             throw new Error('Failed to fetch comment');
@@ -83,7 +88,7 @@ export async function CreateTiket(prevState, request) {
 
 
     } catch (error) {
-        // console.log('gagal fetch:', error);
+        console.log('gagal fetch:', error);
     }
 
 

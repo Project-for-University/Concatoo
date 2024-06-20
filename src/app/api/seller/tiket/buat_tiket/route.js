@@ -15,17 +15,21 @@ export async function POST(request, { params }) {
                 harga: parseInt(data.harga),
                 deskripsi_tiket: data.deskripsi_tiket,
                 tanggal_mulai_penjualan: data.tanggal_mulai_penjualan,
-                waktu_penjualan: data.waktu_penjualan,
+                waktu_mulai_penjualan: data.waktu_mulai_penjualan,
                 tanggal_akhir_penjualan: data.tanggal_akhir_penjualan,
                 waktu_akhir_penjualan: data.waktu_akhir_penjualan,
                 id_acara: data.id_acara
             }
         })
-        // console.log('berasil');
-        return NextResponse.redirect(new URL(`/detail_acara/${data.id_acara}`, request.url), 303);
+        console.log('berasil');
+        try {
+            return NextResponse.redirect(new URL(`/detail_acara/${data.id_acara}`, request.url), 303);
+        } catch (e) {
+            console.log(e);
+        }
     } catch (e) {
-        // console.log('tidak baik baik saja', e);
-        return new Response(JSON.stringify({ message: 'tidak baik baik saja' }))
+
+        console.log(e);
     }
 
 }
