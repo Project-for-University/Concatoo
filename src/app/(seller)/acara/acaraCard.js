@@ -63,7 +63,7 @@ export default function CardAcara({ data }) {
                     </button>
                 </form>
 
-                <Link href={`acara/buat_acara`} className="px-3 py-2 text-sm font-medium text-center text-white bg-emerald-700 rounded-lg hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300">Buat Acara</Link>
+                <Link href={`acara/buat_acara`} className="px-3 py-2 text-sm font-medium text-center text-white bg-gradient-to-b from-emerald-300 to-emerald-400 hover:bg-gardient-to-br focus:ring-4 focus:outline-none focus:ring-emerald-300">Buat Acara</Link>
                 {Del?.message && <div className="text-emerald-600">{Del.message}</div>}
             </div>
 

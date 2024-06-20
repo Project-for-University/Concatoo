@@ -116,6 +116,7 @@ function Card({ param }) {
                                 <div>
                                     <h4 class="text-xl font-semibold pb-3">{acaras.nama_acara}</h4>
                                     <table>
+                                        <tbody>
                                         <tr>
                                             <td class="text-sm pr-3"> Tanggal Acara</td>
                                             <td class="text-sm pl-3">: {new Date(acaras.tanggal_acara).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: '2-digit' })}</td>
@@ -128,9 +129,10 @@ function Card({ param }) {
                                             <td class="text-sm pr-3"> Waktu Acara</td>
                                             <td class="text-sm pl-3">: {new Date(acaras.waktu_acara).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })}</td>
                                         </tr>
+                                        </tbody>
                                     </table>
                                 </div>
-                                <Link href={`/tiket/buat_tiket/${acaras.id_acara}`} class=" bottom-0 mt-10 p-2 w-full text-white leading-none  uppercase bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                                <Link href={`/tiket/buat_tiket/${acaras.id_acara}`} class=" bottom-0 mt-10 p-2 w-full text-white leading-none  uppercase bg-gradient-to-b from-emerald-300 to-emerald-400 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                                     Buat Tiket
                                 </Link>
                             </div>

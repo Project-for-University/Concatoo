@@ -1,13 +1,13 @@
 'use client'
-import { useState, useEffect } from "react"
 
+import { useState, useEffect } from "react"
 import { useFormStatus, useFormState } from 'react-dom'
-import ActionLogin from "./api/action";
-import Link from "next/link";
+import { MdOutlineDangerous } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react"
+import ActionLogin from "./api/action";
 import Image from "next/image";
-import { MdOutlineDangerous } from "react-icons/md";
+import Link from "next/link";
 
 
 export default function Login() {
@@ -85,6 +85,6 @@ export default function Login() {
 function LoginButton() {
     const { pending } = useFormStatus()
     return (
-        <button type="submit" className="w-full text-white drop-lg  bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 ">{pending ? "loading..." : "Masuk"}</button>
+        <button type="submit" className="w-full text-white drop-lg  bg-gradient-to-b from-emerald-300 to-emerald-400 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 ">{pending ? "loading..." : "Masuk"}</button>
     )
 }

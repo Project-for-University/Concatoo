@@ -12,7 +12,7 @@ export default function Navbar() {
                     <a href="/dashboard">
                         <Image src={'/asset/logo.png'} alt="logo.png" width={45} height={45}></Image>
                     </a>
-                    <p className="pl-2 content-center text-green-500 font-medium">Concert</p>
+                    <p className="pl-2 content-center text-emerald-500 font-medium">Concert</p>
                 </div>
                 <form className="max-w-md mx-auto w-full">
                     <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
