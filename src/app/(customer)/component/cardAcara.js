@@ -1,7 +1,9 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link';
 import { useEffect, useState } from "react";
+import Footer from '../footer/page';
 
 export default function CardAcaraCustomer({ acaraData, tiketData }) {
     const [acaras, setAcara] = useState(acaraData);
@@ -22,7 +24,7 @@ export default function CardAcaraCustomer({ acaraData, tiketData }) {
                 <section id="Projects" className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
                     {acaras.map(acara => (
                         <div key={acara.id} className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-                            <a href="#">
+                            <Link href={`/detail_tiket/${acara.id_acara}`}>
                                 <Image src={acara.banner} alt={acara.banner} className="h-80 w-72 object-cover rounded-t-xl" width={500} height={500} />
                                 <div className="px-4 py-3 w-72">
                                     <span className="text-gray-400 mr-3 uppercase text-xs">Brand</span>
@@ -38,11 +40,12 @@ export default function CardAcaraCustomer({ acaraData, tiketData }) {
                                         </del>
                                     </div>
                                 </div>
-                            </a>
+                            </Link>         
                         </div>
                     ))}
                 </section>
             )}
+            <Footer/>
         </>
     )
 }
