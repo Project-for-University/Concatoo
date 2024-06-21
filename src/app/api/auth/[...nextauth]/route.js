@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaClient } from '@prisma/client';
-
+import bcrypt from "bcrypt";
 
 const prisma = new PrismaClient();
 
@@ -20,20 +20,25 @@ const authOptions = NextAuth({
                 password: { label: 'Password', type: 'password' },
             },
             async authorize(credentials) {
-                const { email, password } = credentials;
+                try {
+                    const { email, password } = credentials;
 
-                // ambil dari db
-                const user = await prisma.user.findUnique({
-                    where: { email: email }
-                });
-                // console.log(user);
+                    // ambil dari db
+                    const user = await prisma.user.findUnique({
+                        where: { email: email }
+                    });
 
-                // Jika user tidak ditemukan, kembalikan null
-                if (!user) {
-                    return null;
-                }
-                if (user) {
-                    if (user.password === password) {
+                    // Jika user tidak ditemukan, kembalikan pesan kesalahan
+                    if (!user) {
+                        throw new Error('Email Tidak Ditemukan')
+                    }
+
+                    const isMatch = await bcrypt.compare(password, user.password);
+
+                    // Jika password tidak cocok, kembalikan pesan kesalahan
+                    if (!isMatch) {
+                        throw new Error('Password Salah')
+                    } else if (isMatch) {
                         return {
                             id_user: user.id_user,
                             name: user.username,
@@ -41,6 +46,11 @@ const authOptions = NextAuth({
                             role: user.role
                         };
                     }
+
+                    // Jika semuanya baik-baik saja, kembalikan objek pengguna
+
+                } catch (e) {
+                    console.log(e);
                 }
             },
         })

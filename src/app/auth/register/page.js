@@ -18,21 +18,25 @@ export default function Register() {
     const [phonenumber, setphonenumber] = useState('');
     const [email, setemail] = useState('');
     const [password, setpassword] = useState('');
+    const { data: session, status } = useSession()
     // console.log(username);
     // console.log(phonenumber);
     // console.log(email);
     // console.log(password);
 
-    const initialState = {
-        message: '',
-    }
-    const { data: session, status } = useSession()
     // console.log(session);
     // console.log(status);
+
     // memang ngga ada sniped nya s useformstate ini jadi ketik aja
     // harus pake boject form entries 
+    const initialState = {
+        message: '',
+        duplikat: ''
+    }
     const [state, formAction] = useFormState(CreateUser, initialState)
     // console.log(formAction);
+
+
 
     useEffect(() => {
         if (status === 'authenticated') {
@@ -42,11 +46,25 @@ export default function Register() {
                 router.push('/dashboard');
             }
         }
+
     }, [status, session, router]);
 
-    if (status === 'loading') {
-        return <div>Loading...</div>;
-    }
+    const handlephonenumber = (event) => {
+        const newValue = event.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+        const parsedValue = parseFloat(newValue);
+
+        // Check if the parsed value is within the limit
+        if (parsedValue <= 999999999999999 || newValue === '') {
+            setphonenumber(newValue);
+        }
+    };
+    const handleemail = (event) => {
+        const newValue = event.target.value;
+
+        if (newValue.length <= 50 || newValue === '') {
+            setemail(newValue);
+        }
+    };
 
 
 
@@ -63,11 +81,16 @@ export default function Register() {
                         <p className="font-semibold text-center font text-2xl">Selamat Datang</p>
                         <p className="text-center text-sm mt-2">Sudah Punya Akun? Yuk Tinggal <Link href={`/auth/login`} className="text-emerald-600 font-semibold" >Masuk</Link></p>
                     </div>
-                    <div className="flex border-2 bg-emerald-100 border-emerald-600 rounded-md h-8 justify-center items-center">
-                        <MdOutlineDangerous />
-                        <p className="text-center">Email atau No Hp Sudah Terpakai</p>
-                    </div>
-                    <form action={formAction} className="max-w-md mx-auto">
+                    {state?.duplikat ? (
+                        <div className="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50" role="alert">
+                            <MdOutlineDangerous className="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" />
+                            <span className="sr-only">Info</span>
+                            <div>
+                                <span className="font-semibold"></span> {state.duplikat}
+                            </div>
+                        </div>
+                    ) : null}
+                    <form action={formAction} className="max-w-md mx-auto" >
                         <div className="relative z-0 w-full mb-5 group">
                             <label htmlFor="username" className="block mb-2 text-sm font-normal text-gray-900">Username</label>
                             <input type="text" id="username" name="username" value={username} onChange={(e) => { setusername(e.target.value) }} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" />
@@ -77,12 +100,12 @@ export default function Register() {
                         </div>
                         <div className="relative z-0 w-full mb-5 group">
                             <label htmlFor="phone_number" className="block mb-2 text-sm font-normal text-gray-900">Phone Number</label>
-                            <input type="text" id="phonenumber" name="phonenumber" value={phonenumber} onChange={(e) => { setphonenumber(e.target.value) }} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" />
+                            <input type="text" id="phonenumber" name="phonenumber" value={phonenumber} onChange={handlephonenumber} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" />
                             {state?.phonenumber && <div className="text-red-600">{state.phonenumber}</div>}
                         </div>
                         <div className="relative z-0 w-full mb-5 group">
                             <label htmlFor="email" className="block mb-2 text-sm font-normal text-gray-900">Email</label>
-                            <input type="email" id="email" name="email" value={email} onChange={(e) => { setemail(e.target.value) }} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" />
+                            <input type="email" id="email" name="email" value={email} onChange={handleemail} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" />
                             {state?.email && <div className="text-red-600">{state.email}</div>}
                         </div>
                         <div className="relative z-0 w-full mb-5 group">

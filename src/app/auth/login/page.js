@@ -56,10 +56,15 @@ export default function Login() {
                             <p className="text-center text-sm mt-2">Belum Punya Akun? Yuk <Link href={`/auth/register`} className="text-emerald-600 font-semibold">Daftar</Link></p>
                         </div>
                     </div>
-                    <div className="flex border-2 bg-emerald-100 border-emerald-600 rounded-md h-8 justify-center items-center">
-                        <MdOutlineDangerous />
-                        <p className="text-center">Email atau Password Anda salah, silahkan coba lagi</p>
-                    </div>
+                    {state?.error ? (
+                        <div className="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50" role="alert">
+                            <MdOutlineDangerous className="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" />
+                            <span className="sr-only">Info</span>
+                            <div>
+                                <span className="font-semibold"></span> {state.error}
+                            </div>
+                        </div>
+                    ) : null}
                     <form action={formAction} className="max-w-md mx-auto" >
                         {state?.error?.form && <div className="text-red-600 mb-4">{state.error.form}</div>}
 

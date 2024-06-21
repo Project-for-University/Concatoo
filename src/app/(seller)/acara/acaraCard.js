@@ -7,12 +7,17 @@ import Link from 'next/link';
 import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
 import { useEffect, useState } from 'react';
 import { IoSearchOutline } from 'react-icons/io5';
-import { HiDotsHorizontal } from 'react-icons/hi';
+import { HiDotsHorizontal, HiOutlineDotsVertical } from 'react-icons/hi';
 
 export default function CardAcara({ data }) {
     const [acaras, setAcara] = useState(data);
     console.log(acaras);
-    const [Del, setmDel] = useState([]);
+
+
+    const [isOpen, setIsOpen] = useState({});
+    const toggleDropdown = (id) => {
+        setIsOpen(prevState => ({ ...prevState, [id]: !prevState[id] }));
+    };
 
     async function DeleteAcara(id_acara) {
         // console.log(id_acara);
@@ -31,7 +36,7 @@ export default function CardAcara({ data }) {
                 // Set acaras state
                 if (Array.isArray(acarasData)) {
                     setAcara(acarasData);
-                    setmDel({ message: 'behasil hapus data' })
+                    alert('berhasil hapus data')
                 } else {
                     console.error("Expected an array of acaras but received:", typeof acarasData);
                     setAcara([]);
@@ -39,11 +44,11 @@ export default function CardAcara({ data }) {
 
             } else {
                 const message = await response.json();
-                setmDel({ message: 'dadal hapus data', details: message });
+
             }
         } catch (error) {
             console.error('Error deleting data:', error);
-            setmDel({ message: 'gagal hapus data', details: error.message });
+
         }
     }
 
@@ -64,7 +69,7 @@ export default function CardAcara({ data }) {
                 </form>
 
                 <Link href={`acara/buat_acara`} className="px-3 py-2 text-sm font-medium text-center text-white bg-gradient-to-b from-emerald-300 to-emerald-400 hover:bg-gardient-to-br focus:ring-4 focus:outline-none focus:ring-emerald-300">Buat Acara</Link>
-                {Del?.message && <div className="text-emerald-600">{Del.message}</div>}
+
             </div>
 
             <div className="container mx-auto">
@@ -75,9 +80,9 @@ export default function CardAcara({ data }) {
                         </div>
                     ) : (
                         acaras.map(acara => (
-                            <div key={acara.id_acara}>
+                            <div key={acara.id_acara} className="relative bg-white">
                                 <Link href={`/detail_acara/${acara.id_acara}`}>
-                                    <div className="border-2 border-dashed border-gray-300 rounded-lg h-96 sm:h-96 md:h-full lg:h-44">
+                                    <div className="border-2  border-gray-100 rounded-lg h-96 sm:h-96 md:h-full lg:h-44">
                                         <Image src={acara.banner} className="w-full md:h-24 object-cover rounded-t-md" width={100} height={100} alt="" />
                                         <div className="p-5 text-xs">
                                             <p className="font-bold">{acara.nama_acara}</p>
@@ -96,6 +101,14 @@ export default function CardAcara({ data }) {
                                         </div>
                                     </div>
                                 </Link>
+                                <button onClick={() => toggleDropdown(acara.id_acara)} className="absolute top-0 right-0 p-3 bg-gray-50 text-black rounded hover:bg-gray-200  flex items-center justify-center">
+                                    <HiOutlineDotsVertical />
+                                </button>
+                                {isOpen[acara.id_acara] && (
+                                    <div className="absolute top-0 right-0 mt-12  bg-white rounded-md shadow-lg py-2">
+                                        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 w-full">Edit</a>
+                                        <button onClick={() => { DeleteAcara(acara.id_acara) }} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 w-full">Delete</button>                                    </div>
+                                )}
                             </div>
                         ))
                     )}
