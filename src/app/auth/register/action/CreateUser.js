@@ -30,15 +30,12 @@ export async function CreateUser(prevState, request) {
     try {
         const res = await fetch(`/auth/register/api`, {
             method: 'POST',
-
             body: JSON.stringify({
                 username: data.username,
                 phonenumber: data.phonenumber,
                 email: data.email,
                 password: data.password
             }),
-
-
         })
         if (res.redirected) {
             window.location.href = res.url;// Tangani redirect secara manual
@@ -46,7 +43,9 @@ export async function CreateUser(prevState, request) {
         }
 
         if (res.ok) {
-            return await res.json();
+            const data = await res.json();
+            console.log("🚀 ~ CreateUser ~ data:", data)
+            return data
         } else {
             throw new Error('Failed to fetch comment');
         }

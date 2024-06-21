@@ -117,18 +117,18 @@ function Card({ param }) {
                                     <h4 class="text-xl font-semibold pb-3">{acaras.nama_acara}</h4>
                                     <table>
                                         <tbody>
-                                        <tr>
-                                            <td class="text-sm pr-3"> Tanggal Acara</td>
-                                            <td class="text-sm pl-3">: {new Date(acaras.tanggal_acara).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: '2-digit' })}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-sm pr-3"> Lokasi</td>
-                                            <td class="text-sm pl-3">: {acaras.lokasi}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-sm pr-3"> Waktu Acara</td>
-                                            <td class="text-sm pl-3">: {new Date(acaras.waktu_acara).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })}</td>
-                                        </tr>
+                                            <tr>
+                                                <td class="text-sm pr-3"> Tanggal Acara</td>
+                                                <td class="text-sm pl-3">: {new Date(acaras.tanggal_acara).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: '2-digit' })}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-sm pr-3"> Lokasi</td>
+                                                <td class="text-sm pl-3">: {acaras.lokasi}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-sm pr-3"> Waktu Acara</td>
+                                                <td class="text-sm pl-3">: {new Date(acaras.waktu_acara).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })}</td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -161,12 +161,12 @@ function Card({ param }) {
                                         <p className="text-sm">{tiket.deskripsi_tiket}</p>
                                         <div className="flex justify-between w-full">
                                             <p className="text-sm">Mulai: {new Date(tiket.tanggal_mulai_penjualan).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: '2-digit' })}</p>
-                                            <p className="text-sm">Berakhir: {new Date(tiket.tanggal_akhir_penjualan).toLocaleTimeString('id-ID', { day: '2-digit', month: 'long', year: '2-digit' })}</p>
+                                            <p className="text-sm">Berakhir: {new Date(tiket.waktu_akhir_penjualan).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: '2-digit' })}</p>
                                         </div>
-                                            <div className="flex justify-between w-full">
-                                                <p className="text-sm">{new Date(tiket.waktu_penjualan).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })}</p>
-                                                <p className="text-sm">{new Date(tiket.waktu_akhir_penjualan).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })}</p>
-                                            </div>
+                                        <div className="flex justify-between w-full">
+                                            <p className="text-sm">{new Date(tiket.waktu_mulai_penjualan).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })}</p>
+                                            <p className="text-sm">{new Date(tiket.waktu_akhir_penjualan).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })}</p>
+                                        </div>
                                         <div className="flex justify-between items-center w-full border-t-2 border-gray-200 border-dashed py-3 mt-3">
                                             <p className="text-xl font-semibold text-emerald-600">Rp. {tiket.harga}</p>
                                             <p className="text-sm"> {tiket.jumlah_tiket}</p>

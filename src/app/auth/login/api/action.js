@@ -28,5 +28,7 @@ export default async function ActionLogin(prevState, formdata) {
         email: data.email,
         password: data.password,
     })
-
+    if (res.status === 401) {
+        return { error: 'Email atau Password Salah/Tidak Ada' }
+    }
 }
