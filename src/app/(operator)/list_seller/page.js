@@ -1,5 +1,10 @@
 // function async return component list selle
 
+import List_seller from "./list_seller";
+
 export default async function Page() {
-    return // component list seller
+    // component list seller
+    return (
+        <List_seller/>
+    )
 }
