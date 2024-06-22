@@ -10,7 +10,7 @@ import { useFormStatus, useFormState } from "react-dom";
 import Sidebar from "@/app/(seller)/dashboard/component/sidebar";
 import Navbar from "@/app/(seller)/dashboard/component/navbar";
 import { CreateAcara } from "@/app/api/seller/acara/buat_acara/action/action";
-
+import { useSession } from "next-auth/react"
 
 
 
@@ -19,9 +19,6 @@ import { CreateAcara } from "@/app/api/seller/acara/buat_acara/action/action";
 
 export default function Acara() {
     const [banner, setBanner] = useState(null);
-    // console.log(typeof banner);
-    // console.log(banner);
-
     const [nama_event, setNama_event] = useState('')
     const [tanggal_acara, setTanggal_acara] = useState('')
     const [waktu_acara, setWaktu_acara] = useState('')
@@ -31,6 +28,9 @@ export default function Acara() {
     const [no_ponsel, setNo_ponsel] = useState('')
     const [deskripsi_acara, setDeskripsi_acara] = useState('')
     const [syarat_ketentuan, setSyarat_ketentuan] = useState('')
+    const { data: session, status } = useSession()
+    console.log("🚀 ~ Acara ~ status:", status)
+    console.log("🚀 ~ Acara ~ session:", session)
 
     const initialState = {
         message: '',

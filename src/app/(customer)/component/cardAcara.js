@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useEffect, useState } from "react";
 import Footer from '../footer/page';
 
-export default function CardAcaraCustomer({ acaraData, tiketData }) {
+export default function CardAcaraCustomer({ acaraData, tiketData, }) {
     const [acaras, setAcara] = useState(acaraData);
     const [tiketTermurah, setTiketTermurah] = useState(tiketData);
     console.log(acaras);
@@ -40,12 +40,12 @@ export default function CardAcaraCustomer({ acaraData, tiketData }) {
                                         </del>
                                     </div>
                                 </div>
-                            </Link>         
+                            </Link>
                         </div>
                     ))}
                 </section>
             )}
-            <Footer/>
+            <Footer />
         </>
     )
 }

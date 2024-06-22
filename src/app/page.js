@@ -2,8 +2,15 @@
 import Navbar from "./(customer)/navbar/navbar";
 import { cookies } from 'next/headers'
 import CardAcaraCustomer from "./(customer)/component/cardAcara";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "./api/auth/[...nextauth]/route";
+
+
 
 export default async function Component() {
+
+    const session = await getServerSession(authOptions)
+    console.log(session);
     const cookieStore = cookies()
     const theme = cookieStore.get('theme')
 
@@ -24,7 +31,7 @@ export default async function Component() {
     return (
         <main className="flex-1 ">
             <Navbar />
-            <CardAcaraCustomer acaraData={acarasData} tiketData={tiketData} />
+            <CardAcaraCustomer acaraData={acarasData} tiketData={tiketData} session={session} />
         </main>
     )
 }
