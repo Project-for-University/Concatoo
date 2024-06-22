@@ -55,7 +55,7 @@ export default function RootLayout({ children }) {
                                         <div>
                                             <button onClick={() => { setIsOpen(!isOpenProfile) }} type="button" className="text-white bg-gradient-to-b from-emerald-300 to-emerald-400 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-4 py-2 text-center inline-flex items-center me-2 mb-2" id="options-menu" aria-haspopup="true" aria-expanded="true" >
                                                 <p className="mr-2">{session.user.name}</p>
-                                                <div class="w-8 h-8 rounded-full overflow-hidden border-2 border-white dark:border-white border-gray-900">
+                                                <div class="w-8 h-8 rounded-full overflow-hidden border-2 border-white dark:border-white">
                                                     <Image src={'/asset/logo.png'} alt="" width={5} height={5} class="w-full h-full object-cover"/>
                                                 </div>
                                             </button>
