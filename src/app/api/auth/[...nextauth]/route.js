@@ -158,7 +158,7 @@ export const authOptions = NextAuth({
                         email: profile.email
                     }
                 })
-                return true
+                return true //kalo true bisa login kalo null ke halaman /auth/error
             } catch (e) {
                 console.log(e);
             }
@@ -167,7 +167,8 @@ export const authOptions = NextAuth({
 
     },
     pages: {
-        signIn: '/auth/login'
+        signIn: '/auth/login',
+        error: '/auth/error',// url halamana erro atau tidak bisa login
     }
 });
 
