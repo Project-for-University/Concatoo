@@ -106,8 +106,9 @@ export default function CardAcara({ data }) {
                                 </button>
                                 {isOpen[acara.id_acara] && (
                                     <div className="absolute top-0 right-0 mt-12  bg-white rounded-md shadow-lg py-2">
-                                        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 w-full">Edit</a>
-                                        <button onClick={() => { DeleteAcara(acara.id_acara) }} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 w-full">Delete</button>                                    </div>
+                                        <Link href={`/acara/edit_acara/${acara.id_acara}`} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 w-full">Edit</Link>
+                                        <button onClick={() => { DeleteAcara(acara.id_acara) }} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 w-full">Delete</button>
+                                    </div>
                                 )}
                             </div>
                         ))

@@ -1,17 +1,30 @@
 'use client'
-import Navbar from "@/app/(seller)/dashboard/component/navbar"
-import Sidebar from "@/app/(seller)/dashboard/component/sidebar"
+
 import { UpdateAcara } from "../../../../api/seller/acara/edit_acara/update_acara/action";
 
 import { useEffect, useState } from "react"
 import { useFormStatus, useFormState } from "react-dom";
-
+import Image from "next/image";
+import { AiOutlineCloudUpload } from "react-icons/ai";
 
 export default function Edit({ params }) {
     // console.log(params.id)
     const [banner, setBanner] = useState(null);
-    // console.log(banner)
-    const [nama_event, setNama_event] = useState('')
+    const [Dbanner, setDBanner] = useState('');
+    console.log("🚀 ~ Edit ~ banner:", Dbanner)
+    // Langkah 1: Dapatkan nama file
+    const segments = Dbanner.split('/');
+    const filename = segments[segments.length - 1]; // '2026f791-286f-4a5d-9c90-eb7a01daec31-graphic.png'
+
+    // Langkah 2: Pisahkan berdasarkan "-" dan ambil bagian "graphic.png"
+    const filenameParts = filename.split('-');
+    const banner_split = filenameParts[filenameParts.length - 1]; // 'graphic.png'
+    console.log(banner)
+
+
+
+
+    const [nama_acara, setNama_acara] = useState('')
     const [tanggal_acara, setTanggal_acara] = useState('')
     const [waktu_acara, setWaktu_acara] = useState('')
     const [lokasi, setLokasi] = useState('')
@@ -36,8 +49,8 @@ export default function Edit({ params }) {
     }
 
     const [state, formAction] = useFormState(UpdateAcara, initialState)
-    // console.log(formAction)
-    // console.log(state);
+    console.log(formAction)
+    console.log(state);
 
     const handlePonsel = (event) => {
         const newValue = event.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
@@ -71,7 +84,8 @@ export default function Edit({ params }) {
             const formattedTime = `${hours}:${minutes}`;
 
             if (getData.ok) {
-                setNama_event(data.nama_event)
+                setDBanner(data.banner)
+                setNama_acara(data.nama_acara)
                 setTanggal_acara(formattedDate)
                 setWaktu_acara(formattedTime)
                 setLokasi(data.lokasi)
@@ -90,46 +104,58 @@ export default function Edit({ params }) {
             {/* <Navbar /> */}
             <div className="flex justify-center">
                 {/* <Sidebar /> */}
-                <div className="mx-auto w-full max-w-[50%] h-fit bg-white mt-8 rounded-xl shadow-md">
+                <div className="mx-auto w-full max-w-[900]  bg-white mt-8 rounded-xl shadow-md">
                     <form
                         className="py-6 px-9"
                         action={formAction}
                     >
                         <div className="mt-8 text-[#07074D] font-semibold text-xl">Edit Acara</div>
                         <div className="mb-6 pt-4">
+                            {/* id_acara */}
+                            <input type="hidden" value={params.id} name="id_acara"></input>
                             <label className="mb-5 block text-xl font-semibold text-[#07074D]">Upload Thumbnail</label>
                             <div className="flex items-center justify-center w-full">
                                 <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50">
                                     <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                                        <svg className="w-8 h-8 mb-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
-                                        </svg>
-                                        {banner ? <span className="font-semibold">{banner.name}</span> : <>
-                                            <p className="mb-2 text-sm text-gray-500"><span className="font-semibold">Click to upload</span></p>
-                                            <p className="text-xs text-gray-500"> PNG,JPEG or JPG  (MAX. 2700 x 1100 / 16 MB)</p>
-                                        </>}
+                                        <AiOutlineCloudUpload className="w-8 h-8 mb-4 text-gray-500" />
+
+                                        {banner ? <span className="font-semibold">{banner.name}</span>
+                                            : Dbanner ?
+                                                <>
+                                                    <Image src={Dbanner} alt="banner" width={100} height={100} className="border border-gray-200 rounded" />
+                                                    <span className="font-semibold">{banner_split}</span>
+                                                </>
+                                                : <>
+                                                    <p className="mb-2 text-sm text-gray-500"><span className="font-semibold">Click to upload</span></p>
+                                                    <p className="text-xs text-gray-500"> PNG,JPEG or JPG  (MAX. 2700 x 1100 / 16 MB)</p>
+                                                </>
+                                        }
+
+
+
+                                        {state?.banner && <div className="text-red-500">{state.banner}</div>}
                                     </div>
                                     <input
                                         id="dropzone-file"
                                         name="banner"
                                         type="file"
                                         className="hidden"
+                                        required={banner == null}
                                         onChange={(e) => { setBanner(e.target.files[0]) }}
                                     />
                                 </label>
                             </div>
                             <div className="mb-5 mt-4">
-                                <input type="hidden" value={params.id} name="id_acara"></input>
                                 <label htmlFor="nama_event" className="mb-3 block text-base font-medium text-[#07074D]">
                                     Nama Acara
                                 </label>
                                 <input
                                     type="text"
-                                    name="nama_event"
-                                    id="nama_event"
-                                    placeholder="Nama event"
-                                    value={nama_event}
-                                    onChange={(e) => { setNama_event(e.target.value) }}
+                                    name="nama_acara"
+                                    id="nama_acara"
+                                    placeholder="Nama acara"
+                                    value={nama_acara}
+                                    onChange={(e) => { setNama_acara(e.target.value) }}
                                     className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                 />
                                 {state?.nama_event && <div className="text-red-500">{state.nama_event}</div>}
@@ -296,9 +322,9 @@ export default function Edit({ params }) {
                         </div>
                         <SubmitButton />
                     </form>
-                </div>
-            </div>
-        </div>
+                </div >
+            </div >
+        </div >
     )
 }
 

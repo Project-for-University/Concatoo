@@ -75,9 +75,10 @@ export const authOptions = NextAuth({
                 if (!user) {
                     throw new Error('No user found')
                 }
-                token.id = user.id
+                token.id_user = user.id_user
                 token.role = user.role;
             }
+            console.log(token);
             return token
         },
         // if (user) {
@@ -117,10 +118,11 @@ export const authOptions = NextAuth({
         async session({ session, token }) {
             console.log(token);
             // Ensure the user object exists in the session
-            session.user = session.user || {};
 
             if (token.role) {
-                session.user.role = token.role; // Assign role to session
+                session.user = session.user,
+                    session.user.role = token.role; // Assign role to session
+                session.user.id_user = token.id_user; // Assign role to session
 
                 // Redirect based on role
                 // switch (token.role) {
@@ -136,6 +138,7 @@ export const authOptions = NextAuth({
             } else {
                 session.redirect = '/login'; // Redirect to login if no role is found
             }
+            console.log(session);
             return session;
         },
         async signIn({ account, profile }) {

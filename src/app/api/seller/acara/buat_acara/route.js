@@ -10,6 +10,7 @@ import { URL } from 'url';
 export async function POST(req, { params }) {
     const formData = await req.formData();
     console.log(formData);
+    const id_user = formData.get('id_user');
     const banner = formData.get('banner');
     const namaNarahubung = formData.get('nama_narahubung');
     const email = formData.get('email');
@@ -66,6 +67,7 @@ export async function POST(req, { params }) {
 
         const newAcara = await prisma.acara.create({
             data: {
+                id_user: id_user,
                 banner: imagePath,
                 nama_acara: namaAcara,
                 tanggal_acara: tanggalAcara,
