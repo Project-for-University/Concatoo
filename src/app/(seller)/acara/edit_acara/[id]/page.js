@@ -140,7 +140,7 @@ export default function Edit({ params }) {
                                         name="banner"
                                         type="file"
                                         className="hidden"
-                                        required={banner == null}
+                                        required={false}
                                         onChange={(e) => { setBanner(e.target.files[0]) }}
                                     />
                                 </label>
