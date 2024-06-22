@@ -4,8 +4,6 @@
 
 import { useEffect, useState } from "react"
 import { useFormState, useFormStatus } from 'react-dom'
-import Sidebar from "@/app/(seller)/dashboard/component/sidebar";
-import Navbar from "@/app/(seller)/dashboard/component/navbar";
 import { UpdateTiket } from "../../../../api/seller/tiket/edit_tiket/update_tiket/action";
 
 // import Sidebar from "../sidebar/page";

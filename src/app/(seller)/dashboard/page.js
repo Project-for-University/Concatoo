@@ -32,8 +32,6 @@ export default function Pages() {
                     </div>
                 </div>
             </div>
-            <h1 className="">dashboard</h1>
-
         </>
     )
 }

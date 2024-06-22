@@ -54,8 +54,8 @@ export default function CardAcara({ data }) {
 
     return (
         <>
-            <div className="flex justify-between mb-4 h-10 rounded-lg border-2 border-dashed border-gray-300">
-                <form className="flex items-center">
+            <div className="flex justify-end mb-4 h-10 rounded-lg">
+                {/* <form className="flex items-center">
                     <label htmlFor="simple-search" className="sr-only">Cari</label>
                     <div className="relative w-full">
                         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -66,9 +66,9 @@ export default function CardAcara({ data }) {
                     <button type="submit" className="px-3 py-2 ms-2 text-sm font-medium text-white bg-emerald-700 rounded-lg border border-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300">
                         <span className="">Cari</span>
                     </button>
-                </form>
+                </form> */}
 
-                <Link href={`acara/buat_acara`} className="px-3 py-2 text-sm font-medium text-center text-white bg-gradient-to-b from-emerald-300 to-emerald-400 hover:bg-gardient-to-br focus:ring-4 focus:outline-none focus:ring-emerald-300">Buat Acara</Link>
+                <Link href={`acara/buat_acara`} className="px-3 mr-3 py-2 rounded-md text-sm font-medium text-center text-white bg-gradient-to-b from-emerald-300 to-emerald-400 hover:bg-gardient-to-br focus:ring-4 focus:outline-none focus:ring-emerald-300">Buat Acara</Link>
 
             </div>
 

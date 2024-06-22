@@ -1,6 +1,5 @@
 'use client'
-import Navbar from "@/app/(seller)/dashboard/component/navbar"
-import Sidebar from "@/app/(seller)/dashboard/component/sidebar"
+
 import { UpdateAcara } from "../../../../api/seller/acara/edit_acara/update_acara/action";
 
 import { useEffect, useState } from "react"

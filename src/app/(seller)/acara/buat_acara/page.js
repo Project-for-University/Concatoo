@@ -20,8 +20,6 @@ import { useSession } from "next-auth/react"
 export default function Acara() {
     const [banner, setBanner] = useState(null);
     const [nama_event, setNama_event] = useState('')
-    const [tanggal_acara, setTanggal_acara] = useState('')
-    const [waktu_acara, setWaktu_acara] = useState('')
     const [lokasi, setLokasi] = useState('')
     const [nama_narahubung, setNama_narahubung] = useState('')
     const [email, setEmail] = useState('')
@@ -31,6 +29,10 @@ export default function Acara() {
     const { data: session, status } = useSession()
     console.log("🚀 ~ Acara ~ status:", status)
     console.log("🚀 ~ Acara ~ session:", session)
+    
+    const [tanggal_acara, setTanggal_acara] = useState(new Date())
+    const [waktu_acara, setWaktu_acara] = useState(null)
+    const today = new Date().toISOString().split('T')[0];
 
     const initialState = {
         message: '',
@@ -174,8 +176,7 @@ export default function Acara() {
                                     </label>
                                     <input
                                         type="date"
-                                        name="tanggal_acara"
-                                        id="tanggal_acara"
+                                        min={today}
                                         value={tanggal_acara}
                                         onChange={(e) => { setTanggal_acara(e.target.value) }}
                                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
