@@ -93,55 +93,55 @@ function Card({ param }) {
         <>
             <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-1 mb-4">
 
-                <div class="grid lg:grid-cols-3 md:grid-cols-1 gap-4 ">
+                <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-4 ">
 
-                    <div class="flex flex-col bg-white border-1 shadow rounded-xl p-6  lg:col-span-2 md:col-span-1">
+                    <div className="flex flex-col bg-white border-1 shadow rounded-xl p-6  lg:col-span-2 md:col-span-1">
                         <Image src={acaras.banner} className="w-full h-80 object-cover rounded" alt="banner" width={800} height={800} />
-                        <div class="flex flex-col items-start mt-4 mb-4">
-                            <h4 class="text-xl font-semibold">Informasi Kontak</h4>
-                            <p class="text-sm">Nama Narahubung : {acaras.kontak?.nama_narahubung}</p>
-                            <p class="text-sm">No Ponsel: {acaras.kontak?.no_ponsel}</p>
-                            <p class="text-sm">Email :{acaras.kontak?.email}</p>
+                        <div className="flex flex-col items-start mt-4 mb-4">
+                            <h4 className="text-xl font-semibold">Informasi Kontak</h4>
+                            <p className="text-sm">Nama Narahubung : {acaras.kontak?.nama_narahubung}</p>
+                            <p className="text-sm">No Ponsel: {acaras.kontak?.no_ponsel}</p>
+                            <p className="text-sm">Email :{acaras.kontak?.email}</p>
                         </div>
-                        <div class="flex flex-col items-start mt-4 mb-4">
-                            <h4 class="text-xl font-semibold">Deskripsi Acara</h4>
-                            <p class="text-sm">{acaras.deskripsi?.deskripsi_acara}</p>
+                        <div className="flex flex-col items-start mt-4 mb-4">
+                            <h4 className="text-xl font-semibold">Deskripsi Acara</h4>
+                            <p className="text-sm">{acaras.deskripsi?.deskripsi_acara}</p>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 gap-2 w-full">
+                    <div className="grid grid-cols-1 gap-2 w-full">
 
-                        <div class="flex flex-col bg-white border-1 shadow rounded-lg p-6  ">
-                            <div class="flex flex-col h-full ">
+                        <div className="flex flex-col bg-white border-1 shadow rounded-lg p-6  ">
+                            <div className="flex flex-col h-full ">
                                 <div>
-                                    <h4 class="text-xl font-semibold pb-3">{acaras.nama_acara}</h4>
+                                    <h4 className="text-xl font-semibold pb-3">{acaras.nama_acara}</h4>
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td class="text-sm pr-3"> Tanggal Acara</td>
-                                                <td class="text-sm pl-3">: {new Date(acaras.tanggal_acara).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: '2-digit' })}</td>
+                                                <td className="text-sm pr-3"> Tanggal Acara</td>
+                                                <td className="text-sm pl-3">: {new Date(acaras.tanggal_acara).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: '2-digit' })}</td>
                                             </tr>
                                             <tr>
-                                                <td class="text-sm pr-3"> Lokasi</td>
-                                                <td class="text-sm pl-3">: {acaras.lokasi}</td>
+                                                <td className="text-sm pr-3"> Lokasi</td>
+                                                <td className="text-sm pl-3">: {acaras.lokasi}</td>
                                             </tr>
                                             <tr>
-                                                <td class="text-sm pr-3"> Waktu Acara</td>
-                                                <td class="text-sm pl-3">: {new Date(acaras.waktu_acara).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })}</td>
+                                                <td className="text-sm pr-3"> Waktu Acara</td>
+                                                <td className="text-sm pl-3">: {new Date(acaras.waktu_acara).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })}</td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                                <Link href={`/tiket/buat_tiket/${acaras.id_acara}`} class=" bottom-0 mt-10 p-2 w-full text-white leading-none  uppercase bg-gradient-to-b from-emerald-300 to-emerald-400 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                                <Link href={`/tiket/buat_tiket/${acaras.id_acara}`} className=" bottom-0 mt-10 p-2 w-full text-white leading-none  uppercase bg-gradient-to-b from-emerald-300 to-emerald-400 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                                     Buat Tiket
                                 </Link>
                             </div>
                         </div>
 
                         {acaras.length == 0 ? (<>
-                            <div class="flex flex-col bg-white border-1 shadow rounded-lg p-6  ">
-                                <div class="flex flex-col items-start">
-                                    <p class="text-sm">Tidak ada tiket</p>
+                            <div className="flex flex-col bg-white border-1 shadow rounded-lg p-6  ">
+                                <div className="flex flex-col items-start">
+                                    <p className="text-sm">Tidak ada tiket</p>
                                 </div>
                             </div>
                         </>) : (<>

@@ -2,8 +2,9 @@
 import { signIn, signOut, useSession } from "next-auth/react"
 import Image from "next/image";
 import Link from "next/link";
-import { IoPersonOutline } from "react-icons/io5";
+import { IoPersonOutline, IoSearchOutline } from "react-icons/io5";
 import { useState } from 'react';
+
 
 function Navbar() {
     const [isOpenProfile, setIsOpen] = useState(false);
@@ -13,37 +14,29 @@ function Navbar() {
     console.log(status);
 
     return (
-        <nav class=" px-4 bg-white antialiased border-b-2">
-            <div class=" px-4 py-4 2xl:px-0">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center space-x-8">
-                        <div class="shrink-0">
+        <nav className=" px-4 bg-white antialiased border-b-2">
+            <div className=" px-4 py-4 2xl:px-0">
+                <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-8">
+                        <div className="shrink-0 mr-24">
                             <a href="/" className="flex items-center justify-between mr-4">
                                 <Image src={'/asset/logo.png'} alt="logo.png" width={40} height={40}></Image>
                                 <span className="mb-1 text-3xl font-semibold whitespace-nowrap text-emerald-600">concert</span>
                             </a>
                         </div>
-
-                        <ul class="hidden items-center justify-start gap-6 py-3 sm:justify-center md:gap-8 lg:flex">
-                            <li>
-                                <a href="#" title="" class="hover:text-primary-700 flex text-sm font-medium text-gray-900"> Home </a>
-                            </li>
-                            <li class="shrink-0">
-                                <a href="#" title="" class="hover:text-primary-700 flex text-sm font-medium text-gray-900"> Best Sellers </a>
-                            </li>
-                            <li class="shrink-0">
-                                <a href="#" title="" class="hover:text-primary-700 flex text-sm font-medium text-gray-900"> Gift Ideas </a>
-                            </li>
-                            <li class="shrink-0">
-                                <a href="#" title="" class="hover:text-primary-700 text-sm font-medium text-gray-900"> Todays Deals </a>
-                            </li>
-                            <li class="shrink-0">
-                                <a href="#" title="" class="hover:text-primary-700 text-sm font-medium text-gray-900"> Sell </a>
-                            </li>
-                        </ul>
+                        <label htmlFor="simple-search" className="sr-only">Cari</label>
+                            <div className="relative w-96">
+                                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                    <IoSearchOutline />
+                                </div>
+                                <input type="text" id="simple-search" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full pl-10 pr-3 py-2" placeholder="Cari" required />
+                            </div>
+                            <button type="submit" className="px-3 py-2 ms-2 text-sm font-medium text-white bg-gradient-to-b from-emerald-300 to-emerald-400 rounded-lg border-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300">
+                                <span className="">Cari</span>
+                            </button>
                     </div>
 
-                    <div class="flex items-center lg:space-x-2">
+                    <div className="flex items-center lg:space-x-2">
                         {status === 'authenticated' ? (
                             <>
                                 <div className="relative inline-block text-left">
@@ -58,7 +51,7 @@ function Navbar() {
                                         <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                                             <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                                                 {/* <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Profile</Link> */}
-                                                <button onClick={() => signOut({ callbackUrl: '/' })} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 " role="menuitem">Sign Out</button>
+                                                <button onClick={() => signOut({ callbackUrl: '/' })} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 " role="menuitem">Keluar</button>
                                             </div>
                                         </div>
                                     )}
@@ -75,37 +68,37 @@ function Navbar() {
 
 
 
-                        <button type="button" data-collapse-toggle="ecommerce-navbar-menu-1" aria-controls="ecommerce-navbar-menu-1" aria-expanded="false" class="inline-flex items-center justify-center rounded-md p-2 text-gray-900 hover:bg-gray-100 lg:hidden">
-                            <span class="sr-only"> Open Menu </span>
-                            <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        {/* <button type="button" data-collapse-toggle="ecommerce-navbar-menu-1" aria-controls="ecommerce-navbar-menu-1" aria-expanded="false" class="inline-flex items-center justify-center rounded-md p-2 text-gray-900 hover:bg-gray-100 lg:hidden">
+                            <span className="sr-only"> Open Menu </span>
+                            <svg className="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14" />
                             </svg>
-                        </button>
+                        </button> */}
                     </div>
                 </div>
 
-                <div id="ecommerce-navbar-menu-1" class="mt-4 hidden rounded-lg border border-gray-200 bg-gray-50 px-4 py-3">
-                    <ul class="space-y-3 text-sm font-medium text-gray-900 ">
+                {/* <div id="ecommerce-navbar-menu-1" clas="mt-4 hidden rounded-lg border border-gray-200 bg-gray-50 px-4 py-3">
+                    <ul clas="space-y-3 text-sm font-medium text-gray-900 ">
                         <li>
-                            <a href="#" class="hover:text-primary-700">Home</a>
+                            <a href="#" clas="hover:text-primary-700">Home</a>
                         </li>
                         <li>
-                            <a href="#" class="hover:text-primary-700">Best Sellers</a>
+                            <a href="#" clas="hover:text-primary-700">Best Sellers</a>
                         </li>
                         <li>
-                            <a href="#" class="hover:text-primary-700">Gift Ideas</a>
+                            <a href="#" clas="hover:text-primary-700">Gift Ideas</a>
                         </li>
                         <li>
-                            <a href="#" class="hover:text-primary-700">Games</a>
+                            <a href="#" clas="hover:text-primary-700">Games</a>
                         </li>
                         <li>
-                            <a href="#" class="hover:text-primary-700">Electronics</a>
+                            <a href="#" clas="hover:text-primary-700">Electronics</a>
                         </li>
                         <li>
-                            <a href="#" class="hover:text-primary-700">Home & Garden</a>
+                            <a href="#" clas="hover:text-primary-700">Home & Garden</a>
                         </li>
                     </ul>
-                </div>
+                </div> */}
             </div>
         </nav>
 

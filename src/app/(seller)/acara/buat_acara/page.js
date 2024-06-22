@@ -24,14 +24,18 @@ export default function Form_Buatacara() {
     const [id_acara, setid_acara] = useState(null);
     const [banner, setBanner] = useState(null);
     const [nama_event, setNama_event] = useState('')
-    const [tanggal_acara, setTanggal_acara] = useState('')
-    const [waktu_acara, setWaktu_acara] = useState('')
     const [lokasi, setLokasi] = useState('')
     const [nama_narahubung, setNama_narahubung] = useState('')
     const [email, setEmail] = useState('')
     const [no_ponsel, setNo_ponsel] = useState('')
     const [deskripsi_acara, setDeskripsi_acara] = useState('')
     const [syarat_ketentuan, setSyarat_ketentuan] = useState('')
+
+
+    const [tanggal_acara, setTanggal_acara] = useState(new Date())
+    const [waktu_acara, setWaktu_acara] = useState(null)
+    const today = new Date().toISOString().split('T')[0];
+
 
     const handlePonsel = (event) => {
         const newValue = event.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
@@ -183,6 +187,7 @@ export default function Form_Buatacara() {
                                             type="date"
                                             name="tanggal_acara"
                                             id="tanggal_acara"
+                                            min={today}
                                             value={tanggal_acara}
                                             onChange={(e) => { setTanggal_acara(e.target.value) }}
                                             className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
