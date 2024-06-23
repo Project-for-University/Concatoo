@@ -25,15 +25,15 @@ function Navbar() {
                             </a>
                         </div>
                         <label htmlFor="simple-search" className="sr-only">Cari</label>
-                            <div className="relative w-96">
-                                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                    <IoSearchOutline />
-                                </div>
-                                <input type="text" id="simple-search" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full pl-10 pr-3 py-2" placeholder="Cari" required />
+                        <div className="relative w-96">
+                            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <IoSearchOutline />
                             </div>
-                            <button type="submit" className="px-3 py-2 ms-2 text-sm font-medium text-white bg-gradient-to-b from-emerald-300 to-emerald-400 rounded-lg border-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300">
-                                <span className="">Cari</span>
-                            </button>
+                            <input type="text" id="simple-search" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full pl-10 pr-3 py-2" placeholder="Cari" required />
+                        </div>
+                        <button type="submit" className="px-3 py-2 ms-2 text-sm font-medium text-white bg-gradient-to-b from-emerald-300 to-emerald-400 rounded-lg border-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300">
+                            <span className="">Cari</span>
+                        </button>
                     </div>
 
                     <div className="flex items-center lg:space-x-2">

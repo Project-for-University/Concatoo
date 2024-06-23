@@ -27,7 +27,11 @@ export default function LoginForm({ providers }) {
 
                         <div className="my-6">
                             <p className="font-semibold text-center font text-2xl">Selamat Datang</p>
-                            <p className="text-center text-sm mt-2">Belum Punya Akun? Yuk <Link href={`/auth/register`} className="text-emerald-600 font-semibold">Daftar</Link></p>
+                            <p className="text-center text-sm mt-2">
+                                Belum Punya Akun? Yuk
+
+                                <Link href={`/auth/register`} className="text-emerald-600 font-semibold ml-1">Daftar</Link>
+                            </p>
                         </div>
                     </div>
                     {/* {state?.error ? (

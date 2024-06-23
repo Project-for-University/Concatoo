@@ -7,7 +7,8 @@
 // import { useState, useEffect } from "react"
 import Link from "next/link";
 import Image from "next/image";
-import { GoogleRegisterAction } from "./action/action_google";
+import { GoogleRegisterAction } from "./action-unused/action_google";
+import { signIn, } from "next-auth/react";
 
 // import { useState, useEffect } from "react"
 // // pake useformstate jangan useaction state
@@ -79,11 +80,14 @@ export default function RegisterForm({ providers }) {
                     </div>
                     <div className="my-6">
                         <p className="font-semibold text-center font text-2xl">Bergabung Sekarang</p>
-                        <p className="text-center text-sm mt-2">Sudah Punya Akun? Yuk Tinggal <Link href={`/auth/login`} className="text-emerald-600 font-semibold" >Masuk</Link></p>
+                        <p className="text-center text-sm mt-2">
+                            Sudah Punya Akun? Tinggal
+                            <button onClick={() => signIn()} type="button" class="text-emerald-600 font-semibold ml-1">Masuk</button>
+                        </p>
                     </div>
                     {Object.values(providers).map((provider) => (
                         <div key={provider.name} class="flex items-center justify-center ">
-                            <button onClick={() => { GoogleRegisterAction(provider.id) }} class="flex items-center bg-white  border border-gray-300 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-600  hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                            <button onClick={() => { signIn(provider.id, { callbackUrl: '/' }) }} class="flex items-center bg-white  border border-gray-300 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-600  hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                                 <Image src={`/asset/google.png`} width={200} height={200} class="h-6 w-6 mr-2" alt="" />
                                 <span>Daftar dengan {provider.name}</span>
                             </button>

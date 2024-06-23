@@ -148,6 +148,17 @@ export const authOptions = NextAuth({
                 if (!profile?.email) {
                     throw new Error('No profile')
                 }
+
+                const UserStatus = await prisma.user.findUnique({
+                    where: {
+                        email: profile.email
+                    }
+                })
+                if (UserStatus.status === 'NONAKTIF') {
+                    return null
+                }
+
+
                 await prisma.user.upsert({
                     where: {
                         email: profile.email,

@@ -19,6 +19,7 @@ model User {
   phonenumber String?  @unique @db.Char(15)
   email       String   @unique @db.VarChar(50)
   avatar      String?
+  status      Status   @default(AKTIF)
   // password    String
   role        Role     @default(CUSTOMER)
   acara       Acara[]
@@ -30,6 +31,11 @@ enum Role {
   CUSTOMER
   SELLER
   OPERATOR
+}
+
+enum Status {
+  AKTIF
+  NONAKTIF
 }
 
 model Acara {

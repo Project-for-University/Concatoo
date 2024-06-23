@@ -32,6 +32,14 @@ tapi kalo nangkap id dengan page.js function DetailAcara({id}) = nah itu baru ha
 * PERTING perhatikan alur variable jangan asal copas nanti eror makin pusing
 * PENTING perhatikan data yang ingin di input kalo shecma table db nya unique harus ada varidasi dulu atau jangan masukan data berulang nanti eror makin pusing pula
 
+## hati hati dynamic route
+export async function PATCH(req, { id }) {
+    console.log(id.id_user);
+    console.log(req);
+
+    
+
+
 ## 1 action 2 query / lebih
 
 - jika ingin delete maka delete dulu data di tabel induk baru tabel anaknya
