@@ -101,11 +101,11 @@ export default function Edit({ params }) {
     return (
         <div>
             {/* <Navbar /> */}
-            <div className="flex justify-center">
+            <div className="flex justify-center mb-4">
                 {/* <Sidebar /> */}
-                <div className="mx-auto w-full max-w-[50%] h-fit bg-white mt-6 rounded-lg shadow-md">
-                    <div className="ml-8 mt-6 text-black font-semibold text-xl">Edit Tiket</div>
-                    <form className="py-3 px-9" action={formAction}>
+                <div className="mx-auto w-full max-w-[900px] shadow-md mt-8 rounded-md bg-white">
+                    <div className="mt-8 ml-8 text-[#07074D] font-semibold text-xl">Edit Tiket</div>
+                    <form className="py-6 px-9 mb-6 pt-4" action={formAction}>
                         {/* id acara */}
                         <input type="hidden" name="id_acara" value={params.id[1]} />
                         {/* ide tiket */}

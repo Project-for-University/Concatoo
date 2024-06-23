@@ -25,20 +25,16 @@ export default function CardAcaraCustomer({ acaraData, tiketData, }) {
                     {acaras.map(acara => (
                         <div key={acara.id} className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
                             <Link href={`/detail_tiket/${acara.id_acara}`}>
-                                <Image src={acara.banner} alt={acara.banner} className="h-80 w-72 object-cover rounded-t-xl" width={500} height={500} />
+                                <Image src={acara.banner} alt={acara.banner} unoptimized={false} className="h-80 w-72 object-cover rounded-t-xl" width={500} height={500} />
                                 <div className="px-4 py-3 w-72">
-                                    <span className="text-gray-400 mr-3 uppercase text-xs">Brand</span>
-                                    <p className="text-lg font-bold text-black truncate block capitalize">Product Name</p>
-                                    <div className="flex items-center">
-                                        <p className="text-lg font-semibold text-black cursor-auto my-3">{new Date(acara.tanggal_acara).toLocaleDateString('id-ID', {
-                                            day: 'numeric',
-                                            month: 'long',
-                                            year: 'numeric'
-                                        })}</p>
-                                        <del>
-                                            <p className="text-sm text-gray-600 cursor-auto ml-2">{tiketTermurah?.harga}</p>
-                                        </del>
-                                    </div>
+                                    <p className="text-base  text-gray-700 truncate block capitalize">{acara.nama_acara}</p>
+                                    <p className="text-sm text-gray-500 mt-1">{new Date(acara.tanggal_acara).toLocaleDateString('id-ID', {
+                                        day: 'numeric',
+                                        month: 'long',
+                                        year: 'numeric'
+                                    })}
+                                    </p>
+                                    <p className="  text-lg font-semibold text-black  my-3 mr-1">Rp {tiketTermurah?.harga}</p>
                                 </div>
                             </Link>
                         </div>
