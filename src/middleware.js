@@ -303,6 +303,10 @@
 // //     ],
 // // };
 
+// MIDDLEWARE untuk customer,operator,seller dirinya sendiri harus di rewrite
+// kalo role lain nyoba masuk ke halaman role lain itu harus di redirect
+
+
 
 import { NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
@@ -321,6 +325,9 @@ export async function middleware(req) {
             } else if (token.role === 'CUSTOMER') {
                 url.pathname = '/home';
                 return NextResponse.redirect(url);
+            } else if (token.role === 'OPERATOR') {
+                url.pathname = '/beranda';
+                return NextResponse.redirect(url);
             }
         }
         // Jika tidak ada token, biarkan akses ke halaman root
@@ -333,12 +340,19 @@ export async function middleware(req) {
         return NextResponse.redirect(url);
     }
 
+
+
     // Proteksi halaman lain berdasarkan role
+
+
+    // untuk seller
     if (url.pathname.startsWith('/acara')) {
         if (token.role === 'CUSTOMER') {
             return NextResponse.redirect(new URL('/home', req.url));
         } else if (token.role === 'SELLER') {
             return NextResponse.rewrite(new URL(`/acara${url.pathname.slice('/acara'.length)}`, url));
+        } else if (token.role === 'OPERATOR') {
+            return NextResponse.redirect(new URL('/beranda', req.url));
         }
     }
 
@@ -347,6 +361,8 @@ export async function middleware(req) {
             return NextResponse.redirect(new URL('/home', req.url));
         } else if (token.role === 'SELLER') {
             return NextResponse.rewrite(new URL(`/dashboard${url.pathname.slice('/dashboard'.length)}`, url));
+        } else if (token.role === 'OPERATOR') {
+            return NextResponse.redirect(new URL('/beranda', req.url));
         }
     }
 
@@ -355,6 +371,8 @@ export async function middleware(req) {
             return NextResponse.redirect(new URL('/home', req.url));
         } else if (token.role === 'SELLER') {
             return NextResponse.rewrite(new URL(`/detail_acara${url.pathname.slice('/detail_acara'.length)}`, url));
+        } else if (token.role === 'OPERATOR') {
+            return NextResponse.redirect(new URL('/beranda', req.url));
         }
     }
 
@@ -363,6 +381,8 @@ export async function middleware(req) {
             return NextResponse.redirect(new URL('/home', req.url));
         } else if (token.role === 'SELLER') {
             return NextResponse.rewrite(new URL(`/tiket${url.pathname.slice('/tiket'.length)}`, url));
+        } else if (token.role === 'OPERATOR') {
+            return NextResponse.redirect(new URL('/beranda', req.url));
         }
     }
 
@@ -373,18 +393,38 @@ export async function middleware(req) {
         } else if (token.role === 'SELLER') {
             return NextResponse.redirect(new URL('/dashboard', req.url));
         }
+        else if (token.role === 'OPERATOR') {
+            return NextResponse.redirect(new URL('/beranda', req.url));
+        }
     }
 
+
+    //untuk operator 
+    if (url.pathname.startsWith('/beranda')) {
+        if (token.role === 'CUSTOMER') {
+            return NextResponse.redirect(new URL('/home', req.url));
+        } else if (token.role === 'SELLER') {
+            return NextResponse.redirect(new URL('/acara', req.url));
+        } else if (token.role === 'OPERATOR') {
+            return NextResponse.rewrite(new URL(`/beranda${url.pathname.slice('/beranda'.length)}`, url));
+        }
+    }
     return NextResponse.next();
 }
 
 export const config = {
     matcher: [
+        // tamu
         '/',
+        // seller
         '/acara/:path*',
         '/dashboard/:path*',
         '/home/:path*',
         '/detail_acara/:path*',
         '/tiket/:path*',
+        // operator
+        '/beranda/:path*',
+        '/list_seller/:path*',
+
     ],
 };

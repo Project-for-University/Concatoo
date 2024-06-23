@@ -78,9 +78,9 @@ export default function Ticket({ params }) {
 
 
     return (
-        <div className="flex justify-center">
-            <div className="mx-auto w-full max-w-[50%] h-fit bg-white mt-6 rounded-lg shadow-md">
-                <div className="ml-8 mt-6 text-black font-semibold text-xl">Buat Tiket</div>
+        <div className="flex justify-center mb-4">
+            <div className="mx-auto w-full max-w-[900px]   bg-white mt-8 rounded-lg shadow-md">
+                <div className="ml-8 mt-8 text-black font-semibold text-xl">Buat Tiket</div>
                 <form
                     className="py-3 px-9"
                     action={formAction}
