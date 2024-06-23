@@ -154,25 +154,37 @@ export const authOptions = NextAuth({
                         email: profile.email
                     }
                 })
+                if (UserStatus == null) {
+                    await prisma.user.upsert({
+                        where: {
+                            email: profile.email,
+                        },
+                        create: {
+                            name: profile.name,
+                            email: profile.email,
+                            role: 'SELLER'
+                        },
+                        update: {
+                            email: profile.email
+                        }
+                    })
+                    return true
+                }
+
                 if (UserStatus.status === 'NONAKTIF') {
                     return null
                 }
 
 
-                await prisma.user.upsert({
-                    where: {
-                        email: profile.email,
-                    },
-                    create: {
-                        name: profile.name,
-                        email: profile.email,
-                        role: 'SELLER'
-                    },
-                    update: {
-                        email: profile.email
-                    }
-                })
-                return true //kalo true bisa login kalo null ke halaman /auth/error
+                // await prisma.user.update({
+                //     where: {
+                //         email: profile.email,
+                //     },
+                //     data: {
+                //         email: profile.email
+                //     }
+                // })
+                // return true //kalo true bisa login kalo null ke halaman /auth/error
             } catch (e) {
                 console.log(e);
             }

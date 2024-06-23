@@ -6,7 +6,11 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 const dynamic = "force-dynamic"
+
+
 export default function ListSeller() {
+
+
 
     const [data, setData] = useState([]);
     console.log(data);
