@@ -6,7 +6,7 @@ import { RiMenu2Line } from "react-icons/ri";
 import { signOut, useSession } from "next-auth/react"
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
-import { IoPersonOutline, IoPeopleOutline, IoAlbumsOutline, IoBarChartOutline } from "react-icons/io5";
+import { IoPersonOutline, IoPeopleOutline, IoBarChartOutline } from "react-icons/io5";
 import { useState } from 'react';
 
 
@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
                                 <RiMenu2Line />
                                 <span className="sr-only">Toggle sidebar</span>
                             </button>
-                            <Link href={'/'} className="flex items-center justify-between mr-4">
+                            <Link href={'/beranda'} className="flex items-center justify-between mr-4">
                                 <Image src={'/asset/logo.png'} alt="logo.png" width={40} height={40}></Image>
                                 <span className="self-center text-2xl font-semibold whitespace-nowrap text-emerald-600">concert</span>
                             </Link>
@@ -94,15 +94,6 @@ export default function RootLayout({ children }) {
                                 >
                                     <IoPeopleOutline className="mr-4" size={24} />
                                     <span className="ml-3">List Penjual</span>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href={`/list_acara`}
-                                    className={`flex items-center p-2 text-base font-medium text-gray-900 rounded-lg hover:bg-gray-100 group ${pathname === '/list_acara' ? 'text-emerald-600 bg-emerald-100' : ''}`}
-                                >
-                                    <IoAlbumsOutline className="mr-4" size={24} />
-                                    <span className="ml-3">List Acara</span>
                                 </Link>
                             </li>
                         </ul>

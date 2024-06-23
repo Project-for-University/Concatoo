@@ -123,7 +123,7 @@ export default function Edit({ params }) {
                                 onChange={(e) => {
                                     setNama_tiket(e.target.value);
                                 }}
-                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-demerald-200 focus:shadow-md"
                             />
                             {state?.nama_tiket && <div className="text-red-500">{state.nama_tiket}</div>}
                         </div>
@@ -141,7 +141,7 @@ export default function Edit({ params }) {
                                         placeholder="100000"
                                         value={harga}
                                         onChange={handleHarga}
-                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-demerald-200 focus:shadow-md"
                                     />
                                     {state?.harga && <div className="text-red-500">{state.harga}</div>}
                                 </div>
@@ -157,7 +157,7 @@ export default function Edit({ params }) {
                                         id="jumlah_tiket"
                                         value={jumlah_tiket}
                                         onChange={handleJumlah}
-                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-demerald-200 focus:shadow-md"
                                     />
                                     {state?.jumlah_tiket && <div className="text-red-500">{state.jumlah_tiket}</div>}
                                 </div>
@@ -183,7 +183,7 @@ export default function Edit({ params }) {
                                         onChange={(e) => {
                                             setTanggal_mulai_penjualan(e.target.value);
                                         }}
-                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-demerald-200 focus:shadow-md"
                                     />
                                     {state?.tanggal_mulai_penjualan && (
                                         <div className="text-red-500">{state.tanggal_mulai_penjualan}</div>
@@ -202,7 +202,7 @@ export default function Edit({ params }) {
                                         onChange={(e) => {
                                             setTanggal_akhir_penjualan(e.target.value);
                                         }}
-                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-demerald-200 focus:shadow-md"
                                     />
                                     {state?.tanggal_akhir_penjualan && (
                                         <div className="text-red-500">{state.tanggal_akhir_penjualan}</div>
@@ -222,7 +222,7 @@ export default function Edit({ params }) {
                                         onChange={(e) => {
                                             setWaktu_penjualan(e.target.value);
                                         }}
-                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-demerald-200 focus:shadow-md"
                                     />
                                     {state?.waktu_penjualan && <div className="text-red-500">{state.waktu_penjualan}</div>}
                                 </div>
@@ -240,7 +240,7 @@ export default function Edit({ params }) {
                                         onChange={(e) => {
                                             setWaktu_akhir_penjualan(e.target.value);
                                         }}
-                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-demerald-200 focus:shadow-md"
                                     />
                                     {state?.waktu_akhir_penjualan && (
                                         <div className="text-red-500">{state.waktu_akhir_penjualan}</div>
@@ -261,7 +261,7 @@ export default function Edit({ params }) {
                                 onChange={(e) => {
                                     setDeskripsi_tiket(e.target.value);
                                 }}
-                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-demerald-200 focus:shadow-md"
                             />
                             {state?.deskripsi_tiket && <div className="text-red-500">{state.deskripsi_tiket}</div>}
                         </div>

@@ -33,8 +33,8 @@ export default function Navbar() {
                             className="p-2 text-black ml-auto">Keluar</button>
                     ) : (
                         <div className="flex space-x-4 ml-auto">
-                            <button className="bg-white rounded-lg hover:bg-orange-100 p-2" onClick={() => signIn()}>Masuk</button>
-                            <Link className="bg-white hover:bg-orange-100 p-2" href="/auth/register">Daftar</Link>
+                            <button className="bg-white rounded-lg hover:bg-emerald-100 p-2" onClick={() => signIn()}>Masuk</button>
+                            <Link className="bg-white hover:bg-emerald-100 p-2" href="/auth/register">Daftar</Link>
                         </div>
                     )}
                 </div>

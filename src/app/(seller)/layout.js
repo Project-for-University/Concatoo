@@ -63,11 +63,11 @@ export default function RootLayout({ children }) {
 
                                         {isOpenProfile && (
                                             <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                                                <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                                <div className="py-1 hover:bg-gray-100" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                                                     {/* <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Profile</Link> */}
                                                     <button onClick="" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 " role="menuitem">Pengaturan</button>
                                                 </div>
-                                                <div className="py-1 flex justify-between" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                                <div className="py-1 flex justify-between hover:bg-gray-100" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                                                     {/* <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Profile</Link> */}
                                                     <button onClick={() => signOut({ callbackUrl: '/' })} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 " role="menuitem">Keluar</button>
                                                 </div>
@@ -118,11 +118,9 @@ export default function RootLayout({ children }) {
 
                 </aside>
 
-
-
                 <main className="h-full p-4 pt-20 md:ml-64">
-                    {children}
 
+                    {children}
 
                     <footer className="bg-white rounded-lg shadow">
                         <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
