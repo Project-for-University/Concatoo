@@ -154,6 +154,7 @@ export const authOptions = NextAuth({
                         email: profile.email
                     }
                 })
+                console.log("🚀 ~ signIn ~ UserStatus:", UserStatus)
                 if (UserStatus == null) {
                     await prisma.user.upsert({
                         where: {
@@ -176,15 +177,15 @@ export const authOptions = NextAuth({
                 }
 
 
-                // await prisma.user.update({
-                //     where: {
-                //         email: profile.email,
-                //     },
-                //     data: {
-                //         email: profile.email
-                //     }
-                // })
-                // return true //kalo true bisa login kalo null ke halaman /auth/error
+                await prisma.user.update({
+                    where: {
+                        email: profile.email,
+                    },
+                    data: {
+                        email: profile.email
+                    }
+                })
+                return true //kalo true bisa login kalo null ke halaman /auth/error
             } catch (e) {
                 console.log(e);
             }
