@@ -63,14 +63,8 @@ export default function RootLayout({ children }) {
 
                                         {isOpenProfile && (
                                             <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                                                <div className="py-1 hover:bg-gray-100" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                                                    {/* <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Profile</Link> */}
-                                                    <button onClick="" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 " role="menuitem">Pengaturan</button>
-                                                </div>
-                                                <div className="py-1 flex justify-between hover:bg-gray-100" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                                                    {/* <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Profile</Link> */}
-                                                    <button onClick={() => signOut({ callbackUrl: '/' })} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 " role="menuitem">Keluar</button>
-                                                </div>
+                                                <Link href="/profile"  className="block px-4 py-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Profile</Link>
+                                                <Link href="/" onClick={() => signOut({ callbackUrl: '/' })}  className="block px-4 py-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Keluar</Link>
                                             </div>
                                         )}
                                     </div>

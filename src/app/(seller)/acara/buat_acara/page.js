@@ -104,7 +104,7 @@ export default function Form_Buatacara() {
                                         placeholder="Nama acara"
                                         value={nama_event}
                                         onChange={(e) => { setNama_event(e.target.value) }}
-                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-emerald-200 focus:shadow-md"
                                     />
                                     {state?.nama_event && <div className="text-orange-600">{state.nama_event}</div>}
                                 </div>
@@ -125,7 +125,7 @@ export default function Form_Buatacara() {
                                     placeholder="Nama Narahubung"
                                     value={nama_narahubung}
                                     onChange={(e) => { setNama_narahubung(e.target.value) }}
-                                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-emerald-200 focus:shadow-md"
                                 />
                                 {state?.nama_narahubung && <div className="text-orange-600">{state.nama_narahubung}</div>}
                             </div>
@@ -146,7 +146,7 @@ export default function Form_Buatacara() {
                                             placeholder="Email"
                                             value={email}
                                             onChange={(e) => { setEmail(e.target.value) }}
-                                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-emerald-200 focus:shadow-md"
                                         />
                                         {state?.email && <div className="text-orange-600">{state.email}</div>}
                                     </div>
@@ -166,7 +166,7 @@ export default function Form_Buatacara() {
                                             placeholder="No Ponsel"
                                             value={no_ponsel}
                                             onChange={handlePonsel}
-                                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-emerald-200 focus:shadow-md"
                                         />
                                         {state?.no_ponsel && <div className="text-orange-600">{state.no_ponsel}</div>}
                                     </div>
@@ -190,7 +190,7 @@ export default function Form_Buatacara() {
                                             min={today}
                                             value={tanggal_acara}
                                             onChange={(e) => { setTanggal_acara(e.target.value) }}
-                                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-emerald-200 focus:shadow-md"
                                         />
                                         {state?.tanggal_acara && <div className="text-orange-600">{state.tanggal_acara}</div>}
                                     </div>
@@ -209,7 +209,7 @@ export default function Form_Buatacara() {
                                             id="waktu_acara"
                                             value={waktu_acara}
                                             onChange={(e) => { setWaktu_acara(e.target.value) }}
-                                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-emerald-200 focus:shadow-md"
                                         />
                                         {state?.waktu_acara && <div className="text-orange-600">{state.waktu_acara}</div>}
                                     </div>
@@ -229,7 +229,7 @@ export default function Form_Buatacara() {
                                     placeholder="Lokasi"
                                     value={lokasi}
                                     onChange={(e) => { setLokasi(e.target.value) }}
-                                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-emerald-200 focus:shadow-md"
                                 />
                                 {state?.lokasi && <div className="text-orange-600">{state.lokasi}</div>}
                             </div>
@@ -248,7 +248,7 @@ export default function Form_Buatacara() {
                                     placeholder="Deskripsi acara"
                                     value={deskripsi_acara}
                                     onChange={(e) => { setDeskripsi_acara(e.target.value) }}
-                                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-emerald-200 focus:shadow-md"
                                 />
                                 {state?.deskripsi_acara && <div className="text-orange-600">{state.deskripsi_acara}</div>}
                             </div>
@@ -266,7 +266,7 @@ export default function Form_Buatacara() {
                                     placeholder="Syarat & Ketentuan"
                                     value={syarat_ketentuan}
                                     onChange={(e) => { setSyarat_ketentuan(e.target.value) }}
-                                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-emerald-200 focus:shadow-md"
                                 />
                                 {state?.syarat_ketentuan && <div className="text-orange-600">{state.syarat_ketentuan}</div>}
                             </div>
