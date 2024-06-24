@@ -3,12 +3,30 @@ import { signIn, signOut, useSession } from "next-auth/react"
 import Image from "next/image";
 import Link from "next/link";
 import { IoPersonOutline, IoSearchOutline } from "react-icons/io5";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 function Navbar() {
+    const [query, setQuery] = useState('');
+    const [acara, setAcara] = useState([]);
     const [isOpenProfile, setIsOpen] = useState(false);
     const { data: session, status } = useSession()
+
+
+    useEffect(() => {
+        // Hanya melakukan fetch jika query tidak kosong
+        if (query.length > 2) { // Opsional: Mulai pencarian setelah 2 karakter
+            fetch(`URL_SERVER/search?query=${encodeURIComponent(query)}`)
+                .then(response => response.json())
+                .then(data => {
+                    setAcara(data); // Menyimpan hasil pencarian ke state
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    }, [query]);
+
+
+
 
     console.log(session);
     console.log(status);
@@ -21,7 +39,7 @@ function Navbar() {
                         <div className="shrink-0 mr-24">
                             <a href="/" className="flex items-center justify-between mr-4">
                                 <Image src={'/asset/logo.png'} alt="logo.png" width={40} height={40}></Image>
-                                <span className="mb-1 text-3xl font-semibold whitespace-nowrap text-emerald-600">concert</span>
+                                <span className="mb-1 text-3xl font-semibold whitespace-nowrap text-emerald-600">Concatoo</span>
                             </a>
                         </div>
                         <label htmlFor="simple-search" className="sr-only">Cari</label>
@@ -29,7 +47,15 @@ function Navbar() {
                             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <IoSearchOutline />
                             </div>
-                            <input type="text" id="simple-search" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full pl-10 pr-3 py-2" placeholder="Cari" required />
+                            <input type="text"
+                                id="simple-search"
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full pl-10 pr-3 py-2"
+                                placeholder="Cari"
+                                required
+                                value={query}
+                                onChange={(e) => setQuery(e.target.value)} // Mengupdate `query` setiap kali input berubah
+
+                            />
                         </div>
                         <button type="submit" className="px-3 py-2 ms-2 text-sm font-medium text-white bg-gradient-to-b from-emerald-300 to-emerald-400 rounded-lg border-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300">
                             <span className="">Cari</span>

@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
                             </button>
                             <Link href={'/beranda'} className="flex items-center justify-between mr-4">
                                 <Image src={'/asset/logo.png'} alt="logo.png" width={40} height={40}></Image>
-                                <span className="self-center text-2xl font-semibold whitespace-nowrap text-emerald-600">concert</span>
+                                <span className="self-center text-2xl font-semibold whitespace-nowrap text-emerald-600">Concatoo</span>
                             </Link>
 
                         </div>
@@ -112,7 +112,7 @@ export default function RootLayout({ children }) {
                             <div className="sm:flex sm:items-center sm:justify-between">
                                 <Link href="/beranda" className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
                                     <Image width={80} height={80} src={'/asset/logo.png'} alt="Logo" />
-                                    <span className="self-center text-2xl font-semibold whitespace-nowrap">Concert</span>
+                                    <span className="self-center text-2xl font-semibold whitespace-nowrap text-emerald-600">Concatoo</span>
                                 </Link>
                                 <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0">
                                     <li>

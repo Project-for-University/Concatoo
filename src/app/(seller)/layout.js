@@ -34,10 +34,10 @@ export default function RootLayout({ children }) {
                             </button>
                             <Link href={'/'} className="flex items-center justify-between mr-4">
                                 <Image src={'/asset/logo.png'} alt="logo.png" width={40} height={40}></Image>
-                                <span className="self-center text-2xl font-semibold whitespace-nowrap text-emerald-600">concert</span>
+                                <span className="self-center text-2xl font-semibold whitespace-nowrap text-emerald-600">Concatoo</span>
                             </Link>
                             {/* input search */}
-                            <label htmlFor="simple-search" className="sr-only">Cari</label>
+                            {/* <label htmlFor="simple-search" className="sr-only">Cari</label>
                             <div className="relative w-96 ml-28">
                                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                     <IoSearchOutline />
@@ -46,7 +46,7 @@ export default function RootLayout({ children }) {
                             </div>
                             <button type="submit" className="px-3 py-2 ms-2 text-sm font-medium text-white bg-gradient-to-b from-emerald-300 to-emerald-400 rounded-lg border-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300">
                                 <span className="">Cari</span>
-                            </button>
+                            </button> */}
                         </div>
                         <div className="flex items-center lg:order-2">
                             {status === 'authenticated' ? (
@@ -56,7 +56,7 @@ export default function RootLayout({ children }) {
                                             <button onClick={() => { setIsOpen(!isOpenProfile) }} type="button" className="text-white bg-gradient-to-b from-emerald-300 to-emerald-400 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-4 py-2 text-center inline-flex items-center me-2 mb-2" id="options-menu" aria-haspopup="true" aria-expanded="true" >
                                                 <p className="mr-2">{session.user.name}</p>
                                                 <div class="w-8 h-8 rounded-full overflow-hidden border-2 border-white dark:border-white">
-                                                    <Image src={'/asset/logo.png'} alt="" width={5} height={5} class="w-full h-full object-cover"/>
+                                                    <Image src={'/asset/logo.png'} alt="" width={5} height={5} class="w-full h-full object-cover" />
                                                 </div>
                                             </button>
                                         </div>
@@ -127,7 +127,7 @@ export default function RootLayout({ children }) {
                             <div className="sm:flex sm:items-center sm:justify-between">
                                 <Link href="/dashboard" className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
                                     <Image width={80} height={80} src={'/asset/logo.png'} alt="Logo" />
-                                    <span className="self-center text-2xl font-semibold whitespace-nowrap">Concert</span>
+                                    <span className="self-center text-2xl font-semibold whitespace-nowrap text-emerald-600">Concatoo</span>
                                 </Link>
                                 <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0">
                                     <li>

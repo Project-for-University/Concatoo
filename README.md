@@ -23,6 +23,13 @@ itu haru pake 'use client'
 untuk menangkap id dengan route.js function GET(param) = ini memang tanpa tanda kurung meski sudah pale dynamic route [id]
 tapi kalo nangkap id dengan page.js function DetailAcara({id}) = nah itu baru harus pake kururng meski sudah pale dynamic route [id]
 
+# route handler jangan pake "default" pas exportnya
+
+
+# Failed to parse URL from /api/seller/dashboard/total_acara 
+ solusinya sambungkan dengan .env
+     const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/seller/dashboard/total_acara`)
+
 ## fetch
 
 * pada body fetch jangan ngirim data kosong
@@ -37,7 +44,7 @@ export async function PATCH(req, { id }) {
     console.log(id.id_user);
     console.log(req);
 
-    
+
 
 
 ## 1 action 2 query / lebih

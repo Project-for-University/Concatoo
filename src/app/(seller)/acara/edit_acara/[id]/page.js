@@ -104,7 +104,7 @@ export default function Edit({ params }) {
             {/* <Navbar /> */}
             <div className="flex justify-center">
                 {/* <Sidebar /> */}
-                <div className="mx-auto w-full max-w-[900]  bg-white mt-8 rounded-xl shadow-md">
+                <div className="mx-auto w-full max-w-[900px] shadow-md mt-8 rounded-md bg-white">
                     <form
                         className="py-6 px-9"
                         action={formAction}
