@@ -3,9 +3,8 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 export const dynamic = 'force-dynamic'
 export async function GET(request, { params }) {
-    // console.log('berhasil masuk');
-    // console.log(request);
-    // console.log(params);
+    console.log("🚀 ~ GET ~ request:", request)
+    console.log(params.id_user);
 
 
 
@@ -13,11 +12,15 @@ export async function GET(request, { params }) {
     try {
         // ambil data
         const acaras = await prisma.acara.findMany({
+            where: {
+                id_user: params.id_user
+            },
             include: {
                 kontak: true,
                 deskripsi: true
             }
         })
+        console.log("🚀 ~ GET ~ acaras:", acaras)
 
         // console.log(acaras);
         return new Response(JSON.stringify(acaras));

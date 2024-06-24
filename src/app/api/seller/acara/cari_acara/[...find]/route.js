@@ -3,20 +3,27 @@ import { Prisma, PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient()
 export async function GET(req, { params }) {
-    console.log("🚀 ~ GET ~ params:", params.find)
+    console.log("🚀 ~ GET ~ params:", params.find[0])
+    console.log("🚀 ~ GET ~ params:", params.find[1])
 
     try {
         const searchText = await prisma.acara.findMany({
             where: {
-                OR: [
+                AND: [
                     {
-                        // kalo di mysql constrains itu LIKE atau yang mirip atau ada hurup yang mirip
-                        nama_acara: { contains: params.find }
-                    },
-                    {
-                        deskripsi: {
-                            deskripsi_acara: { contains: params.find }
-                        }
+                        id_user: params.find[1]
+                    }, {
+                        OR: [
+                            {
+                                // kalo di mysql constrains itu LIKE atau yang mirip atau ada hurup yang mirip
+                                nama_acara: { contains: params.find[0] }
+                            },
+                            {
+                                deskripsi: {
+                                    deskripsi_acara: { contains: params.find[0] }
+                                }
+                            }
+                        ]
                     }
                 ]
             },

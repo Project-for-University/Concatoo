@@ -27,8 +27,16 @@ tapi kalo nangkap id dengan page.js function DetailAcara({id}) = nah itu baru ha
 
 
 # Failed to parse URL from /api/seller/dashboard/total_acara 
+
+#### ini untuk di server atau yang async
  solusinya sambungkan dengan .env
      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/seller/dashboard/total_acara`)
+
+#### ini untuk di client atau bukan async
+        const acarasResponse = await fetch(`/api/seller/acara/read_acara/${session}`)
+
+
+
 
 ## fetch
 

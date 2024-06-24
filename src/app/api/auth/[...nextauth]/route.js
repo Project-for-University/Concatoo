@@ -136,7 +136,7 @@ export const authOptions = NextAuth({
                 //         session.redirect = '/'; // Redirect to unauthorized page if role is not recognized
                 // }
             } else {
-                session.redirect = '/login'; // Redirect to login if no role is found
+                session.redirect = '/auth/login'; // Redirect to login if no role is found
             }
             console.log(session);
             return session;
