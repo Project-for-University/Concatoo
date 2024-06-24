@@ -50,10 +50,13 @@ export default function RootLayout({ children }) {
 
                                         {isOpenProfile && (
                                             <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                                                <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                                                    {/* <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Profile</Link> */}
-                                                    <button onClick={() => signOut({ callbackUrl: '/' })} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 " role="menuitem">Keluar</button>
-                                                </div>
+                                               <button 
+                                                    onClick={() => signOut({ callbackUrl: '/' })}
+                                                    className="block text-left w-full px-4 py-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                                    role="menuitem"
+                                                >
+                                                    Keluar
+                                                </button>    
                                             </div>
                                         )}
                                     </div>
@@ -116,16 +119,7 @@ export default function RootLayout({ children }) {
                                 </Link>
                                 <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0">
                                     <li>
-                                        <a href="#" className="hover:underline me-4 md:me-6">About</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="hover:underline me-4 md:me-6">Privacy Policy</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="hover:underline me-4 md:me-6">Licensing</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="hover:underline">Contact</a>
+                                        <Link href="/about" className="hover:underline me-4 md:me-6">About</Link>
                                     </li>
                                 </ul>
                             </div>
