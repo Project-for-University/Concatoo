@@ -54,9 +54,11 @@ export default function CardAcara() {
 
 
     useEffect(() => {
-        // Hanya melakukan fetch jika cari tidak kosong
-        findAcara(cari, session?.user?.id_user)
-        getAcara(session?.user?.id_user)
+        if (session.user.id_user) {
+            // Hanya melakukan fetch jika cari tidak kosong
+            findAcara(cari, session?.user?.id_user)
+            getAcara(session?.user?.id_user)
+        }
     }, [cari, session?.user?.id_user]);
 
     const [isOpen, setIsOpen] = useState({});
@@ -118,7 +120,7 @@ export default function CardAcara() {
                 </div>
                 <div className="container mx-auto">
                     <div className="grid grid-cols-* grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4 mt-4">
-                        <div className="border-2 border-gray-300 rounded-lg h-96 sm:h-96 md:h-full lg:h-44 border-dashed flex justify-center items-center">
+                        <div className="border-2 border-gray-300 rounded-lg h-96 sm:h-96 md:h-44 lg:h-44 border-dashed flex justify-center items-center">
                             <p className="font-semibold text-normal text-gray-300">Tidak ada cara</p>
                         </div>
                     </div>

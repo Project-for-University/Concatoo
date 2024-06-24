@@ -18,7 +18,7 @@ export default function Edit({ params }) {
     const [harga, setHarga] = useState('')
     const [deskripsi_tiket, setDeskripsi_tiket] = useState('')
     const [tanggal_mulai_penjualan, setTanggal_mulai_penjualan] = useState('')
-    const [waktu_penjualan, setWaktu_penjualan] = useState('')
+    const [waktu_mulai_penjualan, setWaktu_mulai_penjualan] = useState('')
     const [tanggal_akhir_penjualan, setTanggal_akhir_penjualan] = useState('')
     const [waktu_akhir_penjualan, setWaktu_akhir_penjualan] = useState('')
 
@@ -54,7 +54,7 @@ export default function Edit({ params }) {
             // Format the date as YYYY-MM-DD
             const formattedDate2 = `${tahun}-${bulan}-${hari}`;
 
-            const waktu = new Date(data.waktu_penjualan)
+            const waktu = new Date(data.waktu_mulai_penjualan)
             const hours = String(waktu.getUTCHours()).padStart(2, '0');
             const minutes = String(waktu.getUTCMinutes()).padStart(2, '0');
             const formattedTime = `${hours}:${minutes}`;
@@ -70,7 +70,7 @@ export default function Edit({ params }) {
                 setHarga(data.harga)
                 setDeskripsi_tiket(data.deskripsi_tiket)
                 setTanggal_mulai_penjualan(formattedDate)
-                setWaktu_penjualan(formattedTime)
+                setWaktu_mulai_penjualan(formattedTime)
                 setTanggal_akhir_penjualan(formattedDate2)
                 setWaktu_akhir_penjualan(formattedTime2)
             }
@@ -189,7 +189,25 @@ export default function Edit({ params }) {
                                         <div className="text-red-500">{state.tanggal_mulai_penjualan}</div>
                                     )}
                                 </div>
+                                <div className="mb-5">
+                                    <label htmlFor="waktu_penjualan" className="mb-3 block text-base font-medium text-gray-600">
+                                        Waktu Penjualan
+                                    </label>
+                                    <input
+                                        type="time"
+                                        name="waktu_penjualan"
+                                        id="waktu_penjualan"
+                                        value={waktu_mulai_penjualan}
+                                        onChange={(e) => {
+                                            setWaktu_mulai_penjualan(e.target.value);
+                                        }}
+                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-demerald-200 focus:shadow-md"
+                                    />
+                                    {state?.waktu_penjualan && <div className="text-red-500">{state.waktu_penjualan}</div>}
+                                </div>
 
+                            </div>
+                            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                 <div className="mb-5">
                                     <label htmlFor="tanggal_akhir_penjualan" className="mb-3 block text-base font-medium text-gray-600">
                                         Tanggal Akhir Penjualan
@@ -207,24 +225,6 @@ export default function Edit({ params }) {
                                     {state?.tanggal_akhir_penjualan && (
                                         <div className="text-red-500">{state.tanggal_akhir_penjualan}</div>
                                     )}
-                                </div>
-                            </div>
-                            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                <div className="mb-5">
-                                    <label htmlFor="waktu_penjualan" className="mb-3 block text-base font-medium text-gray-600">
-                                        Waktu Penjualan
-                                    </label>
-                                    <input
-                                        type="time"
-                                        name="waktu_penjualan"
-                                        id="waktu_penjualan"
-                                        value={waktu_penjualan}
-                                        onChange={(e) => {
-                                            setWaktu_penjualan(e.target.value);
-                                        }}
-                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-demerald-200 focus:shadow-md"
-                                    />
-                                    {state?.waktu_penjualan && <div className="text-red-500">{state.waktu_penjualan}</div>}
                                 </div>
 
                                 <div className="mb-5">
