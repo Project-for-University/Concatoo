@@ -63,9 +63,21 @@ export default function RootLayout({ children }) {
 
                                         {isOpenProfile && (
                                             <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                                                <Link href="/profile"  className="block px-4 py-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Profile</Link>
-                                                <Link href="/" onClick={() => signOut({ callbackUrl: '/' })}  className="block px-4 py-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Keluar</Link>
-                                            </div>
+                                                <Link 
+                                                    href="/profile"  
+                                                    className="block w-full px-4 py-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" 
+                                                    role="menuitem"
+                                                >
+                                                    Profile
+                                                </Link>                                                
+                                                <button 
+                                                    onClick={() => signOut({ callbackUrl: '/' })}
+                                                    className="block text-left w-full px-4 py-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                                    role="menuitem"
+                                                >
+                                                    Keluar
+                                                </button>                                           
+                                         </div>
                                         )}
                                     </div>
                                 </>
