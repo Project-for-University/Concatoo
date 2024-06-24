@@ -55,9 +55,9 @@ export default function CardAcara() {
 
     useEffect(() => {
         // Hanya melakukan fetch jika cari tidak kosong
-        findAcara(cari, session.user.id_user)
-        getAcara(session.user.id_user)
-    }, [cari, session?.user.id_user]);
+        findAcara(cari, session?.user?.id_user)
+        getAcara(session?.user?.id_user)
+    }, [cari, session?.user?.id_user]);
 
     const [isOpen, setIsOpen] = useState({});
     const toggleDropdown = (id) => {
@@ -75,7 +75,7 @@ export default function CardAcara() {
             if (response.ok) {
 
                 alert('berhasil hapus data')
-                getAcara(session.user.id_user)
+                getAcara(session.user?.id_user)
 
             }
         } catch (error) {
