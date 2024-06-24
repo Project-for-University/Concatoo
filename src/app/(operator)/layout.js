@@ -49,7 +49,7 @@ export default function RootLayout({ children }) {
                                         </div>
 
                                         {isOpenProfile && (
-                                            <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                                            <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-opacity-5">
                                                <button 
                                                     onClick={() => signOut({ callbackUrl: '/' })}
                                                     className="block text-left w-full px-4 py-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
@@ -73,37 +73,30 @@ export default function RootLayout({ children }) {
                     </div>
                 </nav>
 
-                <aside
-                    className="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0"
-                    aria-label="Sidenav"
-                    id="drawer-navigation"
-                >
+                <button data-drawer-target="drawer-navigation" data-drawer-toggle="drawer-navigation" aria-controls="drawer-navigation" type="button" className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                    <span className="sr-only">Open sidebar</span>
+                    <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+                    </svg>
+                </button>
+                <aside className="fixed top-0 left-0 z-40 w-64 h-screen pt-14 mt-4 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0" aria-label="Sidenav" id="drawer-navigation">
                     <div className="overflow-y-auto py-5 px-3 h-full bg-white">
-                        {/* <ul className="space-y-2 pt-5 mt-5 space-y-2 border-t border-gray-200"> */}
                         <ul className="space-y-2">
                             <li>
-                                <Link
-                                    href={`/beranda`}
-                                    className={`flex items-center p-2 text-base font-medium text-gray-900 rounded-lg hover:bg-gray-100 group ${pathname === '/beranda' ? 'text-emerald-600 bg-emerald-100' : ''}`}
-                                >
+                                <Link href={`/beranda`} className={`flex items-center p-2 text-base font-medium text-gray-900 rounded-lg hover:bg-gray-100 group ${pathname === '/beranda' ? 'text-emerald-600 bg-emerald-100' : ''}`}>
                                     <IoBarChartOutline className="mr-4" size={24} />
                                     <span className="ml-3">Beranda</span>
                                 </Link>
                             </li>
                             <li>
-                                <Link
-                                    href={`/list_seller`}
-                                    className={`flex items-center p-2 text-base font-medium text-gray-900 rounded-lg hover:bg-gray-100 group ${pathname === '/list_seller' ? 'text-emerald-600 bg-emerald-100' : ''}`}
-                                >
+                                <Link href={`/list_seller`} className={`flex items-center p-2 text-base font-medium text-gray-900 rounded-lg hover:bg-gray-100 group ${pathname === '/list_seller' ? 'text-emerald-600 bg-emerald-100' : ''}`}>
                                     <IoPeopleOutline className="mr-4" size={24} />
                                     <span className="ml-3">List Penjual</span>
                                 </Link>
                             </li>
                         </ul>
                     </div>
-
                 </aside>
-
 
 
                 <main className="h-full p-4 pt-20 md:ml-64">

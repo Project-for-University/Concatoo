@@ -43,7 +43,7 @@ function Navbar() {
                             </a>
                         </div>
                         <label htmlFor="simple-search" className="sr-only">Cari</label>
-                        <div className="relative w-96">
+                        <div className="relative w-full lg:w-96 hidden lg:block">
                             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <IoSearchOutline />
                             </div>
@@ -57,7 +57,7 @@ function Navbar() {
 
                             />
                         </div>
-                        <button type="submit" className="px-3 py-2 ms-2 text-sm font-medium text-white bg-gradient-to-b from-emerald-300 to-emerald-400 rounded-lg border-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300">
+                        <button type="submit" className="px-3 py-2 ms-2 text-sm font-medium text-white bg-gradient-to-b from-emerald-300 to-emerald-400 rounded-lg border-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300 hidden lg:block">
                             <span className="">Cari</span>
                         </button>
                     </div>
@@ -91,40 +91,8 @@ function Navbar() {
                                 </div>
                             </>
                         )}
-
-
-
-                        {/* <button type="button" data-collapse-toggle="ecommerce-navbar-menu-1" aria-controls="ecommerce-navbar-menu-1" aria-expanded="false" class="inline-flex items-center justify-center rounded-md p-2 text-gray-900 hover:bg-gray-100 lg:hidden">
-                            <span className="sr-only"> Open Menu </span>
-                            <svg className="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14" />
-                            </svg>
-                        </button> */}
-                    </div>
+                        </div>
                 </div>
-
-                {/* <div id="ecommerce-navbar-menu-1" clas="mt-4 hidden rounded-lg border border-gray-200 bg-gray-50 px-4 py-3">
-                    <ul clas="space-y-3 text-sm font-medium text-gray-900 ">
-                        <li>
-                            <a href="#" clas="hover:text-primary-700">Home</a>
-                        </li>
-                        <li>
-                            <a href="#" clas="hover:text-primary-700">Best Sellers</a>
-                        </li>
-                        <li>
-                            <a href="#" clas="hover:text-primary-700">Gift Ideas</a>
-                        </li>
-                        <li>
-                            <a href="#" clas="hover:text-primary-700">Games</a>
-                        </li>
-                        <li>
-                            <a href="#" clas="hover:text-primary-700">Electronics</a>
-                        </li>
-                        <li>
-                            <a href="#" clas="hover:text-primary-700">Home & Garden</a>
-                        </li>
-                    </ul>
-                </div> */}
             </div>
         </nav>
 
