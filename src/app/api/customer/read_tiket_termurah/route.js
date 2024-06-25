@@ -9,13 +9,9 @@ export async function GET() {
                 harga: 'asc',
             }, take: 1
         });
-
-
         // console.log(tiketTermurah);
-
         return new Response(JSON.stringify(tiketTermurah), {
             status: 200,
-
         });
     } catch (error) {
         return new Response(JSON.stringify({ error: 'gagal fetch data' }), {

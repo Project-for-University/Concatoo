@@ -4,28 +4,23 @@ import Image from "next/image";
 import Link from "next/link";
 import { IoPersonOutline, IoSearchOutline } from "react-icons/io5";
 import { useState, useEffect } from 'react';
-
+import { useRouter } from 'next/navigation';
 
 function Navbar() {
     const [query, setQuery] = useState('');
+    console.log("🚀 ~ Navbar ~ query:", query)
     const [acara, setAcara] = useState([]);
     const [isOpenProfile, setIsOpen] = useState(false);
     const { data: session, status } = useSession()
 
+    const router = useRouter();
 
-    useEffect(() => {
-        // Hanya melakukan fetch jika query tidak kosong
-        if (query.length > 2) { // Opsional: Mulai pencarian setelah 2 karakter
-            fetch(`URL_SERVER/search?query=${encodeURIComponent(query)}`)
-                .then(response => response.json())
-                .then(data => {
-                    setAcara(data); // Menyimpan hasil pencarian ke state
-                })
-                .catch(error => console.error('Error:', error));
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        if (query.trim().length > 0) {
+            router.push(`/search_acara?query=${encodeURIComponent(query)}`);
         }
-    }, [query]);
-
-
+    };
 
 
     console.log(session);
@@ -43,23 +38,26 @@ function Navbar() {
                             </a>
                         </div>
                         <label htmlFor="simple-search" className="sr-only">Cari</label>
-                        <div className="relative w-full lg:w-96 hidden lg:block">
-                            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                <IoSearchOutline />
-                            </div>
-                            <input type="text"
-                                id="simple-search"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full pl-10 pr-3 py-2"
-                                placeholder="Cari"
-                                required
-                                value={query}
-                                onChange={(e) => setQuery(e.target.value)} // Mengupdate `query` setiap kali input berubah
+                        <form onSubmit={handleSearchSubmit} className="flex">
+                            <label htmlFor="simple-search" className="sr-only">Cari</label>
+                            <div className="relative w-full lg:w-96 hidden lg:block">
+                                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                    <IoSearchOutline />
+                                </div>
+                                <input
+                                    type="text"
+                                    id="simple-search"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full pl-10 pr-3 py-2"
+                                    placeholder="Cari"
+                                    value={query}
+                                    onChange={(e) => setQuery(e.target.value)} // Mengupdate `query` setiap kali input berubah
+                                />
 
-                            />
-                        </div>
-                        <button type="submit" className="px-3 py-2 ms-2 text-sm font-medium text-white bg-gradient-to-b from-emerald-300 to-emerald-400 rounded-lg border-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300 hidden lg:block">
-                            <span className="">Cari</span>
-                        </button>
+                            </div>
+                            <button type="submit" className="px-3 py-2 ms-2 text-sm font-medium text-white bg-gradient-to-b from-emerald-300 to-emerald-400 rounded-lg border-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300 hidden lg:block">
+                                <span>Cari</span>
+                            </button>
+                        </form>
                     </div>
 
                     <div className="flex items-center lg:space-x-2">
@@ -91,7 +89,7 @@ function Navbar() {
                                 </div>
                             </>
                         )}
-                        </div>
+                    </div>
                 </div>
             </div>
         </nav>

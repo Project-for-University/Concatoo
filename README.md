@@ -25,6 +25,10 @@ tapi kalo nangkap id dengan page.js function DetailAcara({id}) = nah itu baru ha
 
 # route handler jangan pake "default" pas exportnya
 
+# route handler harus  GET(req, { params })  jangan  GET({ params }) 
+kalo mau pake params harus di rulis s req nya juga
+
+
 
 # Failed to parse URL from /api/seller/dashboard/total_acara 
 
