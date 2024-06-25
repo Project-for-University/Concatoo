@@ -21,7 +21,9 @@ export default function CardDashboard() {
     }
 
     useEffect(() => {
-        fetchData(session)
+        if (session) {
+            fetchData(session)
+        }
     }, [session]);
 
     return (
