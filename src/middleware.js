@@ -336,7 +336,7 @@ export async function middleware(req) {
 
     // Jika pengguna tidak login dan mencoba mengakses halaman selain root, arahkan ke login
     if (!token) {
-        url.pathname = '/login';
+        url.pathname = '/auth/login';
         return NextResponse.redirect(url);
     }
 
