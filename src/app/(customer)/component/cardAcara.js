@@ -5,16 +5,16 @@ import Link from 'next/link';
 import { useEffect, useState } from "react";
 import Footer from '../footer/page';
 
-export default function CardAcaraCustomer({ acaraData, tiketData, }) {
+export default function CardAcaraCustomer({ acaraData }) {
     const [acaras, setAcara] = useState(acaraData);
-    const [tiketTermurah, setTiketTermurah] = useState(tiketData);
+
     console.log(acaras);
-    console.log(tiketTermurah);
-    // console.log(acaras);
+
+
 
     return (
         <>
-            {acaras.length === 0 || tiketTermurah === null ? (
+            {acaras.length === 0 ? (
                 <section id="Projects" className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
                     <div className="border-2 border-dashed border-gray-300 text-gray-300 font-semibold bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl h-80 w-72 flex items-center justify-center">
                         <p>Tidak Ada Acara</p>
@@ -34,7 +34,15 @@ export default function CardAcaraCustomer({ acaraData, tiketData, }) {
                                         year: 'numeric'
                                     })}
                                     </p>
-                                    <p className="  text-lg font-semibold text-black  my-3 mr-1">Rp {tiketTermurah?.harga}</p>
+                                    {acara.tiket && acara.tiket.length > 0 && (
+                                        <div key={acara.tiket.sort((a, b) => a.harga - b.harga)[0].id_tiket}>
+                                            <p className="text-lg font-semibold text-black my-3 mr-1">
+                                                Rp {acara.tiket.sort((a, b) => a.harga - b.harga)[0].harga}
+                                            </p>
+                                        </div>
+                                    )}
+
+
                                 </div>
                             </Link>
                         </div>

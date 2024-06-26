@@ -3,16 +3,26 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export async function GET(request, { params }) {
-    // console.log(request);
-    // console.log(params);
+
     try {
         const acaras = await prisma.acara.findMany({
+            where: {
+                tiket: {
+                    some: {}
+                }
+            },
             select: {
                 id_acara: true,
                 nama_acara: true,
                 banner: true,
                 tanggal_acara: true,
                 lokasi: true,
+                tiket: {
+                    orderBy: {
+                        harga: 'asc'
+                    },
+                    take: 1,
+                }
             }
         })
 
@@ -24,6 +34,7 @@ export async function GET(request, { params }) {
 
         });
     } catch (error) {
+        console.log(error);
         return new Response(JSON.stringify({ error: 'gagal fetch data' }), {
             status: 500,
 

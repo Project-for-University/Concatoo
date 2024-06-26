@@ -19,9 +19,24 @@ export async function GET(req, { params }) {
                             deskripsi_acara: { contains: params.keyword }
                         }
                     }
-                ]
-
+                ],
+                tiket: {
+                    some: {}
+                }
+            },
+            select: {
+                id_acara: true,
+                nama_acara: true,
+                banner: true,
+                tanggal_acara: true,
+                tiket: {
+                    orderBy: {
+                        harga: 'asc'
+                    },
+                    take: 1,
+                }
             }
+
         });
         console.log("🚀 ~ GET ~ acara:", acara)
 
