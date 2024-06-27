@@ -1,0 +1,115 @@
+/* custom.css */
+.bg-blue-50 {
+    background-color: #ECFDF5 !important;
+}
+.bg-blue-100 {
+    background-color: #D1FAE5 !important;
+}
+.bg-blue-200 {
+    background-color: #A7F3D0 !important;
+}
+.bg-blue-300 {
+    background-color: #6EE7B7 !important;
+}
+.bg-blue-400 {
+    background-color: #34D399 !important;
+}
+.bg-blue-500 {
+    background-color: #10B981 !important;
+}
+.bg-blue-600 {
+    background-color: #059669 !important;
+}
+.bg-blue-700 {
+    background-color: #047857 !important;
+}
+.bg-blue-800 {
+    background-color: #065F46 !important;
+}
+.bg-blue-900 {
+    background-color: #064E3B !important;
+}
+.text-blue-50 {
+    color: #ECFDF5 !important;
+}
+.text-blue-100 {
+    color: #D1FAE5 !important;
+}
+.text-blue-200 {
+    color: #A7F3D0 !important;
+}
+.text-blue-300 {
+    color: #6EE7B7 !important;
+}
+.text-blue-400 {
+    color: #34D399 !important;
+}
+.text-blue-500 {
+    color: #10B981 !important;
+}
+.text-blue-600 {
+    color: #059669 !important;
+}
+.text-blue-700 {
+    color: #047857 !important;
+}
+.text-blue-800 {
+    color: #065F46 !important;
+}
+.text-blue-900 {
+    color: #064E3B !important;
+}
+.border-blue-50 {
+    border-color: #ECFDF5 !important;
+}
+.border-blue-100 {
+    border-color: #D1FAE5 !important;
+}
+.border-blue-200 {
+    border-color: #A7F3D0 !important;
+}
+.border-blue-300 {
+    border-color: #6EE7B7 !important;
+}
+.border-blue-400 {
+    border-color: #34D399 !important;
+}
+.border-blue-500 {
+    border-color: #10B981 !important;
+}
+.border-blue-600 {
+    border-color: #059669 !important;
+}
+.border-blue-700 {
+    border-color: #047857 !important;
+}
+.border-blue-800 {
+    border-color: #065F46 !important;
+}
+.border-blue-900 {
+    border-color: #064E3B !important;
+}
+.focus\:border-blue-500:focus {
+    border-color: #10B981 !important;
+}
+.focus\:ring-blue-500:focus {
+    ring-color: #10B981 !important;
+}
+.hover\:bg-blue-500:hover {
+    background-color: #10B981 !important;
+}
+.hover\:border-blue-500:hover {
+    border-color: #10B981 !important;
+}
+.hover\:text-blue-500:hover {
+    color: #10B981 !important;
+}
+.active\:bg-blue-500:active {
+    background-color: #10B981 !important;
+}
+.active\:border-blue-500:active {
+    border-color: #10B981 !important;
+}
+.active\:text-blue-500:active {
+    color: #10B981 !important;
+}

@@ -13,12 +13,9 @@ import Loading from '@/app/loading';
 export default function CardAcara() {
 
     const { data: session, status } = useSession()
-    // console.log("🚀 ~ CardAcara ~ status:", status)
-    // console.log("🚀 ~ CardAcara ~ session:", session)
-    // console.log("🚀 ~ CardAcara ~ session:", session.user.id_user)
+
 
     const [acaras, setAcara] = useState('');
-    console.log("🚀 ~ CardAcara ~ acaras:", acaras)
     const [cari, setCari] = useState('');
     const [hasilCari, setHasilCari] = useState([]);
     const router = useRouter()
@@ -26,35 +23,33 @@ export default function CardAcara() {
 
 
     const getAcara = async (session) => {
-
         const acarasResponse = await fetch(`/api/seller/acara/read_acara/${session}`)
         const acarasData = await acarasResponse.json();
         setAcara(acarasData);
-        console.log(acarasData);
     }
 
 
     const findAcara = async (cari, session) => {
-        if (cari.length > 0) { // Opsional: Mulai pencarian setelah 2 karakter
+        if (cari.length > 0 && session) {
             const res = await fetch(`/api/seller/acara/cari_acara/${cari}/${session}`, {
                 method: 'GET'
             })
             const acara = await res.json()
             if (acara == null) {
 
+                setHasilCari([]) // Misalnya, mengatur ke array kosong)
             }
             setHasilCari(acara)
             // console.log("🚀 ~ useEffect ~ res:", acara)
         } else {
             // Setel hasil cari ke nilai default ketika input pencarian kosong atau terlalu pendek
-            setHasilCari([]) // Misalnya, mengatur ke array kosong
-            // console.log("Input pencarian kosong atau terlalu pendek.")
+            setHasilCari([]) // Misalnya, mengatur ke array kosong)
         }
     }
 
 
     useEffect(() => {
-        if (session.user.id_user) {
+        if (session?.user?.id_user) {
             // Hanya melakukan fetch jika cari tidak kosong
             findAcara(cari, session?.user?.id_user)
             getAcara(session?.user?.id_user)
@@ -125,17 +120,6 @@ export default function CardAcara() {
                         </div>
                     </div>
                 </div>
-
-
-
-
-
-
-
-
-
-
-
             </>
         )
     }
