@@ -11,9 +11,8 @@ const imageSchema = fileSchema.refine(
 // console.log(imageSchema);
 
 const validasi = z.object({
-
     id_user: z.string().min(1, { message: 'id_user harus ada' }),
-    banner: imageSchema.refine(file => file.size > 0, "Banner harus ada").refine(file => file.size < 16777216, "Jangan Lebih dari 16 MB!"),//byte
+    banner: imageSchema.refine(file => file.size > 0, "Banner harus ada").refine(file => file.size < 2097152, "Jangan Lebih dari 2 MB!"),//byte
     nama_acara: z.string().min(1, { message: 'tidak boleh kosong' }),
     nama_narahubung: z.string().min(1, { message: 'tidak boleh kosong' }),
     email: z.string().min(1, { message: 'tidak boleh kosong' }),

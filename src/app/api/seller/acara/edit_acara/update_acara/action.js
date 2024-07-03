@@ -14,8 +14,9 @@ const imageSchema = fileSchema.refine(
 // console.log(imageSchema);
 
 const validasi = z.object({
-    id_acara: z.string().min(1, { message: 'tidak boleh kosong' }),
-    banner: imageSchema.optional().refine(file => file.size < 16777216, "Jangan Lebih dari 16 MB!"),
+    id_acara: z.string().min(1, { message: 'id_acara tidak di temukan' }),
+    id_banner: z.string().min(1, { message: 'id_baner tidak di temukan' }),
+    banner: imageSchema.optional().refine(file => file.size < 2097152, "Jangan Lebih dari 2 MB!"),
     // banner: z.string().min(1, { message: 'tidak boleh kosong' }),
     nama_acara: z.string().min(1, { message: 'tidak boleh kosong' }),
     tanggal_acara: z.string().min(1, { message: 'tidak boleh kosong' }),
@@ -59,8 +60,6 @@ export async function UpdateAcara(prevState, request) {
 
     const formData = new FormData();
     console.log("🚀 ~ UpdateAcara ~ formData:", formData)
-
-
     formData.set('banner', data.banner);
     formData.set('nama_narahubung', data.nama_narahubung);
     formData.set('email', data.email);
@@ -72,7 +71,7 @@ export async function UpdateAcara(prevState, request) {
     formData.set('waktu_acara', new Date(tanggalA).toISOString());
     formData.set('lokasi', data.lokasi);
     try {
-        const res = await fetch(`/api/seller/acara/edit_acara/update_acara/${data.id_acara}`, {
+        const res = await fetch(`/api/seller/acara/edit_acara/update_acara/${data.id_acara}/${data.id_banner}`, {
             method: 'PUT',
             body: formData,
         });

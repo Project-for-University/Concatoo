@@ -56,7 +56,7 @@ export default function Form_Buatacara() {
         }
     }, [session]);
 
-    if (id_acara) {
+    if (id_user) {
 
         return (
             <div className="flex justify-center mb-4">
@@ -78,7 +78,7 @@ export default function Form_Buatacara() {
                                         </svg>
                                         {banner ? <span className="font-semibold">{banner.name}</span> : <>
                                             <p className="mb-2 text-sm text-gray-500"><span className="font-semibold">Click to upload</span></p>
-                                            <p className="text-xs text-gray-500"> PNG,JPEG or JPG  (MAX. 2700 x 1100 / 16 MB)</p>
+                                            <p className="text-xs text-gray-500"> .jpg or .png   (MAX 2 MB)</p>
                                         </>}
                                     </div>
                                     <input

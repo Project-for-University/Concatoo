@@ -11,7 +11,6 @@ export default function Edit({ params }) {
     // console.log(params.id)
     const [banner, setBanner] = useState(null);
     const [Dbanner, setDBanner] = useState('');
-    console.log("🚀 ~ Edit ~ banner:", Dbanner)
     // Langkah 1: Dapatkan nama file
     const segments = Dbanner.split('/');
     const filename = segments[segments.length - 1]; // '2026f791-286f-4a5d-9c90-eb7a01daec31-graphic.png'
@@ -62,11 +61,8 @@ export default function Edit({ params }) {
 
     useEffect(() => {
         async function fetchData() {
-            const getData = await fetch(`/api/seller/acara/edit_acara/read_acara/${params.id}`, {
+            const getData = await fetch(`/api/seller/acara/edit_acara/read_acara/${params.id[0]}`, {
                 method: 'GET',
-
-
-
             })
             const data = await getData.json()
             console.log(data)
@@ -112,7 +108,8 @@ export default function Edit({ params }) {
                         <div className="mt-8 text-[#07074D] font-semibold text-xl">Edit Acara</div>
                         <div className="mb-6 pt-4">
                             {/* id_acara */}
-                            <input type="hidden" value={params.id} name="id_acara"></input>
+                            <input type="hidden" value={params.id[0]} name="id_acara"></input>
+                            <input type="hidden" value={params.id[1]} name="id_banner"></input>
                             <label className="mb-5 block text-xl font-semibold text-[#07074D]">Upload Thumbnail</label>
                             <div className="flex items-center justify-center w-full">
                                 <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50">
@@ -122,8 +119,8 @@ export default function Edit({ params }) {
                                         {banner ? <span className="font-semibold">{banner.name}</span>
                                             : Dbanner ?
                                                 <>
-                                                    <Image src={Dbanner} alt="banner" width={100} height={100} className="border border-gray-200 rounded" />
-                                                    <span className="font-semibold">{banner_split}</span>
+                                                    <Image src={Dbanner} alt="banner" width={80} height={50} className="h-40 w-96 border border-gray-200 rounded" />
+                                                    {/* <span className="font-semibold">{banner_split}</span> */}
                                                 </>
                                                 : <>
                                                     <p className="mb-2 text-sm text-gray-500"><span className="font-semibold">Click to upload</span></p>

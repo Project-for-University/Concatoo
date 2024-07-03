@@ -12,7 +12,7 @@ const imageSchema = fileSchema.refine(
 
 const validasi = z.object({
     id_user: z.string().min(1, { message: 'id_user harus ada' }),
-    avatar: imageSchema.optional().refine(file => file.size < 16777216, "Jangan Lebih dari 16 MB!"),//byte
+    avatar: imageSchema.optional().refine(file => file.size < 2097152, "Jangan Lebih dari 2 MB!"),//byte
     name: z.string().max(50, { message: 'maksimum 50 karakter' }).optional(),
     no_ponsel: z.string().max(15, { message: 'maksimum 50 karakter' }).optional(),
 });
