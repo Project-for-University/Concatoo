@@ -206,13 +206,13 @@ export default function CardAcara() {
                                             <HiOutlineDotsVertical />
                                         </button>
                                         {isOpen[acara.id_acara] && (
-                                            <div id={`dropdownHover-${acara.id_acara}`} className="absolute top-0 right-0 mt-12 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                                                <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby={`dropdownHoverButton-${acara.id_acara}`}>
+                                            <div id={`dropdownHover-${acara.id_acara}`} className="absolute top-0 right-0 mt-12 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                                                <ul className="py-2 text-sm text-gray-700" aria-labelledby={`dropdownHoverButton-${acara.id_acara}`}>
                                                     <li>
-                                                        <Link href={`/acara/edit_acara/${acara.id_acara}/${id_banner_split}`} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</Link>
+                                                        <Link href={`/acara/edit_acara/${acara.id_acara}/${id_banner_split}`} className="block px-4 py-2 hover:bg-gray-100">Edit</Link>
                                                     </li>
                                                     <li>
-                                                        <button onClick={() => { DeleteAcara(acara.id_acara, id_banner_split) }} className="block text-left w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Delete</button>
+                                                        <button onClick={() => { DeleteAcara(acara.id_acara, id_banner_split) }} className="block text-left w-full px-4 py-2 hover:bg-gray-100">Delete</button>
                                                     </li>
                                                 </ul>
                                             </div>
