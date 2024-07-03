@@ -202,19 +202,24 @@ export default function CardAcara() {
                                                 </div>
                                             </div>
                                         </Link>
-                                        <button onClick={() => toggleDropdown(acara.id_acara)} className="absolute top-0 right-0 p-3 bg-gray-50 text-black rounded hover:bg-gray-200 flex items-center justify-center">
+                                        <button id={`dropdownHoverButton-${acara.id_acara}`} onClick={() => toggleDropdown(acara.id_acara)} className="absolute top-0 right-0 p-3 bg-gray-50 text-black rounded hover:bg-gray-200 flex items-center justify-center" data-dropdown-toggle={`dropdownHover-${acara.id_acara}`} data-dropdown-trigger="click">
                                             <HiOutlineDotsVertical />
                                         </button>
                                         {isOpen[acara.id_acara] && (
-                                            <div className="absolute top-0 right-0 mt-12 bg-white rounded-md shadow-lg py-2">
-                                                <Link href={`/acara/edit_acara/${acara.id_acara}/${id_banner_split}`} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 w-full">Edit</Link>
-                                                <button onClick={() => { DeleteAcara(acara.id_acara, id_banner_split) }} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 w-full">Delete</button>
+                                            <div id={`dropdownHover-${acara.id_acara}`} className="absolute top-0 right-0 mt-12 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                                <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby={`dropdownHoverButton-${acara.id_acara}`}>
+                                                    <li>
+                                                        <Link href={`/acara/edit_acara/${acara.id_acara}/${id_banner_split}`} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</Link>
+                                                    </li>
+                                                    <li>
+                                                        <button onClick={() => { DeleteAcara(acara.id_acara, id_banner_split) }} className="block text-left w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Delete</button>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         )}
                                     </div>
                                 )
                             }
-
                             )
                             : (
                                 hasilCari.map(acara => {
