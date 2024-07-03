@@ -15,7 +15,7 @@ const validasi = z.object({
     harga: z.string().min(1, { message: 'tidak boleh kosong' }),
     deskripsi_tiket: z.string().min(1, { message: 'tidak boleh kosong' }),
     tanggal_mulai_penjualan: z.string().min(1, { message: 'tidak boleh kosong' }),
-    waktu_penjualan: z.string().min(1, { message: 'tidak boleh kosong' }),
+    waktu_mulai_penjualan: z.string().min(1, { message: 'tidak boleh kosong' }),
     tanggal_akhir_penjualan: z.string().min(1, { message: 'tidak boleh kosong' }),
     waktu_akhir_penjualan: z.string().min(1, { message: 'tidak boleh kosong' }),
 });
@@ -25,7 +25,7 @@ export async function UpdateTiket(prevState, request) {
     // const router = useRouter();
     const requestData = Object.fromEntries(request.entries());
     const validated = validasi.safeParse(requestData);
-    // console.log("Validasi hasil:", validated);
+    console.log("Validasi hasil:", validated);
 
     if (!validated.success) {
         console.error("Validasi gagal:", validated.error.formErrors.fieldErrors);
@@ -36,7 +36,7 @@ export async function UpdateTiket(prevState, request) {
     // console.log("Data tervalidasi:", data);
 
     const tanggal = data.tanggal_mulai_penjualan; // Format harus "YYYY-MM-DD"
-    const waktu = data.waktu_penjualan; // Format harus "HH:MM"
+    const waktu = data.waktu_mulai_penjualan; // Format harus "HH:MM"
     const tanggal_akhir = data.tanggal_akhir_penjualan; // Format harus "YYYY-MM-DD"
     const waktu_akhir = data.waktu_akhir_penjualan; // Format harus "HH:MM"
 
@@ -60,7 +60,7 @@ export async function UpdateTiket(prevState, request) {
                 harga: data.harga,
                 deskripsi_tiket: data.deskripsi_tiket,
                 tanggal_mulai_penjualan: new Date(tanggalWaktuTiket), // Tanggal dengan format baru
-                waktu_penjualan: new Date(tanggalWaktuTiket),
+                waktu_mulai_penjualan: new Date(tanggalWaktuTiket),
                 tanggal_akhir_penjualan: new Date(tanggalAkhirWaktuTiket), // Tanggal dengan format baru
                 waktu_akhir_penjualan: new Date(tanggalAkhirWaktuTiket)
             }),

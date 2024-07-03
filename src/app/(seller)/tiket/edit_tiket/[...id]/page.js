@@ -190,20 +190,20 @@ export default function Edit({ params }) {
                                     )}
                                 </div>
                                 <div className="mb-5">
-                                    <label htmlFor="waktu_penjualan" className="mb-3 block text-base font-medium text-gray-600">
+                                    <label htmlFor="waktu_mulai_penjualan" className="mb-3 block text-base font-medium text-gray-600">
                                         Waktu Penjualan
                                     </label>
                                     <input
                                         type="time"
-                                        name="waktu_penjualan"
-                                        id="waktu_penjualan"
+                                        name="waktu_mulai_penjualan"
+                                        id="waktu_mulai_penjualan"
                                         value={waktu_mulai_penjualan}
                                         onChange={(e) => {
                                             setWaktu_mulai_penjualan(e.target.value);
                                         }}
                                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-demerald-200 focus:shadow-md"
                                     />
-                                    {state?.waktu_penjualan && <div className="text-red-500">{state.waktu_penjualan}</div>}
+                                    {state?.waktu_mulai_penjualan && <div className="text-red-500">{state.waktu_mulai_penjualan}</div>}
                                 </div>
 
                             </div>
