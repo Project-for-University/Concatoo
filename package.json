@@ -10,9 +10,13 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.1.0",
+    "@eslint/config-array": "^0.17.0",
+    "@eslint/object-schema": "^2.1.4",
     "@prisma/client": "^5.15.0",
     "appwrite": "^15.0.0",
     "bcrypt": "^5.1.1",
+    "glob": "^10.4.2",
+    "lru-cache": "^10.3.0",
     "next": "^14.2.3",
     "next-auth": "^4.24.7",
     "react": "^18",
