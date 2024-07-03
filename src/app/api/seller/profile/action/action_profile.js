@@ -12,6 +12,7 @@ const imageSchema = fileSchema.refine(
 
 const validasi = z.object({
     id_user: z.string().min(1, { message: 'id_user harus ada' }),
+    id_avatar: z.string().optional(),
     avatar: imageSchema.optional().refine(file => file.size < 2097152, "Jangan Lebih dari 2 MB!"),//byte
     name: z.string().max(50, { message: 'maksimum 50 karakter' }).optional(),
     no_ponsel: z.string().max(15, { message: 'maksimum 50 karakter' }).optional(),
@@ -33,7 +34,10 @@ export async function UpdateProfile(prevState, request) {
 
     const formData = new FormData();
     formData.set('id_user', data.id_user);
-    formData.set('avatar', data.avatar);
+    formData.set('id_avatar', data.id_avatar);
+    if (data.avatar.name != '') {
+        formData.set('avatar', data.avatar);
+    }
     formData.set('name', data.name);
     formData.set('no_ponsel', data.no_ponsel);
 

@@ -11,11 +11,14 @@ export default function Profile() {
     const { data: session, status } = useSession()
     const [avatar, setAvatar] = useState(null);
     const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
+
     const [no_ponsel, setNo_ponsel] = useState('')
     const [id_user, setid_user] = useState('')
     // place holder
     const [Davatar, DsetAvatar] = useState(null);
+    const [id_avatar, setid_avatar] = useState(null);
+    console.log("🚀 ~ Profile ~ id_avatar:", id_avatar)
+    console.log("🚀 ~ Profile ~ Davatar:", Davatar)
     const [pname, setpName] = useState('')
     const [pemail, setpEmail] = useState('')
     const [pno_ponsel, setpNo_ponsel] = useState('')
@@ -65,6 +68,14 @@ export default function Profile() {
             setpName(user.name)
             setpEmail(user.email)
             setpNo_ponsel(user.phonenumber)
+
+            if (user.avatar) {
+                const parts = user.avatar.split('/');
+                const id_banner_split = parts[8];
+                setid_avatar(id_banner_split)
+            }
+
+
         } else {
             DsetAvatar([])
             setpName([])
@@ -96,14 +107,15 @@ export default function Profile() {
                         <div className="items-center justify-center w-full">
                             <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50">
                                 <input type="hidden" name="id_user" value={id_user} />
+                                <input type="hidden" name="id_avatar" value={id_avatar} />
                                 <div className="flex flex-col items-center justify-center pt-5 pb-6">
                                     <AiOutlineCloudUpload className="w-8 h-8 mb-4 text-gray-500" />
 
                                     {avatar ? <span className="font-semibold">{avatar.name}</span>
                                         : Davatar ?
                                             <>
-                                                <Image src={Davatar} alt="banner" width={100} height={100} className="border border-gray-200 rounded" />
-                                                <span className="font-semibold">{avatar_split}</span>
+                                                <Image src={Davatar} alt="banner" width={40} height={25} className="border border-gray-200 rounded w-40 h-40 object-cover" />
+                                                {/* <span className="font-semibold">{avatar_split}</span> */}
                                             </>
                                             : <>
                                                 <p className="mb-2 text-sm text-gray-500"><span className="font-semibold">Click to upload</span></p>
@@ -122,7 +134,13 @@ export default function Profile() {
                                     type="file"
                                     className="hidden"
                                     onChange={(e) => {
-                                        setAvatar(e.target.files?.[0])
+                                        const file = e.target.files?.[0];
+                                        console.log("🚀 ~ Profile ~ file:", file)
+                                        if (file) {
+                                            setAvatar(file);
+                                        } else {
+                                            setAvatar(null);
+                                        }
                                     }}
                                 />
                                 {state?.avatar && <div className="text-orange-600">{state.avatar}</div>}
