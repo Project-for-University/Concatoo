@@ -65,7 +65,7 @@ function Card({ param }) {
 
     return (
         <>
-        <Navbar/>
+            <Navbar />
             <div className="m-8 grid gap-4 sm:grid-cols-1 md:grid-cols-1 mb-4">
                 <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-4 ">
                     <div className="flex flex-col bg-white border-1 shadow rounded-xl p-6  lg:col-span-2 md:col-span-1">
@@ -90,20 +90,57 @@ function Card({ param }) {
                                     <h4 className="text-xl font-semibold pb-3">{acaras.nama_acara}</h4>
                                     <table>
                                         <tbody>
-                                        <tr>
-                                            <td className="text-sm pr-3"> Tanggal Acara</td>
-                                            <td className="text-sm pl-3">: {new Date(acaras.tanggal_acara).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: '2-digit' })}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="text-sm pr-3"> Lokasi</td>
-                                            <td className="text-sm pl-3">: {acaras.lokasi}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="text-sm pr-3"> Waktu Acara</td>
-                                            <td className="text-sm pl-3">: {new Date(acaras.waktu_acara).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })}</td>
-                                        </tr>
+                                            <tr>
+                                                <td className="text-sm pr-3"> Tanggal Acara</td>
+                                                <td className="text-sm pl-3">: {new Date(acaras.tanggal_acara).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: '2-digit' })}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="text-sm pr-3"> Lokasi</td>
+                                                <td className="text-sm pl-3">: {acaras.lokasi}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="text-sm pr-3"> Waktu Acara</td>
+                                                <td className="text-sm pl-3">: {new Date(acaras.waktu_acara).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })}</td>
+                                            </tr>
                                         </tbody>
                                     </table>
+
+
+
+                                    <h4 className="text-xl font-semibold pb-3 mt-6">Diselenggarakan oleh</h4>
+                                    <div className="flex items-center mt-2">
+                                        <div className="flex-shrink-0">
+                                            {acaras.user ? (
+                                                <Image
+                                                    width={20}
+                                                    height={20}
+                                                    src={acaras.user.avatar} // Ganti dengan path gambar kamu
+                                                    alt="Iqbal Herlambang"
+                                                    className="w-16 h-16 rounded-full object-cover border-2"
+                                                />
+                                            ) : (
+                                                <Image
+                                                    width={20}
+                                                    height={20}
+                                                    src="" // Ganti dengan path gambar kamu
+                                                    alt="Iqbal Herlambang"
+                                                    className="w-16 h-16 rounded-full object-cover border-2"
+                                                />
+                                            )}
+
+                                        </div>
+                                        <div className="ml-4">
+                                            {acaras.user ? (
+                                                <p className="text-xl text-gray-400">{acaras.user.name}</p>
+                                            ) : (
+                                                <p className="text-xl text-gray-400">Nama tidak tersedia</p>
+                                            )}
+                                        </div>
+                                    </div>
+
+
+
+
                                 </div>
                             </div>
                         </div>
@@ -124,9 +161,9 @@ function Card({ param }) {
                                             <p className="text-xl font-semibold text-emerald-600">Rp. {tiket.harga}</p>
                                             <p className="text-sm"> {tiket.jumlah_tiket}</p>
                                         </div>
-                                <Link href={`/transaksi`} className=" bottom-0 mt-10 p-2 w-full text-white leading-none  uppercase bg-gradient-to-b from-emerald-300 to-emerald-400 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
-                                    Beli Tiket
-                                </Link>
+                                        <Link href={`/transaksi`} className=" bottom-0 mt-10 p-2 w-full text-white leading-none  uppercase bg-gradient-to-b from-emerald-300 to-emerald-400 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                                            Beli Tiket
+                                        </Link>
                                     </div>
                                 </div>
 
@@ -137,7 +174,7 @@ function Card({ param }) {
                     </div>
                 </div>
             </div >
-            <Footer/>
+            <Footer />
         </>
     )
 }

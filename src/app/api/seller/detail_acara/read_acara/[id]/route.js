@@ -13,7 +13,8 @@ export async function GET(request, { params }) {
         },
         include: {
             deskripsi: true,
-            kontak: true
+            kontak: true,
+            user: true
         }
     })
     // console.log(acara);
