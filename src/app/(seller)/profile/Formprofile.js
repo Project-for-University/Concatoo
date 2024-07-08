@@ -114,7 +114,7 @@ export default function FormProfile() {
                                     {avatar ? <span className="font-semibold">{avatar.name}</span>
                                         : Davatar ?
                                             <>
-                                                <Image src={Davatar} alt="banner" width={40} height={25} className="border border-gray-200 rounded w-40 h-40 object-cover" />
+                                                <Image src={Davatar} alt="banner" width={20} height={12} className="border border-gray-200 rounded w-40 h-40 object-cover" />
                                                 {/* <span className="font-semibold">{avatar_split}</span> */}
                                             </>
                                             : <>

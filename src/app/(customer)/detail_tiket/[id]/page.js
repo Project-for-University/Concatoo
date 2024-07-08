@@ -110,7 +110,7 @@ function Card({ param }) {
                                     <h4 className="text-xl font-semibold pb-3 mt-6">Diselenggarakan oleh</h4>
                                     <div className="flex items-center mt-2">
                                         <div className="flex-shrink-0">
-                                            {acaras.user ? (
+                                            {acaras.user?.avatar ? (
                                                 <Image
                                                     width={20}
                                                     height={20}
@@ -122,7 +122,7 @@ function Card({ param }) {
                                                 <Image
                                                     width={20}
                                                     height={20}
-                                                    src="" // Ganti dengan path gambar kamu
+                                                    src={'/asset/avatar.png'} // Ganti dengan path gambar kamu
                                                     alt="Iqbal Herlambang"
                                                     className="w-16 h-16 rounded-full object-cover border-2"
                                                 />

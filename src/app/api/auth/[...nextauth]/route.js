@@ -77,8 +77,9 @@ export const authOptions = NextAuth({
                 }
                 token.id_user = user.id_user
                 token.role = user.role;
+                token.avatar = user.avatar;
             }
-            console.log(token);
+            console.log(token)
             return token
         },
         // if (user) {
@@ -123,6 +124,7 @@ export const authOptions = NextAuth({
                 session.user = session.user,
                     session.user.role = token.role; // Assign role to session
                 session.user.id_user = token.id_user; // Assign role to session
+                session.user.avatar = token.avatar; // Assign role to session
 
                 // Redirect based on role
                 // switch (token.role) {
