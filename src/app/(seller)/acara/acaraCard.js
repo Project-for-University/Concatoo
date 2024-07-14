@@ -119,9 +119,9 @@ export default function CardAcara() {
                                     required />
                             </div>
                         </form>
-                        <button onClick={() => router.refresh()} type="submit" className="px-3 rounded-lg py-2 ms-2 text-sm font-medium text-white bg-gradient-to-b from-emerald-300 to-emerald-400 hover:bg-gardient-to-br focus:ring-4 focus:outline-none focus:ring-emerald-300">
+                        {/* <button onClick={() => router.refresh()} type="submit" className="px-3 rounded-lg py-2 ms-2 text-sm font-medium text-white bg-gradient-to-b from-emerald-300 to-emerald-400 hover:bg-gardient-to-br focus:ring-4 focus:outline-none focus:ring-emerald-300">
                             <span className="">Reset</span>
-                        </button>
+                        </button> */}
                     </div>
 
                     <Link href={`acara/buat_acara`} className="px-3 mr-3 py-2 rounded-md text-sm font-medium text-center text-white bg-gradient-to-b from-emerald-300 to-emerald-400 hover:bg-gardient-to-br focus:ring-4 focus:outline-none focus:ring-emerald-300">Buat Acara</Link>
@@ -159,9 +159,9 @@ export default function CardAcara() {
                                     required />
                             </div>
                         </form>
-                        <button onClick={() => router.refresh()} type="submit" className="px-3 rounded-lg py-2 ms-2 text-sm font-medium text-white bg-gradient-to-b from-emerald-300 to-emerald-400 hover:bg-gardient-to-br focus:ring-4 focus:outline-none focus:ring-emerald-300">
+                        {/* <button onClick={() => router.refresh()} type="submit" className="px-3 rounded-lg py-2 ms-2 text-sm font-medium text-white bg-gradient-to-b from-emerald-300 to-emerald-400 hover:bg-gardient-to-br focus:ring-4 focus:outline-none focus:ring-emerald-300">
                             <span className="">Reset</span>
-                        </button>
+                        </button> */}
                     </div>
 
                     <Link href={`acara/buat_acara`} className="px-3 mr-3 py-2 rounded-md text-sm font-medium text-center text-white bg-gradient-to-b from-emerald-300 to-emerald-400 hover:bg-gardient-to-br focus:ring-4 focus:outline-none focus:ring-emerald-300">Buat Acara</Link>
