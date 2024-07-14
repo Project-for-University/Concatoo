@@ -19,7 +19,7 @@ export default function Edit({ params }) {
     const filenameParts = filename.split('-');
     const banner_split = filenameParts[filenameParts.length - 1]; // 'graphic.png'
     console.log(banner)
-
+    const today = new Date().toISOString().split('T')[0];
 
 
 
@@ -233,6 +233,7 @@ export default function Edit({ params }) {
                                             type="date"
                                             name="tanggal_acara"
                                             id="tanggal_acara"
+                                            min={today}
                                             value={tanggal_acara}
                                             onChange={(e) => { setTanggal_acara(e.target.value) }}
                                             className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-emerald-200 focus:shadow-md"

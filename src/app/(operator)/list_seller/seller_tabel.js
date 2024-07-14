@@ -82,7 +82,20 @@ export default function ListSeller() {
                         {data.map((seller, index) => (
                             <tr key={console.log(seller.id_user)}>
                                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-gray-500">{index + 1}</td>
-                                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-gray-500">{seller.avatar || <Image src={`/asset/avatar.png`} alt="avatar" width={25} height={25} />}</td>
+                                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-gray-500">
+                                    {seller.avatar ? (
+                                        <Image
+
+
+                                            src={seller.avatar} // Ganti dengan path gambar kamu
+                                            alt="Iqbal Herlambang"
+                                            width={5} height={5} className="w-8 h-8 rounded-full  object-cover"
+                                        />
+                                    ) : (
+                                        <Image src={`/asset/avatar.png`} alt="avatar" width={5} height={5} className="w-8 rounded-full  object-cover" />
+
+                                    )}
+                                </td>
                                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-gray-500">{seller.name}</td>
                                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-gray-500">{seller.email}</td>
                                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-gray-500">{seller.phonenumber || <p>kosong</p>}</td>

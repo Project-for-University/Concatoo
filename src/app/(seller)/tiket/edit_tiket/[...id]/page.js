@@ -22,6 +22,8 @@ export default function Edit({ params }) {
     const [tanggal_akhir_penjualan, setTanggal_akhir_penjualan] = useState('')
     const [waktu_akhir_penjualan, setWaktu_akhir_penjualan] = useState('')
 
+    const today = new Date().toISOString().split('T')[0];
+
     const initialState = {
         message: '',
     }
@@ -176,6 +178,7 @@ export default function Edit({ params }) {
                                         Tanggal Mulai Penjualan
                                     </label>
                                     <input
+                                        min={today}
                                         type="date"
                                         name="tanggal_mulai_penjualan"
                                         id="tanggal_mulai_penjualan"
