@@ -68,7 +68,7 @@ export default function Form_Buatacara() {
                         action={formAction}
                     >
                         <div className="mb-6 pt-4">
-                            <label className="mb-5 block text-xl font-semibold text-[#07074D]">Upload Banner</label>
+                            <label className="mb-5 block text-xl font-semibold text-[#07074D]">Unggah Banner</label>
                             <div className="items-center justify-center w-full">
                                 <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50">
                                     <input type="hidden" name="id_user" value={id_user} />
@@ -77,8 +77,8 @@ export default function Form_Buatacara() {
                                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                                         </svg>
                                         {banner ? <span className="font-semibold">{banner.name}</span> : <>
-                                            <p className="mb-2 text-sm text-gray-500"><span className="font-semibold">Click to upload</span></p>
-                                            <p className="text-xs text-gray-500"> .jpg or .png   (MAX 2 MB)</p>
+                                            <p className="mb-2 text-sm text-gray-500"><span className="font-semibold">Klik untuk Unggah</span></p>
+                                            <p className="text-xs text-gray-500"> .JPG atau .PNG   (MAX 2 MB)</p>
                                         </>}
                                     </div>
                                     <input

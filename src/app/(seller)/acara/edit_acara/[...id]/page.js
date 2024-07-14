@@ -110,7 +110,7 @@ export default function Edit({ params }) {
                             {/* id_acara */}
                             <input type="hidden" value={params.id[0]} name="id_acara"></input>
                             <input type="hidden" value={params.id[1]} name="id_banner"></input>
-                            <label className="mb-5 block text-xl font-semibold text-[#07074D]">Upload Thumbnail</label>
+                            <label className="mb-5 block text-xl font-semibold text-[#07074D]">Unggah Thumbnail</label>
                             <div className="flex items-center justify-center w-full">
                                 <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50">
                                     <div className="flex flex-col items-center justify-center pt-5 pb-6">
@@ -123,8 +123,8 @@ export default function Edit({ params }) {
                                                     {/* <span className="font-semibold">{banner_split}</span> */}
                                                 </>
                                                 : <>
-                                                    <p className="mb-2 text-sm text-gray-500"><span className="font-semibold">Click to upload</span></p>
-                                                    <p className="text-xs text-gray-500"> PNG,JPEG or JPG  (MAX. 2700 x 1100 / 16 MB)</p>
+                                                    <p className="mb-2 text-sm text-gray-500"><span className="font-semibold">Klik untuk Unggah</span></p>
+                                                    <p className="text-xs text-gray-500"> .JPG atau .PNG   (MAX 2 MB)</p>
                                                 </>
                                         }
 
