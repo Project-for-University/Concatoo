@@ -50,7 +50,7 @@ export async function POST(req, { params }) {
 
         const result = await prisma.$transaction(async (prisma) => {
             const id_banner = ID.unique()
-            const url_banner = `https://cloud.appwrite.io/v1/storage/buckets/${process.env.NEXT_PUBLIC_BUCKET_ID}/files/${id_banner}/preview?project=${process.env.NEXT_PUBLIC_APPWRITE_PROJECT}`
+            const url_banner = `https://cloud.appwrite.io/v1/storage/buckets/${process.env.NEXT_PUBLIC_BUCKET_BANNER}/files/${id_banner}/preview?project=${process.env.NEXT_PUBLIC_APPWRITE_PROJECT}`
 
 
             const newKontak = await prisma.kontak.create({
@@ -87,7 +87,7 @@ export async function POST(req, { params }) {
             });
             if (newAcara) {
                 const response = await storage.createFile(
-                    process.env.NEXT_PUBLIC_BUCKET_ID, // Ganti dengan ID bucket Anda
+                    process.env.NEXT_PUBLIC_BUCKET_BANNER, // Ganti dengan ID bucket Anda
                     id_banner,
                     banner//harus ada ID.unique()
                 );

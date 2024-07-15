@@ -15,6 +15,7 @@ export default function CardAcara() {
     const router = useRouter()
     const { data: session, status } = useSession()
     const [acaras, setAcara] = useState('');
+    console.log("🚀 ~ CardAcara ~ acaras:", acaras)
     const [cari, setCari] = useState('');
     const [hasilCari, setHasilCari] = useState([]);
 
@@ -80,7 +81,7 @@ export default function CardAcara() {
             });
             if (response.ok) {
                 const result = await storage.deleteFile(
-                    process.env.NEXT_PUBLIC_BUCKET_ID, // bucketId
+                    process.env.NEXT_PUBLIC_BUCKET_BANNER, // bucketId
                     id_banner_split // fileId
                 );
 
@@ -184,7 +185,7 @@ export default function CardAcara() {
                                     <div key={acara.id_acara} className="relative bg-white">
                                         <Link href={`/detail_acara/${acara.id_acara}`}>
                                             <div className="border-2 border-gray-100 rounded-lg h-96 sm:h-96 md:h-full lg:h-44">
-                                                <Image src={acara.banner} className="w-full md:h-24 object-cover rounded-t-md" width={40} height={25} alt="" />
+                                                <Image src={acara.banner} className="w-full md:h-24 object-cover rounded-t-md" width={20} height={25} alt="" />
                                                 <div className="p-5 text-xs">
                                                     <p className="font-bold">{acara.nama_acara}</p>
                                                     <p className="mb-3 text-gray-700">

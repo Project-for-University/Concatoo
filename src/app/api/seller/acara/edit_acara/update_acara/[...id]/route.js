@@ -35,7 +35,7 @@
 
 //         const result = await prisma.$transaction(async (prisma) => {
 //             const id_banner = ID.unique()
-//             const url_banner = `https://cloud.appwrite.io/v1/storage/buckets/${process.env.NEXT_PUBLIC_BUCKET_ID}/files/${id_banner}/preview?project=${process.env.NEXT_PUBLIC_APPWRITE_PROJECT}`
+//             const url_banner = `https://cloud.appwrite.io/v1/storage/buckets/${process.env.NEXT_PUBLIC_BUCKET_BANNER}/files/${id_banner}/preview?project=${process.env.NEXT_PUBLIC_APPWRITE_PROJECT}`
 
 
 //             const acara = await prisma.acara.findFirst({
@@ -54,12 +54,12 @@
 //                 // console.log("🚀 ~ result ~ id_banner_split:", id_banner_split)
 
 //                 const responsedel = await storage.deleteFile(
-//                     process.env.NEXT_PUBLIC_BUCKET_ID, // Ganti dengan ID bucket Anda
+//                     process.env.NEXT_PUBLIC_BUCKET_BANNER, // Ganti dengan ID bucket Anda
 //                     params.id[1],
 //                 );
 //                 if (responsedel) {
 //                     const responsecreate = await storage.createFile(
-//                         process.env.NEXT_PUBLIC_BUCKET_ID, // Ganti dengan ID bucket Anda
+//                         process.env.NEXT_PUBLIC_BUCKET_BANNER, // Ganti dengan ID bucket Anda
 //                         id_banner,
 //                         banner//harus ada ID.unique()
 //                     );
@@ -140,7 +140,7 @@ export async function PUT(req, { params }) {
 
         const result = await prisma.$transaction(async (prisma) => {
             const id_banner = ID.unique();
-            const url_banner = `https://cloud.appwrite.io/v1/storage/buckets/${process.env.NEXT_PUBLIC_BUCKET_ID}/files/${id_banner}/preview?project=${process.env.NEXT_PUBLIC_APPWRITE_PROJECT}`;
+            const url_banner = `https://cloud.appwrite.io/v1/storage/buckets/${process.env.NEXT_PUBLIC_BUCKET_BANNER}/files/${id_banner}/preview?project=${process.env.NEXT_PUBLIC_APPWRITE_PROJECT}`;
 
             const acara = await prisma.acara.findFirst({
                 where: { id_acara: params.id[0] },
@@ -152,12 +152,12 @@ export async function PUT(req, { params }) {
 
             if (banner != null && banner.size > 0) {
                 const responsedel = await storage.deleteFile(
-                    process.env.NEXT_PUBLIC_BUCKET_ID,
+                    process.env.NEXT_PUBLIC_BUCKET_BANNER,
                     params.id[1],
                 );
                 if (responsedel) {
                     await storage.createFile(
-                        process.env.NEXT_PUBLIC_BUCKET_ID,
+                        process.env.NEXT_PUBLIC_BUCKET_BANNER,
                         id_banner,
                         banner
                     );

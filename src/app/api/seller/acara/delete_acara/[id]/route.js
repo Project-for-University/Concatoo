@@ -3,13 +3,13 @@ import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
 import fs from "fs/promises"
 const prisma = new PrismaClient();
+import { storage } from '@/app/api/appwrite';
 
 export async function DELETE(request, { params }) {
     // console.log("Params ID:", params.id);
 
+
     try {
-
-
         const result = await prisma.$transaction(async (prisma) => {
             // Cari acara terlebih dahulu untuk mendapatkan id_kontak dan id_deskripsi
             const acaraToDelete = await prisma.acara.findUnique({
@@ -22,17 +22,31 @@ export async function DELETE(request, { params }) {
                     tiket: true
                 }
             });
-            // console.log(acaraToDelete);
+            console.log(acaraToDelete);
 
             try {
                 const acara = await prisma.acara.delete({
                     where: { id_acara: acaraToDelete.id_acara }
                 });
+
+                console.log("🚀 ~ result ~ acara:", acara)
+                if (acara) {
+
+                    const parts = acara.banner.split('/');
+                    const id_banner_split = parts[8];
+                    console.log("🚀 ~ CardAcara ~ id_banner_split:", id_banner_split)
+
+
+                    await storage.deleteFile(
+                        process.env.NEXT_PUBLIC_BUCKET_BANNER,
+                        id_banner_split,
+                    );
+                }
                 // console.log("Acara dihapus");
 
             } catch (e) {
 
-                // console.log("Acara gagal dihapus");
+                console.log(e);
 
             }
             if (!acaraToDelete) {
@@ -46,6 +60,7 @@ export async function DELETE(request, { params }) {
                 });
                 // console.log("Kontak dihapus");
             } catch (e) {
+                console.log(e);
                 // console.log("Kontak gagal dihapus");
 
             }
@@ -57,17 +72,18 @@ export async function DELETE(request, { params }) {
                 });
                 // console.log("Deskripsi dihapus");
             } catch (e) {
+                console.log(e);
                 // console.log("Deskripsi gagal dihapus");
 
             }
 
-            // hapus file banner
-            try {
-                await fs.unlink(`public${acaraToDelete.banner}`)
-                // console.log('foto di hapus');
-            } catch (e) {
-                // console.log('foto gagal di hapus');
-            }
+            // // hapus file banner
+            // try {
+            //     await fs.unlink(`public${acaraToDelete.banner}`)
+            //     // console.log('foto di hapus');
+            // } catch (e) {
+            //     // console.log('foto gagal di hapus');
+            // }
 
 
         });
@@ -76,6 +92,7 @@ export async function DELETE(request, { params }) {
 
     } catch (error) {
         console.error("Error deleting acara:");
+        console.log(error);
         return NextResponse.json({ message: 'gagal' });
     }
 }
