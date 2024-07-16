@@ -6,7 +6,10 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 
 export const dynamic = 'force-dynamic'
-
+export const metadata = {
+    title: 'Concatoo',
+    description: 'Jual Beli Tiket Acara',
+  }
 
 export default async function Component() {
 
@@ -27,6 +30,7 @@ export default async function Component() {
     console.log(acarasData);
     return (
         <main className="flex-1 ">
+            <link rel="icon" href="/asset/logo.png" sizes="any" />
             <Navbar />
             <CardAcaraCustomer acaraData={acarasData} session={session} />
         </main>
