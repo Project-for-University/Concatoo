@@ -1,6 +1,10 @@
 // pages/coming-soon.js
 import Head from 'next/head';
 
+export const metadata = {
+  title: 'Concatoo',
+  description: 'Jual Beli Tiket Acara',
+}
 export default function ComingSoon() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">

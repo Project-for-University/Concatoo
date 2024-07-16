@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body >
         {/* <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" /> */}
-
+        <link rel="icon" href="/asset/logo.png" sizes="any" />
         <SessionProvider >
           <Suspense >
             {children}

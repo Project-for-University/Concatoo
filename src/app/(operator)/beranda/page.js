@@ -1,6 +1,10 @@
 import Beranda from "./cardBeranda";
 import { cookies } from 'next/headers'
 
+export const metadata = {
+    title: 'Concatoo',
+    description: 'Jual Beli Tiket Acara',
+  }
 export default async function page(params) {
     const cookieStore = cookies()
     const theme = cookieStore.get('theme')

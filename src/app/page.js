@@ -17,7 +17,6 @@ export default async function Component() {
     console.log(session);
     const cookieStore = cookies()
     const theme = cookieStore.get('theme')
-
     // Fetch acaras
     const acarasResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/customer/read_acara`, {
         method: 'GET',
@@ -30,7 +29,6 @@ export default async function Component() {
     console.log(acarasData);
     return (
         <main className="flex-1 ">
-            <link rel="icon" href="/asset/logo.png" sizes="any" />
             <Navbar />
             <CardAcaraCustomer acaraData={acarasData} session={session} />
         </main>

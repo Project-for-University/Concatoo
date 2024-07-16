@@ -1,3 +1,7 @@
+export const metadata = {
+    title: 'Concatoo',
+    description: 'Jual Beli Tiket Acara',
+  }
 export default function About() {
     return(
         <div className="text-center pt-52">
