@@ -60,7 +60,7 @@ export default function RootLayout({ children }) {
                                     <div className="relative inline-block text-left">
                                         <button onClick={() => { setIsOpen(!isOpenProfile) }} type="button" className="text-white bg-gradient-to-b from-emerald-300 to-emerald-400 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-4 py-2 text-center inline-flex items-center" id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover">
                                             <p className="mr-2">{session.user.name}</p>
-                                            <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-white">
+                                            {/* <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-white">
                                                 {session?.user?.avatar ? (
                                                     <Image
 
@@ -79,8 +79,8 @@ export default function RootLayout({ children }) {
                                                     />
                                                 )}
 
-                                                {/* <Image src={'/asset/avatar.png'} alt="" width={5} height={5} className="w-full h-full object-cover" /> */}
-                                            </div>
+                                                <Image src={'/asset/avatar.png'} alt="" width={5} height={5} className="w-full h-full object-cover" />
+                                            </div> */}
                                         </button>
 
                                         <div id="dropdownHover" className={`z-10 ${isOpenProfile ? '' : 'hidden'} bg-white divide-y divide-gray-100 rounded-lg shadow w-44 absolute right-0 mt-2`}>
