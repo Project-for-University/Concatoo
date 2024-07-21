@@ -82,13 +82,13 @@ export default function RegisterForm({ providers }) {
                         <p className="font-semibold text-center font text-2xl">Bergabung Sekarang</p>
                         <p className="text-center text-sm mt-2">
                             Sudah Punya Akun? Tinggal
-                            <button onClick={() => signIn()} type="button" class="text-emerald-600 font-semibold ml-1">Masuk</button>
+                            <button onClick={() => signIn()} type="button" className="text-emerald-600 font-semibold ml-1">Masuk</button>
                         </p>
                     </div>
                     {Object.values(providers).map((provider) => (
-                        <div key={provider.name} class="flex items-center justify-center ">
-                            <button onClick={() => { signIn(provider.id, { callbackUrl: '/' }) }} class="flex items-center bg-white  border border-gray-300 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-600  hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-                                <Image src={`/asset/google.png`} width={200} height={200} class="h-6 w-6 mr-2" alt="" />
+                        <div key={provider.name} className="flex items-center justify-center ">
+                            <button onClick={() => { signIn(provider.id, { callbackUrl: '/' }) }} className="flex items-center bg-white  border border-gray-300 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-600  hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                                <Image src={`/asset/google.png`} width={200} height={200} className="h-6 w-6 mr-2" alt="" />
                                 <span>Daftar dengan {provider.name}</span>
                             </button>
                         </div>

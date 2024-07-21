@@ -84,7 +84,7 @@ function Navbar() {
                         ) : (
                             <>
                                 <div className="flex space-x-4 ml-auto">
-                                    <button onClick={() => signIn()} type="button" class="text-white bg-gradient-to-b from-emerald-300 to-emerald-400 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 ">Masuk</button>
+                                    <button onClick={() => signIn()} type="button" className="text-white bg-gradient-to-b from-emerald-300 to-emerald-400 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 ">Masuk</button>
                                     {/* <button className="bg-white rounded-lg hover:bg-orange-100 p-2" onClick={() => signIn()}>Masuk</button> */}
                                 </div>
                             </>

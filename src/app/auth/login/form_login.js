@@ -44,9 +44,9 @@ export default function LoginForm({ providers }) {
                         </div>
                     ) : null} */}
                     {Object.values(providers).map((provider) => (
-                        <div key={provider.name} class="flex items-center justify-center ">
-                            <button onClick={() => signIn(provider.id, { callbackUrl: '/' })} class="flex items-center bg-white  border border-gray-300 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-600  hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-                                <Image src={`/asset/google.png`} width={200} height={200} class="h-6 w-6 mr-2" alt="" />
+                        <div key={provider.name} className="flex items-center justify-center ">
+                            <button onClick={() => signIn(provider.id, { callbackUrl: '/' })} className="flex items-center bg-white  border border-gray-300 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-600  hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                                <Image src={`/asset/google.png`} width={200} height={200} className="h-6 w-6 mr-2" alt="" />
                                 <span>Masuk dengan {provider.name}</span>
                             </button>
                         </div>
