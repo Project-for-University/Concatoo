@@ -14,6 +14,7 @@ export async function PATCH(req, { params }) {
         console.log("🚀 ~ PATCH ~ formData:", formData)
         const id_user = formData.get('id_user');
         const id_avatar = formData.get('id_avatar');
+        console.log("🚀 ~ PATCH ~ id_avatar:", id_avatar)
         const avatar = formData.get('avatar');
         const name = formData.get('name');
         const no_ponsel = formData.get('no_ponsel');
@@ -56,6 +57,8 @@ export async function PATCH(req, { params }) {
                     process.env.NEXT_PUBLIC_BUCKET_AVATAR,
                     id_avatar
                 );
+                console.log(id_avatar)
+                console.log(process.env.NEXT_PUBLIC_BUCKET_AVATAR)
             } catch (error) {
                 console.log("Error deleting file:", error.message);
             } finally {
@@ -71,6 +74,7 @@ export async function PATCH(req, { params }) {
                 }
 
             }
+
         }
 
         const updateData = {};

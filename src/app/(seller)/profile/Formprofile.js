@@ -72,7 +72,9 @@ export default function FormProfile() {
             if (user.avatar) {
                 const parts = user.avatar.split('/');
                 const id_banner_split = parts[8];
+                console.log("🚀 ~ findUser ~ id_banner_split:", id_banner_split)
                 setid_avatar(id_banner_split)
+                console.log(typeof id_banner_split);
             }
 
 

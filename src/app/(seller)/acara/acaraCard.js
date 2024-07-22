@@ -75,18 +75,19 @@ export default function CardAcara() {
         console.log("🚀 ~ DeleteAcara ~ id_banner_split:", id_banner_split)
         // console.log(id_acara);
         try {
-            const response = await fetch(`/api/seller/acara/delete_acara/${id_acara}`, {
+            const response = await fetch(`/api/seller/acara/delete_acara/${id_acara}/${id_banner_split}`, {
                 method: 'DELETE',
 
             });
             if (response.ok) {
-                const result = await storage.deleteFile(
-                    process.env.NEXT_PUBLIC_BUCKET_BANNER, // bucketId
-                    id_banner_split // fileId
-                );
+                console.log('berhasil');
+                // const result = await storage.deleteFile(
+                //     process.env.NEXT_PUBLIC_BUCKET_BANNER, // bucketId
+                //     id_banner_split // fileId
+                // );
 
-                alert('berhasil hapus data')
-                getAcara(session.user?.id_user)
+                alert('berhasil hapus acara')
+                router.refresh();
 
 
             }
