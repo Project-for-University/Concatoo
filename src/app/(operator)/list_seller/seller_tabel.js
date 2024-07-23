@@ -5,12 +5,13 @@ import { SlCheck, SlClose } from "react-icons/sl";
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-
+import { useRouter } from 'next/navigation'
+ 
 
 
 export default function ListSeller() {
-
-
+    const router = useRouter()
+   
 
     const [data, setData] = useState([]);
     console.log(data);
@@ -35,7 +36,18 @@ export default function ListSeller() {
     }, []);
 
 
-
+    async function ActionLIstSeller(params) {
+        
+        console.log(params);
+     const res=await fetch(`/api/operator/list_seller/DeleteSeller/${params}`,{
+        method:'DELETE'
+     })
+    
+     if (res.ok) {
+        console.log('berhasil');
+        router.refresh()
+     }
+    }
 
     async function Non_aktifkan(id_user) {
         console.log(id_user);
@@ -76,6 +88,7 @@ export default function ListSeller() {
                             <th className="px-6 py-3 border-b-2 border-gray-100 text-left leading-4 text-gray-800 tracking-wider">Email</th>
                             <th className="px-6 py-3 border-b-2 border-gray-100 text-left leading-4 text-gray-800 tracking-wider">No HP</th>
                             <th className="px-6 py-3 border-b-2 border-gray-100 text-left leading-4 text-gray-800 tracking-wider">Status</th>
+                            <th className="px-6 py-3 border-b-2 border-gray-100 text-left leading-4 text-gray-800 tracking-wider">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -112,6 +125,9 @@ export default function ListSeller() {
                                             Aktifkan
                                         </button>
                                     )}
+                                </td>
+                                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-gray-500">
+                                   <button onClick={()=>{ActionLIstSeller(seller.id_user)}}  className="flex px-3 items-center py-2 text-sm rounded-md font-medium text-center text-emerald-500 border border-emerald-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-emerald-300" >Delete</button>
                                 </td>
                             </tr>
                         ))}
